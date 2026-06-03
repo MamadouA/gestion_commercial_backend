@@ -1,0 +1,19 @@
+import { Body, Controller, Get, Post } from '@nestjs/common';
+import { AuthService } from './auth.service';
+import { bcrypt } from 'bcrypt';
+import { SignInDto } from './dto/sign-in.dto';
+
+@Controller('auth')
+export class AuthController {
+  constructor(private readonly authService: AuthService) {}
+
+  @Post('login')
+  signIn(@Body() signInDto: SignInDto) {
+    
+  }
+
+  @Get('logout')
+  signOut() {
+    
+  }
+}
