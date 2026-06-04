@@ -1,11 +1,21 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { CreateTenantDto } from './dto/create-tenant.dto';
 import { UpdateTenantDto } from './dto/update-tenant.dto';
+import { PrismaClientService } from '../database/prisma-client.service';
 
 @Injectable()
 export class TenantService {
+
+  constructor(private prismaClientService: PrismaClientService) {}
+
   create(createTenantDto: CreateTenantDto) {
-    return 'This action adds a new tenant';
+    try {
+      const tenant = this.prismaClientService.tenant.create({ data: createTenantDto });
+      return tenant;
+    } catch (error) {
+      console.log(error);
+      throw new InternalServerErrorException("Error while creating a new tenant: " + error);;
+    }
   }
 
   findAll() {

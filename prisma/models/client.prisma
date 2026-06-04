@@ -1,1 +1,27 @@
 
+model Client {
+    id Int @id @default(autoincrement())
+    type ClientType 
+    country String
+    address String
+    enterprise_name String?
+    enterprise_legal_form EnterpriseLegalForm?
+    main_activity String?
+    createdAt DateTime @default(now())
+    prospections Prospection[]
+}
+
+enum ClientType {
+    PARTICULIER
+    ENTERPRISE
+}
+
+enum EnterpriseLegalForm {
+    Person
+    SARL
+    SA
+    SAS
+    SUARL
+    SNC
+    SCS
+}

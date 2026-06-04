@@ -1,0 +1,17 @@
+
+model Prospection {
+    id Int @id @default(autoincrement())
+    proposed_service String
+    start_date String
+    end_date String
+    status ProspectionStatus @default(OPEN)
+    clientId Int
+    client Client @relation(fields: [clientId], references: [id])
+}
+
+enum ProspectionStatus {
+    OPEN
+    ABANDONED
+    LOST
+    WON
+}

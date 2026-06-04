@@ -51,6 +51,8 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
+  Client: 'Client',
+  Prospection: 'Prospection',
   Tenant: 'Tenant',
   User: 'User'
 } as const
@@ -69,6 +71,32 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 } as const)
 
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
+
+
+export const ClientScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  country: 'country',
+  address: 'address',
+  enterprise_name: 'enterprise_name',
+  enterprise_legal_form: 'enterprise_legal_form',
+  main_activity: 'main_activity',
+  createdAt: 'createdAt'
+} as const
+
+export type ClientScalarFieldEnum = (typeof ClientScalarFieldEnum)[keyof typeof ClientScalarFieldEnum]
+
+
+export const ProspectionScalarFieldEnum = {
+  id: 'id',
+  proposed_service: 'proposed_service',
+  start_date: 'start_date',
+  end_date: 'end_date',
+  status: 'status',
+  clientId: 'clientId'
+} as const
+
+export type ProspectionScalarFieldEnum = (typeof ProspectionScalarFieldEnum)[keyof typeof ProspectionScalarFieldEnum]
 
 
 export const TenantScalarFieldEnum = {
@@ -109,4 +137,12 @@ export const QueryMode = {
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 

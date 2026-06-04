@@ -9,6 +9,37 @@
 * 🟢 You can import this file directly.
 */
 
+export const ClientType = {
+  PARTICULIER: 'PARTICULIER',
+  ENTERPRISE: 'ENTERPRISE'
+} as const
+
+export type ClientType = (typeof ClientType)[keyof typeof ClientType]
+
+
+export const EnterpriseLegalForm = {
+  Person: 'Person',
+  SARL: 'SARL',
+  SA: 'SA',
+  SAS: 'SAS',
+  SUARL: 'SUARL',
+  SNC: 'SNC',
+  SCS: 'SCS'
+} as const
+
+export type EnterpriseLegalForm = (typeof EnterpriseLegalForm)[keyof typeof EnterpriseLegalForm]
+
+
+export const ProspectionStatus = {
+  OPEN: 'OPEN',
+  ABANDONED: 'ABANDONED',
+  LOST: 'LOST',
+  WON: 'WON'
+} as const
+
+export type ProspectionStatus = (typeof ProspectionStatus)[keyof typeof ProspectionStatus]
+
+
 export const Role = {
   SUPERADMIN: 'SUPERADMIN'
 } as const

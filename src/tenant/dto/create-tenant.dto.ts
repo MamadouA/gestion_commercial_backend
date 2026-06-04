@@ -1,11 +1,20 @@
+import { Type } from "class-transformer";
+import { CreateUserDto } from "../../user/dto/create-user.dto";
+import { IsBoolean, isBoolean, IsDateString, IsDefined, IsString, MaxLength, MinLength, ValidateNested } from 'class-validator';
 export class CreateTenantDto {
-    name: string;
-    isActive: boolean;
-    createdAt: Date;
+   
+    @IsString()
+    @MinLength(3)
+    @MaxLength(50)
+    name!: string;
 
-    constructor(name: string, isActive: boolean, createdAt: Date) {
-        this.name = name;
-        this.isActive = isActive;
-        this.createdAt = createdAt;
-    }
+    @IsBoolean()
+    isActive!: boolean;
+
+    @IsDateString()
+    createdAt!: Date;
+
+    @ValidateNested()
+    @IsDefined()
+    user!: CreateUserDto;
 }

@@ -7,12 +7,13 @@ import { UpdateTenantDto } from './dto/update-tenant.dto';
 export class TenantController {
   constructor(private readonly tenantService: TenantService) {}
 
-  @Post()
+  @Post('create')
   create(@Body() createTenantDto: CreateTenantDto) {
+    console.log(createTenantDto);
     return this.tenantService.create(createTenantDto);
   }
 
-  @Get()
+  @Get('all')
   findAll() {
     return this.tenantService.findAll();
   }
