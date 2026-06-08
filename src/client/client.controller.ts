@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, DefaultValuePipe, Get, ParseIntPipe, Post, Query } from '@nestjs/common';
 import { CreateClientDTO } from './dto/create-client.dto';
 import { ClientService } from './client.service';
 import { CurrentUser } from '../common/current-user.decoration';
@@ -19,7 +19,7 @@ export class ClientController {
 
   // -
   @Get('all')
-  async findAll(@CurrentUser('tenantId') tenantId: number) {
-    return await this.clientService.findAll(tenantId);
+  async findAll(@Query('currentPage', new DefaultValuePipe(1), ParseIntPipe) currentPage: number, @Query('pageSize', new DefaultValuePipe(10), ParseIntPipe) pageSize: number, @CurrentUser('tenantId') tenantId: number) {
+    return await this.clientService.findAll(currentPage, pageSize, tenantId);
   }
 }

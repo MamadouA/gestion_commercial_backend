@@ -1,7 +1,5 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { CreateClientDTO } from './dto/create-client.dto';
-import { CurrentUser } from '../common/current-user.decoration';
-import { User } from '../generated/prisma/client';
 import { PrismaClientService } from '../database/prisma-client.service';
 
 @Injectable()
@@ -25,12 +23,17 @@ export class ClientService {
     }
 
     // -
-    async findAll(tenantId: number) {
+    async findAll(currentPage: number, pageSize: number, tenantId: number) {
         try {
             return await this.prismaClientService.client.findMany({
                 where: {
                     tenantId
-                }
+                },
+                skip: (currentPage - 1) * pageSize,
+                take: pageSize,
+                orderBy: {
+                    id: 'asc'
+                }   
             });
         }
         catch(err) {
