@@ -28,10 +28,12 @@ export type AggregateClient = {
 
 export type ClientAvgAggregateOutputType = {
   id: number | null
+  tenantId: number | null
 }
 
 export type ClientSumAggregateOutputType = {
   id: number | null
+  tenantId: number | null
 }
 
 export type ClientMinAggregateOutputType = {
@@ -39,10 +41,14 @@ export type ClientMinAggregateOutputType = {
   type: $Enums.ClientType | null
   country: string | null
   address: string | null
-  enterprise_name: string | null
-  enterprise_legal_form: $Enums.EnterpriseLegalForm | null
-  main_activity: string | null
+  contactName: string | null
+  phone: string | null
+  email: string | null
+  enterpriseName: string | null
+  enterpriseLegalForm: $Enums.EnterpriseLegalForm | null
+  mainActivity: string | null
   createdAt: Date | null
+  tenantId: number | null
 }
 
 export type ClientMaxAggregateOutputType = {
@@ -50,10 +56,14 @@ export type ClientMaxAggregateOutputType = {
   type: $Enums.ClientType | null
   country: string | null
   address: string | null
-  enterprise_name: string | null
-  enterprise_legal_form: $Enums.EnterpriseLegalForm | null
-  main_activity: string | null
+  contactName: string | null
+  phone: string | null
+  email: string | null
+  enterpriseName: string | null
+  enterpriseLegalForm: $Enums.EnterpriseLegalForm | null
+  mainActivity: string | null
   createdAt: Date | null
+  tenantId: number | null
 }
 
 export type ClientCountAggregateOutputType = {
@@ -61,20 +71,26 @@ export type ClientCountAggregateOutputType = {
   type: number
   country: number
   address: number
-  enterprise_name: number
-  enterprise_legal_form: number
-  main_activity: number
+  contactName: number
+  phone: number
+  email: number
+  enterpriseName: number
+  enterpriseLegalForm: number
+  mainActivity: number
   createdAt: number
+  tenantId: number
   _all: number
 }
 
 
 export type ClientAvgAggregateInputType = {
   id?: true
+  tenantId?: true
 }
 
 export type ClientSumAggregateInputType = {
   id?: true
+  tenantId?: true
 }
 
 export type ClientMinAggregateInputType = {
@@ -82,10 +98,14 @@ export type ClientMinAggregateInputType = {
   type?: true
   country?: true
   address?: true
-  enterprise_name?: true
-  enterprise_legal_form?: true
-  main_activity?: true
+  contactName?: true
+  phone?: true
+  email?: true
+  enterpriseName?: true
+  enterpriseLegalForm?: true
+  mainActivity?: true
   createdAt?: true
+  tenantId?: true
 }
 
 export type ClientMaxAggregateInputType = {
@@ -93,10 +113,14 @@ export type ClientMaxAggregateInputType = {
   type?: true
   country?: true
   address?: true
-  enterprise_name?: true
-  enterprise_legal_form?: true
-  main_activity?: true
+  contactName?: true
+  phone?: true
+  email?: true
+  enterpriseName?: true
+  enterpriseLegalForm?: true
+  mainActivity?: true
   createdAt?: true
+  tenantId?: true
 }
 
 export type ClientCountAggregateInputType = {
@@ -104,10 +128,14 @@ export type ClientCountAggregateInputType = {
   type?: true
   country?: true
   address?: true
-  enterprise_name?: true
-  enterprise_legal_form?: true
-  main_activity?: true
+  contactName?: true
+  phone?: true
+  email?: true
+  enterpriseName?: true
+  enterpriseLegalForm?: true
+  mainActivity?: true
   createdAt?: true
+  tenantId?: true
   _all?: true
 }
 
@@ -202,10 +230,14 @@ export type ClientGroupByOutputType = {
   type: $Enums.ClientType
   country: string
   address: string
-  enterprise_name: string | null
-  enterprise_legal_form: $Enums.EnterpriseLegalForm | null
-  main_activity: string | null
+  contactName: string
+  phone: string
+  email: string
+  enterpriseName: string | null
+  enterpriseLegalForm: $Enums.EnterpriseLegalForm | null
+  mainActivity: string | null
   createdAt: Date
+  tenantId: number
   _count: ClientCountAggregateOutputType | null
   _avg: ClientAvgAggregateOutputType | null
   _sum: ClientSumAggregateOutputType | null
@@ -236,10 +268,15 @@ export type ClientWhereInput = {
   type?: Prisma.EnumClientTypeFilter<"Client"> | $Enums.ClientType
   country?: Prisma.StringFilter<"Client"> | string
   address?: Prisma.StringFilter<"Client"> | string
-  enterprise_name?: Prisma.StringNullableFilter<"Client"> | string | null
-  enterprise_legal_form?: Prisma.EnumEnterpriseLegalFormNullableFilter<"Client"> | $Enums.EnterpriseLegalForm | null
-  main_activity?: Prisma.StringNullableFilter<"Client"> | string | null
+  contactName?: Prisma.StringFilter<"Client"> | string
+  phone?: Prisma.StringFilter<"Client"> | string
+  email?: Prisma.StringFilter<"Client"> | string
+  enterpriseName?: Prisma.StringNullableFilter<"Client"> | string | null
+  enterpriseLegalForm?: Prisma.EnumEnterpriseLegalFormNullableFilter<"Client"> | $Enums.EnterpriseLegalForm | null
+  mainActivity?: Prisma.StringNullableFilter<"Client"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Client"> | Date | string
+  tenantId?: Prisma.IntFilter<"Client"> | number
+  tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   prospections?: Prisma.ProspectionListRelationFilter
 }
 
@@ -248,10 +285,15 @@ export type ClientOrderByWithRelationInput = {
   type?: Prisma.SortOrder
   country?: Prisma.SortOrder
   address?: Prisma.SortOrder
-  enterprise_name?: Prisma.SortOrderInput | Prisma.SortOrder
-  enterprise_legal_form?: Prisma.SortOrderInput | Prisma.SortOrder
-  main_activity?: Prisma.SortOrderInput | Prisma.SortOrder
+  contactName?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
+  email?: Prisma.SortOrder
+  enterpriseName?: Prisma.SortOrderInput | Prisma.SortOrder
+  enterpriseLegalForm?: Prisma.SortOrderInput | Prisma.SortOrder
+  mainActivity?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
+  tenant?: Prisma.TenantOrderByWithRelationInput
   prospections?: Prisma.ProspectionOrderByRelationAggregateInput
 }
 
@@ -263,10 +305,15 @@ export type ClientWhereUniqueInput = Prisma.AtLeast<{
   type?: Prisma.EnumClientTypeFilter<"Client"> | $Enums.ClientType
   country?: Prisma.StringFilter<"Client"> | string
   address?: Prisma.StringFilter<"Client"> | string
-  enterprise_name?: Prisma.StringNullableFilter<"Client"> | string | null
-  enterprise_legal_form?: Prisma.EnumEnterpriseLegalFormNullableFilter<"Client"> | $Enums.EnterpriseLegalForm | null
-  main_activity?: Prisma.StringNullableFilter<"Client"> | string | null
+  contactName?: Prisma.StringFilter<"Client"> | string
+  phone?: Prisma.StringFilter<"Client"> | string
+  email?: Prisma.StringFilter<"Client"> | string
+  enterpriseName?: Prisma.StringNullableFilter<"Client"> | string | null
+  enterpriseLegalForm?: Prisma.EnumEnterpriseLegalFormNullableFilter<"Client"> | $Enums.EnterpriseLegalForm | null
+  mainActivity?: Prisma.StringNullableFilter<"Client"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Client"> | Date | string
+  tenantId?: Prisma.IntFilter<"Client"> | number
+  tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   prospections?: Prisma.ProspectionListRelationFilter
 }, "id">
 
@@ -275,10 +322,14 @@ export type ClientOrderByWithAggregationInput = {
   type?: Prisma.SortOrder
   country?: Prisma.SortOrder
   address?: Prisma.SortOrder
-  enterprise_name?: Prisma.SortOrderInput | Prisma.SortOrder
-  enterprise_legal_form?: Prisma.SortOrderInput | Prisma.SortOrder
-  main_activity?: Prisma.SortOrderInput | Prisma.SortOrder
+  contactName?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
+  email?: Prisma.SortOrder
+  enterpriseName?: Prisma.SortOrderInput | Prisma.SortOrder
+  enterpriseLegalForm?: Prisma.SortOrderInput | Prisma.SortOrder
+  mainActivity?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
   _count?: Prisma.ClientCountOrderByAggregateInput
   _avg?: Prisma.ClientAvgOrderByAggregateInput
   _max?: Prisma.ClientMaxOrderByAggregateInput
@@ -294,20 +345,28 @@ export type ClientScalarWhereWithAggregatesInput = {
   type?: Prisma.EnumClientTypeWithAggregatesFilter<"Client"> | $Enums.ClientType
   country?: Prisma.StringWithAggregatesFilter<"Client"> | string
   address?: Prisma.StringWithAggregatesFilter<"Client"> | string
-  enterprise_name?: Prisma.StringNullableWithAggregatesFilter<"Client"> | string | null
-  enterprise_legal_form?: Prisma.EnumEnterpriseLegalFormNullableWithAggregatesFilter<"Client"> | $Enums.EnterpriseLegalForm | null
-  main_activity?: Prisma.StringNullableWithAggregatesFilter<"Client"> | string | null
+  contactName?: Prisma.StringWithAggregatesFilter<"Client"> | string
+  phone?: Prisma.StringWithAggregatesFilter<"Client"> | string
+  email?: Prisma.StringWithAggregatesFilter<"Client"> | string
+  enterpriseName?: Prisma.StringNullableWithAggregatesFilter<"Client"> | string | null
+  enterpriseLegalForm?: Prisma.EnumEnterpriseLegalFormNullableWithAggregatesFilter<"Client"> | $Enums.EnterpriseLegalForm | null
+  mainActivity?: Prisma.StringNullableWithAggregatesFilter<"Client"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Client"> | Date | string
+  tenantId?: Prisma.IntWithAggregatesFilter<"Client"> | number
 }
 
 export type ClientCreateInput = {
   type: $Enums.ClientType
   country: string
   address: string
-  enterprise_name?: string | null
-  enterprise_legal_form?: $Enums.EnterpriseLegalForm | null
-  main_activity?: string | null
+  contactName: string
+  phone: string
+  email: string
+  enterpriseName?: string | null
+  enterpriseLegalForm?: $Enums.EnterpriseLegalForm | null
+  mainActivity?: string | null
   createdAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutClientsInput
   prospections?: Prisma.ProspectionCreateNestedManyWithoutClientInput
 }
 
@@ -316,10 +375,14 @@ export type ClientUncheckedCreateInput = {
   type: $Enums.ClientType
   country: string
   address: string
-  enterprise_name?: string | null
-  enterprise_legal_form?: $Enums.EnterpriseLegalForm | null
-  main_activity?: string | null
+  contactName: string
+  phone: string
+  email: string
+  enterpriseName?: string | null
+  enterpriseLegalForm?: $Enums.EnterpriseLegalForm | null
+  mainActivity?: string | null
   createdAt?: Date | string
+  tenantId: number
   prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutClientInput
 }
 
@@ -327,10 +390,14 @@ export type ClientUpdateInput = {
   type?: Prisma.EnumClientTypeFieldUpdateOperationsInput | $Enums.ClientType
   country?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
-  enterprise_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  enterprise_legal_form?: Prisma.NullableEnumEnterpriseLegalFormFieldUpdateOperationsInput | $Enums.EnterpriseLegalForm | null
-  main_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactName?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  enterpriseName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enterpriseLegalForm?: Prisma.NullableEnumEnterpriseLegalFormFieldUpdateOperationsInput | $Enums.EnterpriseLegalForm | null
+  mainActivity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutClientsNestedInput
   prospections?: Prisma.ProspectionUpdateManyWithoutClientNestedInput
 }
 
@@ -339,10 +406,14 @@ export type ClientUncheckedUpdateInput = {
   type?: Prisma.EnumClientTypeFieldUpdateOperationsInput | $Enums.ClientType
   country?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
-  enterprise_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  enterprise_legal_form?: Prisma.NullableEnumEnterpriseLegalFormFieldUpdateOperationsInput | $Enums.EnterpriseLegalForm | null
-  main_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactName?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  enterpriseName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enterpriseLegalForm?: Prisma.NullableEnumEnterpriseLegalFormFieldUpdateOperationsInput | $Enums.EnterpriseLegalForm | null
+  mainActivity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutClientNestedInput
 }
 
@@ -351,19 +422,26 @@ export type ClientCreateManyInput = {
   type: $Enums.ClientType
   country: string
   address: string
-  enterprise_name?: string | null
-  enterprise_legal_form?: $Enums.EnterpriseLegalForm | null
-  main_activity?: string | null
+  contactName: string
+  phone: string
+  email: string
+  enterpriseName?: string | null
+  enterpriseLegalForm?: $Enums.EnterpriseLegalForm | null
+  mainActivity?: string | null
   createdAt?: Date | string
+  tenantId: number
 }
 
 export type ClientUpdateManyMutationInput = {
   type?: Prisma.EnumClientTypeFieldUpdateOperationsInput | $Enums.ClientType
   country?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
-  enterprise_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  enterprise_legal_form?: Prisma.NullableEnumEnterpriseLegalFormFieldUpdateOperationsInput | $Enums.EnterpriseLegalForm | null
-  main_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactName?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  enterpriseName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enterpriseLegalForm?: Prisma.NullableEnumEnterpriseLegalFormFieldUpdateOperationsInput | $Enums.EnterpriseLegalForm | null
+  mainActivity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -372,10 +450,14 @@ export type ClientUncheckedUpdateManyInput = {
   type?: Prisma.EnumClientTypeFieldUpdateOperationsInput | $Enums.ClientType
   country?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
-  enterprise_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  enterprise_legal_form?: Prisma.NullableEnumEnterpriseLegalFormFieldUpdateOperationsInput | $Enums.EnterpriseLegalForm | null
-  main_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactName?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  enterpriseName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enterpriseLegalForm?: Prisma.NullableEnumEnterpriseLegalFormFieldUpdateOperationsInput | $Enums.EnterpriseLegalForm | null
+  mainActivity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type ClientCountOrderByAggregateInput = {
@@ -383,14 +465,19 @@ export type ClientCountOrderByAggregateInput = {
   type?: Prisma.SortOrder
   country?: Prisma.SortOrder
   address?: Prisma.SortOrder
-  enterprise_name?: Prisma.SortOrder
-  enterprise_legal_form?: Prisma.SortOrder
-  main_activity?: Prisma.SortOrder
+  contactName?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
+  email?: Prisma.SortOrder
+  enterpriseName?: Prisma.SortOrder
+  enterpriseLegalForm?: Prisma.SortOrder
+  mainActivity?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
 }
 
 export type ClientAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
 }
 
 export type ClientMaxOrderByAggregateInput = {
@@ -398,10 +485,14 @@ export type ClientMaxOrderByAggregateInput = {
   type?: Prisma.SortOrder
   country?: Prisma.SortOrder
   address?: Prisma.SortOrder
-  enterprise_name?: Prisma.SortOrder
-  enterprise_legal_form?: Prisma.SortOrder
-  main_activity?: Prisma.SortOrder
+  contactName?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
+  email?: Prisma.SortOrder
+  enterpriseName?: Prisma.SortOrder
+  enterpriseLegalForm?: Prisma.SortOrder
+  mainActivity?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
 }
 
 export type ClientMinOrderByAggregateInput = {
@@ -409,19 +500,34 @@ export type ClientMinOrderByAggregateInput = {
   type?: Prisma.SortOrder
   country?: Prisma.SortOrder
   address?: Prisma.SortOrder
-  enterprise_name?: Prisma.SortOrder
-  enterprise_legal_form?: Prisma.SortOrder
-  main_activity?: Prisma.SortOrder
+  contactName?: Prisma.SortOrder
+  phone?: Prisma.SortOrder
+  email?: Prisma.SortOrder
+  enterpriseName?: Prisma.SortOrder
+  enterpriseLegalForm?: Prisma.SortOrder
+  mainActivity?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
 }
 
 export type ClientSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
 }
 
 export type ClientScalarRelationFilter = {
   is?: Prisma.ClientWhereInput
   isNot?: Prisma.ClientWhereInput
+}
+
+export type ClientListRelationFilter = {
+  every?: Prisma.ClientWhereInput
+  some?: Prisma.ClientWhereInput
+  none?: Prisma.ClientWhereInput
+}
+
+export type ClientOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type EnumClientTypeFieldUpdateOperationsInput = {
@@ -466,14 +572,60 @@ export type ClientUpdateOneRequiredWithoutProspectionsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ClientUpdateToOneWithWhereWithoutProspectionsInput, Prisma.ClientUpdateWithoutProspectionsInput>, Prisma.ClientUncheckedUpdateWithoutProspectionsInput>
 }
 
+export type ClientCreateNestedManyWithoutTenantInput = {
+  create?: Prisma.XOR<Prisma.ClientCreateWithoutTenantInput, Prisma.ClientUncheckedCreateWithoutTenantInput> | Prisma.ClientCreateWithoutTenantInput[] | Prisma.ClientUncheckedCreateWithoutTenantInput[]
+  connectOrCreate?: Prisma.ClientCreateOrConnectWithoutTenantInput | Prisma.ClientCreateOrConnectWithoutTenantInput[]
+  createMany?: Prisma.ClientCreateManyTenantInputEnvelope
+  connect?: Prisma.ClientWhereUniqueInput | Prisma.ClientWhereUniqueInput[]
+}
+
+export type ClientUncheckedCreateNestedManyWithoutTenantInput = {
+  create?: Prisma.XOR<Prisma.ClientCreateWithoutTenantInput, Prisma.ClientUncheckedCreateWithoutTenantInput> | Prisma.ClientCreateWithoutTenantInput[] | Prisma.ClientUncheckedCreateWithoutTenantInput[]
+  connectOrCreate?: Prisma.ClientCreateOrConnectWithoutTenantInput | Prisma.ClientCreateOrConnectWithoutTenantInput[]
+  createMany?: Prisma.ClientCreateManyTenantInputEnvelope
+  connect?: Prisma.ClientWhereUniqueInput | Prisma.ClientWhereUniqueInput[]
+}
+
+export type ClientUpdateManyWithoutTenantNestedInput = {
+  create?: Prisma.XOR<Prisma.ClientCreateWithoutTenantInput, Prisma.ClientUncheckedCreateWithoutTenantInput> | Prisma.ClientCreateWithoutTenantInput[] | Prisma.ClientUncheckedCreateWithoutTenantInput[]
+  connectOrCreate?: Prisma.ClientCreateOrConnectWithoutTenantInput | Prisma.ClientCreateOrConnectWithoutTenantInput[]
+  upsert?: Prisma.ClientUpsertWithWhereUniqueWithoutTenantInput | Prisma.ClientUpsertWithWhereUniqueWithoutTenantInput[]
+  createMany?: Prisma.ClientCreateManyTenantInputEnvelope
+  set?: Prisma.ClientWhereUniqueInput | Prisma.ClientWhereUniqueInput[]
+  disconnect?: Prisma.ClientWhereUniqueInput | Prisma.ClientWhereUniqueInput[]
+  delete?: Prisma.ClientWhereUniqueInput | Prisma.ClientWhereUniqueInput[]
+  connect?: Prisma.ClientWhereUniqueInput | Prisma.ClientWhereUniqueInput[]
+  update?: Prisma.ClientUpdateWithWhereUniqueWithoutTenantInput | Prisma.ClientUpdateWithWhereUniqueWithoutTenantInput[]
+  updateMany?: Prisma.ClientUpdateManyWithWhereWithoutTenantInput | Prisma.ClientUpdateManyWithWhereWithoutTenantInput[]
+  deleteMany?: Prisma.ClientScalarWhereInput | Prisma.ClientScalarWhereInput[]
+}
+
+export type ClientUncheckedUpdateManyWithoutTenantNestedInput = {
+  create?: Prisma.XOR<Prisma.ClientCreateWithoutTenantInput, Prisma.ClientUncheckedCreateWithoutTenantInput> | Prisma.ClientCreateWithoutTenantInput[] | Prisma.ClientUncheckedCreateWithoutTenantInput[]
+  connectOrCreate?: Prisma.ClientCreateOrConnectWithoutTenantInput | Prisma.ClientCreateOrConnectWithoutTenantInput[]
+  upsert?: Prisma.ClientUpsertWithWhereUniqueWithoutTenantInput | Prisma.ClientUpsertWithWhereUniqueWithoutTenantInput[]
+  createMany?: Prisma.ClientCreateManyTenantInputEnvelope
+  set?: Prisma.ClientWhereUniqueInput | Prisma.ClientWhereUniqueInput[]
+  disconnect?: Prisma.ClientWhereUniqueInput | Prisma.ClientWhereUniqueInput[]
+  delete?: Prisma.ClientWhereUniqueInput | Prisma.ClientWhereUniqueInput[]
+  connect?: Prisma.ClientWhereUniqueInput | Prisma.ClientWhereUniqueInput[]
+  update?: Prisma.ClientUpdateWithWhereUniqueWithoutTenantInput | Prisma.ClientUpdateWithWhereUniqueWithoutTenantInput[]
+  updateMany?: Prisma.ClientUpdateManyWithWhereWithoutTenantInput | Prisma.ClientUpdateManyWithWhereWithoutTenantInput[]
+  deleteMany?: Prisma.ClientScalarWhereInput | Prisma.ClientScalarWhereInput[]
+}
+
 export type ClientCreateWithoutProspectionsInput = {
   type: $Enums.ClientType
   country: string
   address: string
-  enterprise_name?: string | null
-  enterprise_legal_form?: $Enums.EnterpriseLegalForm | null
-  main_activity?: string | null
+  contactName: string
+  phone: string
+  email: string
+  enterpriseName?: string | null
+  enterpriseLegalForm?: $Enums.EnterpriseLegalForm | null
+  mainActivity?: string | null
   createdAt?: Date | string
+  tenant: Prisma.TenantCreateNestedOneWithoutClientsInput
 }
 
 export type ClientUncheckedCreateWithoutProspectionsInput = {
@@ -481,10 +633,14 @@ export type ClientUncheckedCreateWithoutProspectionsInput = {
   type: $Enums.ClientType
   country: string
   address: string
-  enterprise_name?: string | null
-  enterprise_legal_form?: $Enums.EnterpriseLegalForm | null
-  main_activity?: string | null
+  contactName: string
+  phone: string
+  email: string
+  enterpriseName?: string | null
+  enterpriseLegalForm?: $Enums.EnterpriseLegalForm | null
+  mainActivity?: string | null
   createdAt?: Date | string
+  tenantId: number
 }
 
 export type ClientCreateOrConnectWithoutProspectionsInput = {
@@ -507,10 +663,14 @@ export type ClientUpdateWithoutProspectionsInput = {
   type?: Prisma.EnumClientTypeFieldUpdateOperationsInput | $Enums.ClientType
   country?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
-  enterprise_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  enterprise_legal_form?: Prisma.NullableEnumEnterpriseLegalFormFieldUpdateOperationsInput | $Enums.EnterpriseLegalForm | null
-  main_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactName?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  enterpriseName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enterpriseLegalForm?: Prisma.NullableEnumEnterpriseLegalFormFieldUpdateOperationsInput | $Enums.EnterpriseLegalForm | null
+  mainActivity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutClientsNestedInput
 }
 
 export type ClientUncheckedUpdateWithoutProspectionsInput = {
@@ -518,9 +678,143 @@ export type ClientUncheckedUpdateWithoutProspectionsInput = {
   type?: Prisma.EnumClientTypeFieldUpdateOperationsInput | $Enums.ClientType
   country?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
-  enterprise_name?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  enterprise_legal_form?: Prisma.NullableEnumEnterpriseLegalFormFieldUpdateOperationsInput | $Enums.EnterpriseLegalForm | null
-  main_activity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contactName?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  enterpriseName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enterpriseLegalForm?: Prisma.NullableEnumEnterpriseLegalFormFieldUpdateOperationsInput | $Enums.EnterpriseLegalForm | null
+  mainActivity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
+}
+
+export type ClientCreateWithoutTenantInput = {
+  type: $Enums.ClientType
+  country: string
+  address: string
+  contactName: string
+  phone: string
+  email: string
+  enterpriseName?: string | null
+  enterpriseLegalForm?: $Enums.EnterpriseLegalForm | null
+  mainActivity?: string | null
+  createdAt?: Date | string
+  prospections?: Prisma.ProspectionCreateNestedManyWithoutClientInput
+}
+
+export type ClientUncheckedCreateWithoutTenantInput = {
+  id?: number
+  type: $Enums.ClientType
+  country: string
+  address: string
+  contactName: string
+  phone: string
+  email: string
+  enterpriseName?: string | null
+  enterpriseLegalForm?: $Enums.EnterpriseLegalForm | null
+  mainActivity?: string | null
+  createdAt?: Date | string
+  prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutClientInput
+}
+
+export type ClientCreateOrConnectWithoutTenantInput = {
+  where: Prisma.ClientWhereUniqueInput
+  create: Prisma.XOR<Prisma.ClientCreateWithoutTenantInput, Prisma.ClientUncheckedCreateWithoutTenantInput>
+}
+
+export type ClientCreateManyTenantInputEnvelope = {
+  data: Prisma.ClientCreateManyTenantInput | Prisma.ClientCreateManyTenantInput[]
+  skipDuplicates?: boolean
+}
+
+export type ClientUpsertWithWhereUniqueWithoutTenantInput = {
+  where: Prisma.ClientWhereUniqueInput
+  update: Prisma.XOR<Prisma.ClientUpdateWithoutTenantInput, Prisma.ClientUncheckedUpdateWithoutTenantInput>
+  create: Prisma.XOR<Prisma.ClientCreateWithoutTenantInput, Prisma.ClientUncheckedCreateWithoutTenantInput>
+}
+
+export type ClientUpdateWithWhereUniqueWithoutTenantInput = {
+  where: Prisma.ClientWhereUniqueInput
+  data: Prisma.XOR<Prisma.ClientUpdateWithoutTenantInput, Prisma.ClientUncheckedUpdateWithoutTenantInput>
+}
+
+export type ClientUpdateManyWithWhereWithoutTenantInput = {
+  where: Prisma.ClientScalarWhereInput
+  data: Prisma.XOR<Prisma.ClientUpdateManyMutationInput, Prisma.ClientUncheckedUpdateManyWithoutTenantInput>
+}
+
+export type ClientScalarWhereInput = {
+  AND?: Prisma.ClientScalarWhereInput | Prisma.ClientScalarWhereInput[]
+  OR?: Prisma.ClientScalarWhereInput[]
+  NOT?: Prisma.ClientScalarWhereInput | Prisma.ClientScalarWhereInput[]
+  id?: Prisma.IntFilter<"Client"> | number
+  type?: Prisma.EnumClientTypeFilter<"Client"> | $Enums.ClientType
+  country?: Prisma.StringFilter<"Client"> | string
+  address?: Prisma.StringFilter<"Client"> | string
+  contactName?: Prisma.StringFilter<"Client"> | string
+  phone?: Prisma.StringFilter<"Client"> | string
+  email?: Prisma.StringFilter<"Client"> | string
+  enterpriseName?: Prisma.StringNullableFilter<"Client"> | string | null
+  enterpriseLegalForm?: Prisma.EnumEnterpriseLegalFormNullableFilter<"Client"> | $Enums.EnterpriseLegalForm | null
+  mainActivity?: Prisma.StringNullableFilter<"Client"> | string | null
+  createdAt?: Prisma.DateTimeFilter<"Client"> | Date | string
+  tenantId?: Prisma.IntFilter<"Client"> | number
+}
+
+export type ClientCreateManyTenantInput = {
+  id?: number
+  type: $Enums.ClientType
+  country: string
+  address: string
+  contactName: string
+  phone: string
+  email: string
+  enterpriseName?: string | null
+  enterpriseLegalForm?: $Enums.EnterpriseLegalForm | null
+  mainActivity?: string | null
+  createdAt?: Date | string
+}
+
+export type ClientUpdateWithoutTenantInput = {
+  type?: Prisma.EnumClientTypeFieldUpdateOperationsInput | $Enums.ClientType
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  contactName?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  enterpriseName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enterpriseLegalForm?: Prisma.NullableEnumEnterpriseLegalFormFieldUpdateOperationsInput | $Enums.EnterpriseLegalForm | null
+  mainActivity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  prospections?: Prisma.ProspectionUpdateManyWithoutClientNestedInput
+}
+
+export type ClientUncheckedUpdateWithoutTenantInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  type?: Prisma.EnumClientTypeFieldUpdateOperationsInput | $Enums.ClientType
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  contactName?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  enterpriseName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enterpriseLegalForm?: Prisma.NullableEnumEnterpriseLegalFormFieldUpdateOperationsInput | $Enums.EnterpriseLegalForm | null
+  mainActivity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutClientNestedInput
+}
+
+export type ClientUncheckedUpdateManyWithoutTenantInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  type?: Prisma.EnumClientTypeFieldUpdateOperationsInput | $Enums.ClientType
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  address?: Prisma.StringFieldUpdateOperationsInput | string
+  contactName?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  enterpriseName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  enterpriseLegalForm?: Prisma.NullableEnumEnterpriseLegalFormFieldUpdateOperationsInput | $Enums.EnterpriseLegalForm | null
+  mainActivity?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -560,10 +854,15 @@ export type ClientSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   type?: boolean
   country?: boolean
   address?: boolean
-  enterprise_name?: boolean
-  enterprise_legal_form?: boolean
-  main_activity?: boolean
+  contactName?: boolean
+  phone?: boolean
+  email?: boolean
+  enterpriseName?: boolean
+  enterpriseLegalForm?: boolean
+  mainActivity?: boolean
   createdAt?: boolean
+  tenantId?: boolean
+  tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   prospections?: boolean | Prisma.Client$prospectionsArgs<ExtArgs>
   _count?: boolean | Prisma.ClientCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["client"]>
@@ -573,10 +872,15 @@ export type ClientSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   type?: boolean
   country?: boolean
   address?: boolean
-  enterprise_name?: boolean
-  enterprise_legal_form?: boolean
-  main_activity?: boolean
+  contactName?: boolean
+  phone?: boolean
+  email?: boolean
+  enterpriseName?: boolean
+  enterpriseLegalForm?: boolean
+  mainActivity?: boolean
   createdAt?: boolean
+  tenantId?: boolean
+  tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["client"]>
 
 export type ClientSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -584,10 +888,15 @@ export type ClientSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   type?: boolean
   country?: boolean
   address?: boolean
-  enterprise_name?: boolean
-  enterprise_legal_form?: boolean
-  main_activity?: boolean
+  contactName?: boolean
+  phone?: boolean
+  email?: boolean
+  enterpriseName?: boolean
+  enterpriseLegalForm?: boolean
+  mainActivity?: boolean
   createdAt?: boolean
+  tenantId?: boolean
+  tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["client"]>
 
 export type ClientSelectScalar = {
@@ -595,23 +904,33 @@ export type ClientSelectScalar = {
   type?: boolean
   country?: boolean
   address?: boolean
-  enterprise_name?: boolean
-  enterprise_legal_form?: boolean
-  main_activity?: boolean
+  contactName?: boolean
+  phone?: boolean
+  email?: boolean
+  enterpriseName?: boolean
+  enterpriseLegalForm?: boolean
+  mainActivity?: boolean
   createdAt?: boolean
+  tenantId?: boolean
 }
 
-export type ClientOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "type" | "country" | "address" | "enterprise_name" | "enterprise_legal_form" | "main_activity" | "createdAt", ExtArgs["result"]["client"]>
+export type ClientOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "type" | "country" | "address" | "contactName" | "phone" | "email" | "enterpriseName" | "enterpriseLegalForm" | "mainActivity" | "createdAt" | "tenantId", ExtArgs["result"]["client"]>
 export type ClientInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   prospections?: boolean | Prisma.Client$prospectionsArgs<ExtArgs>
   _count?: boolean | Prisma.ClientCountOutputTypeDefaultArgs<ExtArgs>
 }
-export type ClientIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
-export type ClientIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
+export type ClientIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
+}
+export type ClientIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
+}
 
 export type $ClientPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Client"
   objects: {
+    tenant: Prisma.$TenantPayload<ExtArgs>
     prospections: Prisma.$ProspectionPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -619,10 +938,14 @@ export type $ClientPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     type: $Enums.ClientType
     country: string
     address: string
-    enterprise_name: string | null
-    enterprise_legal_form: $Enums.EnterpriseLegalForm | null
-    main_activity: string | null
+    contactName: string
+    phone: string
+    email: string
+    enterpriseName: string | null
+    enterpriseLegalForm: $Enums.EnterpriseLegalForm | null
+    mainActivity: string | null
     createdAt: Date
+    tenantId: number
   }, ExtArgs["result"]["client"]>
   composites: {}
 }
@@ -1017,6 +1340,7 @@ readonly fields: ClientFieldRefs;
  */
 export interface Prisma__ClientClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  tenant<T extends Prisma.TenantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TenantDefaultArgs<ExtArgs>>): Prisma.Prisma__TenantClient<runtime.Types.Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   prospections<T extends Prisma.Client$prospectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Client$prospectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProspectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1051,10 +1375,14 @@ export interface ClientFieldRefs {
   readonly type: Prisma.FieldRef<"Client", 'ClientType'>
   readonly country: Prisma.FieldRef<"Client", 'String'>
   readonly address: Prisma.FieldRef<"Client", 'String'>
-  readonly enterprise_name: Prisma.FieldRef<"Client", 'String'>
-  readonly enterprise_legal_form: Prisma.FieldRef<"Client", 'EnterpriseLegalForm'>
-  readonly main_activity: Prisma.FieldRef<"Client", 'String'>
+  readonly contactName: Prisma.FieldRef<"Client", 'String'>
+  readonly phone: Prisma.FieldRef<"Client", 'String'>
+  readonly email: Prisma.FieldRef<"Client", 'String'>
+  readonly enterpriseName: Prisma.FieldRef<"Client", 'String'>
+  readonly enterpriseLegalForm: Prisma.FieldRef<"Client", 'EnterpriseLegalForm'>
+  readonly mainActivity: Prisma.FieldRef<"Client", 'String'>
   readonly createdAt: Prisma.FieldRef<"Client", 'DateTime'>
+  readonly tenantId: Prisma.FieldRef<"Client", 'Int'>
 }
     
 
@@ -1309,6 +1637,10 @@ export type ClientCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensio
    */
   data: Prisma.ClientCreateManyInput | Prisma.ClientCreateManyInput[]
   skipDuplicates?: boolean
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ClientIncludeCreateManyAndReturn<ExtArgs> | null
 }
 
 /**
@@ -1379,6 +1711,10 @@ export type ClientUpdateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensio
    * Limit how many Clients to update.
    */
   limit?: number
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ClientIncludeUpdateManyAndReturn<ExtArgs> | null
 }
 
 /**

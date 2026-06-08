@@ -1,10 +1,11 @@
+import { IsEmail, IsString, MaxLength, MinLength } from "class-validator";
 
 export class SignInDto {
-    email: string;
-    password: string;
+    @IsEmail()
+    email!: string;
 
-    constructor(email: string, password: string) {
-        this.email = email;
-        this.password = password;
-    }
+    @IsString()
+    @MinLength(8)
+    @MaxLength(20)
+    password!: string;
 }

@@ -9,7 +9,6 @@ export class TenantController {
 
   @Post('create')
   create(@Body() createTenantDto: CreateTenantDto) {
-    console.log(createTenantDto);
     return this.tenantService.create(createTenantDto);
   }
 

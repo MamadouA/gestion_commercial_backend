@@ -4,16 +4,21 @@ model Client {
     type ClientType 
     country String
     address String
-    enterprise_name String?
-    enterprise_legal_form EnterpriseLegalForm?
-    main_activity String?
+    contactName String
+    phone String
+    email String
+    enterpriseName String?
+    enterpriseLegalForm EnterpriseLegalForm?
+    mainActivity String?
     createdAt DateTime @default(now())
+    tenantId Int 
+    tenant Tenant @relation(fields: [tenantId], references: [id])
     prospections Prospection[]
 }
 
 enum ClientType {
     PARTICULIER
-    ENTERPRISE
+    ENTREPRISE
 }
 
 enum EnterpriseLegalForm {

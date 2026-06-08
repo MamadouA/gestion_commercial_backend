@@ -11,7 +11,7 @@
 
 export const ClientType = {
   PARTICULIER: 'PARTICULIER',
-  ENTERPRISE: 'ENTERPRISE'
+  ENTREPRISE: 'ENTREPRISE'
 } as const
 
 export type ClientType = (typeof ClientType)[keyof typeof ClientType]
@@ -41,7 +41,8 @@ export type ProspectionStatus = (typeof ProspectionStatus)[keyof typeof Prospect
 
 
 export const Role = {
-  SUPERADMIN: 'SUPERADMIN'
+  SUPERADMIN: 'SUPERADMIN',
+  COMMERCIAL: 'COMMERCIAL'
 } as const
 
 export type Role = (typeof Role)[keyof typeof Role]

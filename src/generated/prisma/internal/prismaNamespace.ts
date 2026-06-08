@@ -747,10 +747,14 @@ export const ClientScalarFieldEnum = {
   type: 'type',
   country: 'country',
   address: 'address',
-  enterprise_name: 'enterprise_name',
-  enterprise_legal_form: 'enterprise_legal_form',
-  main_activity: 'main_activity',
-  createdAt: 'createdAt'
+  contactName: 'contactName',
+  phone: 'phone',
+  email: 'email',
+  enterpriseName: 'enterpriseName',
+  enterpriseLegalForm: 'enterpriseLegalForm',
+  mainActivity: 'mainActivity',
+  createdAt: 'createdAt',
+  tenantId: 'tenantId'
 } as const
 
 export type ClientScalarFieldEnum = (typeof ClientScalarFieldEnum)[keyof typeof ClientScalarFieldEnum]
@@ -782,8 +786,9 @@ export const UserScalarFieldEnum = {
   id: 'id',
   fullname: 'fullname',
   email: 'email',
+  password: 'password',
   phone: 'phone',
-  role: 'role',
+  roles: 'roles',
   isActive: 'isActive',
   tenantId: 'tenantId',
   createdAt: 'createdAt'

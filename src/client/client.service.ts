@@ -1,4 +1,41 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { CreateClientDTO } from './dto/create-client.dto';
+import { CurrentUser } from '../common/current-user.decoration';
+import { User } from '../generated/prisma/client';
+import { PrismaClientService } from '../database/prisma-client.service';
 
 @Injectable()
-export class ClientService {}
+export class ClientService {
+    constructor(private prismaClientService: PrismaClientService) {}
+
+    // -
+    async create(createClientDto: CreateClientDTO, tenantId: number) {
+        try {
+            return await this.prismaClientService.client.create({
+                data: {
+                    ...createClientDto,
+                    tenantId
+                }
+            })
+        }
+        catch(err) {
+            console.log("Error while creating the clients: ", err);
+            throw new InternalServerErrorException("Error while creating the clients.");
+        }
+    }
+
+    // -
+    async findAll(tenantId: number) {
+        try {
+            return await this.prismaClientService.client.findMany({
+                where: {
+                    tenantId
+                }
+            });
+        }
+        catch(err) {
+            console.log("Error while fetching the clients: ", err);
+            throw new InternalServerErrorException("Error while fetching the clients.");
+        }
+    }
+}

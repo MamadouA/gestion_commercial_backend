@@ -4,4 +4,5 @@ model Tenant {
   isActive  Boolean  @default(true)
   createdAt DateTime @default(now())
   users     User[]
+  clients Client[]
 }

@@ -8,13 +8,8 @@ export class CreateTenantDto {
     @MaxLength(50)
     name!: string;
 
-    @IsBoolean()
-    isActive!: boolean;
-
-    @IsDateString()
-    createdAt!: Date;
-
     @ValidateNested()
+    @Type(() => CreateUserDto)
     @IsDefined()
     user!: CreateUserDto;
 }
