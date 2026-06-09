@@ -41,4 +41,36 @@ export class ClientService {
             throw new InternalServerErrorException("Error while fetching the clients.");
         }
     }
+
+    // -
+    async findOne(id: number, tenantId: number) {
+        try {
+            return await this.prismaClientService.client.findUnique({
+                where: {
+                    id,
+                    tenantId
+                }
+            });
+        }
+        catch(err) {
+            console.log("Error while fetching the client: ", err);
+            throw new InternalServerErrorException("Error while fetching the client.");
+        }
+    }
+    
+    // 
+    async deleteOne(id: number, tenantId: number) {
+        try {
+            return await this.prismaClientService.client.delete({
+                where: {
+                    id,
+                    tenantId
+                }
+            });
+        }
+        catch(err) {
+            console.log("Error while deleting the client: ", err);
+            throw new InternalServerErrorException("Error while deleting the client.");
+        }
+    }
 }
