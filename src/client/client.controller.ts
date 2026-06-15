@@ -10,43 +10,47 @@ import {
 } from '@nestjs/common';
 import { CreateClientDTO } from './dto/create-client.dto';
 import { ClientService } from './client.service';
-import { CurrentUser } from '../common/current-user.decoration';
+import { CurrentUser } from '../shared/current-user.decoration';
+import { PaginationDTO } from '../shared/dto/pagination';
 
 @Controller('client')
 export class ClientController {
   // -
   constructor(private clientService: ClientService) {}
 
-    // -
-    @Post('create')
-    async create(
-        @Body() createClientDto: CreateClientDTO,
-        @CurrentUser('tenantId') tenantId: number,
-    ) {
-        return await this.clientService.create(createClientDto, tenantId);
-    }
+  // -
+  @Post('create')
+  async create(
+    @Body() createClientDto: CreateClientDTO,
+    @CurrentUser('tenantId') tenantId: number,
+  ) {
+    return await this.clientService.create(createClientDto, tenantId);
+  }
 
-    // -
-    @Get('all')
-    async findAll(
-        @Query('currentPage', new DefaultValuePipe(1), ParseIntPipe) currentPage: number,
-        @Query('pageSize', new DefaultValuePipe(10), ParseIntPipe) pageSize: number,
-        @CurrentUser('tenantId') tenantId: number,
-    ) {
-        return await this.clientService.findAll(currentPage, pageSize, tenantId);
-    }
+  // -
+  @Get('all')
+  async findAll(
+    @Query(new DefaultValuePipe({ currentPage: 1, pageSize: 10 })) pagination: PaginationDTO,
+    @CurrentUser('tenantId') tenantId: number,
+  ) {
+    return await this.clientService.findAll(pagination, tenantId);
+  }
 
-    // -
-    @Get(':id')
-    async findOne(@Param('id', ParseIntPipe) id: number, @CurrentUser('tenantId') tenantId: number) {
+  // -
+  @Get(':id')
+  async findOne(
+    @Param('id', ParseIntPipe) id: number,
+    @CurrentUser('tenantId') tenantId: number,
+  ) {
     return await this.clientService.findOne(id, tenantId);
-    }
+  }
 
-    // -
-    @Get('delete/:id')
-    async deleteOne(@Param('id', ParseIntPipe) id: number, @CurrentUser('tenantId') tenantId: number) {
+  // -
+  @Get('delete/:id')
+  async deleteOne(
+    @Param('id', ParseIntPipe) id: number,
+    @CurrentUser('tenantId') tenantId: number,
+  ) {
     return await this.clientService.deleteOne(id, tenantId);
-    }
+  }
 }
-
-

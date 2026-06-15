@@ -1,6 +1,7 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { CreateClientDTO } from './dto/create-client.dto';
 import { PrismaClientService } from '../database/prisma-client.service';
+import { PaginationDTO } from '../shared/dto/pagination';
 
 @Injectable()
 export class ClientService {
@@ -23,14 +24,14 @@ export class ClientService {
     }
 
     // -
-    async findAll(currentPage: number, pageSize: number, tenantId: number) {
+    async findAll(pagination: PaginationDTO, tenantId: number) {
         try {
             const clients = await this.prismaClientService.client.findMany({
                 where: {
                     tenantId
                 },
-                skip: (currentPage - 1) * pageSize,
-                take: pageSize,
+                skip: (pagination.currentPage - 1) * pagination.pageSize,
+                take: pagination.pageSize,
                 orderBy: {
                     id: 'asc'
                 }   
