@@ -12,6 +12,7 @@ import { CreateClientDTO } from './dto/create-client.dto';
 import { ClientService } from './client.service';
 import { CurrentUser } from '../shared/current-user.decoration';
 import { PaginationDTO } from '../shared/dto/pagination';
+import { ClientQueryDTO } from './dto/client-query.dto';
 
 @Controller('client')
 export class ClientController {
@@ -31,9 +32,17 @@ export class ClientController {
   @Get('all')
   async findAll(
     @Query(new DefaultValuePipe({ currentPage: 1, pageSize: 10 })) pagination: PaginationDTO,
+    @Query(new DefaultValuePipe({
+        type: "",
+        enterpriseName: "",
+        email: "",
+        country: "",
+        currentPage: 1,
+        pageSize: 10
+    })) query: ClientQueryDTO,
     @CurrentUser('tenantId') tenantId: number,
   ) {
-    return await this.clientService.findAll(pagination, tenantId);
+    return await this.clientService.findAll(query, tenantId);
   }
 
   // -
