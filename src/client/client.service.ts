@@ -25,7 +25,7 @@ export class ClientService {
     // -
     async findAll(currentPage: number, pageSize: number, tenantId: number) {
         try {
-            return await this.prismaClientService.client.findMany({
+            const clients = await this.prismaClientService.client.findMany({
                 where: {
                     tenantId
                 },
@@ -35,6 +35,17 @@ export class ClientService {
                     id: 'asc'
                 }   
             });
+
+            const count = await this.prismaClientService.client.count({
+                where: {
+                    tenantId
+                }
+            });
+
+            return ({
+                clients,
+                count
+            })
         }
         catch(err) {
             console.log("Error while fetching the clients: ", err);

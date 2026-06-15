@@ -7,17 +7,17 @@ export class CreateClientDTO {
 
     @IsString()
     @MinLength(4)
-    @MaxLength(20)
+    @MaxLength(50)
     country!: string
 
     @IsString()
     @MinLength(4)
-    @MaxLength(40)
+    @MaxLength(50)
     address!: string
 
     @IsString()
     @MinLength(4)
-    @MaxLength(40)
+    @MaxLength(100)
     contactName!: string
 
     @IsString()
@@ -31,7 +31,7 @@ export class CreateClientDTO {
     @ValidateIf(o => o.type === ClientType.ENTREPRISE)
     @IsString()
     @MinLength(3)
-    @MaxLength(40)
+    @MaxLength(50)
     enterpriseName?: string
 
     @ValidateIf(o => o.type === ClientType.ENTREPRISE)
@@ -40,6 +40,6 @@ export class CreateClientDTO {
 
     @IsString()
     @MinLength(3)
-    @MaxLength(40)
+    @MaxLength(100)
     mainActivity?: string
 }
