@@ -31,7 +31,7 @@ export type EnterpriseLegalForm = (typeof EnterpriseLegalForm)[keyof typeof Ente
 
 
 export const ProspectionStatus = {
-  OPEN: 'OPEN',
+  OPENED: 'OPENED',
   ABANDONED: 'ABANDONED',
   LOST: 'LOST',
   WON: 'WON'

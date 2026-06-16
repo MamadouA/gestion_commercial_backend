@@ -56,7 +56,7 @@ export class ClientService {
                 skip: (query.currentPage - 1) * query.pageSize,
                 take: query.pageSize,
                 orderBy: {
-                    id: 'asc'
+                    id: 'desc'
                 }   
             });
 

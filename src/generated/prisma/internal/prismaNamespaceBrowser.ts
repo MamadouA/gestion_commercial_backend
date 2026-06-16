@@ -93,11 +93,13 @@ export type ClientScalarFieldEnum = (typeof ClientScalarFieldEnum)[keyof typeof 
 
 export const ProspectionScalarFieldEnum = {
   id: 'id',
-  proposed_service: 'proposed_service',
-  start_date: 'start_date',
-  end_date: 'end_date',
+  proposedService: 'proposedService',
+  startDate: 'startDate',
+  endDate: 'endDate',
   status: 'status',
-  clientId: 'clientId'
+  clientId: 'clientId',
+  tenantId: 'tenantId',
+  createdAt: 'createdAt'
 } as const
 
 export type ProspectionScalarFieldEnum = (typeof ProspectionScalarFieldEnum)[keyof typeof ProspectionScalarFieldEnum]
