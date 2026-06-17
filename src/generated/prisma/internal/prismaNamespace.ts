@@ -768,6 +768,7 @@ export const ProspectionScalarFieldEnum = {
   status: 'status',
   clientId: 'clientId',
   tenantId: 'tenantId',
+  authorId: 'authorId',
   createdAt: 'createdAt'
 } as const
 

@@ -8,6 +8,7 @@ model User {
   isActive  Boolean  @default(true)
   tenant    Tenant   @relation(fields: [tenantId], references: [id])
   tenantId  Int
+  prospections Prospection[]
   createdAt DateTime @default(now())
 }
 

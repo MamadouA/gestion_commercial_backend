@@ -9,6 +9,8 @@ model Prospection {
     client Client @relation(fields: [clientId], references: [id], onDelete: Cascade)
     tenantId Int
     tenant Tenant @relation(fields: [tenantId], references: [id])
+    authorId Int 
+    author User @relation(fields: [authorId], references: [id])
     createdAt DateTime @default(now())
 }
 

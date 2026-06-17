@@ -32,14 +32,7 @@ export class ClientController {
   @Get('all')
   async findAll(
     @Query(new DefaultValuePipe({ currentPage: 1, pageSize: 10 })) pagination: PaginationDTO,
-    @Query(new DefaultValuePipe({
-        type: "",
-        enterpriseName: "",
-        email: "",
-        country: "",
-        currentPage: 1,
-        pageSize: 10
-    })) query: ClientQueryDTO,
+    @Query() query: ClientQueryDTO,
     @CurrentUser('tenantId') tenantId: number,
   ) {
     return await this.clientService.findAll(query, tenantId);

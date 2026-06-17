@@ -17,7 +17,7 @@ import { CurrentUser } from '../shared/current-user.decoration';
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Post()
+  @Post('create')
   async create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
   }

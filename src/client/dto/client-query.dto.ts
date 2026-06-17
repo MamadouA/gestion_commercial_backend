@@ -5,17 +5,17 @@ import { PaginationDTO } from "../../shared/dto/pagination";
 export class ClientQueryDTO extends PaginationDTO {
     @IsEnum([ClientType.ENTREPRISE, ClientType.PARTICULIER, null, "", undefined] )
     @IsOptional()
-    type!: ClientType
+    type?: ClientType
 
     @IsString()
     @IsOptional()
-    enterpriseName!: string
+    enterpriseName?: string
 
     @IsOptional()
     @IsString()
-    email!: string
+    email?: string
 
     @IsString()
     @IsOptional()
-    country!: string
+    country?: string
 }

@@ -4,10 +4,10 @@ export class PaginationDTO {
     @IsInt()
     @Min(1)
     @IsOptional()
-    currentPage!: number;
+    currentPage: number = 1;
 
     @IsInt()
     @Min(10)
     @IsOptional()
-    pageSize!: number;
+    pageSize: number = 10;
 }
