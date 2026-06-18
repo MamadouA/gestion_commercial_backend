@@ -1,4 +1,4 @@
-import { IsDateString, IsEnum, IsInt, IsString, MinLength } from "class-validator";
+import { IsDateString, IsEnum, IsInt, IsString, MinLength, Validate } from "class-validator";
 import { ProspectionStatus } from "../../../generated/prisma/enums";
 
 export class CreateProspectionDTO {
