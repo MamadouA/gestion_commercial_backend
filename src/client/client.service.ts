@@ -3,6 +3,7 @@ import { CreateClientDTO } from './dto/create-client.dto';
 import { PrismaClientService } from '../database/prisma-client.service';
 import { PaginationDTO } from '../shared/dto/pagination'
 import { ClientQueryDTO } from './dto/client-query.dto';
+import { ClientWhereInput } from '../generated/prisma/models';
 
 @Injectable()
 export class ClientService {
@@ -27,16 +28,26 @@ export class ClientService {
     // -
     async findAll(query: ClientQueryDTO, tenantId: number) {
         try {
-            const filter = { tenantId }; // must
+            const filter: ClientWhereInput = { tenantId }; // must
 
             if (query.type && query.type.length) {
                 filter['type'] = query.type;
             }
-            if (query.enterpriseName) {
-                filter['enterpriseName'] = {
-                    contains: query.enterpriseName,
-                    mode: 'insensitive'
-                }
+            if (query.contactNameOrEnterpriseName) {
+                filter.OR = [
+                    {
+                        enterpriseName: {
+                            contains: query.contactNameOrEnterpriseName,
+                            mode: 'insensitive'
+                        }
+                    },
+                    {
+                        contactName: {
+                            contains: query.contactNameOrEnterpriseName,
+                            mode: 'insensitive'
+                        }
+                    }
+                ]
             }
             if (query.email) {
                 filter['email'] = {

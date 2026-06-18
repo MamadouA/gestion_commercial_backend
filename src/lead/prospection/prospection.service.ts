@@ -32,8 +32,6 @@ export class ProspectionService {
 
     // 
     async findAll(query: ProspectionQueryDTO, tenantId: number) {
-        console.log("Query: ", query);
-
         const filter = { tenantId };
 
         if (query.proposedService) {
@@ -76,9 +74,13 @@ export class ProspectionService {
                     startDate: true,
                     endDate: true,
                     status: true,
+                    createdAt: true,
                     client: {
-                        omit: {
-                            tenantId: true
+                        select: {
+                            id: true,
+                            type: true,
+                            enterpriseName: true,
+                            contactName: true,
                         }
                     },
                     author: {
