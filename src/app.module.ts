@@ -10,12 +10,22 @@ import { AuthMiddleware } from './auth/auth.middleware';
 import { ProspectionModule } from './lead/prospection/prospection.module';
 
 @Module({
-  imports: [{ module: DatabaseModule, global: true }, UserModule, AuthModule, TenantModule, ClientModule, ProspectionModule],
+  imports: [
+    { module: DatabaseModule, global: true },
+    UserModule,
+    AuthModule,
+    TenantModule,
+    ClientModule,
+    ProspectionModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule implements NestModule{
+export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(AuthMiddleware).exclude("/auth/login", "/tenant/create").forRoutes("*");
+    consumer
+      .apply(AuthMiddleware)
+      .exclude('/auth/login', '/tenant/create')
+      .forRoutes('*');
   }
 }

@@ -2,27 +2,33 @@ import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { PrismaClientService } from '../../database/prisma-client.service';
 import { CreateProspectionDTO } from './dto/create-prospection.dto';
 import { ProspectionQueryDTO } from './dto/prospection-query.dto';
+import { S3ClientService } from '../../common/file-uploader/s3-client.service';
 
 @Injectable()
 export class ProspectionService {
-    constructor(private prismaClientService: PrismaClientService) {}
+    constructor(private prismaClientService: PrismaClientService, private s3ClientService: S3ClientService) {}
 
     // -
-    async create(createProspectionDto: CreateProspectionDTO, authorId: number, tenantId: number) {
+    async create(createProspectionDto: CreateProspectionDTO, authorId: number, tenantId: number, files: Array<Express.Multer.File>) {
         try {
-            return await this.prismaClientService.prospection.create({
+            const filesMetadata = await this.s3ClientService.bulkSaveFiles(files);
+
+            const prospection = await this.prismaClientService.prospection.create({
                 data: {
                     clientId: createProspectionDto.clientIid,
                     endDate: createProspectionDto.endDate,
                     startDate: createProspectionDto.startDate,
                     proposedService: createProspectionDto.prosposedService,
                     authorId,
-                    tenantId
+                    tenantId,
+                    documents: JSON.stringify(filesMetadata)
                 },
                 omit: {
                     tenantId: true
                 }
-            })
+            });
+
+            return { ...prospection, documents: JSON.parse(prospection.documents as string) };
         }
         catch(err) {
             console.log("Error while creating the lead: ", err);

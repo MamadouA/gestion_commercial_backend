@@ -9,6 +9,8 @@ import { FilesInterceptor } from '@nestjs/platform-express';
 @Controller('prospection')
 export class ProspectionController {
     constructor(private prospectionService: ProspectionService) {}
+
+    // -
     @Post('create')
     @UseInterceptors(
         FilesInterceptor('files', 10, {
@@ -24,9 +26,10 @@ export class ProspectionController {
     async create(@Body() createProspectionDto: CreateProspectionDTO, 
         @UploadedFiles() files: Array<Express.Multer.File>,
         @CurrentUser() currentUser: User) {
-        return await this.prospectionService.create(createProspectionDto, currentUser.id, currentUser.tenantId);
+        return await this.prospectionService.create(createProspectionDto, currentUser.id, currentUser.tenantId, files);
     }
 
+    // -
     @Get('all')
     async findAll(@Query(new DefaultValuePipe({ 
         prosposedService: "",
