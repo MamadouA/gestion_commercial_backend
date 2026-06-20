@@ -15,7 +15,7 @@ export class ProspectionService {
 
             const prospection = await this.prismaClientService.prospection.create({
                 data: {
-                    clientId: createProspectionDto.clientIid,
+                    clientId: createProspectionDto.clientId,
                     endDate: createProspectionDto.endDate,
                     startDate: createProspectionDto.startDate,
                     proposedService: createProspectionDto.prosposedService,
@@ -27,7 +27,7 @@ export class ProspectionService {
                     tenantId: true
                 }
             });
-
+                                                                                                
             return { ...prospection, documents: JSON.parse(prospection.documents as string) };
         }
         catch(err) {
