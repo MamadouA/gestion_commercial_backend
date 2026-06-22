@@ -1,4 +1,4 @@
-import { Body, Controller, DefaultValuePipe, FileTypeValidator, Get, MaxFileSizeValidator, ParseFilePipe, Post, Query, UploadedFiles, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, DefaultValuePipe, FileTypeValidator, Get, MaxFileSizeValidator, Param, ParseFilePipe, ParseIntPipe, Post, Query, UploadedFiles, UseInterceptors } from '@nestjs/common';
 import { CreateProspectionDTO } from './dto/create-prospection.dto';
 import { CurrentUser } from '../../shared/current-user.decoration';
 import { ProspectionService } from './prospection.service';
@@ -40,5 +40,11 @@ export class ProspectionController {
         pageSize: 10 
     })) query: ProspectionQueryDTO, @CurrentUser('tenantId') tenantId: number) {
         return await this.prospectionService.findAll(query, tenantId);
+    }
+
+    //
+    @Get(':id')
+    async findOne(@Param('id', ParseIntPipe) id: number, @CurrentUser('tenantId') tenantId: number) {
+        return await this.prospectionService.findOne(id, tenantId);
     }
 }

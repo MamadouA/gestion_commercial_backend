@@ -83,16 +83,14 @@ export class ProspectionService {
                     createdAt: true,
                     client: {
                         select: {
-                            id: true,
                             type: true,
                             enterpriseName: true,
                             contactName: true,
                         }
                     },
                     author: {
-                        omit: {
-                            password: true,
-                            tenantId: true,
+                        select: {
+                            fullname: true
                         }
                     }
                 }
@@ -109,6 +107,35 @@ export class ProspectionService {
         catch(err) {
             console.log("Error while fetching the prospections: ", err);
             throw new InternalServerErrorException("Error while fetching the prospections.");
+        }
+    }
+
+    //
+    async findOne(id: number, tenantId: number) {
+        try {
+            return await this.prismaClientService.prospection.findUnique({
+                where: {
+                    id,
+                    tenantId
+                },
+                include: {
+                    client: {
+                        omit: {
+                            tenantId: true
+                        }
+                    },
+                    author: {
+                        omit: {
+                            password: true,
+                            tenantId: true
+                        }
+                    }
+                }
+            });
+        }
+        catch(err) {
+            console.log("Error while fetching the prospection: ", err);
+            throw new InternalServerErrorException("Error while fetching the prospection.");
         }
     }
 }
