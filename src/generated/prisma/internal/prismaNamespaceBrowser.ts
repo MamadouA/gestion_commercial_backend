@@ -53,6 +53,7 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   Client: 'Client',
   Comment: 'Comment',
+  Document: 'Document',
   Prospection: 'Prospection',
   Tenant: 'Tenant',
   User: 'User'
@@ -103,6 +104,19 @@ export const CommentScalarFieldEnum = {
 export type CommentScalarFieldEnum = (typeof CommentScalarFieldEnum)[keyof typeof CommentScalarFieldEnum]
 
 
+export const DocumentScalarFieldEnum = {
+  id: 'id',
+  originalName: 'originalName',
+  storedName: 'storedName',
+  size: 'size',
+  mimetype: 'mimetype',
+  createdAt: 'createdAt',
+  prospectionId: 'prospectionId'
+} as const
+
+export type DocumentScalarFieldEnum = (typeof DocumentScalarFieldEnum)[keyof typeof DocumentScalarFieldEnum]
+
+
 export const ProspectionScalarFieldEnum = {
   id: 'id',
   proposedService: 'proposedService',
@@ -112,7 +126,6 @@ export const ProspectionScalarFieldEnum = {
   clientId: 'clientId',
   tenantId: 'tenantId',
   authorId: 'authorId',
-  documents: 'documents',
   createdAt: 'createdAt'
 } as const
 
@@ -152,14 +165,6 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
-export const NullableJsonNullValueInput = {
-  DbNull: DbNull,
-  JsonNull: JsonNull
-} as const
-
-export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
-
-
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
@@ -174,13 +179,4 @@ export const NullsOrder = {
 } as const
 
 export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
-
-
-export const JsonNullValueFilter = {
-  DbNull: DbNull,
-  JsonNull: JsonNull,
-  AnyNull: AnyNull
-} as const
-
-export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 

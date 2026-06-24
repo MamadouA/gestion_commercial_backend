@@ -10,6 +10,7 @@
  */
 export type * from './models/Client'
 export type * from './models/Comment'
+export type * from './models/Document'
 export type * from './models/Prospection'
 export type * from './models/Tenant'
 export type * from './models/User'

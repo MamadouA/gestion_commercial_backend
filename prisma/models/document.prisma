@@ -1,0 +1,11 @@
+
+model Document {
+    id Int @id @default(autoincrement())
+    originalName String
+    storedName String 
+    size Decimal
+    mimetype String
+    createdAt DateTime @default(now())
+    prospectionId Int?
+    prospection Prospection? @relation(fields: [prospectionId], references: [id])
+}

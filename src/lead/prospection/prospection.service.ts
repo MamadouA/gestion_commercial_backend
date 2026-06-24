@@ -22,14 +22,18 @@ export class ProspectionService {
                     proposedService: createProspectionDto.prosposedService,
                     authorId,
                     tenantId,
-                    documents: JSON.stringify(filesMetadata)
+                    documents: {
+                        createMany: {
+                            data: filesMetadata
+                        }
+                    }
                 },
                 omit: {
                     tenantId: true
                 }
             });
                                                                                                 
-            return { ...prospection, documents: JSON.parse(prospection.documents as string) };
+            return { prospection };
         }
         catch(err) {
             console.log("Error while creating the lead: ", err);
@@ -134,6 +138,12 @@ export class ProspectionService {
                         omit: {
                             password: true,
                             tenantId: true
+                        }
+                    },
+                    documents: {
+                        omit: {
+                            prospectionId: true,
+                            storedName: true
                         }
                     },
                     comments: {

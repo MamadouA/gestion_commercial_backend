@@ -11,7 +11,7 @@ model Prospection {
     tenant Tenant @relation(fields: [tenantId], references: [id])
     authorId Int 
     author User @relation(fields: [authorId], references: [id])
-    documents Json?
+    documents Document[]
     comments Comment[]
     createdAt DateTime @default(now())
 }

@@ -1,3 +1,4 @@
+import { Type } from "class-transformer";
 import { IsDateString, IsEnum, IsInt, IsString, MinLength, Validate } from "class-validator";
 
 export class CreateProspectionDTO {

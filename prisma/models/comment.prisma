@@ -6,8 +6,8 @@ model Comment {
 
     authorId Int
     author User @relation(fields: [authorId], references: [id])
-    
-    prospectionId Int 
-    prospection Prospection @relation(fields: [prospectionId], references: [id], onDelete: Cascade)
+
+    prospectionId Int?
+    prospection Prospection? @relation(fields: [prospectionId], references: [id], onDelete: Cascade)
 
 }

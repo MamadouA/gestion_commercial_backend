@@ -24,14 +24,14 @@ export class S3ClientService {
             originalName: file.originalname,
             storedName: `${crypto.randomUUID()}-${file.originalname}`,
             size: file.size,
-            mimeType: file.mimetype
+            mimetype: file.mimetype,
         }
 
         try {
             await this.s3Client.send(new PutObjectCommand ({
                 Bucket: process.env.S3_BUCKET_NAME,
                 Key: fileMetadata.storedName,
-                Body: file.buffer
+                Body: file.buffer,
             }));
         }
         catch(err) {
