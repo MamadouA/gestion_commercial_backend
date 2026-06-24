@@ -50,9 +50,9 @@ export class ProspectionController {
     }
 
         // -
-    @Post('comment/create')
-    async createComment(@Body() createCommentDto: CreateCommentDTO, @CurrentUser('id') authorId: number) {
-        return await this.prospectionService.createComment(createCommentDto, authorId);
+    @Post(':id/comment/create')
+    async createComment(@Body() createCommentDto: CreateCommentDTO, @Param('id', ParseIntPipe) prospectionId: number, @CurrentUser('id') authorId: number) {
+        return await this.prospectionService.createComment(createCommentDto, prospectionId, authorId);
     }
 
     //

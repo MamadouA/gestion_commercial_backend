@@ -153,10 +153,14 @@ export class ProspectionService {
                             createdAt: true,
                             author: {
                                 select: {
+                                    id: true,
                                     fullname: true,
                                     email: true
                                 }
                             }
+                        },
+                        orderBy: {
+                            id: 'desc'
                         }
                     }
                 }
@@ -169,13 +173,13 @@ export class ProspectionService {
     }
 
     // -
-    async createComment(createCommentDto: CreateCommentDTO, authorId: number) {
+    async createComment(createCommentDto: CreateCommentDTO, prospectionId: number, authorId: number) {
         try {
             return await this.prismaClientService.comment.create({
                 data: {
                     content: createCommentDto.content,
                     authorId,
-                    prospectionId: createCommentDto.postId
+                    prospectionId
                 }
             });
         } catch (err) {
@@ -196,6 +200,7 @@ export class ProspectionService {
                     content: true,
                     author: {
                         select: {
+                            id: true,
                             fullname: true,
                             email: true
                         }
