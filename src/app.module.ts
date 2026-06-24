@@ -9,6 +9,7 @@ import { ClientModule } from './client/client.module';
 import { AuthMiddleware } from './auth/auth.middleware';
 import { ProspectionModule } from './lead/prospection/prospection.module';
 
+
 @Module({
   imports: [
     { module: DatabaseModule, global: true },

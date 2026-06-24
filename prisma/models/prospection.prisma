@@ -12,6 +12,7 @@ model Prospection {
     authorId Int 
     author User @relation(fields: [authorId], references: [id])
     documents Json?
+    comments Comment[]
     createdAt DateTime @default(now())
 }
 

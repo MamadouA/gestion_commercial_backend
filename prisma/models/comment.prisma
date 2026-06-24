@@ -1,0 +1,13 @@
+
+model Comment {
+    id Int @id @default(autoincrement())
+    content String
+    createdAt DateTime @default(now())
+
+    authorId Int
+    author User @relation(fields: [authorId], references: [id])
+    
+    prospectionId Int 
+    prospection Prospection @relation(fields: [prospectionId], references: [id], onDelete: Cascade)
+
+}

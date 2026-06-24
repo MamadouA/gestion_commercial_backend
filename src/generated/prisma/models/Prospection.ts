@@ -267,6 +267,7 @@ export type ProspectionWhereInput = {
   client?: Prisma.XOR<Prisma.ClientScalarRelationFilter, Prisma.ClientWhereInput>
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  comments?: Prisma.CommentListRelationFilter
 }
 
 export type ProspectionOrderByWithRelationInput = {
@@ -283,6 +284,7 @@ export type ProspectionOrderByWithRelationInput = {
   client?: Prisma.ClientOrderByWithRelationInput
   tenant?: Prisma.TenantOrderByWithRelationInput
   author?: Prisma.UserOrderByWithRelationInput
+  comments?: Prisma.CommentOrderByRelationAggregateInput
 }
 
 export type ProspectionWhereUniqueInput = Prisma.AtLeast<{
@@ -302,6 +304,7 @@ export type ProspectionWhereUniqueInput = Prisma.AtLeast<{
   client?: Prisma.XOR<Prisma.ClientScalarRelationFilter, Prisma.ClientWhereInput>
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
+  comments?: Prisma.CommentListRelationFilter
 }, "id">
 
 export type ProspectionOrderByWithAggregationInput = {
@@ -348,6 +351,7 @@ export type ProspectionCreateInput = {
   client: Prisma.ClientCreateNestedOneWithoutProspectionsInput
   tenant: Prisma.TenantCreateNestedOneWithoutProspectionsInput
   author: Prisma.UserCreateNestedOneWithoutProspectionsInput
+  comments?: Prisma.CommentCreateNestedManyWithoutProspectionInput
 }
 
 export type ProspectionUncheckedCreateInput = {
@@ -361,6 +365,7 @@ export type ProspectionUncheckedCreateInput = {
   authorId: number
   documents?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutProspectionInput
 }
 
 export type ProspectionUpdateInput = {
@@ -373,6 +378,7 @@ export type ProspectionUpdateInput = {
   client?: Prisma.ClientUpdateOneRequiredWithoutProspectionsNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutProspectionsNestedInput
   author?: Prisma.UserUpdateOneRequiredWithoutProspectionsNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutProspectionNestedInput
 }
 
 export type ProspectionUncheckedUpdateInput = {
@@ -386,6 +392,7 @@ export type ProspectionUncheckedUpdateInput = {
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   documents?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutProspectionNestedInput
 }
 
 export type ProspectionCreateManyInput = {
@@ -431,6 +438,11 @@ export type ProspectionListRelationFilter = {
 
 export type ProspectionOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type ProspectionScalarRelationFilter = {
+  is?: Prisma.ProspectionWhereInput
+  isNot?: Prisma.ProspectionWhereInput
 }
 
 export type ProspectionCountOrderByAggregateInput = {
@@ -524,6 +536,20 @@ export type ProspectionUncheckedUpdateManyWithoutClientNestedInput = {
   update?: Prisma.ProspectionUpdateWithWhereUniqueWithoutClientInput | Prisma.ProspectionUpdateWithWhereUniqueWithoutClientInput[]
   updateMany?: Prisma.ProspectionUpdateManyWithWhereWithoutClientInput | Prisma.ProspectionUpdateManyWithWhereWithoutClientInput[]
   deleteMany?: Prisma.ProspectionScalarWhereInput | Prisma.ProspectionScalarWhereInput[]
+}
+
+export type ProspectionCreateNestedOneWithoutCommentsInput = {
+  create?: Prisma.XOR<Prisma.ProspectionCreateWithoutCommentsInput, Prisma.ProspectionUncheckedCreateWithoutCommentsInput>
+  connectOrCreate?: Prisma.ProspectionCreateOrConnectWithoutCommentsInput
+  connect?: Prisma.ProspectionWhereUniqueInput
+}
+
+export type ProspectionUpdateOneRequiredWithoutCommentsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProspectionCreateWithoutCommentsInput, Prisma.ProspectionUncheckedCreateWithoutCommentsInput>
+  connectOrCreate?: Prisma.ProspectionCreateOrConnectWithoutCommentsInput
+  upsert?: Prisma.ProspectionUpsertWithoutCommentsInput
+  connect?: Prisma.ProspectionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProspectionUpdateToOneWithWhereWithoutCommentsInput, Prisma.ProspectionUpdateWithoutCommentsInput>, Prisma.ProspectionUncheckedUpdateWithoutCommentsInput>
 }
 
 export type EnumProspectionStatusFieldUpdateOperationsInput = {
@@ -623,6 +649,7 @@ export type ProspectionCreateWithoutClientInput = {
   createdAt?: Date | string
   tenant: Prisma.TenantCreateNestedOneWithoutProspectionsInput
   author: Prisma.UserCreateNestedOneWithoutProspectionsInput
+  comments?: Prisma.CommentCreateNestedManyWithoutProspectionInput
 }
 
 export type ProspectionUncheckedCreateWithoutClientInput = {
@@ -635,6 +662,7 @@ export type ProspectionUncheckedCreateWithoutClientInput = {
   authorId: number
   documents?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutProspectionInput
 }
 
 export type ProspectionCreateOrConnectWithoutClientInput = {
@@ -679,6 +707,72 @@ export type ProspectionScalarWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Prospection"> | Date | string
 }
 
+export type ProspectionCreateWithoutCommentsInput = {
+  proposedService: string
+  startDate?: Date | string
+  endDate: Date | string
+  status?: $Enums.ProspectionStatus
+  documents?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+  client: Prisma.ClientCreateNestedOneWithoutProspectionsInput
+  tenant: Prisma.TenantCreateNestedOneWithoutProspectionsInput
+  author: Prisma.UserCreateNestedOneWithoutProspectionsInput
+}
+
+export type ProspectionUncheckedCreateWithoutCommentsInput = {
+  id?: number
+  proposedService: string
+  startDate?: Date | string
+  endDate: Date | string
+  status?: $Enums.ProspectionStatus
+  clientId: number
+  tenantId: number
+  authorId: number
+  documents?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Date | string
+}
+
+export type ProspectionCreateOrConnectWithoutCommentsInput = {
+  where: Prisma.ProspectionWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProspectionCreateWithoutCommentsInput, Prisma.ProspectionUncheckedCreateWithoutCommentsInput>
+}
+
+export type ProspectionUpsertWithoutCommentsInput = {
+  update: Prisma.XOR<Prisma.ProspectionUpdateWithoutCommentsInput, Prisma.ProspectionUncheckedUpdateWithoutCommentsInput>
+  create: Prisma.XOR<Prisma.ProspectionCreateWithoutCommentsInput, Prisma.ProspectionUncheckedCreateWithoutCommentsInput>
+  where?: Prisma.ProspectionWhereInput
+}
+
+export type ProspectionUpdateToOneWithWhereWithoutCommentsInput = {
+  where?: Prisma.ProspectionWhereInput
+  data: Prisma.XOR<Prisma.ProspectionUpdateWithoutCommentsInput, Prisma.ProspectionUncheckedUpdateWithoutCommentsInput>
+}
+
+export type ProspectionUpdateWithoutCommentsInput = {
+  proposedService?: Prisma.StringFieldUpdateOperationsInput | string
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumProspectionStatusFieldUpdateOperationsInput | $Enums.ProspectionStatus
+  documents?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  client?: Prisma.ClientUpdateOneRequiredWithoutProspectionsNestedInput
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutProspectionsNestedInput
+  author?: Prisma.UserUpdateOneRequiredWithoutProspectionsNestedInput
+}
+
+export type ProspectionUncheckedUpdateWithoutCommentsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  proposedService?: Prisma.StringFieldUpdateOperationsInput | string
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  status?: Prisma.EnumProspectionStatusFieldUpdateOperationsInput | $Enums.ProspectionStatus
+  clientId?: Prisma.IntFieldUpdateOperationsInput | number
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
+  authorId?: Prisma.IntFieldUpdateOperationsInput | number
+  documents?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type ProspectionCreateWithoutTenantInput = {
   proposedService: string
   startDate?: Date | string
@@ -688,6 +782,7 @@ export type ProspectionCreateWithoutTenantInput = {
   createdAt?: Date | string
   client: Prisma.ClientCreateNestedOneWithoutProspectionsInput
   author: Prisma.UserCreateNestedOneWithoutProspectionsInput
+  comments?: Prisma.CommentCreateNestedManyWithoutProspectionInput
 }
 
 export type ProspectionUncheckedCreateWithoutTenantInput = {
@@ -700,6 +795,7 @@ export type ProspectionUncheckedCreateWithoutTenantInput = {
   authorId: number
   documents?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutProspectionInput
 }
 
 export type ProspectionCreateOrConnectWithoutTenantInput = {
@@ -737,6 +833,7 @@ export type ProspectionCreateWithoutAuthorInput = {
   createdAt?: Date | string
   client: Prisma.ClientCreateNestedOneWithoutProspectionsInput
   tenant: Prisma.TenantCreateNestedOneWithoutProspectionsInput
+  comments?: Prisma.CommentCreateNestedManyWithoutProspectionInput
 }
 
 export type ProspectionUncheckedCreateWithoutAuthorInput = {
@@ -749,6 +846,7 @@ export type ProspectionUncheckedCreateWithoutAuthorInput = {
   tenantId: number
   documents?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Date | string
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutProspectionInput
 }
 
 export type ProspectionCreateOrConnectWithoutAuthorInput = {
@@ -798,6 +896,7 @@ export type ProspectionUpdateWithoutClientInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tenant?: Prisma.TenantUpdateOneRequiredWithoutProspectionsNestedInput
   author?: Prisma.UserUpdateOneRequiredWithoutProspectionsNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutProspectionNestedInput
 }
 
 export type ProspectionUncheckedUpdateWithoutClientInput = {
@@ -810,6 +909,7 @@ export type ProspectionUncheckedUpdateWithoutClientInput = {
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   documents?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutProspectionNestedInput
 }
 
 export type ProspectionUncheckedUpdateManyWithoutClientInput = {
@@ -845,6 +945,7 @@ export type ProspectionUpdateWithoutTenantInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   client?: Prisma.ClientUpdateOneRequiredWithoutProspectionsNestedInput
   author?: Prisma.UserUpdateOneRequiredWithoutProspectionsNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutProspectionNestedInput
 }
 
 export type ProspectionUncheckedUpdateWithoutTenantInput = {
@@ -857,6 +958,7 @@ export type ProspectionUncheckedUpdateWithoutTenantInput = {
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   documents?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutProspectionNestedInput
 }
 
 export type ProspectionUncheckedUpdateManyWithoutTenantInput = {
@@ -892,6 +994,7 @@ export type ProspectionUpdateWithoutAuthorInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   client?: Prisma.ClientUpdateOneRequiredWithoutProspectionsNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutProspectionsNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutProspectionNestedInput
 }
 
 export type ProspectionUncheckedUpdateWithoutAuthorInput = {
@@ -904,6 +1007,7 @@ export type ProspectionUncheckedUpdateWithoutAuthorInput = {
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   documents?: Prisma.NullableJsonNullValueInput | runtime.InputJsonValue
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutProspectionNestedInput
 }
 
 export type ProspectionUncheckedUpdateManyWithoutAuthorInput = {
@@ -918,6 +1022,35 @@ export type ProspectionUncheckedUpdateManyWithoutAuthorInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
+
+/**
+ * Count Type ProspectionCountOutputType
+ */
+
+export type ProspectionCountOutputType = {
+  comments: number
+}
+
+export type ProspectionCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  comments?: boolean | ProspectionCountOutputTypeCountCommentsArgs
+}
+
+/**
+ * ProspectionCountOutputType without action
+ */
+export type ProspectionCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProspectionCountOutputType
+   */
+  select?: Prisma.ProspectionCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * ProspectionCountOutputType without action
+ */
+export type ProspectionCountOutputTypeCountCommentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CommentWhereInput
+}
 
 
 export type ProspectionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -934,6 +1067,8 @@ export type ProspectionSelect<ExtArgs extends runtime.Types.Extensions.InternalA
   client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  comments?: boolean | Prisma.Prospection$commentsArgs<ExtArgs>
+  _count?: boolean | Prisma.ProspectionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["prospection"]>
 
 export type ProspectionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -986,6 +1121,8 @@ export type ProspectionInclude<ExtArgs extends runtime.Types.Extensions.Internal
   client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
+  comments?: boolean | Prisma.Prospection$commentsArgs<ExtArgs>
+  _count?: boolean | Prisma.ProspectionCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ProspectionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
@@ -1004,6 +1141,7 @@ export type $ProspectionPayload<ExtArgs extends runtime.Types.Extensions.Interna
     client: Prisma.$ClientPayload<ExtArgs>
     tenant: Prisma.$TenantPayload<ExtArgs>
     author: Prisma.$UserPayload<ExtArgs>
+    comments: Prisma.$CommentPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1413,6 +1551,7 @@ export interface Prisma__ProspectionClient<T, Null = never, ExtArgs extends runt
   client<T extends Prisma.ClientDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClientDefaultArgs<ExtArgs>>): Prisma.Prisma__ClientClient<runtime.Types.Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   tenant<T extends Prisma.TenantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TenantDefaultArgs<ExtArgs>>): Prisma.Prisma__TenantClient<runtime.Types.Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   author<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  comments<T extends Prisma.Prospection$commentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Prospection$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1850,6 +1989,30 @@ export type ProspectionDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.I
    * Limit how many Prospections to delete.
    */
   limit?: number
+}
+
+/**
+ * Prospection.comments
+ */
+export type Prospection$commentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Comment
+   */
+  select?: Prisma.CommentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Comment
+   */
+  omit?: Prisma.CommentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CommentInclude<ExtArgs> | null
+  where?: Prisma.CommentWhereInput
+  orderBy?: Prisma.CommentOrderByWithRelationInput | Prisma.CommentOrderByWithRelationInput[]
+  cursor?: Prisma.CommentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CommentScalarFieldEnum | Prisma.CommentScalarFieldEnum[]
 }
 
 /**

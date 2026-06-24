@@ -3,6 +3,7 @@ import { PrismaClientService } from '../../database/prisma-client.service';
 import { CreateProspectionDTO } from './dto/create-prospection.dto';
 import { ProspectionQueryDTO } from './dto/prospection-query.dto';
 import { S3ClientService } from '../../common/file-uploader/s3-client.service';
+import { CreateCommentDTO } from '../../shared/dto/create.comment.dto';
 
 @Injectable()
 export class ProspectionService {
@@ -118,6 +119,11 @@ export class ProspectionService {
                     id,
                     tenantId
                 },
+                omit: {
+                    tenantId: true,
+                    clientId: true,
+                    authorId: true
+                },
                 include: {
                     client: {
                         omit: {
@@ -129,6 +135,19 @@ export class ProspectionService {
                             password: true,
                             tenantId: true
                         }
+                    },
+                    comments: {
+                        select: {
+                            id: true,
+                            content: true,
+                            createdAt: true,
+                            author: {
+                                select: {
+                                    fullname: true,
+                                    email: true
+                                }
+                            }
+                        }
                     }
                 }
             });
@@ -136,6 +155,47 @@ export class ProspectionService {
         catch(err) {
             console.log("Error while fetching the prospection: ", err);
             throw new InternalServerErrorException("Error while fetching the prospection.");
+        }
+    }
+
+    // -
+    async createComment(createCommentDto: CreateCommentDTO, authorId: number) {
+        try {
+            return await this.prismaClientService.comment.create({
+                data: {
+                    content: createCommentDto.content,
+                    authorId,
+                    prospectionId: createCommentDto.postId
+                }
+            });
+        } catch (err) {
+            console.log('Error while creating the comment: ', err);
+            throw new InternalServerErrorException('Error while creating the comment.');
+        }
+    }
+
+    // -
+    async findCommentsByProspectionId(prospectionId: number) {
+        try {
+            return await this.prismaClientService.comment.findMany({
+                where: {
+                    prospectionId
+                },
+                select: {
+                    id: true,
+                    content: true,
+                    author: {
+                        select: {
+                            fullname: true,
+                            email: true
+                        }
+                    },
+                    createdAt: true
+                }
+            });
+        } catch (err) {
+            console.log('Error while fetching the comments: ', err);
+            throw new InternalServerErrorException('Error while fetching the comments.');
         }
     }
 }

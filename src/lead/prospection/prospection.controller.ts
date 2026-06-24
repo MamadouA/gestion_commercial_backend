@@ -5,6 +5,7 @@ import { ProspectionService } from './prospection.service';
 import { User } from '../../generated/prisma/client';
 import { ProspectionQueryDTO } from './dto/prospection-query.dto';
 import { FilesInterceptor } from '@nestjs/platform-express';
+import { CreateCommentDTO } from '../../shared/dto/create.comment.dto';
 
 @Controller('prospection')
 export class ProspectionController {
@@ -46,5 +47,17 @@ export class ProspectionController {
     @Get(':id')
     async findOne(@Param('id', ParseIntPipe) id: number, @CurrentUser('tenantId') tenantId: number) {
         return await this.prospectionService.findOne(id, tenantId);
+    }
+
+        // -
+    @Post('comment/create')
+    async createComment(@Body() createCommentDto: CreateCommentDTO, @CurrentUser('id') authorId: number) {
+        return await this.prospectionService.createComment(createCommentDto, authorId);
+    }
+
+    //
+    @Get(':id/comment')
+    async findCommentsByProspectionId(@Param('id', ParseIntPipe) id: number) {
+        return await this.prospectionService.findCommentsByProspectionId(id);
     }
 }

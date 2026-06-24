@@ -45,6 +45,11 @@ export { Prisma }
  */
 export type Client = Prisma.ClientModel
 /**
+ * Model Comment
+ * 
+ */
+export type Comment = Prisma.CommentModel
+/**
  * Model Prospection
  * 
  */
