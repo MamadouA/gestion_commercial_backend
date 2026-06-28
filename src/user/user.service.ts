@@ -1,5 +1,5 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
+import { CreateUserDTO } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaClientService } from '../database/prisma-client.service';
 
@@ -9,12 +9,54 @@ export class UserService {
   constructor(private prismaClientService: PrismaClientService) {}
 
   // -
-  async create(createUserDto: CreateUserDto) {
-    return 'This action adds a new user';
+  async create(createUserDto: CreateUserDTO, tenantId: number) {
+    try {
+      return await this.prismaClientService.user.create({
+        data: {
+          tenantId,
+          fullname: createUserDto.fullname,
+          email: createUserDto.email,
+          phone: createUserDto.phone,
+          roles: createUserDto.roles,
+        },
+        omit: {
+          password: true,
+          tenantId: true,
+          isActive: true,
+          createdAt: true
+        }
+      });
+    }
+    catch(err) {
+      console.log("Error while creating the user: ", err);
+      throw new InternalServerErrorException("Error while creating the user.");
+    }
   }
 
-  findAll() {
-    return `This action returns all user`;
+  findAll(userId: number, tenantId: number) {
+    try {
+      return this.prismaClientService.user.findMany({
+        where: {
+          tenantId,
+          id: { 
+            not: userId
+          }
+        },
+        orderBy: {
+          id: 'desc'
+        },
+        select: {
+          id: true,
+          fullname: true,
+          email: true,
+          roles: true,
+        }
+      });
+    }
+    catch(err) {
+      console.log("Error while fetching the users: ", err);
+      throw new InternalServerErrorException("Error while fetching the users.");
+    }
   }
 
   async findOne(id: number, tenantId: number) {

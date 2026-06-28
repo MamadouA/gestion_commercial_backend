@@ -321,7 +321,7 @@ export type UserScalarWhereWithAggregatesInput = {
 export type UserCreateInput = {
   fullname: string
   email: string
-  password: string
+  password?: string
   phone: string
   roles?: Prisma.UserCreaterolesInput | $Enums.Role[]
   isActive?: boolean
@@ -335,7 +335,7 @@ export type UserUncheckedCreateInput = {
   id?: number
   fullname: string
   email: string
-  password: string
+  password?: string
   phone: string
   roles?: Prisma.UserCreaterolesInput | $Enums.Role[]
   isActive?: boolean
@@ -376,7 +376,7 @@ export type UserCreateManyInput = {
   id?: number
   fullname: string
   email: string
-  password: string
+  password?: string
   phone: string
   roles?: Prisma.UserCreaterolesInput | $Enums.Role[]
   isActive?: boolean
@@ -555,7 +555,7 @@ export type UserUpdaterolesInput = {
 export type UserCreateWithoutCommentsInput = {
   fullname: string
   email: string
-  password: string
+  password?: string
   phone: string
   roles?: Prisma.UserCreaterolesInput | $Enums.Role[]
   isActive?: boolean
@@ -568,7 +568,7 @@ export type UserUncheckedCreateWithoutCommentsInput = {
   id?: number
   fullname: string
   email: string
-  password: string
+  password?: string
   phone: string
   roles?: Prisma.UserCreaterolesInput | $Enums.Role[]
   isActive?: boolean
@@ -621,7 +621,7 @@ export type UserUncheckedUpdateWithoutCommentsInput = {
 export type UserCreateWithoutProspectionsInput = {
   fullname: string
   email: string
-  password: string
+  password?: string
   phone: string
   roles?: Prisma.UserCreaterolesInput | $Enums.Role[]
   isActive?: boolean
@@ -634,7 +634,7 @@ export type UserUncheckedCreateWithoutProspectionsInput = {
   id?: number
   fullname: string
   email: string
-  password: string
+  password?: string
   phone: string
   roles?: Prisma.UserCreaterolesInput | $Enums.Role[]
   isActive?: boolean
@@ -687,7 +687,7 @@ export type UserUncheckedUpdateWithoutProspectionsInput = {
 export type UserCreateWithoutTenantInput = {
   fullname: string
   email: string
-  password: string
+  password?: string
   phone: string
   roles?: Prisma.UserCreaterolesInput | $Enums.Role[]
   isActive?: boolean
@@ -700,7 +700,7 @@ export type UserUncheckedCreateWithoutTenantInput = {
   id?: number
   fullname: string
   email: string
-  password: string
+  password?: string
   phone: string
   roles?: Prisma.UserCreaterolesInput | $Enums.Role[]
   isActive?: boolean
@@ -754,7 +754,7 @@ export type UserCreateManyTenantInput = {
   id?: number
   fullname: string
   email: string
-  password: string
+  password?: string
   phone: string
   roles?: Prisma.UserCreaterolesInput | $Enums.Role[]
   isActive?: boolean

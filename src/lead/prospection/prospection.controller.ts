@@ -33,10 +33,11 @@ export class ProspectionController {
     // -
     @Get('all')
     async findAll(@Query(new DefaultValuePipe({ 
-        prosposedService: "",
-        startDate: "",
-        endDate: "",
-        status: "",
+        authorName: null,
+        contactNameOrEnterpriseName: null,
+        startDate: null,
+        endDate: null,
+        status: null,
         currentPage: 1, 
         pageSize: 10 
     })) query: ProspectionQueryDTO, @CurrentUser('tenantId') tenantId: number) {

@@ -1,15 +1,15 @@
 import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
-import { CreateTenantDto } from './dto/create-tenant.dto';
 import { UpdateTenantDto } from './dto/update-tenant.dto';
 import { PrismaClientService } from '../database/prisma-client.service';
 import * as bcrypt from 'bcrypt';
+import { CreateTenantDTO } from './dto/create-tenant.dto';
 
 @Injectable()
 export class TenantService {
 
   constructor(private prismaClientService: PrismaClientService) {}
   
-  create(createTenantDto: CreateTenantDto) {
+  create(createTenantDto: CreateTenantDTO) {
     try {
       if(createTenantDto.user.password !== createTenantDto.user.confirmPassword) {
         throw new BadRequestException("Passwords do not match.");

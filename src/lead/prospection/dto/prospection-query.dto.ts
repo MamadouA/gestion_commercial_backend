@@ -5,16 +5,20 @@ import { PaginationDTO } from "../../../shared/dto/pagination"
 export class ProspectionQueryDTO extends PaginationDTO {
     @IsString()
     @IsOptional()
-    proposedService?: string 
+    authorName?: string 
 
     @IsDateString()
     @IsOptional()
-    startDate?: Date
+    startDate?: string
 
     @IsDateString()
     @IsOptional()
-    endDate?: Date
+    endDate?: string
 
+    @IsString()
+    @IsOptional()
+    contactNameOrEnterpriseName?: string
+    
     @IsEnum(ProspectionStatus)
     @IsOptional()
     status?: ProspectionStatus

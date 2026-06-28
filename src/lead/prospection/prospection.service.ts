@@ -4,6 +4,7 @@ import { CreateProspectionDTO } from './dto/create-prospection.dto';
 import { ProspectionQueryDTO } from './dto/prospection-query.dto';
 import { S3ClientService } from '../../common/file-uploader/s3-client.service';
 import { CreateCommentDTO } from '../../shared/dto/create.comment.dto';
+import { ProspectionWhereInput } from '../../generated/prisma/models';
 
 @Injectable()
 export class ProspectionService {
@@ -43,29 +44,53 @@ export class ProspectionService {
 
     // 
     async findAll(query: ProspectionQueryDTO, tenantId: number) {
-        const filter = { tenantId };
+        const filter: ProspectionWhereInput = { tenantId };
 
-        if (query.proposedService) {
-            filter['proposedService'] = {
-                contains: query.proposedService,
-                mode: 'insensitive'
+        
+        if (query.authorName) {
+            filter.author = {
+                fullname: {
+                    contains: query.authorName,
+                    mode: 'insensitive'
+                }
             }
         }
 
+        if(query.contactNameOrEnterpriseName) {
+            filter.OR = [
+                {
+                    client: {
+                        enterpriseName: {
+                            contains: query.contactNameOrEnterpriseName,
+                            mode: 'insensitive'
+                        }
+                    }
+                },
+                {
+                    client: {
+                        contactName: {
+                            contains: query.contactNameOrEnterpriseName,
+                            mode: 'insensitive'
+                        }
+                    }
+                }
+            ]
+        }
+
         if(query.startDate) {
-            filter['startDate'] = {
+            filter.startDate = {
                 gte: new Date(query.startDate)
             }
         }
 
         if(query.endDate) {
-            filter['endDate'] = {
+            filter.endDate = {
                 lte: new Date(query.endDate)
             }
         }
 
         if(query.status) {
-            filter['status'] = {
+            filter.status = {
                 equals: query.status
             }
         }
