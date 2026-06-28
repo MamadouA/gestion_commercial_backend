@@ -2,6 +2,7 @@ import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaClientService } from '../database/prisma-client.service';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UserService {
@@ -18,6 +19,7 @@ export class UserService {
           email: createUserDto.email,
           phone: createUserDto.phone,
           roles: createUserDto.roles,
+          password: bcrypt.hashSync("testing1234", 10),
         },
         omit: {
           password: true,
