@@ -19,7 +19,7 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post('create')
-  async create(@Body() createUserDto: CreateUserDTO, @CurrentUser('tenantId') tenantId: number) {
+  create(@Body() createUserDto: CreateUserDTO, @CurrentUser('tenantId') tenantId: number) {
     return this.userService.create(createUserDto, tenantId);
   }
 
@@ -37,12 +37,12 @@ export class UserController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+  async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.userService.update(+id, updateUserDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  async remove(@Param('id') id: string) {
     return this.userService.remove(+id);
   }
 }

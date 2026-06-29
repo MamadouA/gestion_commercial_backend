@@ -8,6 +8,7 @@ import { TenantModule } from './tenant/tenant.module';
 import { ClientModule } from './client/client.module';
 import { AuthMiddleware } from './auth/auth.middleware';
 import { ProspectionModule } from './lead/prospection/prospection.module';
+import { ProductModule } from './lead/product/product.module';
 
 
 @Module({
@@ -18,6 +19,7 @@ import { ProspectionModule } from './lead/prospection/prospection.module';
     TenantModule,
     ClientModule,
     ProspectionModule,
+    ProductModule,
   ],
   controllers: [AppController],
   providers: [AppService],

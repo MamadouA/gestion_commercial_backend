@@ -33,6 +33,11 @@ export type Comment = Prisma.CommentModel
  */
 export type Document = Prisma.DocumentModel
 /**
+ * Model Product
+ * 
+ */
+export type Product = Prisma.ProductModel
+/**
  * Model Prospection
  * 
  */

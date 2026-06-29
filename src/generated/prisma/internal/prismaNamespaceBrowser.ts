@@ -54,6 +54,7 @@ export const ModelName = {
   Client: 'Client',
   Comment: 'Comment',
   Document: 'Document',
+  Product: 'Product',
   Prospection: 'Prospection',
   Tenant: 'Tenant',
   User: 'User'
@@ -115,6 +116,16 @@ export const DocumentScalarFieldEnum = {
 } as const
 
 export type DocumentScalarFieldEnum = (typeof DocumentScalarFieldEnum)[keyof typeof DocumentScalarFieldEnum]
+
+
+export const ProductScalarFieldEnum = {
+  id: 'id',
+  domain: 'domain',
+  title: 'title',
+  tenantId: 'tenantId'
+} as const
+
+export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
 
 
 export const ProspectionScalarFieldEnum = {

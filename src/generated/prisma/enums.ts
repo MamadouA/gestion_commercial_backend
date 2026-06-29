@@ -30,6 +30,14 @@ export const EnterpriseLegalForm = {
 export type EnterpriseLegalForm = (typeof EnterpriseLegalForm)[keyof typeof EnterpriseLegalForm]
 
 
+export const ProductDomain = {
+  INSPECTION_ET_VERIFICATION_EN_SERVICE: 'INSPECTION_ET_VERIFICATION_EN_SERVICE',
+  CONTROLE_TECHNIQUE_CONSTRUCTION: 'CONTROLE_TECHNIQUE_CONSTRUCTION'
+} as const
+
+export type ProductDomain = (typeof ProductDomain)[keyof typeof ProductDomain]
+
+
 export const ProspectionStatus = {
   OPENED: 'OPENED',
   ABANDONED: 'ABANDONED',

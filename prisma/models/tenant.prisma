@@ -6,4 +6,5 @@ model Tenant {
   users     User[]
   clients Client[]
   prospections Prospection[]
+  products Product[]
 }
