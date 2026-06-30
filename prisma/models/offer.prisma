@@ -1,0 +1,37 @@
+model Offer {
+    id Int @id @default(autoincrement())
+    title String
+    description String?
+    status OfferStatus @default(PENDING)
+
+    amountExcludingTax Decimal?
+    vatAmount Decimal?
+    amountIncludingTax Decimal?
+
+    comments Comment[]
+    products Product[]
+
+    authorId Int
+    author User @relation("offerAuthor", fields: [authorId], references: [id])
+    members User[] @relation("offerMembers")
+
+    clientId Int
+    client Client @relation(fields: [clientId], references: [id])
+
+    tenantId Int
+    tenant Tenant @relation(fields: [tenantId], references: [id])
+
+    expiryDate DateTime?
+    sentAt DateTime?
+    createdAt DateTime @default(now())
+}
+
+enum OfferStatus {
+    PENDING
+    READY
+    SENT
+    WON
+    LOST
+    ABANDONED
+    OVERDUE
+}

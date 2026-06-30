@@ -10,6 +10,9 @@ model User {
   tenantId  Int
   prospections Prospection[] // prospection created by the user
   comments Comment[] // comment made by the user
+
+  createdOffers Offer[] @relation("offerAuthor") // offers created by the user
+  membershipOffers Offer[] @relation("offerMembers") // offers where this user is a member
   createdAt DateTime @default(now())
 }
 

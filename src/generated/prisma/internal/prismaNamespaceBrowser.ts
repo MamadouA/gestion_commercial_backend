@@ -54,6 +54,7 @@ export const ModelName = {
   Client: 'Client',
   Comment: 'Comment',
   Document: 'Document',
+  Offer: 'Offer',
   Product: 'Product',
   Prospection: 'Prospection',
   Tenant: 'Tenant',
@@ -99,7 +100,8 @@ export const CommentScalarFieldEnum = {
   content: 'content',
   createdAt: 'createdAt',
   authorId: 'authorId',
-  prospectionId: 'prospectionId'
+  prospectionId: 'prospectionId',
+  offerId: 'offerId'
 } as const
 
 export type CommentScalarFieldEnum = (typeof CommentScalarFieldEnum)[keyof typeof CommentScalarFieldEnum]
@@ -116,6 +118,25 @@ export const DocumentScalarFieldEnum = {
 } as const
 
 export type DocumentScalarFieldEnum = (typeof DocumentScalarFieldEnum)[keyof typeof DocumentScalarFieldEnum]
+
+
+export const OfferScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  status: 'status',
+  amountExcludingTax: 'amountExcludingTax',
+  vatAmount: 'vatAmount',
+  amountIncludingTax: 'amountIncludingTax',
+  authorId: 'authorId',
+  clientId: 'clientId',
+  tenantId: 'tenantId',
+  expiryDate: 'expiryDate',
+  sentAt: 'sentAt',
+  createdAt: 'createdAt'
+} as const
+
+export type OfferScalarFieldEnum = (typeof OfferScalarFieldEnum)[keyof typeof OfferScalarFieldEnum]
 
 
 export const ProductScalarFieldEnum = {

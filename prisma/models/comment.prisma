@@ -10,4 +10,6 @@ model Comment {
     prospectionId Int?
     prospection Prospection? @relation(fields: [prospectionId], references: [id], onDelete: Cascade)
 
+    offerId Int?
+    offer Offer? @relation(fields: [offerId], references: [id], onDelete: Cascade)
 }

@@ -30,12 +30,14 @@ export type CommentAvgAggregateOutputType = {
   id: number | null
   authorId: number | null
   prospectionId: number | null
+  offerId: number | null
 }
 
 export type CommentSumAggregateOutputType = {
   id: number | null
   authorId: number | null
   prospectionId: number | null
+  offerId: number | null
 }
 
 export type CommentMinAggregateOutputType = {
@@ -44,6 +46,7 @@ export type CommentMinAggregateOutputType = {
   createdAt: Date | null
   authorId: number | null
   prospectionId: number | null
+  offerId: number | null
 }
 
 export type CommentMaxAggregateOutputType = {
@@ -52,6 +55,7 @@ export type CommentMaxAggregateOutputType = {
   createdAt: Date | null
   authorId: number | null
   prospectionId: number | null
+  offerId: number | null
 }
 
 export type CommentCountAggregateOutputType = {
@@ -60,6 +64,7 @@ export type CommentCountAggregateOutputType = {
   createdAt: number
   authorId: number
   prospectionId: number
+  offerId: number
   _all: number
 }
 
@@ -68,12 +73,14 @@ export type CommentAvgAggregateInputType = {
   id?: true
   authorId?: true
   prospectionId?: true
+  offerId?: true
 }
 
 export type CommentSumAggregateInputType = {
   id?: true
   authorId?: true
   prospectionId?: true
+  offerId?: true
 }
 
 export type CommentMinAggregateInputType = {
@@ -82,6 +89,7 @@ export type CommentMinAggregateInputType = {
   createdAt?: true
   authorId?: true
   prospectionId?: true
+  offerId?: true
 }
 
 export type CommentMaxAggregateInputType = {
@@ -90,6 +98,7 @@ export type CommentMaxAggregateInputType = {
   createdAt?: true
   authorId?: true
   prospectionId?: true
+  offerId?: true
 }
 
 export type CommentCountAggregateInputType = {
@@ -98,6 +107,7 @@ export type CommentCountAggregateInputType = {
   createdAt?: true
   authorId?: true
   prospectionId?: true
+  offerId?: true
   _all?: true
 }
 
@@ -193,6 +203,7 @@ export type CommentGroupByOutputType = {
   createdAt: Date
   authorId: number
   prospectionId: number | null
+  offerId: number | null
   _count: CommentCountAggregateOutputType | null
   _avg: CommentAvgAggregateOutputType | null
   _sum: CommentSumAggregateOutputType | null
@@ -224,8 +235,10 @@ export type CommentWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Comment"> | Date | string
   authorId?: Prisma.IntFilter<"Comment"> | number
   prospectionId?: Prisma.IntNullableFilter<"Comment"> | number | null
+  offerId?: Prisma.IntNullableFilter<"Comment"> | number | null
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   prospection?: Prisma.XOR<Prisma.ProspectionNullableScalarRelationFilter, Prisma.ProspectionWhereInput> | null
+  offer?: Prisma.XOR<Prisma.OfferNullableScalarRelationFilter, Prisma.OfferWhereInput> | null
 }
 
 export type CommentOrderByWithRelationInput = {
@@ -234,8 +247,10 @@ export type CommentOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   prospectionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  offerId?: Prisma.SortOrderInput | Prisma.SortOrder
   author?: Prisma.UserOrderByWithRelationInput
   prospection?: Prisma.ProspectionOrderByWithRelationInput
+  offer?: Prisma.OfferOrderByWithRelationInput
 }
 
 export type CommentWhereUniqueInput = Prisma.AtLeast<{
@@ -247,8 +262,10 @@ export type CommentWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Comment"> | Date | string
   authorId?: Prisma.IntFilter<"Comment"> | number
   prospectionId?: Prisma.IntNullableFilter<"Comment"> | number | null
+  offerId?: Prisma.IntNullableFilter<"Comment"> | number | null
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   prospection?: Prisma.XOR<Prisma.ProspectionNullableScalarRelationFilter, Prisma.ProspectionWhereInput> | null
+  offer?: Prisma.XOR<Prisma.OfferNullableScalarRelationFilter, Prisma.OfferWhereInput> | null
 }, "id">
 
 export type CommentOrderByWithAggregationInput = {
@@ -257,6 +274,7 @@ export type CommentOrderByWithAggregationInput = {
   createdAt?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   prospectionId?: Prisma.SortOrderInput | Prisma.SortOrder
+  offerId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.CommentCountOrderByAggregateInput
   _avg?: Prisma.CommentAvgOrderByAggregateInput
   _max?: Prisma.CommentMaxOrderByAggregateInput
@@ -273,6 +291,7 @@ export type CommentScalarWhereWithAggregatesInput = {
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Comment"> | Date | string
   authorId?: Prisma.IntWithAggregatesFilter<"Comment"> | number
   prospectionId?: Prisma.IntNullableWithAggregatesFilter<"Comment"> | number | null
+  offerId?: Prisma.IntNullableWithAggregatesFilter<"Comment"> | number | null
 }
 
 export type CommentCreateInput = {
@@ -280,6 +299,7 @@ export type CommentCreateInput = {
   createdAt?: Date | string
   author: Prisma.UserCreateNestedOneWithoutCommentsInput
   prospection?: Prisma.ProspectionCreateNestedOneWithoutCommentsInput
+  offer?: Prisma.OfferCreateNestedOneWithoutCommentsInput
 }
 
 export type CommentUncheckedCreateInput = {
@@ -288,6 +308,7 @@ export type CommentUncheckedCreateInput = {
   createdAt?: Date | string
   authorId: number
   prospectionId?: number | null
+  offerId?: number | null
 }
 
 export type CommentUpdateInput = {
@@ -295,6 +316,7 @@ export type CommentUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   author?: Prisma.UserUpdateOneRequiredWithoutCommentsNestedInput
   prospection?: Prisma.ProspectionUpdateOneWithoutCommentsNestedInput
+  offer?: Prisma.OfferUpdateOneWithoutCommentsNestedInput
 }
 
 export type CommentUncheckedUpdateInput = {
@@ -303,6 +325,7 @@ export type CommentUncheckedUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   prospectionId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  offerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type CommentCreateManyInput = {
@@ -311,6 +334,7 @@ export type CommentCreateManyInput = {
   createdAt?: Date | string
   authorId: number
   prospectionId?: number | null
+  offerId?: number | null
 }
 
 export type CommentUpdateManyMutationInput = {
@@ -324,6 +348,7 @@ export type CommentUncheckedUpdateManyInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   prospectionId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  offerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type CommentCountOrderByAggregateInput = {
@@ -332,12 +357,14 @@ export type CommentCountOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   prospectionId?: Prisma.SortOrder
+  offerId?: Prisma.SortOrder
 }
 
 export type CommentAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   prospectionId?: Prisma.SortOrder
+  offerId?: Prisma.SortOrder
 }
 
 export type CommentMaxOrderByAggregateInput = {
@@ -346,6 +373,7 @@ export type CommentMaxOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   prospectionId?: Prisma.SortOrder
+  offerId?: Prisma.SortOrder
 }
 
 export type CommentMinOrderByAggregateInput = {
@@ -354,12 +382,14 @@ export type CommentMinOrderByAggregateInput = {
   createdAt?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   prospectionId?: Prisma.SortOrder
+  offerId?: Prisma.SortOrder
 }
 
 export type CommentSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   prospectionId?: Prisma.SortOrder
+  offerId?: Prisma.SortOrder
 }
 
 export type CommentListRelationFilter = {
@@ -378,6 +408,48 @@ export type NullableIntFieldUpdateOperationsInput = {
   decrement?: number
   multiply?: number
   divide?: number
+}
+
+export type CommentCreateNestedManyWithoutOfferInput = {
+  create?: Prisma.XOR<Prisma.CommentCreateWithoutOfferInput, Prisma.CommentUncheckedCreateWithoutOfferInput> | Prisma.CommentCreateWithoutOfferInput[] | Prisma.CommentUncheckedCreateWithoutOfferInput[]
+  connectOrCreate?: Prisma.CommentCreateOrConnectWithoutOfferInput | Prisma.CommentCreateOrConnectWithoutOfferInput[]
+  createMany?: Prisma.CommentCreateManyOfferInputEnvelope
+  connect?: Prisma.CommentWhereUniqueInput | Prisma.CommentWhereUniqueInput[]
+}
+
+export type CommentUncheckedCreateNestedManyWithoutOfferInput = {
+  create?: Prisma.XOR<Prisma.CommentCreateWithoutOfferInput, Prisma.CommentUncheckedCreateWithoutOfferInput> | Prisma.CommentCreateWithoutOfferInput[] | Prisma.CommentUncheckedCreateWithoutOfferInput[]
+  connectOrCreate?: Prisma.CommentCreateOrConnectWithoutOfferInput | Prisma.CommentCreateOrConnectWithoutOfferInput[]
+  createMany?: Prisma.CommentCreateManyOfferInputEnvelope
+  connect?: Prisma.CommentWhereUniqueInput | Prisma.CommentWhereUniqueInput[]
+}
+
+export type CommentUpdateManyWithoutOfferNestedInput = {
+  create?: Prisma.XOR<Prisma.CommentCreateWithoutOfferInput, Prisma.CommentUncheckedCreateWithoutOfferInput> | Prisma.CommentCreateWithoutOfferInput[] | Prisma.CommentUncheckedCreateWithoutOfferInput[]
+  connectOrCreate?: Prisma.CommentCreateOrConnectWithoutOfferInput | Prisma.CommentCreateOrConnectWithoutOfferInput[]
+  upsert?: Prisma.CommentUpsertWithWhereUniqueWithoutOfferInput | Prisma.CommentUpsertWithWhereUniqueWithoutOfferInput[]
+  createMany?: Prisma.CommentCreateManyOfferInputEnvelope
+  set?: Prisma.CommentWhereUniqueInput | Prisma.CommentWhereUniqueInput[]
+  disconnect?: Prisma.CommentWhereUniqueInput | Prisma.CommentWhereUniqueInput[]
+  delete?: Prisma.CommentWhereUniqueInput | Prisma.CommentWhereUniqueInput[]
+  connect?: Prisma.CommentWhereUniqueInput | Prisma.CommentWhereUniqueInput[]
+  update?: Prisma.CommentUpdateWithWhereUniqueWithoutOfferInput | Prisma.CommentUpdateWithWhereUniqueWithoutOfferInput[]
+  updateMany?: Prisma.CommentUpdateManyWithWhereWithoutOfferInput | Prisma.CommentUpdateManyWithWhereWithoutOfferInput[]
+  deleteMany?: Prisma.CommentScalarWhereInput | Prisma.CommentScalarWhereInput[]
+}
+
+export type CommentUncheckedUpdateManyWithoutOfferNestedInput = {
+  create?: Prisma.XOR<Prisma.CommentCreateWithoutOfferInput, Prisma.CommentUncheckedCreateWithoutOfferInput> | Prisma.CommentCreateWithoutOfferInput[] | Prisma.CommentUncheckedCreateWithoutOfferInput[]
+  connectOrCreate?: Prisma.CommentCreateOrConnectWithoutOfferInput | Prisma.CommentCreateOrConnectWithoutOfferInput[]
+  upsert?: Prisma.CommentUpsertWithWhereUniqueWithoutOfferInput | Prisma.CommentUpsertWithWhereUniqueWithoutOfferInput[]
+  createMany?: Prisma.CommentCreateManyOfferInputEnvelope
+  set?: Prisma.CommentWhereUniqueInput | Prisma.CommentWhereUniqueInput[]
+  disconnect?: Prisma.CommentWhereUniqueInput | Prisma.CommentWhereUniqueInput[]
+  delete?: Prisma.CommentWhereUniqueInput | Prisma.CommentWhereUniqueInput[]
+  connect?: Prisma.CommentWhereUniqueInput | Prisma.CommentWhereUniqueInput[]
+  update?: Prisma.CommentUpdateWithWhereUniqueWithoutOfferInput | Prisma.CommentUpdateWithWhereUniqueWithoutOfferInput[]
+  updateMany?: Prisma.CommentUpdateManyWithWhereWithoutOfferInput | Prisma.CommentUpdateManyWithWhereWithoutOfferInput[]
+  deleteMany?: Prisma.CommentScalarWhereInput | Prisma.CommentScalarWhereInput[]
 }
 
 export type CommentCreateNestedManyWithoutProspectionInput = {
@@ -464,10 +536,64 @@ export type CommentUncheckedUpdateManyWithoutAuthorNestedInput = {
   deleteMany?: Prisma.CommentScalarWhereInput | Prisma.CommentScalarWhereInput[]
 }
 
+export type CommentCreateWithoutOfferInput = {
+  content: string
+  createdAt?: Date | string
+  author: Prisma.UserCreateNestedOneWithoutCommentsInput
+  prospection?: Prisma.ProspectionCreateNestedOneWithoutCommentsInput
+}
+
+export type CommentUncheckedCreateWithoutOfferInput = {
+  id?: number
+  content: string
+  createdAt?: Date | string
+  authorId: number
+  prospectionId?: number | null
+}
+
+export type CommentCreateOrConnectWithoutOfferInput = {
+  where: Prisma.CommentWhereUniqueInput
+  create: Prisma.XOR<Prisma.CommentCreateWithoutOfferInput, Prisma.CommentUncheckedCreateWithoutOfferInput>
+}
+
+export type CommentCreateManyOfferInputEnvelope = {
+  data: Prisma.CommentCreateManyOfferInput | Prisma.CommentCreateManyOfferInput[]
+  skipDuplicates?: boolean
+}
+
+export type CommentUpsertWithWhereUniqueWithoutOfferInput = {
+  where: Prisma.CommentWhereUniqueInput
+  update: Prisma.XOR<Prisma.CommentUpdateWithoutOfferInput, Prisma.CommentUncheckedUpdateWithoutOfferInput>
+  create: Prisma.XOR<Prisma.CommentCreateWithoutOfferInput, Prisma.CommentUncheckedCreateWithoutOfferInput>
+}
+
+export type CommentUpdateWithWhereUniqueWithoutOfferInput = {
+  where: Prisma.CommentWhereUniqueInput
+  data: Prisma.XOR<Prisma.CommentUpdateWithoutOfferInput, Prisma.CommentUncheckedUpdateWithoutOfferInput>
+}
+
+export type CommentUpdateManyWithWhereWithoutOfferInput = {
+  where: Prisma.CommentScalarWhereInput
+  data: Prisma.XOR<Prisma.CommentUpdateManyMutationInput, Prisma.CommentUncheckedUpdateManyWithoutOfferInput>
+}
+
+export type CommentScalarWhereInput = {
+  AND?: Prisma.CommentScalarWhereInput | Prisma.CommentScalarWhereInput[]
+  OR?: Prisma.CommentScalarWhereInput[]
+  NOT?: Prisma.CommentScalarWhereInput | Prisma.CommentScalarWhereInput[]
+  id?: Prisma.IntFilter<"Comment"> | number
+  content?: Prisma.StringFilter<"Comment"> | string
+  createdAt?: Prisma.DateTimeFilter<"Comment"> | Date | string
+  authorId?: Prisma.IntFilter<"Comment"> | number
+  prospectionId?: Prisma.IntNullableFilter<"Comment"> | number | null
+  offerId?: Prisma.IntNullableFilter<"Comment"> | number | null
+}
+
 export type CommentCreateWithoutProspectionInput = {
   content: string
   createdAt?: Date | string
   author: Prisma.UserCreateNestedOneWithoutCommentsInput
+  offer?: Prisma.OfferCreateNestedOneWithoutCommentsInput
 }
 
 export type CommentUncheckedCreateWithoutProspectionInput = {
@@ -475,6 +601,7 @@ export type CommentUncheckedCreateWithoutProspectionInput = {
   content: string
   createdAt?: Date | string
   authorId: number
+  offerId?: number | null
 }
 
 export type CommentCreateOrConnectWithoutProspectionInput = {
@@ -503,21 +630,11 @@ export type CommentUpdateManyWithWhereWithoutProspectionInput = {
   data: Prisma.XOR<Prisma.CommentUpdateManyMutationInput, Prisma.CommentUncheckedUpdateManyWithoutProspectionInput>
 }
 
-export type CommentScalarWhereInput = {
-  AND?: Prisma.CommentScalarWhereInput | Prisma.CommentScalarWhereInput[]
-  OR?: Prisma.CommentScalarWhereInput[]
-  NOT?: Prisma.CommentScalarWhereInput | Prisma.CommentScalarWhereInput[]
-  id?: Prisma.IntFilter<"Comment"> | number
-  content?: Prisma.StringFilter<"Comment"> | string
-  createdAt?: Prisma.DateTimeFilter<"Comment"> | Date | string
-  authorId?: Prisma.IntFilter<"Comment"> | number
-  prospectionId?: Prisma.IntNullableFilter<"Comment"> | number | null
-}
-
 export type CommentCreateWithoutAuthorInput = {
   content: string
   createdAt?: Date | string
   prospection?: Prisma.ProspectionCreateNestedOneWithoutCommentsInput
+  offer?: Prisma.OfferCreateNestedOneWithoutCommentsInput
 }
 
 export type CommentUncheckedCreateWithoutAuthorInput = {
@@ -525,6 +642,7 @@ export type CommentUncheckedCreateWithoutAuthorInput = {
   content: string
   createdAt?: Date | string
   prospectionId?: number | null
+  offerId?: number | null
 }
 
 export type CommentCreateOrConnectWithoutAuthorInput = {
@@ -553,17 +671,50 @@ export type CommentUpdateManyWithWhereWithoutAuthorInput = {
   data: Prisma.XOR<Prisma.CommentUpdateManyMutationInput, Prisma.CommentUncheckedUpdateManyWithoutAuthorInput>
 }
 
+export type CommentCreateManyOfferInput = {
+  id?: number
+  content: string
+  createdAt?: Date | string
+  authorId: number
+  prospectionId?: number | null
+}
+
+export type CommentUpdateWithoutOfferInput = {
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  author?: Prisma.UserUpdateOneRequiredWithoutCommentsNestedInput
+  prospection?: Prisma.ProspectionUpdateOneWithoutCommentsNestedInput
+}
+
+export type CommentUncheckedUpdateWithoutOfferInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  authorId?: Prisma.IntFieldUpdateOperationsInput | number
+  prospectionId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+}
+
+export type CommentUncheckedUpdateManyWithoutOfferInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  content?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  authorId?: Prisma.IntFieldUpdateOperationsInput | number
+  prospectionId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+}
+
 export type CommentCreateManyProspectionInput = {
   id?: number
   content: string
   createdAt?: Date | string
   authorId: number
+  offerId?: number | null
 }
 
 export type CommentUpdateWithoutProspectionInput = {
   content?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   author?: Prisma.UserUpdateOneRequiredWithoutCommentsNestedInput
+  offer?: Prisma.OfferUpdateOneWithoutCommentsNestedInput
 }
 
 export type CommentUncheckedUpdateWithoutProspectionInput = {
@@ -571,6 +722,7 @@ export type CommentUncheckedUpdateWithoutProspectionInput = {
   content?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
+  offerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type CommentUncheckedUpdateManyWithoutProspectionInput = {
@@ -578,6 +730,7 @@ export type CommentUncheckedUpdateManyWithoutProspectionInput = {
   content?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
+  offerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type CommentCreateManyAuthorInput = {
@@ -585,12 +738,14 @@ export type CommentCreateManyAuthorInput = {
   content: string
   createdAt?: Date | string
   prospectionId?: number | null
+  offerId?: number | null
 }
 
 export type CommentUpdateWithoutAuthorInput = {
   content?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   prospection?: Prisma.ProspectionUpdateOneWithoutCommentsNestedInput
+  offer?: Prisma.OfferUpdateOneWithoutCommentsNestedInput
 }
 
 export type CommentUncheckedUpdateWithoutAuthorInput = {
@@ -598,6 +753,7 @@ export type CommentUncheckedUpdateWithoutAuthorInput = {
   content?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   prospectionId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  offerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type CommentUncheckedUpdateManyWithoutAuthorInput = {
@@ -605,6 +761,7 @@ export type CommentUncheckedUpdateManyWithoutAuthorInput = {
   content?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   prospectionId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  offerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 
@@ -615,8 +772,10 @@ export type CommentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   createdAt?: boolean
   authorId?: boolean
   prospectionId?: boolean
+  offerId?: boolean
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   prospection?: boolean | Prisma.Comment$prospectionArgs<ExtArgs>
+  offer?: boolean | Prisma.Comment$offerArgs<ExtArgs>
 }, ExtArgs["result"]["comment"]>
 
 export type CommentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -625,8 +784,10 @@ export type CommentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   createdAt?: boolean
   authorId?: boolean
   prospectionId?: boolean
+  offerId?: boolean
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   prospection?: boolean | Prisma.Comment$prospectionArgs<ExtArgs>
+  offer?: boolean | Prisma.Comment$offerArgs<ExtArgs>
 }, ExtArgs["result"]["comment"]>
 
 export type CommentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -635,8 +796,10 @@ export type CommentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   createdAt?: boolean
   authorId?: boolean
   prospectionId?: boolean
+  offerId?: boolean
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   prospection?: boolean | Prisma.Comment$prospectionArgs<ExtArgs>
+  offer?: boolean | Prisma.Comment$offerArgs<ExtArgs>
 }, ExtArgs["result"]["comment"]>
 
 export type CommentSelectScalar = {
@@ -645,20 +808,24 @@ export type CommentSelectScalar = {
   createdAt?: boolean
   authorId?: boolean
   prospectionId?: boolean
+  offerId?: boolean
 }
 
-export type CommentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "content" | "createdAt" | "authorId" | "prospectionId", ExtArgs["result"]["comment"]>
+export type CommentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "content" | "createdAt" | "authorId" | "prospectionId" | "offerId", ExtArgs["result"]["comment"]>
 export type CommentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   prospection?: boolean | Prisma.Comment$prospectionArgs<ExtArgs>
+  offer?: boolean | Prisma.Comment$offerArgs<ExtArgs>
 }
 export type CommentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   prospection?: boolean | Prisma.Comment$prospectionArgs<ExtArgs>
+  offer?: boolean | Prisma.Comment$offerArgs<ExtArgs>
 }
 export type CommentIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   prospection?: boolean | Prisma.Comment$prospectionArgs<ExtArgs>
+  offer?: boolean | Prisma.Comment$offerArgs<ExtArgs>
 }
 
 export type $CommentPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -666,6 +833,7 @@ export type $CommentPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   objects: {
     author: Prisma.$UserPayload<ExtArgs>
     prospection: Prisma.$ProspectionPayload<ExtArgs> | null
+    offer: Prisma.$OfferPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -673,6 +841,7 @@ export type $CommentPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     createdAt: Date
     authorId: number
     prospectionId: number | null
+    offerId: number | null
   }, ExtArgs["result"]["comment"]>
   composites: {}
 }
@@ -1069,6 +1238,7 @@ export interface Prisma__CommentClient<T, Null = never, ExtArgs extends runtime.
   readonly [Symbol.toStringTag]: "PrismaPromise"
   author<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   prospection<T extends Prisma.Comment$prospectionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Comment$prospectionArgs<ExtArgs>>): Prisma.Prisma__ProspectionClient<runtime.Types.Result.GetResult<Prisma.$ProspectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  offer<T extends Prisma.Comment$offerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Comment$offerArgs<ExtArgs>>): Prisma.Prisma__OfferClient<runtime.Types.Result.GetResult<Prisma.$OfferPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1103,6 +1273,7 @@ export interface CommentFieldRefs {
   readonly createdAt: Prisma.FieldRef<"Comment", 'DateTime'>
   readonly authorId: Prisma.FieldRef<"Comment", 'Int'>
   readonly prospectionId: Prisma.FieldRef<"Comment", 'Int'>
+  readonly offerId: Prisma.FieldRef<"Comment", 'Int'>
 }
     
 
@@ -1520,6 +1691,25 @@ export type Comment$prospectionArgs<ExtArgs extends runtime.Types.Extensions.Int
    */
   include?: Prisma.ProspectionInclude<ExtArgs> | null
   where?: Prisma.ProspectionWhereInput
+}
+
+/**
+ * Comment.offer
+ */
+export type Comment$offerArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Offer
+   */
+  select?: Prisma.OfferSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Offer
+   */
+  omit?: Prisma.OfferOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.OfferInclude<ExtArgs> | null
+  where?: Prisma.OfferWhereInput
 }
 
 /**

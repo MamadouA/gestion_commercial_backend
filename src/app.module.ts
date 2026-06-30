@@ -9,6 +9,7 @@ import { ClientModule } from './client/client.module';
 import { AuthMiddleware } from './auth/auth.middleware';
 import { ProspectionModule } from './lead/prospection/prospection.module';
 import { ProductModule } from './lead/product/product.module';
+import { OfferModule } from './lead/offer/offer.module';
 
 
 @Module({
@@ -20,6 +21,7 @@ import { ProductModule } from './lead/product/product.module';
     ClientModule,
     ProspectionModule,
     ProductModule,
+    OfferModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -11,9 +11,12 @@ model Client {
     enterpriseLegalForm EnterpriseLegalForm?
     mainActivity String?
     createdAt DateTime @default(now())
+
     tenantId Int 
     tenant Tenant @relation(fields: [tenantId], references: [id])
     prospections Prospection[]
+
+    offers Offer[]
 }
 
 enum ClientType {

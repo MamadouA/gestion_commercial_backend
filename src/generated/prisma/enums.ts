@@ -30,6 +30,19 @@ export const EnterpriseLegalForm = {
 export type EnterpriseLegalForm = (typeof EnterpriseLegalForm)[keyof typeof EnterpriseLegalForm]
 
 
+export const OfferStatus = {
+  PENDING: 'PENDING',
+  READY: 'READY',
+  SENT: 'SENT',
+  WON: 'WON',
+  LOST: 'LOST',
+  ABANDONED: 'ABANDONED',
+  OVERDUE: 'OVERDUE'
+} as const
+
+export type OfferStatus = (typeof OfferStatus)[keyof typeof OfferStatus]
+
+
 export const ProductDomain = {
   INSPECTION_ET_VERIFICATION_EN_SERVICE: 'INSPECTION_ET_VERIFICATION_EN_SERVICE',
   CONTROLE_TECHNIQUE_CONSTRUCTION: 'CONTROLE_TECHNIQUE_CONSTRUCTION'
