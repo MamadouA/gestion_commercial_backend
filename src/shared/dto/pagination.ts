@@ -4,7 +4,7 @@ export class PaginationDTO {
     @IsInt()
     @Min(1)
     @IsOptional()
-    currentPage: number = 1;
+    currentPage: number = 0;
 
     @IsInt()
     @Min(10)

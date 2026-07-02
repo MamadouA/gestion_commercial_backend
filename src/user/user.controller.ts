@@ -7,12 +7,14 @@ import {
   Param,
   Delete,
   ParseIntPipe,
+  Query,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { CurrentUser } from '../shared/current-user.decoration';
 import { User } from '../generated/prisma/client';
+import { UserQueryDTO } from './dto/user-query.dto';
 
 @Controller('user')
 export class UserController {
@@ -24,8 +26,8 @@ export class UserController {
   }
 
   @Get('all')
-  findAll(@CurrentUser() user: User) {
-    return this.userService.findAll(user.id, user.tenantId);
+  findAll(@Query() query: UserQueryDTO, @CurrentUser() user: User) {
+    return this.userService.findAll(query, user.id, user.tenantId);
   }
 
   @Get(':id')

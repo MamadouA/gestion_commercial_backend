@@ -3,6 +3,8 @@ import { CreateUserDTO } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaClientService } from '../database/prisma-client.service';
 import * as bcrypt from 'bcrypt';
+import { UserQueryDTO } from './dto/user-query.dto';
+import { UserWhereInput } from '../generated/prisma/models';
 
 @Injectable()
 export class UserService {
@@ -35,15 +37,31 @@ export class UserService {
     }
   }
 
-  findAll(userId: number, tenantId: number) {
+  async findAll(query: UserQueryDTO, userId: number, tenantId: number) {
+    const filter: UserWhereInput = {
+      tenantId,
+      id: {
+        not: userId
+      }
+    }
+
+    if(query.fullname && query.fullname.length) {
+      filter.fullname = {
+        contains: query.fullname,
+        mode: 'insensitive'
+      }
+    }
+
+    if(query.email && query.email.length) {
+      filter.email = {
+        contains: query.email,
+        mode: 'insensitive'
+      }
+    }
+
     try {
-      return this.prismaClientService.user.findMany({
-        where: {
-          tenantId,
-          id: { 
-            not: userId
-          }
-        },
+      const users = await this.prismaClientService.user.findMany({
+        where: filter,
         orderBy: {
           id: 'desc'
         },
@@ -52,8 +70,18 @@ export class UserService {
           fullname: true,
           email: true,
           roles: true,
+        },
+        skip: (query.currentPage - 1) * query.pageSize,
+        take: query.pageSize
+      });
+
+      const count = await this.prismaClientService.user.count({
+        where: {
+          tenantId
         }
       });
+
+      return { users, count };
     }
     catch(err) {
       console.log("Error while fetching the users: ", err);
