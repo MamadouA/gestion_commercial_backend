@@ -26,7 +26,7 @@ export class OfferController {
     }
 
     @Patch(':id/update')
-    update(@Param('id', ParseIntPipe) id: number, @Body() updateOfferDto: UpdateOfferDTO, @CurrentUser('tenantId') tenantId: number) {
-        return this.offerService.update(id, updateOfferDto, tenantId);
+    update(@Param('id', ParseIntPipe) id: number, @Body() updateOfferDto: UpdateOfferDTO, @CurrentUser('id') userId: number, @CurrentUser('tenantId') tenantId: number) {
+        return this.offerService.update(id, updateOfferDto, userId, tenantId);
     }
 }

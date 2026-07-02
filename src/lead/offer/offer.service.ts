@@ -95,7 +95,6 @@ export class OfferService {
                             id: true,
                             fullname: true,
                             email: true,
-                            phone: true
                         }
                     },
                     client: {
@@ -115,6 +114,27 @@ export class OfferService {
                             email: true,
                             phone: true,
                             roles: true
+                        },
+                        orderBy: {
+                            id: 'desc'
+                        }
+                    },
+                    comments: {
+                        select: {
+                            id: true,
+                            content: true,
+                            createdAt: true,
+                            offerId: true,
+                            author: {
+                                select: {
+                                    id: true,
+                                    fullname: true,
+                                    email: true,
+                                }
+                            }
+                        },
+                        orderBy: {
+                            id: 'desc'
                         }
                     }
                 }
@@ -127,28 +147,38 @@ export class OfferService {
     }
 
     // -
-    async update(id: number, updateOfferDto: UpdateOfferDTO, tenantId: number) {
+    async update(id: number, updateOfferDto: UpdateOfferDTO, authorId: number, tenantId: number) {
+        const updates = {
+            title: updateOfferDto.title,
+            description: updateOfferDto.description,
+            amountIncludingTax: updateOfferDto.amountIncludingTax,
+            amountExcludingTax: updateOfferDto.amountExcludingTax,
+            vatAmount: updateOfferDto.vatAmount,
+            expiryDate: updateOfferDto.expiryDate,
+            members: {
+                set: updateOfferDto.memberIds?.map((id) => ({ id }))
+            },
+            products: {
+                set: updateOfferDto.productIds?.map((id) => ({ id }))
+            }
+        }   
+
+        if(updateOfferDto.comment?.content) {
+            updates['comments'] = {
+                create: {
+                    content: updateOfferDto.comment.content,
+                    authorId
+                }
+            }
+        }
+
         try {
             return await this.prismaClientService.offer.update({
                 where: {
                     id,
                     tenantId
                 },
-                data: {
-                    title: updateOfferDto.title,
-                    description: updateOfferDto.description,
-                    amountIncludingTax: updateOfferDto.amountIncludingTax,
-                    amountExcludingTax: updateOfferDto.amountExcludingTax,
-                    vatAmount: updateOfferDto.vatAmount,
-                    expiryDate: updateOfferDto.expiryDate,
-                    members: {
-                        set: updateOfferDto.memberIds?.map((id) => ({ id }))
-                    },
-                    products: {
-                        set: updateOfferDto.productIds?.map((id) => ({ id }))
-                    },
-                }
-
+                data: updates
             });
         }
         catch(err) {
