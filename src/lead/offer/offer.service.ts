@@ -136,6 +136,16 @@ export class OfferService {
                         orderBy: {
                             id: 'desc'
                         }
+                    },
+                    products: {
+                        select: {
+                            id: true,
+                            title: true,
+                            domain: true
+                        },
+                        orderBy: {
+                            id: 'desc'
+                        }
                     }
                 }
             });

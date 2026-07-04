@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { CurrentUser } from '../../shared/current-user.decoration';
 import { ProductService } from './product.service';
 import { CreateProductDTO } from './dto/create-product.dto';
+import { SearchDTO } from '../../shared/dto/search.dto';
 
 @Controller('product')
 export class ProductController {
@@ -16,5 +17,10 @@ export class ProductController {
     @Post('create')
     create(@Body() createProductDto: CreateProductDTO, @CurrentUser('tenantId') tenantId: number) {
         return this.productService.create(createProductDto, tenantId);
+    }
+
+    @Get('search')
+    search(@Query() search: SearchDTO, @CurrentUser('tenantId') tenantId: number) {
+        return this.productService.search(search, tenantId);
     }
 }
