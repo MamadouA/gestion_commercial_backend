@@ -15,23 +15,29 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { CurrentUser } from '../shared/current-user.decoration';
 import { User } from '../generated/prisma/client';
 import { UserQueryDTO } from './dto/user-query.dto';
+import { SearchDTO } from '../shared/dto/search.dto';
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post('create')
-  create(@Body() createUserDto: CreateUserDTO, @CurrentUser('tenantId') tenantId: number) {
+  async create(@Body() createUserDto: CreateUserDTO, @CurrentUser('tenantId') tenantId: number) {
     return this.userService.create(createUserDto, tenantId);
   }
 
   @Get('all')
-  findAll(@Query() query: UserQueryDTO, @CurrentUser() user: User) {
+  async findAll(@Query() query: UserQueryDTO, @CurrentUser() user: User) {
     return this.userService.findAll(query, user.id, user.tenantId);
   }
 
+  @Get('search')
+  async search(@Query() search: SearchDTO, @CurrentUser() user: User) {
+    return this.userService.search(search, user.id, user.tenantId);
+  }
+
   @Get(':id')
-  findOne(
+  async findOne(
     @Param('id', ParseIntPipe) id: number,
     @CurrentUser('tenantId') tenantId: number,
   ) {
@@ -39,12 +45,12 @@ export class UserController {
   }
 
   @Patch(':id')
-  async update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
+  async update(@Param('id', ParseIntPipe) id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.userService.update(+id, updateUserDto);
   }
 
   @Delete(':id')
-  async remove(@Param('id') id: string) {
+  async remove(@Param('id', ParseIntPipe) id: string) {
     return this.userService.remove(+id);
   }
 }

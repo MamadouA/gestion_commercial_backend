@@ -5,6 +5,8 @@ import { PrismaClientService } from '../database/prisma-client.service';
 import * as bcrypt from 'bcrypt';
 import { UserQueryDTO } from './dto/user-query.dto';
 import { UserWhereInput } from '../generated/prisma/models';
+import { SearchDTO } from '../shared/dto/search.dto';
+import { Role } from '../generated/prisma/enums';
 
 @Injectable()
 export class UserService {
@@ -37,6 +39,7 @@ export class UserService {
     }
   }
 
+  // -
   async findAll(query: UserQueryDTO, userId: number, tenantId: number) {
     const filter: UserWhereInput = {
       tenantId,
@@ -89,6 +92,7 @@ export class UserService {
     }
   }
 
+  // -
   async findOne(id: number, tenantId: number) {
     try{
       const user = await this.prismaClientService.user.findUnique({
@@ -109,11 +113,64 @@ export class UserService {
     }
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
+  // -
+  async update(id: number, updateUserDto: UpdateUserDto) {
     return `This action updates a #${id} user`;
   }
 
-  remove(id: number) {
+  async search(search: SearchDTO, userId: number, tenantId: number) {
+    try {
+      const filter: UserWhereInput = { tenantId, id: { not: userId } };
+
+      if(search.keyword && search.keyword.length) {
+        filter.OR = [
+          {
+            fullname: {
+              contains: search.keyword,
+              mode: 'insensitive'
+            }
+          },
+          {
+            email: {
+              contains: search.keyword,
+              mode: 'insensitive'
+            },
+          }
+        ]
+
+        if(Object.values(Role).includes(search.keyword as Role)) {
+          filter.OR.push({
+            roles: {
+              has: search.keyword as Role
+            }
+          })
+        }
+      }
+
+    
+      return await this.prismaClientService.user.findMany({
+        where: filter,
+        orderBy: {
+          id: 'desc'
+        },
+        select: {
+          id: true,
+          fullname: true,
+          email: true,
+          roles: true,
+        },
+        skip: (search.currentPage - 1) * search.pageSize,
+        take: search.pageSize
+      })
+    }
+    catch(err) {
+      console.log("Error while searching the users: ", err);
+      throw new InternalServerErrorException("Error while searching the users.");
+    }
+  }
+
+  // -
+  async remove(id: number) {
     return `This action removes a #${id} user`;
   }
 }
