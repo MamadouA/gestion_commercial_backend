@@ -10,7 +10,8 @@ model Offer {
 
     comments Comment[]
     products Product[]
-
+    documents Document[]
+    
     authorId Int
     author User @relation("offerAuthor", fields: [authorId], references: [id])
     members User[] @relation("offerMembers")

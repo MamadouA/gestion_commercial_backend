@@ -1,4 +1,4 @@
-import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
+import { S3Client, PutObjectCommand, DeleteObjectCommand } from '@aws-sdk/client-s3';
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import * as crypto from 'crypto';
 import { FileMetadata } from '../../shared/shared.types';
@@ -19,6 +19,7 @@ export class S3ClientService {
         });
     }
 
+    // -
     async saveFile(file: Express.Multer.File) {
         const fileMetadata: FileMetadata = {
             originalName: file.originalname,
@@ -41,11 +42,22 @@ export class S3ClientService {
         return fileMetadata;
     }
 
+    // -
     async bulkSaveFiles(files: Array<Express.Multer.File>) {
         return await Promise.all(files.map(file => this.saveFile(file)));
     }
 
+    // -
     async deleteFile(storedName: string) {
-
+        try {
+            await this.s3Client.send(new DeleteObjectCommand ({
+                Bucket: process.env.S3_BUCKET_NAME,
+                Key: storedName
+            }))
+        }
+        catch(err) {
+            console.log("Error while deleting the file: ", err);
+            throw new InternalServerErrorException("Error while deleting the file.");
+        }
     }
 }

@@ -1,32 +1,61 @@
-import { Body, Controller, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  Patch,
+  Post,
+  UploadedFiles,
+  UseInterceptors,
+} from '@nestjs/common';
 import { CurrentUser } from '../../shared/current-user.decoration';
 import { OfferService } from './offer.service';
 import { CreateOfferDTO } from './dto/create-offer.dto';
 import { User } from '../../generated/prisma/client';
 import { UpdateOfferDTO } from './dto/update-offer.dto';
+import { RemoveFileDTO } from '../../common/file-uploader/dto/remove-file.dto';
+import { FilesInterceptor } from '@nestjs/platform-express';
+import { FILE_FILTER } from '../../common/common.constants';
 
 @Controller('offer')
 export class OfferController {
+  constructor(private readonly offerService: OfferService) {}
 
-    constructor(private readonly offerService: OfferService) {}
+  @Get('all')
+  async findAll(@CurrentUser('tenantId') tenantId: number) {
+    return this.offerService.findAll(tenantId);
+  }
 
-    @Get('all')
-    findAll(@CurrentUser('tenantId') tenantId: number) {
-        return this.offerService.findAll(tenantId);
-    }
+  @Post('create')
+  @UseInterceptors(FilesInterceptor('files', 10, FILE_FILTER))
+  async create(
+    @Body() createOfferDto: CreateOfferDTO, @UploadedFiles() files: Array<Express.Multer.File>, @CurrentUser() user: User,
+  ) {
+    return this.offerService.create(createOfferDto, user.id, user.tenantId);
+  }
 
-    @Post('create')
-    create(@Body() createOfferDto: CreateOfferDTO, @CurrentUser() user: User) {
-        return this.offerService.create(createOfferDto, user.id, user.tenantId);
-    }
+  @Post(':id/file/remove')
+  async removeFile(
+    @Body() storedName: RemoveFileDTO,
+    @CurrentUser('tenantId') tenantId: number,
+  ) {}
 
-    @Get(':id')
-    findOne(@Param('id', ParseIntPipe) id: number, @CurrentUser('tenantId') tenantId: number) {
-        return this.offerService.findOne(id, tenantId);
-    }
+  @Get(':id')
+  async findOne(
+    @Param('id', ParseIntPipe) id: number,
+    @CurrentUser('tenantId') tenantId: number,
+  ) {
+    return this.offerService.findOne(id, tenantId);
+  }
 
-    @Patch(':id/update')
-    update(@Param('id', ParseIntPipe) id: number, @Body() updateOfferDto: UpdateOfferDTO, @CurrentUser('id') userId: number, @CurrentUser('tenantId') tenantId: number) {
-        return this.offerService.update(id, updateOfferDto, userId, tenantId);
-    }
+  @Patch(':id/update')
+  async update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateOfferDto: UpdateOfferDTO,
+    @CurrentUser('id') userId: number,
+    @CurrentUser('tenantId') tenantId: number,
+  ) {
+    return this.offerService.update(id, updateOfferDto, userId, tenantId);
+  }
 }

@@ -19,4 +19,5 @@ export class CreateOfferDTO {
     @IsDateString()
     @IsOptional()
     expiryDate!: Date
+    
 }

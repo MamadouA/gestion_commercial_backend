@@ -10,7 +10,7 @@ import { AuthMiddleware } from './auth/auth.middleware';
 import { ProspectionModule } from './lead/prospection/prospection.module';
 import { ProductModule } from './lead/product/product.module';
 import { OfferModule } from './lead/offer/offer.module';
-
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
@@ -22,6 +22,7 @@ import { OfferModule } from './lead/offer/offer.module';
     ProspectionModule,
     ProductModule,
     OfferModule,
+    CommonModule,
   ],
   controllers: [AppController],
   providers: [AppService],

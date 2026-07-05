@@ -2,10 +2,14 @@
 model Document {
     id Int @id @default(autoincrement())
     originalName String
-    storedName String 
+    storedName String @unique()
     size Decimal
     mimetype String
     createdAt DateTime @default(now())
+
     prospectionId Int?
     prospection Prospection? @relation(fields: [prospectionId], references: [id])
+
+    offerId Int?
+    offer Offer? @relation(fields: [offerId], references: [id])
 }

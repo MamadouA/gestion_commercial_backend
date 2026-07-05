@@ -2,10 +2,11 @@ import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { PrismaClientService } from '../../database/prisma-client.service';
 import { CreateOfferDTO } from './dto/create-offer.dto';
 import { UpdateOfferDTO } from './dto/update-offer.dto';
+import { S3ClientService } from '../../common/file-uploader/s3-client.service';
 
 @Injectable()
 export class OfferService {
-    constructor (private readonly prismaClientService: PrismaClientService) {}
+    constructor (private readonly prismaClientService: PrismaClientService, private readonly s3ClientService: S3ClientService) {}
 
     // -
     async findAll(tenantId: number) {
@@ -194,6 +195,33 @@ export class OfferService {
         catch(err) {
             console.log("Error while updating the offer: ", err);
             throw new InternalServerErrorException("Error while updating the offer.");
+        }
+    }
+
+    // -
+    async removeFile(offerId: number, storedName: string, tenantId: number) {
+        try {
+            const updatedOffer = await this.prismaClientService.offer.update({
+                where: {
+                    id: offerId,
+                    tenantId
+                },
+                data: {
+                    documents: {
+                         delete: {
+                             storedName
+                         }
+                    }
+                }
+            });
+
+            await this.s3ClientService.deleteFile(storedName);
+
+            return updatedOffer;
+        }
+        catch(err) {
+            console.log("Error while removing the file: ", err);
+            throw new InternalServerErrorException("Error while removing the file.");
         }
     }
 }

@@ -8,234 +8,249 @@ import { ProspectionWhereInput } from '../../generated/prisma/models';
 
 @Injectable()
 export class ProspectionService {
-    constructor(private prismaClientService: PrismaClientService, private s3ClientService: S3ClientService) {}
+  constructor(
+    private prismaClientService: PrismaClientService,
+    private s3ClientService: S3ClientService,
+  ) {}
 
-    // -
-    async create(createProspectionDto: CreateProspectionDTO, authorId: number, tenantId: number, files: Array<Express.Multer.File>) {
-        try {
-            const filesMetadata = await this.s3ClientService.bulkSaveFiles(files);
+  // -
+  async create(
+    createProspectionDto: CreateProspectionDTO,
+    authorId: number,
+    tenantId: number,
+    files: Array<Express.Multer.File>,
+  ) {
+    try {
+      const filesMetadata = await this.s3ClientService.bulkSaveFiles(files);
 
-            const prospection = await this.prismaClientService.prospection.create({
-                data: {
-                    clientId: createProspectionDto.clientId,
-                    endDate: createProspectionDto.endDate,
-                    startDate: createProspectionDto.startDate,
-                    proposedService: createProspectionDto.prosposedService,
-                    authorId,
-                    tenantId,
-                    documents: {
-                        createMany: {
-                            data: filesMetadata
-                        }
-                    }
-                },
-                omit: {
-                    tenantId: true
-                }
-            });
-                                                                                                
-            return { prospection };
-        }
-        catch(err) {
-            console.log("Error while creating the lead: ", err);
-            throw new InternalServerErrorException("Error while creating the lead.");
-        }
+      const prospection = await this.prismaClientService.prospection.create({
+        data: {
+          clientId: createProspectionDto.clientId,
+          endDate: createProspectionDto.endDate,
+          startDate: createProspectionDto.startDate,
+          proposedService: createProspectionDto.prosposedService,
+          authorId,
+          tenantId,
+          documents: {
+            createMany: {
+              data: filesMetadata,
+            },
+          },
+        },
+        omit: {
+          tenantId: true,
+        },
+      });
+
+      return { prospection };
+    } catch (err) {
+      console.log('Error while creating the lead: ', err);
+      throw new InternalServerErrorException('Error while creating the lead.');
+    }
+  }
+
+  //
+  async findAll(query: ProspectionQueryDTO, tenantId: number) {
+    const filter: ProspectionWhereInput = { tenantId };
+
+    if (query.authorName) {
+      filter.author = {
+        fullname: {
+          contains: query.authorName,
+          mode: 'insensitive',
+        },
+      };
     }
 
-    // 
-    async findAll(query: ProspectionQueryDTO, tenantId: number) {
-        const filter: ProspectionWhereInput = { tenantId };
+    if (query.contactNameOrEnterpriseName) {
+      filter.OR = [
+        {
+          client: {
+            enterpriseName: {
+              contains: query.contactNameOrEnterpriseName,
+              mode: 'insensitive',
+            },
+          },
+        },
+        {
+          client: {
+            contactName: {
+              contains: query.contactNameOrEnterpriseName,
+              mode: 'insensitive',
+            },
+          },
+        },
+      ];
+    }
 
-        
-        if (query.authorName) {
-            filter.author = {
-                fullname: {
-                    contains: query.authorName,
-                    mode: 'insensitive'
-                }
-            }
-        }
+    if (query.startDate) {
+      filter.startDate = {
+        gte: new Date(query.startDate),
+      };
+    }
 
-        if(query.contactNameOrEnterpriseName) {
-            filter.OR = [
-                {
-                    client: {
-                        enterpriseName: {
-                            contains: query.contactNameOrEnterpriseName,
-                            mode: 'insensitive'
-                        }
-                    }
-                },
-                {
-                    client: {
-                        contactName: {
-                            contains: query.contactNameOrEnterpriseName,
-                            mode: 'insensitive'
-                        }
-                    }
-                }
-            ]
-        }
+    if (query.endDate) {
+      filter.endDate = {
+        lte: new Date(query.endDate),
+      };
+    }
 
-        if(query.startDate) {
-            filter.startDate = {
-                gte: new Date(query.startDate)
-            }
-        }
+    if (query.status) {
+      filter.status = {
+        equals: query.status,
+      };
+    }
 
-        if(query.endDate) {
-            filter.endDate = {
-                lte: new Date(query.endDate)
-            }
-        }
+    try {
+      const prospections = await this.prismaClientService.prospection.findMany({
+        where: filter,
+        skip: (query.currentPage - 1) * query.pageSize,
+        take: query.pageSize,
+        orderBy: {
+          createdAt: 'desc',
+        },
+        select: {
+          id: true,
+          proposedService: true,
+          startDate: true,
+          endDate: true,
+          status: true,
+          createdAt: true,
+          client: {
+            select: {
+              type: true,
+              enterpriseName: true,
+              contactName: true,
+            },
+          },
+          author: {
+            select: {
+              fullname: true,
+            },
+          },
+        },
+      });
 
-        if(query.status) {
-            filter.status = {
-                equals: query.status
-            }
-        }
+      const count = await this.prismaClientService.prospection.count({
+        where: {
+          tenantId,
+        },
+      });
 
-        
-        try {
-            const prospections = await this.prismaClientService.prospection.findMany({
-                where: filter,
-                skip: (query.currentPage - 1) * query.pageSize,
-                take: query.pageSize,
-                orderBy: {
-                    createdAt: 'desc'
-                },
+      return { prospections, count };
+    } catch (err) {
+      console.log('Error while fetching the prospections: ', err);
+      throw new InternalServerErrorException(
+        'Error while fetching the prospections.',
+      );
+    }
+  }
+
+  //
+  async findOne(id: number, tenantId: number) {
+    try {
+      return await this.prismaClientService.prospection.findUnique({
+        where: {
+          id,
+          tenantId,
+        },
+        omit: {
+          tenantId: true,
+          clientId: true,
+          authorId: true,
+        },
+        include: {
+          client: {
+            omit: {
+              tenantId: true,
+            },
+          },
+          author: {
+            omit: {
+              password: true,
+              tenantId: true,
+            },
+          },
+          documents: {
+            omit: {
+              prospectionId: true,
+              storedName: true,
+            },
+          },
+          comments: {
+            select: {
+              id: true,
+              content: true,
+              createdAt: true,
+              author: {
                 select: {
-                    id: true,
-                    proposedService: true,
-                    startDate: true,
-                    endDate: true,
-                    status: true,
-                    createdAt: true,
-                    client: {
-                        select: {
-                            type: true,
-                            enterpriseName: true,
-                            contactName: true,
-                        }
-                    },
-                    author: {
-                        select: {
-                            fullname: true
-                        }
-                    }
-                }
-            });
-
-            const count = await this.prismaClientService.prospection.count({
-                where: {
-                    tenantId,
-                }
-            });
-
-            return { prospections, count };
-        }
-        catch(err) {
-            console.log("Error while fetching the prospections: ", err);
-            throw new InternalServerErrorException("Error while fetching the prospections.");
-        }
-    }
-
-    //
-    async findOne(id: number, tenantId: number) {
-        try {
-            return await this.prismaClientService.prospection.findUnique({
-                where: {
-                    id,
-                    tenantId
+                  id: true,
+                  fullname: true,
+                  email: true,
                 },
-                omit: {
-                    tenantId: true,
-                    clientId: true,
-                    authorId: true
-                },
-                include: {
-                    client: {
-                        omit: {
-                            tenantId: true
-                        }
-                    },
-                    author: {
-                        omit: {
-                            password: true,
-                            tenantId: true
-                        }
-                    },
-                    documents: {
-                        omit: {
-                            prospectionId: true,
-                            storedName: true
-                        }
-                    },
-                    comments: {
-                        select: {
-                            id: true,
-                            content: true,
-                            createdAt: true,
-                            author: {
-                                select: {
-                                    id: true,
-                                    fullname: true,
-                                    email: true
-                                }
-                            }
-                        },
-                        orderBy: {
-                            id: 'desc'
-                        }
-                    }
-                }
-            });
-        }
-        catch(err) {
-            console.log("Error while fetching the prospection: ", err);
-            throw new InternalServerErrorException("Error while fetching the prospection.");
-        }
+              },
+            },
+            orderBy: {
+              id: 'desc',
+            },
+          },
+        },
+      });
+    } catch (err) {
+      console.log('Error while fetching the prospection: ', err);
+      throw new InternalServerErrorException(
+        'Error while fetching the prospection.',
+      );
     }
+  }
 
-    // -
-    async createComment(createCommentDto: CreateCommentDTO, prospectionId: number, authorId: number) {
-        try {
-            return await this.prismaClientService.comment.create({
-                data: {
-                    content: createCommentDto.content,
-                    authorId,
-                    prospectionId
-                }
-            });
-        } catch (err) {
-            console.log('Error while creating the comment: ', err);
-            throw new InternalServerErrorException('Error while creating the comment.');
-        }
+  // -
+  async createComment(
+    createCommentDto: CreateCommentDTO,
+    prospectionId: number,
+    authorId: number,
+  ) {
+    try {
+      return await this.prismaClientService.comment.create({
+        data: {
+          content: createCommentDto.content,
+          authorId,
+          prospectionId,
+        },
+      });
+    } catch (err) {
+      console.log('Error while creating the comment: ', err);
+      throw new InternalServerErrorException(
+        'Error while creating the comment.',
+      );
     }
+  }
 
-    // -
-    async findCommentsByProspectionId(prospectionId: number) {
-        try {
-            return await this.prismaClientService.comment.findMany({
-                where: {
-                    prospectionId
-                },
-                select: {
-                    id: true,
-                    content: true,
-                    author: {
-                        select: {
-                            id: true,
-                            fullname: true,
-                            email: true
-                        }
-                    },
-                    createdAt: true
-                }
-            });
-        } catch (err) {
-            console.log('Error while fetching the comments: ', err);
-            throw new InternalServerErrorException('Error while fetching the comments.');
-        }
+  // -
+  async findCommentsByProspectionId(prospectionId: number) {
+    try {
+      return await this.prismaClientService.comment.findMany({
+        where: {
+          prospectionId,
+        },
+        select: {
+          id: true,
+          content: true,
+          author: {
+            select: {
+              id: true,
+              fullname: true,
+              email: true,
+            },
+          },
+          createdAt: true,
+        },
+      });
+    } catch (err) {
+      console.log('Error while fetching the comments: ', err);
+      throw new InternalServerErrorException(
+        'Error while fetching the comments.',
+      );
     }
+  }
 }

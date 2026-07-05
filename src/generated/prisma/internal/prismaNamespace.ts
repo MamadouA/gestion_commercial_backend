@@ -1079,7 +1079,8 @@ export const DocumentScalarFieldEnum = {
   size: 'size',
   mimetype: 'mimetype',
   createdAt: 'createdAt',
-  prospectionId: 'prospectionId'
+  prospectionId: 'prospectionId',
+  offerId: 'offerId'
 } as const
 
 export type DocumentScalarFieldEnum = (typeof DocumentScalarFieldEnum)[keyof typeof DocumentScalarFieldEnum]
