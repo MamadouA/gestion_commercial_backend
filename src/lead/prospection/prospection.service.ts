@@ -1,4 +1,4 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { PrismaClientService } from '../../database/prisma-client.service';
 import { CreateProspectionDTO } from './dto/create-prospection.dto';
 import { ProspectionQueryDTO } from './dto/prospection-query.dto';
@@ -252,6 +252,56 @@ export class ProspectionService {
       throw new InternalServerErrorException(
         'Error while fetching the comments.',
       );
+    }
+  }
+
+  // -
+  async createDocument(prospectionId: number, file: Express.Multer.File) {
+    let fileMetadata: FileMetadata = {
+      originalName: '',
+      storedName: '',
+      size: 0,
+      mimetype: '',
+    };
+    try {
+      fileMetadata = await this.s3ClientService.save(file);
+
+      return await this.prismaClientService.document.create({
+        data: {
+          originalName: file.originalname,
+          storedName: fileMetadata.storedName,
+          size: file.size,
+          mimetype: file.mimetype,
+          prospectionId,
+        },
+      });
+    } catch (err) {
+      if (fileMetadata.storedName.length > 0) {
+        await this.s3ClientService.delete(fileMetadata.storedName);
+      }
+      console.log('Error while uploading the file: ', err);
+      throw new InternalServerErrorException('Error while uploading the file.');
+    }
+  }
+
+  // -
+  async deleteDocument(prospectionId: number, documentId: number) {
+    try {
+      const document = await this.prismaClientService.document.findUnique({
+        where: {
+          id: documentId,
+          prospectionId,
+        },
+      });
+
+      if (!document) {
+        throw new NotFoundException('File not found!');
+      }
+      
+      return await this.s3ClientService.delete(document.storedName);
+    } catch (err) {
+      console.log('Error while deleting the file: ', err);
+      throw new InternalServerErrorException('Error while deleting the file.');
     }
   }
 }

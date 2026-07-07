@@ -50,31 +50,31 @@ export class S3ClientService {
     }
 
     // -
-    async deleteById(id: number) {
-        try {
-            const document = await this.prismaClientService.document.findUnique({
-                where: {
-                    id
-                }
-            });
+    // async deleteById(id: number) {
+    //     try {
+    //         const document = await this.prismaClientService.document.findUnique({
+    //             where: {
+    //                 id
+    //             }
+    //         });
 
-            if(!document) {
-                throw new NotFoundException("File not found!");
-            }
+    //         if(!document) {
+    //             throw new NotFoundException("File not found!");
+    //         }
 
-            return await this.s3Client.send(new DeleteObjectCommand ({
-                Bucket: process.env.S3_BUCKET_NAME,
-                Key: document.storedName
-            }));
-        }
-        catch(err) {
-            console.log("Error while deleting the file: ", err);
-            throw new InternalServerErrorException("Error while deleting the file.");
-        }
-    }
+    //         return await this.s3Client.send(new DeleteObjectCommand ({
+    //             Bucket: process.env.S3_BUCKET_NAME,
+    //             Key: document.storedName
+    //         }));
+    //     }
+    //     catch(err) {
+    //         console.log("Error while deleting the file: ", err);
+    //         throw new InternalServerErrorException("Error while deleting the file.");
+    //     }
+    // }
 
     // -
-    async deleteBykey(key: string) {
+    async delete(key: string) {
         try {
             return await this.s3Client.send(new DeleteObjectCommand ({
                 Bucket: process.env.S3_BUCKET_NAME,

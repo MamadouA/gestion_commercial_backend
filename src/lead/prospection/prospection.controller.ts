@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   DefaultValuePipe,
+  Delete,
   FileTypeValidator,
   Get,
   MaxFileSizeValidator,
@@ -96,6 +97,11 @@ export class ProspectionController {
   @Post(':id/document/create')
   @UseInterceptors(FilesInterceptor('file', 1, FILE_FILTER))
   async createDocument(@Param('id', ParseIntPipe) id: number, @UploadedFile() file: Express.Multer.File) {
-    return "hello"
+    return await this.prospectionService.createDocument(id, file);
+  }
+
+  @Delete(':id/document/:documentId')
+  async deleteDocument(@Param('id', ParseIntPipe) id: number, @Param('documentId', ParseIntPipe) documentId: number) {
+    return await this.prospectionService.deleteDocument(id, documentId);
   }
 }
