@@ -1,13 +1,14 @@
 import { S3Client, PutObjectCommand, DeleteObjectCommand } from '@aws-sdk/client-s3';
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import * as crypto from 'crypto';
 import { FileMetadata } from '../../shared/shared.types';
+import { PrismaClientService } from '../../database/prisma-client.service';
 
 @Injectable()
 export class S3ClientService {
     private readonly s3Client: S3Client;
 
-    constructor() {
+    constructor(private readonly prismaClientService: PrismaClientService) {
         this.s3Client = new S3Client({
             region: 'us-east-1',
             endpoint: process.env.S3_ENDPOINT ?? "",
@@ -48,12 +49,23 @@ export class S3ClientService {
     }
 
     // -
-    async deleteFile(storedName: string) {
+    async deleteFile(id: number, tenantId: number) {
         try {
-            await this.s3Client.send(new DeleteObjectCommand ({
+            const document = await this.prismaClientService.document.findUnique({
+                where: {
+                    tenantId,
+                    id
+                }
+            });
+
+            if(!document) {
+                throw new NotFoundException("File not found!");
+            }
+
+            return await this.s3Client.send(new DeleteObjectCommand ({
                 Bucket: process.env.S3_BUCKET_NAME,
-                Key: storedName
-            }))
+                Key: document.storedName
+            }));
         }
         catch(err) {
             console.log("Error while deleting the file: ", err);

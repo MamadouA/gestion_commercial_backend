@@ -14,7 +14,7 @@ import { OfferService } from './offer.service';
 import { CreateOfferDTO } from './dto/create-offer.dto';
 import { User } from '../../generated/prisma/client';
 import { UpdateOfferDTO } from './dto/update-offer.dto';
-import { RemoveFileDTO } from '../../common/file-uploader/dto/remove-file.dto';
+import { RemoveFileDTO } from '../../common/file-manager/dto/remove-file.dto';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { FILE_FILTER } from '../../common/common.constants';
 
@@ -30,7 +30,9 @@ export class OfferController {
   @Post('create')
   @UseInterceptors(FilesInterceptor('files', 10, FILE_FILTER))
   async create(
-    @Body() createOfferDto: CreateOfferDTO, @UploadedFiles() files: Array<Express.Multer.File>, @CurrentUser() user: User,
+    @Body() createOfferDto: CreateOfferDTO,
+    @UploadedFiles() files: Array<Express.Multer.File>,
+    @CurrentUser() user: User,
   ) {
     return this.offerService.create(createOfferDto, user.id, user.tenantId);
   }

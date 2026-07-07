@@ -2,7 +2,7 @@ import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { PrismaClientService } from '../../database/prisma-client.service';
 import { CreateProspectionDTO } from './dto/create-prospection.dto';
 import { ProspectionQueryDTO } from './dto/prospection-query.dto';
-import { S3ClientService } from '../../common/file-uploader/s3-client.service';
+import { S3ClientService } from '../../common/file-manager/s3-client.service';
 import { CreateCommentDTO } from '../../shared/dto/create.comment.dto';
 import { ProspectionWhereInput } from '../../generated/prisma/models';
 
