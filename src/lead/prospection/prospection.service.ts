@@ -5,6 +5,7 @@ import { ProspectionQueryDTO } from './dto/prospection-query.dto';
 import { S3ClientService } from '../../common/file-manager/s3-client.service';
 import { CreateCommentDTO } from '../../shared/dto/create.comment.dto';
 import { ProspectionWhereInput } from '../../generated/prisma/models';
+import { FileMetadata } from '../../shared/shared.types';
 
 @Injectable()
 export class ProspectionService {
@@ -21,7 +22,7 @@ export class ProspectionService {
     files: Array<Express.Multer.File>,
   ) {
     try {
-      const filesMetadata = await this.s3ClientService.bulkSaveFiles(files);
+      const filesMetadata = await this.s3ClientService.bulkSave(files);
 
       const prospection = await this.prismaClientService.prospection.create({
         data: {

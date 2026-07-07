@@ -1,7 +1,7 @@
 
 export interface FileMetadata {
-    originalName: string;
-    storedName: string;
-    size: number;
-    mimetype: string;
+    originalName: string
+    storedName: string
+    size: number
+    mimetype: string
 }

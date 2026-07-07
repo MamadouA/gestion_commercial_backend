@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
 import { S3ClientService } from './file-manager/s3-client.service';
 import { FileManagerController } from './file-manager/file-manager.controller';
+import { FileManagerService } from './file-manager/file-manager.service';
 
 @Module({
   controllers: [FileManagerController],
-  providers: [S3ClientService],
+  providers: [S3ClientService, FileManagerService],
   exports: [S3ClientService],
 })
 export class CommonModule {}

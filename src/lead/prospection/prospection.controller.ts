@@ -10,6 +10,7 @@ import {
   ParseIntPipe,
   Post,
   Query,
+  UploadedFile,
   UploadedFiles,
   UseInterceptors,
 } from '@nestjs/common';
@@ -89,5 +90,12 @@ export class ProspectionController {
   @Get(':id/comment')
   async findCommentsByProspectionId(@Param('id', ParseIntPipe) id: number) {
     return await this.prospectionService.findCommentsByProspectionId(id);
+  }
+
+  // -
+  @Post(':id/document/create')
+  @UseInterceptors(FilesInterceptor('file', 1, FILE_FILTER))
+  async createDocument(@Param('id', ParseIntPipe) id: number, @UploadedFile() file: Express.Multer.File) {
+    return "hello"
   }
 }

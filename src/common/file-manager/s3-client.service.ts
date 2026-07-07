@@ -1,8 +1,9 @@
-import { S3Client, PutObjectCommand, DeleteObjectCommand } from '@aws-sdk/client-s3';
-import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import { S3Client, PutObjectCommand, DeleteObjectCommand, GetObjectCommand } from '@aws-sdk/client-s3';
+import { Get, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import * as crypto from 'crypto';
 import { FileMetadata } from '../../shared/shared.types';
 import { PrismaClientService } from '../../database/prisma-client.service';
+import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
 
 @Injectable()
 export class S3ClientService {
@@ -21,7 +22,7 @@ export class S3ClientService {
     }
 
     // -
-    async saveFile(file: Express.Multer.File) {
+    async save(file: Express.Multer.File) {
         const fileMetadata: FileMetadata = {
             originalName: file.originalname,
             storedName: `${crypto.randomUUID()}-${file.originalname}`,
@@ -44,16 +45,15 @@ export class S3ClientService {
     }
 
     // -
-    async bulkSaveFiles(files: Array<Express.Multer.File>) {
-        return await Promise.all(files.map(file => this.saveFile(file)));
+    async bulkSave(files: Array<Express.Multer.File>) {
+        return await Promise.all(files.map(file => this.save(file)));
     }
 
     // -
-    async deleteFile(id: number, tenantId: number) {
+    async deleteById(id: number) {
         try {
             const document = await this.prismaClientService.document.findUnique({
                 where: {
-                    tenantId,
                     id
                 }
             });
@@ -71,5 +71,37 @@ export class S3ClientService {
             console.log("Error while deleting the file: ", err);
             throw new InternalServerErrorException("Error while deleting the file.");
         }
+    }
+
+    // -
+    async deleteBykey(key: string) {
+        try {
+            return await this.s3Client.send(new DeleteObjectCommand ({
+                Bucket: process.env.S3_BUCKET_NAME,
+                Key: key
+            }));
+        }
+        catch(err) {
+            console.log("Error while deleting the file: ", err);
+            throw new InternalServerErrorException("Error while deleting the file.");
+        }
+    }
+
+    // -
+    async generateDownloadUrl(id: number) {
+        const document = await this.prismaClientService.document.findUnique({
+            where: {
+                id
+            }
+        });
+
+        if(!document) {
+            throw new NotFoundException("File not found!");
+        }
+
+        return getSignedUrl(this.s3Client, new GetObjectCommand({
+            Bucket: process.env.S3_BUCKET_NAME,
+            Key: document.storedName
+        }))
     }
 }

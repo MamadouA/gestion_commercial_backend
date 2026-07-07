@@ -215,30 +215,4 @@ export class OfferService {
       throw new InternalServerErrorException('Error while updating the offer.');
     }
   }
-
-  // -
-  async removeFile(offerId: number, storedName: string, tenantId: number) {
-    try {
-      const updatedOffer = await this.prismaClientService.offer.update({
-        where: {
-          id: offerId,
-          tenantId,
-        },
-        data: {
-          documents: {
-            delete: {
-              storedName,
-            },
-          },
-        },
-      });
-
-      await this.s3ClientService.deleteFile(storedName);
-
-      return updatedOffer;
-    } catch (err) {
-      console.log('Error while removing the file: ', err);
-      throw new InternalServerErrorException('Error while removing the file.');
-    }
-  }
 }
