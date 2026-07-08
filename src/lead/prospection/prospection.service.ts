@@ -265,7 +265,7 @@ export class ProspectionService {
     };
     try {
       fileMetadata = await this.s3ClientService.save(file);
-
+      
       return await this.prismaClientService.document.create({
         data: {
           originalName: file.originalname,
@@ -274,6 +274,9 @@ export class ProspectionService {
           mimetype: file.mimetype,
           prospectionId,
         },
+        omit: {
+          storedName: true
+        }
       });
     } catch (err) {
       if (fileMetadata.storedName.length > 0) {
@@ -285,20 +288,55 @@ export class ProspectionService {
   }
 
   // -
-  async deleteDocument(prospectionId: number, documentId: number) {
+  async deleteDocument(prospectionId: number, documentId: number, tenantId: number) {
     try {
-      const document = await this.prismaClientService.document.findUnique({
+      const prospection = await this.prismaClientService.prospection.findUnique({
         where: {
-          id: documentId,
-          prospectionId,
+          id: prospectionId,
+          tenantId,
+        },
+        select: {
+          id: true,
+          documents: true
         },
       });
 
-      if (!document) {
+      if (!prospection) {
+        throw new NotFoundException('Prospection not found!');
+      }
+
+      const documentIndex = prospection.documents.findIndex((doc) => doc.id === documentId);
+
+      if(documentIndex === -1) {
         throw new NotFoundException('File not found!');
       }
+
+      await this.prismaClientService.prospection.update({
+        where: {
+          id: prospection.id,
+        },
+        data: {
+          documents: {
+            delete: {
+              id: documentId,
+            },
+          },
+        },
+        omit: {
+          tenantId: true
+        }
+      })
       
-      return await this.s3ClientService.delete(document.storedName);
+      await this.s3ClientService.delete(prospection.documents[documentIndex].storedName);
+
+      const deletedDocument = {
+        id: prospection.documents[documentIndex].id,
+        originalName: prospection.documents[documentIndex].originalName,
+        mimetype: prospection.documents[documentIndex].mimetype,
+        size: prospection.documents[documentIndex].size,
+      }
+      
+      return deletedDocument;
     } catch (err) {
       console.log('Error while deleting the file: ', err);
       throw new InternalServerErrorException('Error while deleting the file.');

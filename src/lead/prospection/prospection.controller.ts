@@ -20,7 +20,7 @@ import { CurrentUser } from '../../shared/current-user.decoration';
 import { ProspectionService } from './prospection.service';
 import { User } from '../../generated/prisma/client';
 import { ProspectionQueryDTO } from './dto/prospection-query.dto';
-import { FilesInterceptor } from '@nestjs/platform-express';
+import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { CreateCommentDTO } from '../../shared/dto/create.comment.dto';
 import { FILE_FILTER } from '../../common/common.constants';
 
@@ -95,13 +95,13 @@ export class ProspectionController {
 
   // -
   @Post(':id/document/create')
-  @UseInterceptors(FilesInterceptor('file', 1, FILE_FILTER))
+  @UseInterceptors(FileInterceptor('file', FILE_FILTER))
   async createDocument(@Param('id', ParseIntPipe) id: number, @UploadedFile() file: Express.Multer.File) {
     return await this.prospectionService.createDocument(id, file);
   }
 
   @Delete(':id/document/:documentId')
-  async deleteDocument(@Param('id', ParseIntPipe) id: number, @Param('documentId', ParseIntPipe) documentId: number) {
-    return await this.prospectionService.deleteDocument(id, documentId);
+  async deleteDocument(@Param('id', ParseIntPipe) id: number, @Param('documentId', ParseIntPipe) documentId: number, @CurrentUser('tenantId') tenantId: number) {
+    return await this.prospectionService.deleteDocument(id, documentId, tenantId);
   }
 }
