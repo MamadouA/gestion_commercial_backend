@@ -345,4 +345,35 @@ export class ProspectionService {
       throw new InternalServerErrorException('Error while deleting the file.');
     }
   }
+
+  // -
+  async getDocumentDownloadUrl(id: number, documentId: number, tenantId: number) {
+    try {
+      const prospection = await this.prismaClientService.prospection.findUnique({
+        where: {
+          id,
+          tenantId,
+        },
+        include: {
+          documents: true
+        }
+      });
+
+      if (!prospection) {
+        throw new NotFoundException('Prospection not found!');
+      }
+
+      const documentIndex = prospection.documents.findIndex((doc) => doc.id === documentId);
+
+      if(documentIndex === -1) {
+        throw new NotFoundException('Document not found!');
+      }
+
+      return await this.s3ClientService.generateDownloadUrl(prospection.documents[documentIndex].id);
+    }
+    catch(err) {
+      console.log("Error while getting the prospection's document url: ", err);
+      throw new InternalServerErrorException("Error while getting the prospection's document url.");
+    }
+  }
 }

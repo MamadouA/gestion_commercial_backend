@@ -35,6 +35,7 @@ export class S3ClientService {
                 Bucket: process.env.S3_BUCKET_NAME,
                 Key: fileMetadata.storedName,
                 Body: file.buffer,
+                ContentType: file.mimetype
             }));
         }
         catch(err) {
@@ -101,7 +102,8 @@ export class S3ClientService {
 
         return getSignedUrl(this.s3Client, new GetObjectCommand({
             Bucket: process.env.S3_BUCKET_NAME,
-            Key: document.storedName
+            Key: document.storedName,
+            ResponseContentDisposition: "inline"
         }))
     }
 }

@@ -104,4 +104,9 @@ export class ProspectionController {
   async deleteDocument(@Param('id', ParseIntPipe) id: number, @Param('documentId', ParseIntPipe) documentId: number, @CurrentUser('tenantId') tenantId: number) {
     return await this.prospectionService.deleteDocument(id, documentId, tenantId);
   }
+
+  @Get(':id/document/:documentId/url')
+  async getDocumentUrl(@Param('id', ParseIntPipe) id: number, @Param('documentId', ParseIntPipe) documentId: number, @CurrentUser('tenantId') tenantId: number) {
+    return await this.prospectionService.getDocumentDownloadUrl(id, documentId, tenantId);
+  }
 }
