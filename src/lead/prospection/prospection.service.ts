@@ -177,6 +177,9 @@ export class ProspectionService {
               prospectionId: true,
               storedName: true,
             },
+            orderBy: {
+              id: 'desc',
+            },
           },
           comments: {
             select: {
