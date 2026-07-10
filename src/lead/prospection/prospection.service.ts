@@ -221,6 +221,17 @@ export class ProspectionService {
           authorId,
           prospectionId,
         },
+        select: {
+          id: true,
+          content: true,
+          createdAt: true,
+          author: {
+            select: {
+              id: true,
+              fullname: true,
+            },
+          },
+        },
       });
     } catch (err) {
       console.log('Error while creating the comment: ', err);
