@@ -49,12 +49,7 @@ export class ClientService {
                     }
                 ]
             }
-            if (query.email) {
-                filter['email'] = {
-                    contains: query.email,
-                    mode: 'insensitive'
-                }
-            }
+
             if (query.country) {
                 filter['country'] = {
                     contains: query.country,

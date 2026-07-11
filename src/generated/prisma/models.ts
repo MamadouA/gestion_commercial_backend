@@ -11,6 +11,8 @@
 export type * from './models/Client'
 export type * from './models/Comment'
 export type * from './models/Document'
+export type * from './models/Mission'
+export type * from './models/MissionTask'
 export type * from './models/Offer'
 export type * from './models/Product'
 export type * from './models/Prospection'

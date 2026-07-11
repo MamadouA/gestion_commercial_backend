@@ -23,13 +23,14 @@ export class AuthService {
       throw new UnauthorizedException('Invalid credentials.');
     }
 
-    user.password = "";
-    const token = await this.generateJwTToken(user);
-    return { user, token};
+    const payload = { id: user.id, email: user.email, fullname: user.fullname, roles: user.roles };
+
+    const token = await this.generateJwTToken(payload);
+    return { user: payload, token};
   }
 
   // -
-  async generateJwTToken(user: User) {
+  async generateJwTToken(user: Partial<User>) {
     return await this.jwtService.signAsync(user);
   }
 

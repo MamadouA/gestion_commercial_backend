@@ -11,10 +11,6 @@ export class ClientQueryDTO extends PaginationDTO {
     @IsOptional()
     contactNameOrEnterpriseName?: string
 
-    @IsOptional()
-    @IsString()
-    email?: string
-
     @IsString()
     @IsOptional()
     country?: string

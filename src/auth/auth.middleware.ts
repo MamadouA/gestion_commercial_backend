@@ -5,19 +5,26 @@ import {
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Request, Response, NextFunction } from 'express';
+import { PrismaClientService } from '../database/prisma-client.service';
 
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {
-  constructor(private jwtService: JwtService) {}
+  constructor(private jwtService: JwtService, private prismaClientService: PrismaClientService) {}
 
-  use(req: Request, res: Response, next: NextFunction) {
+  async use(req: Request, res: Response, next: NextFunction) {
     const authHeader = req.headers.authorization;
     if (authHeader && authHeader.startsWith('Bearer ')) {
       const token = authHeader.split(' ')[1];
 
       try {
-        const user = this.jwtService.verify(token);
+        const payload = this.jwtService.verify(token);
 
+        const user = await this.prismaClientService.user.findUnique({
+          where: {
+            id: payload.id,
+          },
+        });
+        
         req['user'] = user;
 
         return next();

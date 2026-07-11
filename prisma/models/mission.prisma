@@ -1,0 +1,24 @@
+
+model Mission {
+    id Int @id @default(autoincrement())
+    code String
+    domain String
+    name String
+
+    tasks MissionTask[]
+
+    tenantId Int
+    tenant Tenant @relation(fields: [tenantId], references: [id])
+
+    createdAt DateTime @default(now())
+}
+
+model MissionTask {
+    id Int @id @default(autoincrement())
+    name String
+    quantity Int?
+    unitPrice Decimal
+    missionId Int
+    mission Mission @relation(fields: [missionId], references: [id])
+    createdAt DateTime @default(now())
+}

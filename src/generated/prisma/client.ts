@@ -55,6 +55,16 @@ export type Comment = Prisma.CommentModel
  */
 export type Document = Prisma.DocumentModel
 /**
+ * Model Mission
+ * 
+ */
+export type Mission = Prisma.MissionModel
+/**
+ * Model MissionTask
+ * 
+ */
+export type MissionTask = Prisma.MissionTaskModel
+/**
  * Model Offer
  * 
  */

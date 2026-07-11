@@ -11,6 +11,7 @@ import { ProspectionModule } from './lead/prospection/prospection.module';
 import { ProductModule } from './lead/product/product.module';
 import { OfferModule } from './lead/offer/offer.module';
 import { CommonModule } from './common/common.module';
+import { MissionModule } from './mission/mission.module';
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { CommonModule } from './common/common.module';
     ProductModule,
     OfferModule,
     CommonModule,
+    MissionModule,
   ],
   controllers: [AppController],
   providers: [AppService],

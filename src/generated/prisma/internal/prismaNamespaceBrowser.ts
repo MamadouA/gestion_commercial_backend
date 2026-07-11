@@ -54,6 +54,8 @@ export const ModelName = {
   Client: 'Client',
   Comment: 'Comment',
   Document: 'Document',
+  Mission: 'Mission',
+  MissionTask: 'MissionTask',
   Offer: 'Offer',
   Product: 'Product',
   Prospection: 'Prospection',
@@ -119,6 +121,30 @@ export const DocumentScalarFieldEnum = {
 } as const
 
 export type DocumentScalarFieldEnum = (typeof DocumentScalarFieldEnum)[keyof typeof DocumentScalarFieldEnum]
+
+
+export const MissionScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  domain: 'domain',
+  name: 'name',
+  tenantId: 'tenantId',
+  createdAt: 'createdAt'
+} as const
+
+export type MissionScalarFieldEnum = (typeof MissionScalarFieldEnum)[keyof typeof MissionScalarFieldEnum]
+
+
+export const MissionTaskScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  quantity: 'quantity',
+  unitPrice: 'unitPrice',
+  missionId: 'missionId',
+  createdAt: 'createdAt'
+} as const
+
+export type MissionTaskScalarFieldEnum = (typeof MissionTaskScalarFieldEnum)[keyof typeof MissionTaskScalarFieldEnum]
 
 
 export const OfferScalarFieldEnum = {
