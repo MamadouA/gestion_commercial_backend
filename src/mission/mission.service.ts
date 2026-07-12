@@ -74,10 +74,12 @@ export class MissionService {
                 tenantId
             },
             select: {
+                id: true,
                 code: true,
                 domain: true,
                 name: true,
-                tasks: true
+                tasks: true,
+                createdAt: true
             }
         })
     }
