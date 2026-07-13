@@ -126,6 +126,7 @@ export class ProspectionService {
           },
           author: {
             select: {
+              id: true,
               fullname: true,
             },
           },
@@ -227,7 +228,6 @@ export class ProspectionService {
           createdAt: true,
           author: {
             select: {
-              id: true,
               fullname: true,
             },
           },
