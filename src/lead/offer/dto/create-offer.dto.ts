@@ -20,10 +20,10 @@ export class CreateOfferDTO {
     expiryDate!: string
     
     @IsNumber()
-    @Min(1)
+    @Min(0)
     amountExcludingTax!: number
 
     @IsNumber()
-    @Min(1)
-    vatAmout!: number
+    @Min(0)
+    vatAmount!: number
 }
