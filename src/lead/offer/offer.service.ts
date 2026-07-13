@@ -38,6 +38,9 @@ export class OfferService {
             },
           },
         },
+        orderBy: {
+          id: 'desc',
+        }
       });
 
       const count = await this.prismaClientService.offer.count({
@@ -71,6 +74,9 @@ export class OfferService {
           description: createOfferDto.description,
           clientId: createOfferDto.clientId,
           expiryDate: createOfferDto.expiryDate,
+          amountExcludingTax: createOfferDto.amountExcludingTax,
+          vatAmount: createOfferDto.vatAmout,
+          amountIncludingTax: createOfferDto.amountExcludingTax + createOfferDto.vatAmout,
           authorId,
           tenantId,
         },

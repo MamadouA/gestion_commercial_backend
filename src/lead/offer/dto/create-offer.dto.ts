@@ -8,7 +8,6 @@ export class CreateOfferDTO {
 
     @IsString()
     @MinLength(3)
-    @MaxLength(500)
     @IsOptional()
     description!: string
 
@@ -18,6 +17,13 @@ export class CreateOfferDTO {
 
     @IsDateString()
     @IsOptional()
-    expiryDate!: Date
+    expiryDate!: string
     
+    @IsNumber()
+    @Min(1)
+    amountExcludingTax!: number
+
+    @IsNumber()
+    @Min(1)
+    vatAmout!: number
 }

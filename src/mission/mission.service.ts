@@ -26,6 +26,7 @@ export class MissionService {
 
       const missions = await this.prismaClientService.mission.findMany({
         where: filter,
+        orderBy: { id: 'desc' },
       });
 
       const count = await this.prismaClientService.mission.count({
