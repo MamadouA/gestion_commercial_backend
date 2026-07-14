@@ -6,6 +6,7 @@ import {
   ParseIntPipe,
   Patch,
   Post,
+  Query,
   UploadedFiles,
   UseInterceptors,
 } from '@nestjs/common';
@@ -17,14 +18,15 @@ import { UpdateOfferDTO } from './dto/update-offer.dto';
 import { RemoveFileDTO } from '../../common/file-manager/dto/remove-file.dto';
 import { FilesInterceptor } from '@nestjs/platform-express';
 import { FILE_FILTER } from '../../common/common.constants';
+import { OfferQueryDTO } from './dto/offer-query.dto';
 
 @Controller('offer')
 export class OfferController {
   constructor(private readonly offerService: OfferService) {}
 
   @Get('all')
-  async findAll(@CurrentUser('tenantId') tenantId: number) {
-    return this.offerService.findAll(tenantId);
+  async findAll(@Query() query: OfferQueryDTO, @CurrentUser('tenantId') tenantId: number) {
+    return this.offerService.findAll(query, tenantId);
   }
 
   @Post('create')

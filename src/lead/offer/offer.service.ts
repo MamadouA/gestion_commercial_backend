@@ -3,6 +3,8 @@ import { PrismaClientService } from '../../database/prisma-client.service';
 import { CreateOfferDTO } from './dto/create-offer.dto';
 import { UpdateOfferDTO } from './dto/update-offer.dto';
 import { S3ClientService } from '../../common/file-manager/s3-client.service';
+import { OfferQueryDTO } from './dto/offer-query.dto';
+import { OfferWhereInput } from '../../generated/prisma/models';
 
 @Injectable()
 export class OfferService {
@@ -12,12 +14,46 @@ export class OfferService {
   ) {}
 
   // -
-  async findAll(tenantId: number) {
+  async findAll(query: OfferQueryDTO, tenantId: number) {
+    const filter: OfferWhereInput = { tenantId };
+
+    if(query.contactNameOrEnterpriseName && query.contactNameOrEnterpriseName.length) {
+      filter.OR = [
+        {
+          client: {
+            enterpriseName: {
+              contains: query.contactNameOrEnterpriseName,
+              mode: 'insensitive'
+            }
+          }
+        },
+        {
+          client: {
+            contactName: {
+              contains: query.contactNameOrEnterpriseName,
+              mode: 'insensitive'
+            }
+          }
+        }
+      ]
+    }
+
+    if(query.authorName && query.authorName.length) {
+      filter.author = {
+        fullname: {
+          contains: query.authorName,
+          mode: 'insensitive'
+        }
+      }
+    }
+
+    if(query.status && query.status.length) {
+      filter.status = query.status
+    }
+
     try {
       const offers = await this.prismaClientService.offer.findMany({
-        where: {
-          tenantId,
-        },
+        where: filter,
         select: {
           id: true,
           title: true,
