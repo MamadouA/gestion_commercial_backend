@@ -5,6 +5,7 @@ import { UpdateOfferDTO } from './dto/update-offer.dto';
 import { S3ClientService } from '../../common/file-manager/s3-client.service';
 import { OfferQueryDTO } from './dto/offer-query.dto';
 import { OfferWhereInput } from '../../generated/prisma/models';
+import { FileMetadata } from '../../shared/shared.types';
 
 @Injectable()
 export class OfferService {
@@ -25,7 +26,7 @@ export class OfferService {
               contains: query.contactNameOrEnterpriseName,
               mode: 'insensitive'
             }
-          }
+          } 
         },
         {
           client: {
@@ -51,6 +52,12 @@ export class OfferService {
       filter.status = query.status
     }
 
+    if(query.expiryDate && query.expiryDate.length) {
+      filter.expiryDate = {
+        lte: new Date(query.expiryDate)
+      }
+    }
+        
     try {
       const offers = await this.prismaClientService.offer.findMany({
         where: filter,
@@ -100,10 +107,15 @@ export class OfferService {
   //
   async create(
     createOfferDto: CreateOfferDTO,
+    files: Array<Express.Multer.File>,
     authorId: number,
     tenantId: number,
   ) {
+    let fileMetadatas: FileMetadata[] = [];
+
     try {
+      fileMetadatas = await this.s3ClientService.bulkSave(files);
+
       return await this.prismaClientService.offer.create({
         data: {
           title: createOfferDto.title,
@@ -113,6 +125,11 @@ export class OfferService {
           amountExcludingTax: createOfferDto.amountExcludingTax,
           vatAmount: createOfferDto.vatAmount,
           amountIncludingTax: createOfferDto.amountExcludingTax + createOfferDto.vatAmount,
+          documents: {
+            createMany: {
+              data: fileMetadatas,
+            },
+          },
           authorId,
           tenantId,
         },
@@ -121,6 +138,10 @@ export class OfferService {
         },
       });
     } catch (err) {
+      if(fileMetadatas.length) {
+        await this.s3ClientService.bulkDelete(fileMetadatas);
+      }
+      
       console.log('Error while creating the offer: ', err);
       throw new InternalServerErrorException('Error while creating the offer.');
     }

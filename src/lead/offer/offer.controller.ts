@@ -36,7 +36,7 @@ export class OfferController {
     @UploadedFiles() files: Array<Express.Multer.File>,
     @CurrentUser() user: User,
   ) {
-    return this.offerService.create(createOfferDto, user.id, user.tenantId);
+    return this.offerService.create(createOfferDto, files, user.id, user.tenantId);
   }
 
   @Post(':id/file/remove')

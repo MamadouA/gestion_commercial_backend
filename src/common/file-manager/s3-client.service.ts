@@ -75,6 +75,11 @@ export class S3ClientService {
     // }
 
     // -
+    async bulkDelete(metadatas: Array<FileMetadata>) {
+        return await Promise.all(metadatas.map(metadata => this.delete(metadata.storedName)));
+    }
+    
+    // -
     async delete(key: string) {
         try {
             return await this.s3Client.send(new DeleteObjectCommand ({
