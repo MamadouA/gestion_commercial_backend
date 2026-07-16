@@ -12,6 +12,9 @@ import { ProductModule } from './lead/product/product.module';
 import { OfferModule } from './lead/offer/offer.module';
 import { CommonModule } from './common/common.module';
 import { MissionModule } from './mission/mission.module';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { ServiceModule } from './service/service.module';
+import { ProjectModule } from './project/project.module';
 
 @Module({
   imports: [
@@ -25,6 +28,9 @@ import { MissionModule } from './mission/mission.module';
     OfferModule,
     CommonModule,
     MissionModule,
+    DashboardModule,
+    ServiceModule,
+    ProjectModule,
   ],
   controllers: [AppController],
   providers: [AppService],

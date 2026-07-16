@@ -53,6 +53,11 @@ export type Offer = Prisma.OfferModel
  */
 export type Product = Prisma.ProductModel
 /**
+ * Model Project
+ * 
+ */
+export type Project = Prisma.ProjectModel
+/**
  * Model Prospection
  * 
  */

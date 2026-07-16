@@ -1,0 +1,9 @@
+
+model Project {
+    id Int @id() @default(autoincrement())
+    
+    tenantId Int
+    tenant Tenant @relation(fields: [tenantId], references: [id])
+
+    createdAt DateTime @default(now())
+}

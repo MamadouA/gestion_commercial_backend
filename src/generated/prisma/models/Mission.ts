@@ -229,7 +229,6 @@ export type MissionWhereInput = {
   tenantId?: Prisma.IntFilter<"Mission"> | number
   createdAt?: Prisma.DateTimeFilter<"Mission"> | Date | string
   tasks?: Prisma.MissionTaskListRelationFilter
-  offer?: Prisma.OfferListRelationFilter
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
 }
 
@@ -241,7 +240,6 @@ export type MissionOrderByWithRelationInput = {
   tenantId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   tasks?: Prisma.MissionTaskOrderByRelationAggregateInput
-  offer?: Prisma.OfferOrderByRelationAggregateInput
   tenant?: Prisma.TenantOrderByWithRelationInput
 }
 
@@ -256,7 +254,6 @@ export type MissionWhereUniqueInput = Prisma.AtLeast<{
   tenantId?: Prisma.IntFilter<"Mission"> | number
   createdAt?: Prisma.DateTimeFilter<"Mission"> | Date | string
   tasks?: Prisma.MissionTaskListRelationFilter
-  offer?: Prisma.OfferListRelationFilter
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
 }, "id">
 
@@ -292,7 +289,6 @@ export type MissionCreateInput = {
   name: string
   createdAt?: Date | string
   tasks?: Prisma.MissionTaskCreateNestedManyWithoutMissionInput
-  offer?: Prisma.OfferCreateNestedManyWithoutMissionInput
   tenant: Prisma.TenantCreateNestedOneWithoutMissionsInput
 }
 
@@ -304,7 +300,6 @@ export type MissionUncheckedCreateInput = {
   tenantId: number
   createdAt?: Date | string
   tasks?: Prisma.MissionTaskUncheckedCreateNestedManyWithoutMissionInput
-  offer?: Prisma.OfferUncheckedCreateNestedManyWithoutMissionInput
 }
 
 export type MissionUpdateInput = {
@@ -313,7 +308,6 @@ export type MissionUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tasks?: Prisma.MissionTaskUpdateManyWithoutMissionNestedInput
-  offer?: Prisma.OfferUpdateManyWithoutMissionNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutMissionsNestedInput
 }
 
@@ -325,7 +319,6 @@ export type MissionUncheckedUpdateInput = {
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tasks?: Prisma.MissionTaskUncheckedUpdateManyWithoutMissionNestedInput
-  offer?: Prisma.OfferUncheckedUpdateManyWithoutMissionNestedInput
 }
 
 export type MissionCreateManyInput = {
@@ -419,44 +412,6 @@ export type MissionUpdateOneRequiredWithoutTasksNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.MissionUpdateToOneWithWhereWithoutTasksInput, Prisma.MissionUpdateWithoutTasksInput>, Prisma.MissionUncheckedUpdateWithoutTasksInput>
 }
 
-export type MissionCreateNestedManyWithoutOfferInput = {
-  create?: Prisma.XOR<Prisma.MissionCreateWithoutOfferInput, Prisma.MissionUncheckedCreateWithoutOfferInput> | Prisma.MissionCreateWithoutOfferInput[] | Prisma.MissionUncheckedCreateWithoutOfferInput[]
-  connectOrCreate?: Prisma.MissionCreateOrConnectWithoutOfferInput | Prisma.MissionCreateOrConnectWithoutOfferInput[]
-  connect?: Prisma.MissionWhereUniqueInput | Prisma.MissionWhereUniqueInput[]
-}
-
-export type MissionUncheckedCreateNestedManyWithoutOfferInput = {
-  create?: Prisma.XOR<Prisma.MissionCreateWithoutOfferInput, Prisma.MissionUncheckedCreateWithoutOfferInput> | Prisma.MissionCreateWithoutOfferInput[] | Prisma.MissionUncheckedCreateWithoutOfferInput[]
-  connectOrCreate?: Prisma.MissionCreateOrConnectWithoutOfferInput | Prisma.MissionCreateOrConnectWithoutOfferInput[]
-  connect?: Prisma.MissionWhereUniqueInput | Prisma.MissionWhereUniqueInput[]
-}
-
-export type MissionUpdateManyWithoutOfferNestedInput = {
-  create?: Prisma.XOR<Prisma.MissionCreateWithoutOfferInput, Prisma.MissionUncheckedCreateWithoutOfferInput> | Prisma.MissionCreateWithoutOfferInput[] | Prisma.MissionUncheckedCreateWithoutOfferInput[]
-  connectOrCreate?: Prisma.MissionCreateOrConnectWithoutOfferInput | Prisma.MissionCreateOrConnectWithoutOfferInput[]
-  upsert?: Prisma.MissionUpsertWithWhereUniqueWithoutOfferInput | Prisma.MissionUpsertWithWhereUniqueWithoutOfferInput[]
-  set?: Prisma.MissionWhereUniqueInput | Prisma.MissionWhereUniqueInput[]
-  disconnect?: Prisma.MissionWhereUniqueInput | Prisma.MissionWhereUniqueInput[]
-  delete?: Prisma.MissionWhereUniqueInput | Prisma.MissionWhereUniqueInput[]
-  connect?: Prisma.MissionWhereUniqueInput | Prisma.MissionWhereUniqueInput[]
-  update?: Prisma.MissionUpdateWithWhereUniqueWithoutOfferInput | Prisma.MissionUpdateWithWhereUniqueWithoutOfferInput[]
-  updateMany?: Prisma.MissionUpdateManyWithWhereWithoutOfferInput | Prisma.MissionUpdateManyWithWhereWithoutOfferInput[]
-  deleteMany?: Prisma.MissionScalarWhereInput | Prisma.MissionScalarWhereInput[]
-}
-
-export type MissionUncheckedUpdateManyWithoutOfferNestedInput = {
-  create?: Prisma.XOR<Prisma.MissionCreateWithoutOfferInput, Prisma.MissionUncheckedCreateWithoutOfferInput> | Prisma.MissionCreateWithoutOfferInput[] | Prisma.MissionUncheckedCreateWithoutOfferInput[]
-  connectOrCreate?: Prisma.MissionCreateOrConnectWithoutOfferInput | Prisma.MissionCreateOrConnectWithoutOfferInput[]
-  upsert?: Prisma.MissionUpsertWithWhereUniqueWithoutOfferInput | Prisma.MissionUpsertWithWhereUniqueWithoutOfferInput[]
-  set?: Prisma.MissionWhereUniqueInput | Prisma.MissionWhereUniqueInput[]
-  disconnect?: Prisma.MissionWhereUniqueInput | Prisma.MissionWhereUniqueInput[]
-  delete?: Prisma.MissionWhereUniqueInput | Prisma.MissionWhereUniqueInput[]
-  connect?: Prisma.MissionWhereUniqueInput | Prisma.MissionWhereUniqueInput[]
-  update?: Prisma.MissionUpdateWithWhereUniqueWithoutOfferInput | Prisma.MissionUpdateWithWhereUniqueWithoutOfferInput[]
-  updateMany?: Prisma.MissionUpdateManyWithWhereWithoutOfferInput | Prisma.MissionUpdateManyWithWhereWithoutOfferInput[]
-  deleteMany?: Prisma.MissionScalarWhereInput | Prisma.MissionScalarWhereInput[]
-}
-
 export type MissionCreateNestedManyWithoutTenantInput = {
   create?: Prisma.XOR<Prisma.MissionCreateWithoutTenantInput, Prisma.MissionUncheckedCreateWithoutTenantInput> | Prisma.MissionCreateWithoutTenantInput[] | Prisma.MissionUncheckedCreateWithoutTenantInput[]
   connectOrCreate?: Prisma.MissionCreateOrConnectWithoutTenantInput | Prisma.MissionCreateOrConnectWithoutTenantInput[]
@@ -504,7 +459,6 @@ export type MissionCreateWithoutTasksInput = {
   domain: string
   name: string
   createdAt?: Date | string
-  offer?: Prisma.OfferCreateNestedManyWithoutMissionInput
   tenant: Prisma.TenantCreateNestedOneWithoutMissionsInput
 }
 
@@ -515,7 +469,6 @@ export type MissionUncheckedCreateWithoutTasksInput = {
   name: string
   tenantId: number
   createdAt?: Date | string
-  offer?: Prisma.OfferUncheckedCreateNestedManyWithoutMissionInput
 }
 
 export type MissionCreateOrConnectWithoutTasksInput = {
@@ -539,7 +492,6 @@ export type MissionUpdateWithoutTasksInput = {
   domain?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  offer?: Prisma.OfferUpdateManyWithoutMissionNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutMissionsNestedInput
 }
 
@@ -550,59 +502,6 @@ export type MissionUncheckedUpdateWithoutTasksInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  offer?: Prisma.OfferUncheckedUpdateManyWithoutMissionNestedInput
-}
-
-export type MissionCreateWithoutOfferInput = {
-  code: string
-  domain: string
-  name: string
-  createdAt?: Date | string
-  tasks?: Prisma.MissionTaskCreateNestedManyWithoutMissionInput
-  tenant: Prisma.TenantCreateNestedOneWithoutMissionsInput
-}
-
-export type MissionUncheckedCreateWithoutOfferInput = {
-  id?: number
-  code: string
-  domain: string
-  name: string
-  tenantId: number
-  createdAt?: Date | string
-  tasks?: Prisma.MissionTaskUncheckedCreateNestedManyWithoutMissionInput
-}
-
-export type MissionCreateOrConnectWithoutOfferInput = {
-  where: Prisma.MissionWhereUniqueInput
-  create: Prisma.XOR<Prisma.MissionCreateWithoutOfferInput, Prisma.MissionUncheckedCreateWithoutOfferInput>
-}
-
-export type MissionUpsertWithWhereUniqueWithoutOfferInput = {
-  where: Prisma.MissionWhereUniqueInput
-  update: Prisma.XOR<Prisma.MissionUpdateWithoutOfferInput, Prisma.MissionUncheckedUpdateWithoutOfferInput>
-  create: Prisma.XOR<Prisma.MissionCreateWithoutOfferInput, Prisma.MissionUncheckedCreateWithoutOfferInput>
-}
-
-export type MissionUpdateWithWhereUniqueWithoutOfferInput = {
-  where: Prisma.MissionWhereUniqueInput
-  data: Prisma.XOR<Prisma.MissionUpdateWithoutOfferInput, Prisma.MissionUncheckedUpdateWithoutOfferInput>
-}
-
-export type MissionUpdateManyWithWhereWithoutOfferInput = {
-  where: Prisma.MissionScalarWhereInput
-  data: Prisma.XOR<Prisma.MissionUpdateManyMutationInput, Prisma.MissionUncheckedUpdateManyWithoutOfferInput>
-}
-
-export type MissionScalarWhereInput = {
-  AND?: Prisma.MissionScalarWhereInput | Prisma.MissionScalarWhereInput[]
-  OR?: Prisma.MissionScalarWhereInput[]
-  NOT?: Prisma.MissionScalarWhereInput | Prisma.MissionScalarWhereInput[]
-  id?: Prisma.IntFilter<"Mission"> | number
-  code?: Prisma.StringFilter<"Mission"> | string
-  domain?: Prisma.StringFilter<"Mission"> | string
-  name?: Prisma.StringFilter<"Mission"> | string
-  tenantId?: Prisma.IntFilter<"Mission"> | number
-  createdAt?: Prisma.DateTimeFilter<"Mission"> | Date | string
 }
 
 export type MissionCreateWithoutTenantInput = {
@@ -611,7 +510,6 @@ export type MissionCreateWithoutTenantInput = {
   name: string
   createdAt?: Date | string
   tasks?: Prisma.MissionTaskCreateNestedManyWithoutMissionInput
-  offer?: Prisma.OfferCreateNestedManyWithoutMissionInput
 }
 
 export type MissionUncheckedCreateWithoutTenantInput = {
@@ -621,7 +519,6 @@ export type MissionUncheckedCreateWithoutTenantInput = {
   name: string
   createdAt?: Date | string
   tasks?: Prisma.MissionTaskUncheckedCreateNestedManyWithoutMissionInput
-  offer?: Prisma.OfferUncheckedCreateNestedManyWithoutMissionInput
 }
 
 export type MissionCreateOrConnectWithoutTenantInput = {
@@ -650,32 +547,16 @@ export type MissionUpdateManyWithWhereWithoutTenantInput = {
   data: Prisma.XOR<Prisma.MissionUpdateManyMutationInput, Prisma.MissionUncheckedUpdateManyWithoutTenantInput>
 }
 
-export type MissionUpdateWithoutOfferInput = {
-  code?: Prisma.StringFieldUpdateOperationsInput | string
-  domain?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tasks?: Prisma.MissionTaskUpdateManyWithoutMissionNestedInput
-  tenant?: Prisma.TenantUpdateOneRequiredWithoutMissionsNestedInput
-}
-
-export type MissionUncheckedUpdateWithoutOfferInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  code?: Prisma.StringFieldUpdateOperationsInput | string
-  domain?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tasks?: Prisma.MissionTaskUncheckedUpdateManyWithoutMissionNestedInput
-}
-
-export type MissionUncheckedUpdateManyWithoutOfferInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  code?: Prisma.StringFieldUpdateOperationsInput | string
-  domain?: Prisma.StringFieldUpdateOperationsInput | string
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+export type MissionScalarWhereInput = {
+  AND?: Prisma.MissionScalarWhereInput | Prisma.MissionScalarWhereInput[]
+  OR?: Prisma.MissionScalarWhereInput[]
+  NOT?: Prisma.MissionScalarWhereInput | Prisma.MissionScalarWhereInput[]
+  id?: Prisma.IntFilter<"Mission"> | number
+  code?: Prisma.StringFilter<"Mission"> | string
+  domain?: Prisma.StringFilter<"Mission"> | string
+  name?: Prisma.StringFilter<"Mission"> | string
+  tenantId?: Prisma.IntFilter<"Mission"> | number
+  createdAt?: Prisma.DateTimeFilter<"Mission"> | Date | string
 }
 
 export type MissionCreateManyTenantInput = {
@@ -692,7 +573,6 @@ export type MissionUpdateWithoutTenantInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tasks?: Prisma.MissionTaskUpdateManyWithoutMissionNestedInput
-  offer?: Prisma.OfferUpdateManyWithoutMissionNestedInput
 }
 
 export type MissionUncheckedUpdateWithoutTenantInput = {
@@ -702,7 +582,6 @@ export type MissionUncheckedUpdateWithoutTenantInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tasks?: Prisma.MissionTaskUncheckedUpdateManyWithoutMissionNestedInput
-  offer?: Prisma.OfferUncheckedUpdateManyWithoutMissionNestedInput
 }
 
 export type MissionUncheckedUpdateManyWithoutTenantInput = {
@@ -720,12 +599,10 @@ export type MissionUncheckedUpdateManyWithoutTenantInput = {
 
 export type MissionCountOutputType = {
   tasks: number
-  offer: number
 }
 
 export type MissionCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tasks?: boolean | MissionCountOutputTypeCountTasksArgs
-  offer?: boolean | MissionCountOutputTypeCountOfferArgs
 }
 
 /**
@@ -745,13 +622,6 @@ export type MissionCountOutputTypeCountTasksArgs<ExtArgs extends runtime.Types.E
   where?: Prisma.MissionTaskWhereInput
 }
 
-/**
- * MissionCountOutputType without action
- */
-export type MissionCountOutputTypeCountOfferArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.OfferWhereInput
-}
-
 
 export type MissionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -761,7 +631,6 @@ export type MissionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   tenantId?: boolean
   createdAt?: boolean
   tasks?: boolean | Prisma.Mission$tasksArgs<ExtArgs>
-  offer?: boolean | Prisma.Mission$offerArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.MissionCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["mission"]>
@@ -798,7 +667,6 @@ export type MissionSelectScalar = {
 export type MissionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "code" | "domain" | "name" | "tenantId" | "createdAt", ExtArgs["result"]["mission"]>
 export type MissionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tasks?: boolean | Prisma.Mission$tasksArgs<ExtArgs>
-  offer?: boolean | Prisma.Mission$offerArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.MissionCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -813,7 +681,6 @@ export type $MissionPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   name: "Mission"
   objects: {
     tasks: Prisma.$MissionTaskPayload<ExtArgs>[]
-    offer: Prisma.$OfferPayload<ExtArgs>[]
     tenant: Prisma.$TenantPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1218,7 +1085,6 @@ readonly fields: MissionFieldRefs;
 export interface Prisma__MissionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   tasks<T extends Prisma.Mission$tasksArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Mission$tasksArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MissionTaskPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  offer<T extends Prisma.Mission$offerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Mission$offerArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OfferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   tenant<T extends Prisma.TenantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TenantDefaultArgs<ExtArgs>>): Prisma.Prisma__TenantClient<runtime.Types.Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1677,30 +1543,6 @@ export type Mission$tasksArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.MissionTaskScalarFieldEnum | Prisma.MissionTaskScalarFieldEnum[]
-}
-
-/**
- * Mission.offer
- */
-export type Mission$offerArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Offer
-   */
-  select?: Prisma.OfferSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Offer
-   */
-  omit?: Prisma.OfferOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.OfferInclude<ExtArgs> | null
-  where?: Prisma.OfferWhereInput
-  orderBy?: Prisma.OfferOrderByWithRelationInput | Prisma.OfferOrderByWithRelationInput[]
-  cursor?: Prisma.OfferWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.OfferScalarFieldEnum | Prisma.OfferScalarFieldEnum[]
 }
 
 /**

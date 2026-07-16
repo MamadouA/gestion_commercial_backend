@@ -58,6 +58,7 @@ export const ModelName = {
   MissionTask: 'MissionTask',
   Offer: 'Offer',
   Product: 'Product',
+  Project: 'Project',
   Prospection: 'Prospection',
   Tenant: 'Tenant',
   User: 'User'
@@ -174,6 +175,15 @@ export const ProductScalarFieldEnum = {
 } as const
 
 export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
+
+
+export const ProjectScalarFieldEnum = {
+  id: 'id',
+  tenantId: 'tenantId',
+  createdAt: 'createdAt'
+} as const
+
+export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum]
 
 
 export const ProspectionScalarFieldEnum = {

@@ -9,4 +9,5 @@ model Tenant {
   products Product[]
   offers Offer[]
   missions Mission[]
+  projects Project[]
 }

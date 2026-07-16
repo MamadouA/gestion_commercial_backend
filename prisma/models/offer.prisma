@@ -21,8 +21,6 @@ model Offer {
 
     tenantId Int
     tenant Tenant @relation(fields: [tenantId], references: [id])
-
-    mission Mission[]
     
     expiryDate DateTime?
     sentAt DateTime?
