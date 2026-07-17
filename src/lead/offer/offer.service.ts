@@ -276,7 +276,7 @@ export class OfferService {
     let fileMetadata: FileMetadata | null = null;
     try {
       fileMetadata = await this.s3ClientService.save(file);
-      return await this.prismaClientService.offer.update({
+      return (await this.prismaClientService.offer.update({
         where: {
           id,
           tenantId,
@@ -295,9 +295,12 @@ export class OfferService {
               mimetype: true,
               offerId: true,
             },
+            orderBy: {
+              id: 'desc'
+            }
           },
         },
-      });
+      })).documents[0]; // return the created document
     }
     catch(err) {
       if(fileMetadata) {
