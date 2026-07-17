@@ -1,0 +1,18 @@
+
+// model Subscription {
+//     id Int @id() @default(autoincrement())
+//     maxUserCount Int
+//     storage Int
+//     price Int
+//     features AppFeature[] @default([AppFeature.DASHBOARD, AppFeature.USER, AppFeature.PROJECT, AppFeature.OFFER, AppFeature.CLIENT, AppFeature.PROSPECTION,AppFeature.TIMESHEET])
+// }
+
+// enum AppFeature {
+//     DASHBOARD
+//     USER
+//     PROJECT
+//     OFFER
+//     CLIENT
+//     PROSPECTION
+//     TIMESHEET
+// }

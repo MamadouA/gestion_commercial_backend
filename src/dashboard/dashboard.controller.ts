@@ -10,4 +10,9 @@ export class DashboardController {
     async getOverview(@CurrentUser('tenantId') tenantId: number) {
         return await this.dashboardService.getOverview(tenantId);
     }
+
+    @Get('offers-distribution-by-status')
+    async getOffersDistributionByStatus(@CurrentUser('tenantId') tenantId: number) {
+        return await this.dashboardService.getOffersDistributionByStatus(tenantId);
+    }
 }

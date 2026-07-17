@@ -37,14 +37,6 @@ export class UpdateOfferDTO {
     @IsOptional()
     expiryDate?: string
 
-    @Validate(IsNumber, { each: true })
-    @IsOptional()
-    memberIds?: number[]
-
-    @Validate(IsNumber, { each: true })
-    @IsOptional()
-    productIds? : number[]
-
     @ValidateNested()
     @Type(() => CreateCommentDTO)
     @IsOptional()

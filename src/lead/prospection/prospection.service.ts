@@ -270,7 +270,7 @@ export class ProspectionService {
   }
 
   // -
-  async createDocument(prospectionId: number, file: Express.Multer.File) {
+  async createDocument(id: number, file: Express.Multer.File, tenantId: number) {
     let fileMetadata: FileMetadata = {
       originalName: '',
       storedName: '',
@@ -280,17 +280,27 @@ export class ProspectionService {
     try {
       fileMetadata = await this.s3ClientService.save(file);
       
-      return await this.prismaClientService.document.create({
-        data: {
-          originalName: file.originalname,
-          storedName: fileMetadata.storedName,
-          size: file.size,
-          mimetype: file.mimetype,
-          prospectionId,
+      return await this.prismaClientService.prospection.update({
+        where: {
+          id,
+          tenantId
         },
-        omit: {
-          storedName: true
-        }
+        data: {
+          documents: {
+            create: fileMetadata
+          }
+        },
+        select: {
+          documents: {
+            select: {
+              id: true,
+              originalName: true,
+              size: true,
+              mimetype: true,
+              prospectionId: true
+            },
+          },
+        },
       });
     } catch (err) {
       if (fileMetadata.storedName.length > 0) {

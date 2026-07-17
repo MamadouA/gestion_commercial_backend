@@ -4,7 +4,9 @@ model User {
   email     String   @unique
   password String
   phone     String
-  roles Role[]
+
+  roleId Int
+  role Role[]
   isActive  Boolean  @default(true)
   tenant    Tenant   @relation(fields: [tenantId], references: [id])
   tenantId  Int
@@ -12,7 +14,6 @@ model User {
   comments Comment[] // comment made by the user
 
   createdOffers Offer[] @relation("offerAuthor") // offers created by the user
-  membershipOffers Offer[] @relation("offerMembers") // offers where this user is a member
   createdAt DateTime @default(now())
 }
 
@@ -30,3 +31,20 @@ enum Role {
   REPRESENTANT_COMMERCIAL
   RESPONSABLE_LOGISTIQUE
 }
+
+// model Role {
+//   id Int @id() @default(autoincrement())
+//   name String
+//   description String
+//   feature AppFeature
+//   permissions String[]
+//   users User[]
+// }
+
+// model Permission {
+//   id Int @id() @default(autoincrement())
+//   name String
+//   description String
+//   feature AppFeature
+// }
+

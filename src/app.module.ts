@@ -15,6 +15,7 @@ import { MissionModule } from './mission/mission.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ServiceModule } from './service/service.module';
 import { ProjectModule } from './project/project.module';
+import { RoleManagementModule } from './role-management/role-management.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { ProjectModule } from './project/project.module';
     DashboardModule,
     ServiceModule,
     ProjectModule,
+    RoleManagementModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -44,8 +44,8 @@ export class DashboardService {
   async getProjectsByStatus(tenantId: number) {}
 
   // -
-  async getOffersByStatus(tenantId: number) {
-    const pendding = this.prismaClientService.offer.count({
+  async getOffersDistributionByStatus(tenantId: number) {
+    const pending = this.prismaClientService.offer.count({
       where: { tenantId: tenantId, status: 'PENDING' },
     });
     const ready = this.prismaClientService.offer.count({
@@ -67,24 +67,29 @@ export class DashboardService {
       where: { tenantId: tenantId, status: 'OVERDUE' },
     });
 
+    const count = this.prismaClientService.offer.count({
+      where: { tenantId: tenantId },
+    });
+
     const result = await this.prismaClientService.$transaction([
-      pendding,
+      pending,
       ready,
       sent,
       won,
       lost,
       abandoned,
       overdue,
+      count
     ]);
 
     return {
-      pendding: result[0],
-      ready: result[1],
-      sent: result[2],
-      won: result[3],
-      lost: result[4],
-      abandoned: result[5],
-      overdue: result[6],
+      pending: (result[0] / result[7]) * 100,
+      ready: (result[1] / result[7]) * 100,
+      sent: (result[2] / result[7]) * 100,
+      won: result[3] / result[7] * 100,
+      lost: (result[4] / result[7]) * 100,
+      abandoned: (result[5] / result[7]) * 100, 
+      overdue: (result[6] / result[7]) * 100,
     };
   }
 

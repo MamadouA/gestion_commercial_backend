@@ -1,14 +1,17 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common';
+import { Injectable, InternalServerErrorException, Logger } from '@nestjs/common';
 import { PrismaClientService } from '../../database/prisma-client.service';
 import { CreateOfferDTO } from './dto/create-offer.dto';
 import { UpdateOfferDTO } from './dto/update-offer.dto';
 import { S3ClientService } from '../../common/file-manager/s3-client.service';
 import { OfferQueryDTO } from './dto/offer-query.dto';
 import { OfferWhereInput } from '../../generated/prisma/models';
-import { FileMetadata } from '../../shared/shared.types';
+import { type FileMetadata } from '../../shared/shared.types';
+import { create } from 'domain';
 
 @Injectable()
 export class OfferService {
+  private logger = new Logger(OfferService.name);
+
   constructor(
     private readonly prismaClientService: PrismaClientService,
     private readonly s3ClientService: S3ClientService,
@@ -97,7 +100,7 @@ export class OfferService {
         count,
       };
     } catch (err) {
-      console.log('Error while fetching the offers: ', err);
+      this.logger.error("Error while fetching the offers: ", err);
       throw new InternalServerErrorException(
         'Error while fetching the offers.',
       );
@@ -141,8 +144,7 @@ export class OfferService {
       if(fileMetadatas.length) {
         await this.s3ClientService.bulkDelete(fileMetadatas);
       }
-      
-      console.log('Error while creating the offer: ', err);
+      this.logger.error("Error while creating the offer: ", err);
       throw new InternalServerErrorException('Error while creating the offer.');
     }
   }
@@ -229,18 +231,13 @@ export class OfferService {
         },
       });
     } catch (err) {
-      console.log('Error while fetching the offer: ', err);
+      this.logger.error("Error while fetching the offer: ", err);
       throw new InternalServerErrorException('Error while fetching the offer.');
     }
   }
 
   // -
-  async update(
-    id: number,
-    updateOfferDto: UpdateOfferDTO,
-    authorId: number,
-    tenantId: number,
-  ) {
+  async update(id: number, updateOfferDto: UpdateOfferDTO, authorId: number, tenantId: number) {
     const updates = {
       title: updateOfferDto.title,
       description: updateOfferDto.description,
@@ -248,12 +245,6 @@ export class OfferService {
       amountExcludingTax: updateOfferDto.amountExcludingTax,
       vatAmount: updateOfferDto.vatAmount,
       expiryDate: updateOfferDto.expiryDate,
-      members: {
-        set: updateOfferDto.memberIds?.map((id) => ({ id })),
-      },
-      products: {
-        set: updateOfferDto.productIds?.map((id) => ({ id })),
-      },
     };
 
     if (updateOfferDto.comment?.content) {
@@ -274,8 +265,46 @@ export class OfferService {
         data: updates,
       });
     } catch (err) {
-      console.log('Error while updating the offer: ', err);
+
+      this.logger.error('Error while updating the offer: ', err);
       throw new InternalServerErrorException('Error while updating the offer.');
+    }
+  }
+
+  // -
+  async createDocument(id: number, file: Express.Multer.File, tenantId: number) {
+    let fileMetadata: FileMetadata | null = null;
+    try {
+      fileMetadata = await this.s3ClientService.save(file);
+      return await this.prismaClientService.offer.update({
+        where: {
+          id,
+          tenantId,
+        },
+        data: {
+          documents: {
+            create: fileMetadata,
+          },
+        },
+        select: {
+          documents: {
+            select: {
+              id: true,
+              originalName: true,
+              size: true,
+              mimetype: true,
+              offerId: true,
+            },
+          },
+        },
+      });
+    }
+    catch(err) {
+      if(fileMetadata) {
+        await this.s3ClientService.delete(fileMetadata.storedName);
+      }
+      this.logger.error('Error while uploading the file: ', err);
+      throw new InternalServerErrorException('Error while uploading the file.');
     }
   }
 }

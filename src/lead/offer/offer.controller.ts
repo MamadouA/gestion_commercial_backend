@@ -7,6 +7,7 @@ import {
   Patch,
   Post,
   Query,
+  UploadedFile,
   UploadedFiles,
   UseInterceptors,
 } from '@nestjs/common';
@@ -16,7 +17,7 @@ import { CreateOfferDTO } from './dto/create-offer.dto';
 import { User } from '../../generated/prisma/client';
 import { UpdateOfferDTO } from './dto/update-offer.dto';
 import { RemoveFileDTO } from '../../common/file-manager/dto/remove-file.dto';
-import { FilesInterceptor } from '@nestjs/platform-express';
+import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { FILE_FILTER } from '../../common/common.constants';
 import { OfferQueryDTO } from './dto/offer-query.dto';
 
@@ -61,5 +62,11 @@ export class OfferController {
     @CurrentUser('tenantId') tenantId: number,
   ) {
     return this.offerService.update(id, updateOfferDto, userId, tenantId);
+  }
+
+  @Post(':id/document/create')
+  @UseInterceptors(FileInterceptor('file'))
+  async createDocument(@Param('id', ParseIntPipe) id: number, @UploadedFile() file: Express.Multer.File, @CurrentUser('tenantId') tenantId: number) {
+    return this.offerService.createDocument(id, file, tenantId);
   }
 }

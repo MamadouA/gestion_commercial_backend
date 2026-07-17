@@ -96,8 +96,8 @@ export class ProspectionController {
   // -
   @Post(':id/document/create')
   @UseInterceptors(FileInterceptor('file', FILE_FILTER))
-  async createDocument(@Param('id', ParseIntPipe) id: number, @UploadedFile() file: Express.Multer.File) {
-    return await this.prospectionService.createDocument(id, file);
+  async createDocument(@Param('id', ParseIntPipe) id: number, @UploadedFile() file: Express.Multer.File, @CurrentUser('tenantId') tenantId: number) {
+    return await this.prospectionService.createDocument(id, file, tenantId);
   }
 
   @Delete(':id/document/:documentId')
