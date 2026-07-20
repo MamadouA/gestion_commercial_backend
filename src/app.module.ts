@@ -16,6 +16,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { ServiceModule } from './service/service.module';
 import { ProjectModule } from './project/project.module';
 import { RoleManagementModule } from './role-management/role-management.module';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { RoleManagementModule } from './role-management/role-management.module';
     ServiceModule,
     ProjectModule,
     RoleManagementModule,
+    ScheduleModule.forRoot(),
   ],
   controllers: [AppController],
   providers: [AppService],

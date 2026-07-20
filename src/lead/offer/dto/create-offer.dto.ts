@@ -25,7 +25,5 @@ export class CreateOfferDTO {
 
     @IsNumber()
     @Min(0)
-    vatAmount!: number
-
-    
+    vatAmount!: number  
 }

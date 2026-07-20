@@ -12,4 +12,12 @@ model Document {
 
     offerId Int?
     offer Offer? @relation(fields: [offerId], references: [id])
+
+    projectId Int?
+    project Project? @relation(fields: [projectId], references: [id])
+
+    journalEventId Int? @unique()
+    journalEvents JournalEvent? @relation(fields: [journalEventId], references: [id])
+
+    invoice Invoice?
 }

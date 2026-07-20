@@ -51,6 +51,14 @@ export const ProductDomain = {
 export type ProductDomain = (typeof ProductDomain)[keyof typeof ProductDomain]
 
 
+export const ProjectStatus = {
+  IN_PROGRESS: 'IN_PROGRESS',
+  FINISHED: 'FINISHED'
+} as const
+
+export type ProjectStatus = (typeof ProjectStatus)[keyof typeof ProjectStatus]
+
+
 export const ProspectionStatus = {
   OPENED: 'OPENED',
   ABANDONED: 'ABANDONED',

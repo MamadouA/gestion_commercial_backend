@@ -4,14 +4,14 @@ model User {
   email     String   @unique
   password String
   phone     String
-
-  roleId Int
-  role Role[]
+  roles Role[]
   isActive  Boolean  @default(true)
   tenant    Tenant   @relation(fields: [tenantId], references: [id])
   tenantId  Int
   prospections Prospection[] // prospection created by the user
   comments Comment[] // comment made by the user
+  invoices Invoice[] // invoice created by this user
+  journalEvents JournalEvent[] // project events
 
   createdOffers Offer[] @relation("offerAuthor") // offers created by the user
   createdAt DateTime @default(now())

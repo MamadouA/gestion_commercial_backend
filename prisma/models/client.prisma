@@ -17,6 +17,7 @@ model Client {
     prospections Prospection[]
 
     offers Offer[]
+    projects Project[]
 }
 
 enum ClientType {

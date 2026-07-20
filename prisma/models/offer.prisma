@@ -18,6 +18,8 @@ model Offer {
     clientId Int
     client Client @relation(fields: [clientId], references: [id])
 
+    project Project?
+    
     tenantId Int
     tenant Tenant @relation(fields: [tenantId], references: [id])
     

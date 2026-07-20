@@ -28,28 +28,47 @@ export type AggregateProject = {
 
 export type ProjectAvgAggregateOutputType = {
   id: number | null
+  clientId: number | null
+  offerId: number | null
   tenantId: number | null
 }
 
 export type ProjectSumAggregateOutputType = {
   id: number | null
+  clientId: number | null
+  offerId: number | null
   tenantId: number | null
 }
 
 export type ProjectMinAggregateOutputType = {
   id: number | null
+  title: string | null
+  description: string | null
+  status: $Enums.ProjectStatus | null
+  clientId: number | null
+  offerId: number | null
   tenantId: number | null
   createdAt: Date | null
 }
 
 export type ProjectMaxAggregateOutputType = {
   id: number | null
+  title: string | null
+  description: string | null
+  status: $Enums.ProjectStatus | null
+  clientId: number | null
+  offerId: number | null
   tenantId: number | null
   createdAt: Date | null
 }
 
 export type ProjectCountAggregateOutputType = {
   id: number
+  title: number
+  description: number
+  status: number
+  clientId: number
+  offerId: number
   tenantId: number
   createdAt: number
   _all: number
@@ -58,28 +77,47 @@ export type ProjectCountAggregateOutputType = {
 
 export type ProjectAvgAggregateInputType = {
   id?: true
+  clientId?: true
+  offerId?: true
   tenantId?: true
 }
 
 export type ProjectSumAggregateInputType = {
   id?: true
+  clientId?: true
+  offerId?: true
   tenantId?: true
 }
 
 export type ProjectMinAggregateInputType = {
   id?: true
+  title?: true
+  description?: true
+  status?: true
+  clientId?: true
+  offerId?: true
   tenantId?: true
   createdAt?: true
 }
 
 export type ProjectMaxAggregateInputType = {
   id?: true
+  title?: true
+  description?: true
+  status?: true
+  clientId?: true
+  offerId?: true
   tenantId?: true
   createdAt?: true
 }
 
 export type ProjectCountAggregateInputType = {
   id?: true
+  title?: true
+  description?: true
+  status?: true
+  clientId?: true
+  offerId?: true
   tenantId?: true
   createdAt?: true
   _all?: true
@@ -173,6 +211,11 @@ export type ProjectGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 
 export type ProjectGroupByOutputType = {
   id: number
+  title: string
+  description: string | null
+  status: $Enums.ProjectStatus
+  clientId: number
+  offerId: number
   tenantId: number
   createdAt: Date
   _count: ProjectCountAggregateOutputType | null
@@ -202,30 +245,68 @@ export type ProjectWhereInput = {
   OR?: Prisma.ProjectWhereInput[]
   NOT?: Prisma.ProjectWhereInput | Prisma.ProjectWhereInput[]
   id?: Prisma.IntFilter<"Project"> | number
+  title?: Prisma.StringFilter<"Project"> | string
+  description?: Prisma.StringNullableFilter<"Project"> | string | null
+  status?: Prisma.EnumProjectStatusFilter<"Project"> | $Enums.ProjectStatus
+  clientId?: Prisma.IntFilter<"Project"> | number
+  offerId?: Prisma.IntFilter<"Project"> | number
   tenantId?: Prisma.IntFilter<"Project"> | number
   createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
+  documents?: Prisma.DocumentListRelationFilter
+  timesheets?: Prisma.TimesheetListRelationFilter
+  invoices?: Prisma.InvoiceListRelationFilter
+  journalEvents?: Prisma.JournalEventListRelationFilter
+  client?: Prisma.XOR<Prisma.ClientScalarRelationFilter, Prisma.ClientWhereInput>
+  offer?: Prisma.XOR<Prisma.OfferScalarRelationFilter, Prisma.OfferWhereInput>
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
 }
 
 export type ProjectOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  title?: Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
+  status?: Prisma.SortOrder
+  clientId?: Prisma.SortOrder
+  offerId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  documents?: Prisma.DocumentOrderByRelationAggregateInput
+  timesheets?: Prisma.TimesheetOrderByRelationAggregateInput
+  invoices?: Prisma.InvoiceOrderByRelationAggregateInput
+  journalEvents?: Prisma.JournalEventOrderByRelationAggregateInput
+  client?: Prisma.ClientOrderByWithRelationInput
+  offer?: Prisma.OfferOrderByWithRelationInput
   tenant?: Prisma.TenantOrderByWithRelationInput
 }
 
 export type ProjectWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  offerId?: number
   AND?: Prisma.ProjectWhereInput | Prisma.ProjectWhereInput[]
   OR?: Prisma.ProjectWhereInput[]
   NOT?: Prisma.ProjectWhereInput | Prisma.ProjectWhereInput[]
+  title?: Prisma.StringFilter<"Project"> | string
+  description?: Prisma.StringNullableFilter<"Project"> | string | null
+  status?: Prisma.EnumProjectStatusFilter<"Project"> | $Enums.ProjectStatus
+  clientId?: Prisma.IntFilter<"Project"> | number
   tenantId?: Prisma.IntFilter<"Project"> | number
   createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
+  documents?: Prisma.DocumentListRelationFilter
+  timesheets?: Prisma.TimesheetListRelationFilter
+  invoices?: Prisma.InvoiceListRelationFilter
+  journalEvents?: Prisma.JournalEventListRelationFilter
+  client?: Prisma.XOR<Prisma.ClientScalarRelationFilter, Prisma.ClientWhereInput>
+  offer?: Prisma.XOR<Prisma.OfferScalarRelationFilter, Prisma.OfferWhereInput>
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
-}, "id">
+}, "id" | "offerId">
 
 export type ProjectOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  title?: Prisma.SortOrder
+  description?: Prisma.SortOrderInput | Prisma.SortOrder
+  status?: Prisma.SortOrder
+  clientId?: Prisma.SortOrder
+  offerId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.ProjectCountOrderByAggregateInput
@@ -240,74 +321,100 @@ export type ProjectScalarWhereWithAggregatesInput = {
   OR?: Prisma.ProjectScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ProjectScalarWhereWithAggregatesInput | Prisma.ProjectScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Project"> | number
+  title?: Prisma.StringWithAggregatesFilter<"Project"> | string
+  description?: Prisma.StringNullableWithAggregatesFilter<"Project"> | string | null
+  status?: Prisma.EnumProjectStatusWithAggregatesFilter<"Project"> | $Enums.ProjectStatus
+  clientId?: Prisma.IntWithAggregatesFilter<"Project"> | number
+  offerId?: Prisma.IntWithAggregatesFilter<"Project"> | number
   tenantId?: Prisma.IntWithAggregatesFilter<"Project"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Project"> | Date | string
 }
 
 export type ProjectCreateInput = {
+  title: string
+  description?: string | null
+  status?: $Enums.ProjectStatus
   createdAt?: Date | string
+  documents?: Prisma.DocumentCreateNestedManyWithoutProjectInput
+  timesheets?: Prisma.TimesheetCreateNestedManyWithoutProjectInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutProjectInput
+  journalEvents?: Prisma.JournalEventCreateNestedManyWithoutProjectInput
+  client: Prisma.ClientCreateNestedOneWithoutProjectsInput
+  offer: Prisma.OfferCreateNestedOneWithoutProjectInput
   tenant: Prisma.TenantCreateNestedOneWithoutProjectsInput
 }
 
 export type ProjectUncheckedCreateInput = {
   id?: number
+  title: string
+  description?: string | null
+  status?: $Enums.ProjectStatus
+  clientId: number
+  offerId: number
   tenantId: number
   createdAt?: Date | string
+  documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutProjectInput
+  timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutProjectInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutProjectInput
+  journalEvents?: Prisma.JournalEventUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUpdateInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  documents?: Prisma.DocumentUpdateManyWithoutProjectNestedInput
+  timesheets?: Prisma.TimesheetUpdateManyWithoutProjectNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutProjectNestedInput
+  journalEvents?: Prisma.JournalEventUpdateManyWithoutProjectNestedInput
+  client?: Prisma.ClientUpdateOneRequiredWithoutProjectsNestedInput
+  offer?: Prisma.OfferUpdateOneRequiredWithoutProjectNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutProjectsNestedInput
 }
 
 export type ProjectUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  clientId?: Prisma.IntFieldUpdateOperationsInput | number
+  offerId?: Prisma.IntFieldUpdateOperationsInput | number
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  documents?: Prisma.DocumentUncheckedUpdateManyWithoutProjectNestedInput
+  timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutProjectNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutProjectNestedInput
+  journalEvents?: Prisma.JournalEventUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectCreateManyInput = {
   id?: number
+  title: string
+  description?: string | null
+  status?: $Enums.ProjectStatus
+  clientId: number
+  offerId: number
   tenantId: number
   createdAt?: Date | string
 }
 
 export type ProjectUpdateManyMutationInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ProjectUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  clientId?: Prisma.IntFieldUpdateOperationsInput | number
+  offerId?: Prisma.IntFieldUpdateOperationsInput | number
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type ProjectCountOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  tenantId?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-}
-
-export type ProjectAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  tenantId?: Prisma.SortOrder
-}
-
-export type ProjectMaxOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  tenantId?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-}
-
-export type ProjectMinOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  tenantId?: Prisma.SortOrder
-  createdAt?: Prisma.SortOrder
-}
-
-export type ProjectSumOrderByAggregateInput = {
-  id?: Prisma.SortOrder
-  tenantId?: Prisma.SortOrder
 }
 
 export type ProjectListRelationFilter = {
@@ -318,6 +425,185 @@ export type ProjectListRelationFilter = {
 
 export type ProjectOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
+}
+
+export type ProjectNullableScalarRelationFilter = {
+  is?: Prisma.ProjectWhereInput | null
+  isNot?: Prisma.ProjectWhereInput | null
+}
+
+export type ProjectCountOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+  title?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  clientId?: Prisma.SortOrder
+  offerId?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+}
+
+export type ProjectAvgOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+  clientId?: Prisma.SortOrder
+  offerId?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
+}
+
+export type ProjectMaxOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+  title?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  clientId?: Prisma.SortOrder
+  offerId?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+}
+
+export type ProjectMinOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+  title?: Prisma.SortOrder
+  description?: Prisma.SortOrder
+  status?: Prisma.SortOrder
+  clientId?: Prisma.SortOrder
+  offerId?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+}
+
+export type ProjectSumOrderByAggregateInput = {
+  id?: Prisma.SortOrder
+  clientId?: Prisma.SortOrder
+  offerId?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
+}
+
+export type ProjectScalarRelationFilter = {
+  is?: Prisma.ProjectWhereInput
+  isNot?: Prisma.ProjectWhereInput
+}
+
+export type ProjectCreateNestedManyWithoutClientInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutClientInput, Prisma.ProjectUncheckedCreateWithoutClientInput> | Prisma.ProjectCreateWithoutClientInput[] | Prisma.ProjectUncheckedCreateWithoutClientInput[]
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutClientInput | Prisma.ProjectCreateOrConnectWithoutClientInput[]
+  createMany?: Prisma.ProjectCreateManyClientInputEnvelope
+  connect?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+}
+
+export type ProjectUncheckedCreateNestedManyWithoutClientInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutClientInput, Prisma.ProjectUncheckedCreateWithoutClientInput> | Prisma.ProjectCreateWithoutClientInput[] | Prisma.ProjectUncheckedCreateWithoutClientInput[]
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutClientInput | Prisma.ProjectCreateOrConnectWithoutClientInput[]
+  createMany?: Prisma.ProjectCreateManyClientInputEnvelope
+  connect?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+}
+
+export type ProjectUpdateManyWithoutClientNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutClientInput, Prisma.ProjectUncheckedCreateWithoutClientInput> | Prisma.ProjectCreateWithoutClientInput[] | Prisma.ProjectUncheckedCreateWithoutClientInput[]
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutClientInput | Prisma.ProjectCreateOrConnectWithoutClientInput[]
+  upsert?: Prisma.ProjectUpsertWithWhereUniqueWithoutClientInput | Prisma.ProjectUpsertWithWhereUniqueWithoutClientInput[]
+  createMany?: Prisma.ProjectCreateManyClientInputEnvelope
+  set?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+  disconnect?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+  delete?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+  connect?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+  update?: Prisma.ProjectUpdateWithWhereUniqueWithoutClientInput | Prisma.ProjectUpdateWithWhereUniqueWithoutClientInput[]
+  updateMany?: Prisma.ProjectUpdateManyWithWhereWithoutClientInput | Prisma.ProjectUpdateManyWithWhereWithoutClientInput[]
+  deleteMany?: Prisma.ProjectScalarWhereInput | Prisma.ProjectScalarWhereInput[]
+}
+
+export type ProjectUncheckedUpdateManyWithoutClientNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutClientInput, Prisma.ProjectUncheckedCreateWithoutClientInput> | Prisma.ProjectCreateWithoutClientInput[] | Prisma.ProjectUncheckedCreateWithoutClientInput[]
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutClientInput | Prisma.ProjectCreateOrConnectWithoutClientInput[]
+  upsert?: Prisma.ProjectUpsertWithWhereUniqueWithoutClientInput | Prisma.ProjectUpsertWithWhereUniqueWithoutClientInput[]
+  createMany?: Prisma.ProjectCreateManyClientInputEnvelope
+  set?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+  disconnect?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+  delete?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+  connect?: Prisma.ProjectWhereUniqueInput | Prisma.ProjectWhereUniqueInput[]
+  update?: Prisma.ProjectUpdateWithWhereUniqueWithoutClientInput | Prisma.ProjectUpdateWithWhereUniqueWithoutClientInput[]
+  updateMany?: Prisma.ProjectUpdateManyWithWhereWithoutClientInput | Prisma.ProjectUpdateManyWithWhereWithoutClientInput[]
+  deleteMany?: Prisma.ProjectScalarWhereInput | Prisma.ProjectScalarWhereInput[]
+}
+
+export type ProjectCreateNestedOneWithoutDocumentsInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutDocumentsInput, Prisma.ProjectUncheckedCreateWithoutDocumentsInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutDocumentsInput
+  connect?: Prisma.ProjectWhereUniqueInput
+}
+
+export type ProjectUpdateOneWithoutDocumentsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutDocumentsInput, Prisma.ProjectUncheckedCreateWithoutDocumentsInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutDocumentsInput
+  upsert?: Prisma.ProjectUpsertWithoutDocumentsInput
+  disconnect?: Prisma.ProjectWhereInput | boolean
+  delete?: Prisma.ProjectWhereInput | boolean
+  connect?: Prisma.ProjectWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutDocumentsInput, Prisma.ProjectUpdateWithoutDocumentsInput>, Prisma.ProjectUncheckedUpdateWithoutDocumentsInput>
+}
+
+export type ProjectCreateNestedOneWithoutOfferInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutOfferInput, Prisma.ProjectUncheckedCreateWithoutOfferInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutOfferInput
+  connect?: Prisma.ProjectWhereUniqueInput
+}
+
+export type ProjectUncheckedCreateNestedOneWithoutOfferInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutOfferInput, Prisma.ProjectUncheckedCreateWithoutOfferInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutOfferInput
+  connect?: Prisma.ProjectWhereUniqueInput
+}
+
+export type ProjectUpdateOneWithoutOfferNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutOfferInput, Prisma.ProjectUncheckedCreateWithoutOfferInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutOfferInput
+  upsert?: Prisma.ProjectUpsertWithoutOfferInput
+  disconnect?: Prisma.ProjectWhereInput | boolean
+  delete?: Prisma.ProjectWhereInput | boolean
+  connect?: Prisma.ProjectWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutOfferInput, Prisma.ProjectUpdateWithoutOfferInput>, Prisma.ProjectUncheckedUpdateWithoutOfferInput>
+}
+
+export type ProjectUncheckedUpdateOneWithoutOfferNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutOfferInput, Prisma.ProjectUncheckedCreateWithoutOfferInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutOfferInput
+  upsert?: Prisma.ProjectUpsertWithoutOfferInput
+  disconnect?: Prisma.ProjectWhereInput | boolean
+  delete?: Prisma.ProjectWhereInput | boolean
+  connect?: Prisma.ProjectWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutOfferInput, Prisma.ProjectUpdateWithoutOfferInput>, Prisma.ProjectUncheckedUpdateWithoutOfferInput>
+}
+
+export type EnumProjectStatusFieldUpdateOperationsInput = {
+  set?: $Enums.ProjectStatus
+}
+
+export type ProjectCreateNestedOneWithoutInvoicesInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutInvoicesInput, Prisma.ProjectUncheckedCreateWithoutInvoicesInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutInvoicesInput
+  connect?: Prisma.ProjectWhereUniqueInput
+}
+
+export type ProjectUpdateOneRequiredWithoutInvoicesNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutInvoicesInput, Prisma.ProjectUncheckedCreateWithoutInvoicesInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutInvoicesInput
+  upsert?: Prisma.ProjectUpsertWithoutInvoicesInput
+  connect?: Prisma.ProjectWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutInvoicesInput, Prisma.ProjectUpdateWithoutInvoicesInput>, Prisma.ProjectUncheckedUpdateWithoutInvoicesInput>
+}
+
+export type ProjectCreateNestedOneWithoutJournalEventsInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutJournalEventsInput, Prisma.ProjectUncheckedCreateWithoutJournalEventsInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutJournalEventsInput
+  connect?: Prisma.ProjectWhereUniqueInput
+}
+
+export type ProjectUpdateOneRequiredWithoutJournalEventsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutJournalEventsInput, Prisma.ProjectUncheckedCreateWithoutJournalEventsInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutJournalEventsInput
+  upsert?: Prisma.ProjectUpsertWithoutJournalEventsInput
+  connect?: Prisma.ProjectWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutJournalEventsInput, Prisma.ProjectUpdateWithoutJournalEventsInput>, Prisma.ProjectUncheckedUpdateWithoutJournalEventsInput>
 }
 
 export type ProjectCreateNestedManyWithoutTenantInput = {
@@ -362,13 +648,392 @@ export type ProjectUncheckedUpdateManyWithoutTenantNestedInput = {
   deleteMany?: Prisma.ProjectScalarWhereInput | Prisma.ProjectScalarWhereInput[]
 }
 
-export type ProjectCreateWithoutTenantInput = {
+export type ProjectCreateNestedOneWithoutTimesheetsInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutTimesheetsInput, Prisma.ProjectUncheckedCreateWithoutTimesheetsInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutTimesheetsInput
+  connect?: Prisma.ProjectWhereUniqueInput
+}
+
+export type ProjectUpdateOneRequiredWithoutTimesheetsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutTimesheetsInput, Prisma.ProjectUncheckedCreateWithoutTimesheetsInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutTimesheetsInput
+  upsert?: Prisma.ProjectUpsertWithoutTimesheetsInput
+  connect?: Prisma.ProjectWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutTimesheetsInput, Prisma.ProjectUpdateWithoutTimesheetsInput>, Prisma.ProjectUncheckedUpdateWithoutTimesheetsInput>
+}
+
+export type ProjectCreateWithoutClientInput = {
+  title: string
+  description?: string | null
+  status?: $Enums.ProjectStatus
   createdAt?: Date | string
+  documents?: Prisma.DocumentCreateNestedManyWithoutProjectInput
+  timesheets?: Prisma.TimesheetCreateNestedManyWithoutProjectInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutProjectInput
+  journalEvents?: Prisma.JournalEventCreateNestedManyWithoutProjectInput
+  offer: Prisma.OfferCreateNestedOneWithoutProjectInput
+  tenant: Prisma.TenantCreateNestedOneWithoutProjectsInput
+}
+
+export type ProjectUncheckedCreateWithoutClientInput = {
+  id?: number
+  title: string
+  description?: string | null
+  status?: $Enums.ProjectStatus
+  offerId: number
+  tenantId: number
+  createdAt?: Date | string
+  documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutProjectInput
+  timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutProjectInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutProjectInput
+  journalEvents?: Prisma.JournalEventUncheckedCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectCreateOrConnectWithoutClientInput = {
+  where: Prisma.ProjectWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutClientInput, Prisma.ProjectUncheckedCreateWithoutClientInput>
+}
+
+export type ProjectCreateManyClientInputEnvelope = {
+  data: Prisma.ProjectCreateManyClientInput | Prisma.ProjectCreateManyClientInput[]
+  skipDuplicates?: boolean
+}
+
+export type ProjectUpsertWithWhereUniqueWithoutClientInput = {
+  where: Prisma.ProjectWhereUniqueInput
+  update: Prisma.XOR<Prisma.ProjectUpdateWithoutClientInput, Prisma.ProjectUncheckedUpdateWithoutClientInput>
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutClientInput, Prisma.ProjectUncheckedCreateWithoutClientInput>
+}
+
+export type ProjectUpdateWithWhereUniqueWithoutClientInput = {
+  where: Prisma.ProjectWhereUniqueInput
+  data: Prisma.XOR<Prisma.ProjectUpdateWithoutClientInput, Prisma.ProjectUncheckedUpdateWithoutClientInput>
+}
+
+export type ProjectUpdateManyWithWhereWithoutClientInput = {
+  where: Prisma.ProjectScalarWhereInput
+  data: Prisma.XOR<Prisma.ProjectUpdateManyMutationInput, Prisma.ProjectUncheckedUpdateManyWithoutClientInput>
+}
+
+export type ProjectScalarWhereInput = {
+  AND?: Prisma.ProjectScalarWhereInput | Prisma.ProjectScalarWhereInput[]
+  OR?: Prisma.ProjectScalarWhereInput[]
+  NOT?: Prisma.ProjectScalarWhereInput | Prisma.ProjectScalarWhereInput[]
+  id?: Prisma.IntFilter<"Project"> | number
+  title?: Prisma.StringFilter<"Project"> | string
+  description?: Prisma.StringNullableFilter<"Project"> | string | null
+  status?: Prisma.EnumProjectStatusFilter<"Project"> | $Enums.ProjectStatus
+  clientId?: Prisma.IntFilter<"Project"> | number
+  offerId?: Prisma.IntFilter<"Project"> | number
+  tenantId?: Prisma.IntFilter<"Project"> | number
+  createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
+}
+
+export type ProjectCreateWithoutDocumentsInput = {
+  title: string
+  description?: string | null
+  status?: $Enums.ProjectStatus
+  createdAt?: Date | string
+  timesheets?: Prisma.TimesheetCreateNestedManyWithoutProjectInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutProjectInput
+  journalEvents?: Prisma.JournalEventCreateNestedManyWithoutProjectInput
+  client: Prisma.ClientCreateNestedOneWithoutProjectsInput
+  offer: Prisma.OfferCreateNestedOneWithoutProjectInput
+  tenant: Prisma.TenantCreateNestedOneWithoutProjectsInput
+}
+
+export type ProjectUncheckedCreateWithoutDocumentsInput = {
+  id?: number
+  title: string
+  description?: string | null
+  status?: $Enums.ProjectStatus
+  clientId: number
+  offerId: number
+  tenantId: number
+  createdAt?: Date | string
+  timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutProjectInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutProjectInput
+  journalEvents?: Prisma.JournalEventUncheckedCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectCreateOrConnectWithoutDocumentsInput = {
+  where: Prisma.ProjectWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutDocumentsInput, Prisma.ProjectUncheckedCreateWithoutDocumentsInput>
+}
+
+export type ProjectUpsertWithoutDocumentsInput = {
+  update: Prisma.XOR<Prisma.ProjectUpdateWithoutDocumentsInput, Prisma.ProjectUncheckedUpdateWithoutDocumentsInput>
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutDocumentsInput, Prisma.ProjectUncheckedCreateWithoutDocumentsInput>
+  where?: Prisma.ProjectWhereInput
+}
+
+export type ProjectUpdateToOneWithWhereWithoutDocumentsInput = {
+  where?: Prisma.ProjectWhereInput
+  data: Prisma.XOR<Prisma.ProjectUpdateWithoutDocumentsInput, Prisma.ProjectUncheckedUpdateWithoutDocumentsInput>
+}
+
+export type ProjectUpdateWithoutDocumentsInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  timesheets?: Prisma.TimesheetUpdateManyWithoutProjectNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutProjectNestedInput
+  journalEvents?: Prisma.JournalEventUpdateManyWithoutProjectNestedInput
+  client?: Prisma.ClientUpdateOneRequiredWithoutProjectsNestedInput
+  offer?: Prisma.OfferUpdateOneRequiredWithoutProjectNestedInput
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutProjectsNestedInput
+}
+
+export type ProjectUncheckedUpdateWithoutDocumentsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  clientId?: Prisma.IntFieldUpdateOperationsInput | number
+  offerId?: Prisma.IntFieldUpdateOperationsInput | number
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutProjectNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutProjectNestedInput
+  journalEvents?: Prisma.JournalEventUncheckedUpdateManyWithoutProjectNestedInput
+}
+
+export type ProjectCreateWithoutOfferInput = {
+  title: string
+  description?: string | null
+  status?: $Enums.ProjectStatus
+  createdAt?: Date | string
+  documents?: Prisma.DocumentCreateNestedManyWithoutProjectInput
+  timesheets?: Prisma.TimesheetCreateNestedManyWithoutProjectInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutProjectInput
+  journalEvents?: Prisma.JournalEventCreateNestedManyWithoutProjectInput
+  client: Prisma.ClientCreateNestedOneWithoutProjectsInput
+  tenant: Prisma.TenantCreateNestedOneWithoutProjectsInput
+}
+
+export type ProjectUncheckedCreateWithoutOfferInput = {
+  id?: number
+  title: string
+  description?: string | null
+  status?: $Enums.ProjectStatus
+  clientId: number
+  tenantId: number
+  createdAt?: Date | string
+  documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutProjectInput
+  timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutProjectInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutProjectInput
+  journalEvents?: Prisma.JournalEventUncheckedCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectCreateOrConnectWithoutOfferInput = {
+  where: Prisma.ProjectWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutOfferInput, Prisma.ProjectUncheckedCreateWithoutOfferInput>
+}
+
+export type ProjectUpsertWithoutOfferInput = {
+  update: Prisma.XOR<Prisma.ProjectUpdateWithoutOfferInput, Prisma.ProjectUncheckedUpdateWithoutOfferInput>
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutOfferInput, Prisma.ProjectUncheckedCreateWithoutOfferInput>
+  where?: Prisma.ProjectWhereInput
+}
+
+export type ProjectUpdateToOneWithWhereWithoutOfferInput = {
+  where?: Prisma.ProjectWhereInput
+  data: Prisma.XOR<Prisma.ProjectUpdateWithoutOfferInput, Prisma.ProjectUncheckedUpdateWithoutOfferInput>
+}
+
+export type ProjectUpdateWithoutOfferInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  documents?: Prisma.DocumentUpdateManyWithoutProjectNestedInput
+  timesheets?: Prisma.TimesheetUpdateManyWithoutProjectNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutProjectNestedInput
+  journalEvents?: Prisma.JournalEventUpdateManyWithoutProjectNestedInput
+  client?: Prisma.ClientUpdateOneRequiredWithoutProjectsNestedInput
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutProjectsNestedInput
+}
+
+export type ProjectUncheckedUpdateWithoutOfferInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  clientId?: Prisma.IntFieldUpdateOperationsInput | number
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  documents?: Prisma.DocumentUncheckedUpdateManyWithoutProjectNestedInput
+  timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutProjectNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutProjectNestedInput
+  journalEvents?: Prisma.JournalEventUncheckedUpdateManyWithoutProjectNestedInput
+}
+
+export type ProjectCreateWithoutInvoicesInput = {
+  title: string
+  description?: string | null
+  status?: $Enums.ProjectStatus
+  createdAt?: Date | string
+  documents?: Prisma.DocumentCreateNestedManyWithoutProjectInput
+  timesheets?: Prisma.TimesheetCreateNestedManyWithoutProjectInput
+  journalEvents?: Prisma.JournalEventCreateNestedManyWithoutProjectInput
+  client: Prisma.ClientCreateNestedOneWithoutProjectsInput
+  offer: Prisma.OfferCreateNestedOneWithoutProjectInput
+  tenant: Prisma.TenantCreateNestedOneWithoutProjectsInput
+}
+
+export type ProjectUncheckedCreateWithoutInvoicesInput = {
+  id?: number
+  title: string
+  description?: string | null
+  status?: $Enums.ProjectStatus
+  clientId: number
+  offerId: number
+  tenantId: number
+  createdAt?: Date | string
+  documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutProjectInput
+  timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutProjectInput
+  journalEvents?: Prisma.JournalEventUncheckedCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectCreateOrConnectWithoutInvoicesInput = {
+  where: Prisma.ProjectWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutInvoicesInput, Prisma.ProjectUncheckedCreateWithoutInvoicesInput>
+}
+
+export type ProjectUpsertWithoutInvoicesInput = {
+  update: Prisma.XOR<Prisma.ProjectUpdateWithoutInvoicesInput, Prisma.ProjectUncheckedUpdateWithoutInvoicesInput>
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutInvoicesInput, Prisma.ProjectUncheckedCreateWithoutInvoicesInput>
+  where?: Prisma.ProjectWhereInput
+}
+
+export type ProjectUpdateToOneWithWhereWithoutInvoicesInput = {
+  where?: Prisma.ProjectWhereInput
+  data: Prisma.XOR<Prisma.ProjectUpdateWithoutInvoicesInput, Prisma.ProjectUncheckedUpdateWithoutInvoicesInput>
+}
+
+export type ProjectUpdateWithoutInvoicesInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  documents?: Prisma.DocumentUpdateManyWithoutProjectNestedInput
+  timesheets?: Prisma.TimesheetUpdateManyWithoutProjectNestedInput
+  journalEvents?: Prisma.JournalEventUpdateManyWithoutProjectNestedInput
+  client?: Prisma.ClientUpdateOneRequiredWithoutProjectsNestedInput
+  offer?: Prisma.OfferUpdateOneRequiredWithoutProjectNestedInput
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutProjectsNestedInput
+}
+
+export type ProjectUncheckedUpdateWithoutInvoicesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  clientId?: Prisma.IntFieldUpdateOperationsInput | number
+  offerId?: Prisma.IntFieldUpdateOperationsInput | number
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  documents?: Prisma.DocumentUncheckedUpdateManyWithoutProjectNestedInput
+  timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutProjectNestedInput
+  journalEvents?: Prisma.JournalEventUncheckedUpdateManyWithoutProjectNestedInput
+}
+
+export type ProjectCreateWithoutJournalEventsInput = {
+  title: string
+  description?: string | null
+  status?: $Enums.ProjectStatus
+  createdAt?: Date | string
+  documents?: Prisma.DocumentCreateNestedManyWithoutProjectInput
+  timesheets?: Prisma.TimesheetCreateNestedManyWithoutProjectInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutProjectInput
+  client: Prisma.ClientCreateNestedOneWithoutProjectsInput
+  offer: Prisma.OfferCreateNestedOneWithoutProjectInput
+  tenant: Prisma.TenantCreateNestedOneWithoutProjectsInput
+}
+
+export type ProjectUncheckedCreateWithoutJournalEventsInput = {
+  id?: number
+  title: string
+  description?: string | null
+  status?: $Enums.ProjectStatus
+  clientId: number
+  offerId: number
+  tenantId: number
+  createdAt?: Date | string
+  documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutProjectInput
+  timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutProjectInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectCreateOrConnectWithoutJournalEventsInput = {
+  where: Prisma.ProjectWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutJournalEventsInput, Prisma.ProjectUncheckedCreateWithoutJournalEventsInput>
+}
+
+export type ProjectUpsertWithoutJournalEventsInput = {
+  update: Prisma.XOR<Prisma.ProjectUpdateWithoutJournalEventsInput, Prisma.ProjectUncheckedUpdateWithoutJournalEventsInput>
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutJournalEventsInput, Prisma.ProjectUncheckedCreateWithoutJournalEventsInput>
+  where?: Prisma.ProjectWhereInput
+}
+
+export type ProjectUpdateToOneWithWhereWithoutJournalEventsInput = {
+  where?: Prisma.ProjectWhereInput
+  data: Prisma.XOR<Prisma.ProjectUpdateWithoutJournalEventsInput, Prisma.ProjectUncheckedUpdateWithoutJournalEventsInput>
+}
+
+export type ProjectUpdateWithoutJournalEventsInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  documents?: Prisma.DocumentUpdateManyWithoutProjectNestedInput
+  timesheets?: Prisma.TimesheetUpdateManyWithoutProjectNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutProjectNestedInput
+  client?: Prisma.ClientUpdateOneRequiredWithoutProjectsNestedInput
+  offer?: Prisma.OfferUpdateOneRequiredWithoutProjectNestedInput
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutProjectsNestedInput
+}
+
+export type ProjectUncheckedUpdateWithoutJournalEventsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  clientId?: Prisma.IntFieldUpdateOperationsInput | number
+  offerId?: Prisma.IntFieldUpdateOperationsInput | number
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  documents?: Prisma.DocumentUncheckedUpdateManyWithoutProjectNestedInput
+  timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutProjectNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutProjectNestedInput
+}
+
+export type ProjectCreateWithoutTenantInput = {
+  title: string
+  description?: string | null
+  status?: $Enums.ProjectStatus
+  createdAt?: Date | string
+  documents?: Prisma.DocumentCreateNestedManyWithoutProjectInput
+  timesheets?: Prisma.TimesheetCreateNestedManyWithoutProjectInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutProjectInput
+  journalEvents?: Prisma.JournalEventCreateNestedManyWithoutProjectInput
+  client: Prisma.ClientCreateNestedOneWithoutProjectsInput
+  offer: Prisma.OfferCreateNestedOneWithoutProjectInput
 }
 
 export type ProjectUncheckedCreateWithoutTenantInput = {
   id?: number
+  title: string
+  description?: string | null
+  status?: $Enums.ProjectStatus
+  clientId: number
+  offerId: number
   createdAt?: Date | string
+  documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutProjectInput
+  timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutProjectInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutProjectInput
+  journalEvents?: Prisma.JournalEventUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutTenantInput = {
@@ -397,81 +1062,326 @@ export type ProjectUpdateManyWithWhereWithoutTenantInput = {
   data: Prisma.XOR<Prisma.ProjectUpdateManyMutationInput, Prisma.ProjectUncheckedUpdateManyWithoutTenantInput>
 }
 
-export type ProjectScalarWhereInput = {
-  AND?: Prisma.ProjectScalarWhereInput | Prisma.ProjectScalarWhereInput[]
-  OR?: Prisma.ProjectScalarWhereInput[]
-  NOT?: Prisma.ProjectScalarWhereInput | Prisma.ProjectScalarWhereInput[]
-  id?: Prisma.IntFilter<"Project"> | number
-  tenantId?: Prisma.IntFilter<"Project"> | number
-  createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
+export type ProjectCreateWithoutTimesheetsInput = {
+  title: string
+  description?: string | null
+  status?: $Enums.ProjectStatus
+  createdAt?: Date | string
+  documents?: Prisma.DocumentCreateNestedManyWithoutProjectInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutProjectInput
+  journalEvents?: Prisma.JournalEventCreateNestedManyWithoutProjectInput
+  client: Prisma.ClientCreateNestedOneWithoutProjectsInput
+  offer: Prisma.OfferCreateNestedOneWithoutProjectInput
+  tenant: Prisma.TenantCreateNestedOneWithoutProjectsInput
+}
+
+export type ProjectUncheckedCreateWithoutTimesheetsInput = {
+  id?: number
+  title: string
+  description?: string | null
+  status?: $Enums.ProjectStatus
+  clientId: number
+  offerId: number
+  tenantId: number
+  createdAt?: Date | string
+  documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutProjectInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutProjectInput
+  journalEvents?: Prisma.JournalEventUncheckedCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectCreateOrConnectWithoutTimesheetsInput = {
+  where: Prisma.ProjectWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutTimesheetsInput, Prisma.ProjectUncheckedCreateWithoutTimesheetsInput>
+}
+
+export type ProjectUpsertWithoutTimesheetsInput = {
+  update: Prisma.XOR<Prisma.ProjectUpdateWithoutTimesheetsInput, Prisma.ProjectUncheckedUpdateWithoutTimesheetsInput>
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutTimesheetsInput, Prisma.ProjectUncheckedCreateWithoutTimesheetsInput>
+  where?: Prisma.ProjectWhereInput
+}
+
+export type ProjectUpdateToOneWithWhereWithoutTimesheetsInput = {
+  where?: Prisma.ProjectWhereInput
+  data: Prisma.XOR<Prisma.ProjectUpdateWithoutTimesheetsInput, Prisma.ProjectUncheckedUpdateWithoutTimesheetsInput>
+}
+
+export type ProjectUpdateWithoutTimesheetsInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  documents?: Prisma.DocumentUpdateManyWithoutProjectNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutProjectNestedInput
+  journalEvents?: Prisma.JournalEventUpdateManyWithoutProjectNestedInput
+  client?: Prisma.ClientUpdateOneRequiredWithoutProjectsNestedInput
+  offer?: Prisma.OfferUpdateOneRequiredWithoutProjectNestedInput
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutProjectsNestedInput
+}
+
+export type ProjectUncheckedUpdateWithoutTimesheetsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  clientId?: Prisma.IntFieldUpdateOperationsInput | number
+  offerId?: Prisma.IntFieldUpdateOperationsInput | number
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  documents?: Prisma.DocumentUncheckedUpdateManyWithoutProjectNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutProjectNestedInput
+  journalEvents?: Prisma.JournalEventUncheckedUpdateManyWithoutProjectNestedInput
+}
+
+export type ProjectCreateManyClientInput = {
+  id?: number
+  title: string
+  description?: string | null
+  status?: $Enums.ProjectStatus
+  offerId: number
+  tenantId: number
+  createdAt?: Date | string
+}
+
+export type ProjectUpdateWithoutClientInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  documents?: Prisma.DocumentUpdateManyWithoutProjectNestedInput
+  timesheets?: Prisma.TimesheetUpdateManyWithoutProjectNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutProjectNestedInput
+  journalEvents?: Prisma.JournalEventUpdateManyWithoutProjectNestedInput
+  offer?: Prisma.OfferUpdateOneRequiredWithoutProjectNestedInput
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutProjectsNestedInput
+}
+
+export type ProjectUncheckedUpdateWithoutClientInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  offerId?: Prisma.IntFieldUpdateOperationsInput | number
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  documents?: Prisma.DocumentUncheckedUpdateManyWithoutProjectNestedInput
+  timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutProjectNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutProjectNestedInput
+  journalEvents?: Prisma.JournalEventUncheckedUpdateManyWithoutProjectNestedInput
+}
+
+export type ProjectUncheckedUpdateManyWithoutClientInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  offerId?: Prisma.IntFieldUpdateOperationsInput | number
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ProjectCreateManyTenantInput = {
   id?: number
+  title: string
+  description?: string | null
+  status?: $Enums.ProjectStatus
+  clientId: number
+  offerId: number
   createdAt?: Date | string
 }
 
 export type ProjectUpdateWithoutTenantInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  documents?: Prisma.DocumentUpdateManyWithoutProjectNestedInput
+  timesheets?: Prisma.TimesheetUpdateManyWithoutProjectNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutProjectNestedInput
+  journalEvents?: Prisma.JournalEventUpdateManyWithoutProjectNestedInput
+  client?: Prisma.ClientUpdateOneRequiredWithoutProjectsNestedInput
+  offer?: Prisma.OfferUpdateOneRequiredWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateWithoutTenantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  clientId?: Prisma.IntFieldUpdateOperationsInput | number
+  offerId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  documents?: Prisma.DocumentUncheckedUpdateManyWithoutProjectNestedInput
+  timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutProjectNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutProjectNestedInput
+  journalEvents?: Prisma.JournalEventUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateManyWithoutTenantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  clientId?: Prisma.IntFieldUpdateOperationsInput | number
+  offerId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
+/**
+ * Count Type ProjectCountOutputType
+ */
+
+export type ProjectCountOutputType = {
+  documents: number
+  timesheets: number
+  invoices: number
+  journalEvents: number
+}
+
+export type ProjectCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  documents?: boolean | ProjectCountOutputTypeCountDocumentsArgs
+  timesheets?: boolean | ProjectCountOutputTypeCountTimesheetsArgs
+  invoices?: boolean | ProjectCountOutputTypeCountInvoicesArgs
+  journalEvents?: boolean | ProjectCountOutputTypeCountJournalEventsArgs
+}
+
+/**
+ * ProjectCountOutputType without action
+ */
+export type ProjectCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the ProjectCountOutputType
+   */
+  select?: Prisma.ProjectCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * ProjectCountOutputType without action
+ */
+export type ProjectCountOutputTypeCountDocumentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DocumentWhereInput
+}
+
+/**
+ * ProjectCountOutputType without action
+ */
+export type ProjectCountOutputTypeCountTimesheetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TimesheetWhereInput
+}
+
+/**
+ * ProjectCountOutputType without action
+ */
+export type ProjectCountOutputTypeCountInvoicesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.InvoiceWhereInput
+}
+
+/**
+ * ProjectCountOutputType without action
+ */
+export type ProjectCountOutputTypeCountJournalEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.JournalEventWhereInput
+}
+
 
 export type ProjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  title?: boolean
+  description?: boolean
+  status?: boolean
+  clientId?: boolean
+  offerId?: boolean
   tenantId?: boolean
   createdAt?: boolean
+  documents?: boolean | Prisma.Project$documentsArgs<ExtArgs>
+  timesheets?: boolean | Prisma.Project$timesheetsArgs<ExtArgs>
+  invoices?: boolean | Prisma.Project$invoicesArgs<ExtArgs>
+  journalEvents?: boolean | Prisma.Project$journalEventsArgs<ExtArgs>
+  client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
+  offer?: boolean | Prisma.OfferDefaultArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
+  _count?: boolean | Prisma.ProjectCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["project"]>
 
 export type ProjectSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  title?: boolean
+  description?: boolean
+  status?: boolean
+  clientId?: boolean
+  offerId?: boolean
   tenantId?: boolean
   createdAt?: boolean
+  client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
+  offer?: boolean | Prisma.OfferDefaultArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["project"]>
 
 export type ProjectSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  title?: boolean
+  description?: boolean
+  status?: boolean
+  clientId?: boolean
+  offerId?: boolean
   tenantId?: boolean
   createdAt?: boolean
+  client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
+  offer?: boolean | Prisma.OfferDefaultArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["project"]>
 
 export type ProjectSelectScalar = {
   id?: boolean
+  title?: boolean
+  description?: boolean
+  status?: boolean
+  clientId?: boolean
+  offerId?: boolean
   tenantId?: boolean
   createdAt?: boolean
 }
 
-export type ProjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "tenantId" | "createdAt", ExtArgs["result"]["project"]>
+export type ProjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "status" | "clientId" | "offerId" | "tenantId" | "createdAt", ExtArgs["result"]["project"]>
 export type ProjectInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  documents?: boolean | Prisma.Project$documentsArgs<ExtArgs>
+  timesheets?: boolean | Prisma.Project$timesheetsArgs<ExtArgs>
+  invoices?: boolean | Prisma.Project$invoicesArgs<ExtArgs>
+  journalEvents?: boolean | Prisma.Project$journalEventsArgs<ExtArgs>
+  client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
+  offer?: boolean | Prisma.OfferDefaultArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
+  _count?: boolean | Prisma.ProjectCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ProjectIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
+  offer?: boolean | Prisma.OfferDefaultArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }
 export type ProjectIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
+  offer?: boolean | Prisma.OfferDefaultArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }
 
 export type $ProjectPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Project"
   objects: {
+    documents: Prisma.$DocumentPayload<ExtArgs>[]
+    timesheets: Prisma.$TimesheetPayload<ExtArgs>[]
+    invoices: Prisma.$InvoicePayload<ExtArgs>[]
+    journalEvents: Prisma.$JournalEventPayload<ExtArgs>[]
+    client: Prisma.$ClientPayload<ExtArgs>
+    offer: Prisma.$OfferPayload<ExtArgs>
     tenant: Prisma.$TenantPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
+    title: string
+    description: string | null
+    status: $Enums.ProjectStatus
+    clientId: number
+    offerId: number
     tenantId: number
     createdAt: Date
   }, ExtArgs["result"]["project"]>
@@ -868,6 +1778,12 @@ readonly fields: ProjectFieldRefs;
  */
 export interface Prisma__ProjectClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  documents<T extends Prisma.Project$documentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$documentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  timesheets<T extends Prisma.Project$timesheetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$timesheetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TimesheetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  invoices<T extends Prisma.Project$invoicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  journalEvents<T extends Prisma.Project$journalEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$journalEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$JournalEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  client<T extends Prisma.ClientDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClientDefaultArgs<ExtArgs>>): Prisma.Prisma__ClientClient<runtime.Types.Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  offer<T extends Prisma.OfferDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OfferDefaultArgs<ExtArgs>>): Prisma.Prisma__OfferClient<runtime.Types.Result.GetResult<Prisma.$OfferPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   tenant<T extends Prisma.TenantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TenantDefaultArgs<ExtArgs>>): Prisma.Prisma__TenantClient<runtime.Types.Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -899,6 +1815,11 @@ export interface Prisma__ProjectClient<T, Null = never, ExtArgs extends runtime.
  */
 export interface ProjectFieldRefs {
   readonly id: Prisma.FieldRef<"Project", 'Int'>
+  readonly title: Prisma.FieldRef<"Project", 'String'>
+  readonly description: Prisma.FieldRef<"Project", 'String'>
+  readonly status: Prisma.FieldRef<"Project", 'ProjectStatus'>
+  readonly clientId: Prisma.FieldRef<"Project", 'Int'>
+  readonly offerId: Prisma.FieldRef<"Project", 'Int'>
   readonly tenantId: Prisma.FieldRef<"Project", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Project", 'DateTime'>
 }
@@ -1299,6 +2220,102 @@ export type ProjectDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Limit how many Projects to delete.
    */
   limit?: number
+}
+
+/**
+ * Project.documents
+ */
+export type Project$documentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Document
+   */
+  select?: Prisma.DocumentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Document
+   */
+  omit?: Prisma.DocumentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.DocumentInclude<ExtArgs> | null
+  where?: Prisma.DocumentWhereInput
+  orderBy?: Prisma.DocumentOrderByWithRelationInput | Prisma.DocumentOrderByWithRelationInput[]
+  cursor?: Prisma.DocumentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.DocumentScalarFieldEnum | Prisma.DocumentScalarFieldEnum[]
+}
+
+/**
+ * Project.timesheets
+ */
+export type Project$timesheetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Timesheet
+   */
+  select?: Prisma.TimesheetSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Timesheet
+   */
+  omit?: Prisma.TimesheetOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TimesheetInclude<ExtArgs> | null
+  where?: Prisma.TimesheetWhereInput
+  orderBy?: Prisma.TimesheetOrderByWithRelationInput | Prisma.TimesheetOrderByWithRelationInput[]
+  cursor?: Prisma.TimesheetWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TimesheetScalarFieldEnum | Prisma.TimesheetScalarFieldEnum[]
+}
+
+/**
+ * Project.invoices
+ */
+export type Project$invoicesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Invoice
+   */
+  select?: Prisma.InvoiceSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Invoice
+   */
+  omit?: Prisma.InvoiceOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.InvoiceInclude<ExtArgs> | null
+  where?: Prisma.InvoiceWhereInput
+  orderBy?: Prisma.InvoiceOrderByWithRelationInput | Prisma.InvoiceOrderByWithRelationInput[]
+  cursor?: Prisma.InvoiceWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.InvoiceScalarFieldEnum | Prisma.InvoiceScalarFieldEnum[]
+}
+
+/**
+ * Project.journalEvents
+ */
+export type Project$journalEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the JournalEvent
+   */
+  select?: Prisma.JournalEventSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the JournalEvent
+   */
+  omit?: Prisma.JournalEventOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.JournalEventInclude<ExtArgs> | null
+  where?: Prisma.JournalEventWhereInput
+  orderBy?: Prisma.JournalEventOrderByWithRelationInput | Prisma.JournalEventOrderByWithRelationInput[]
+  cursor?: Prisma.JournalEventWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.JournalEventScalarFieldEnum | Prisma.JournalEventScalarFieldEnum[]
 }
 
 /**

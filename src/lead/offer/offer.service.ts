@@ -117,7 +117,9 @@ export class OfferService {
     let fileMetadatas: FileMetadata[] = [];
 
     try {
-      fileMetadatas = await this.s3ClientService.bulkSave(files);
+      if(files && files.length !== 0) {
+        fileMetadatas = await this.s3ClientService.bulkSave(files);
+      }
 
       return await this.prismaClientService.offer.create({
         data: {
@@ -178,18 +180,6 @@ export class OfferService {
               contactName: true,
               email: true,
               phone: true,
-            },
-          },
-          members: {
-            select: {
-              id: true,
-              fullname: true,
-              email: true,
-              phone: true,
-              roles: true,
-            },
-            orderBy: {
-              id: 'desc',
             },
           },
           comments: {

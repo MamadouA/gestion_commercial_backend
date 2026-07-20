@@ -308,8 +308,8 @@ export type OfferWhereInput = {
   products?: Prisma.ProductListRelationFilter
   documents?: Prisma.DocumentListRelationFilter
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  members?: Prisma.UserListRelationFilter
   client?: Prisma.XOR<Prisma.ClientScalarRelationFilter, Prisma.ClientWhereInput>
+  project?: Prisma.XOR<Prisma.ProjectNullableScalarRelationFilter, Prisma.ProjectWhereInput> | null
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
 }
 
@@ -331,8 +331,8 @@ export type OfferOrderByWithRelationInput = {
   products?: Prisma.ProductOrderByRelationAggregateInput
   documents?: Prisma.DocumentOrderByRelationAggregateInput
   author?: Prisma.UserOrderByWithRelationInput
-  members?: Prisma.UserOrderByRelationAggregateInput
   client?: Prisma.ClientOrderByWithRelationInput
+  project?: Prisma.ProjectOrderByWithRelationInput
   tenant?: Prisma.TenantOrderByWithRelationInput
 }
 
@@ -357,8 +357,8 @@ export type OfferWhereUniqueInput = Prisma.AtLeast<{
   products?: Prisma.ProductListRelationFilter
   documents?: Prisma.DocumentListRelationFilter
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  members?: Prisma.UserListRelationFilter
   client?: Prisma.XOR<Prisma.ClientScalarRelationFilter, Prisma.ClientWhereInput>
+  project?: Prisma.XOR<Prisma.ProjectNullableScalarRelationFilter, Prisma.ProjectWhereInput> | null
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
 }, "id">
 
@@ -416,8 +416,8 @@ export type OfferCreateInput = {
   products?: Prisma.ProductCreateNestedManyWithoutOffersInput
   documents?: Prisma.DocumentCreateNestedManyWithoutOfferInput
   author: Prisma.UserCreateNestedOneWithoutCreatedOffersInput
-  members?: Prisma.UserCreateNestedManyWithoutMembershipOffersInput
   client: Prisma.ClientCreateNestedOneWithoutOffersInput
+  project?: Prisma.ProjectCreateNestedOneWithoutOfferInput
   tenant: Prisma.TenantCreateNestedOneWithoutOffersInput
 }
 
@@ -438,7 +438,7 @@ export type OfferUncheckedCreateInput = {
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutOfferInput
   products?: Prisma.ProductUncheckedCreateNestedManyWithoutOffersInput
   documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutOfferInput
-  members?: Prisma.UserUncheckedCreateNestedManyWithoutMembershipOffersInput
+  project?: Prisma.ProjectUncheckedCreateNestedOneWithoutOfferInput
 }
 
 export type OfferUpdateInput = {
@@ -455,8 +455,8 @@ export type OfferUpdateInput = {
   products?: Prisma.ProductUpdateManyWithoutOffersNestedInput
   documents?: Prisma.DocumentUpdateManyWithoutOfferNestedInput
   author?: Prisma.UserUpdateOneRequiredWithoutCreatedOffersNestedInput
-  members?: Prisma.UserUpdateManyWithoutMembershipOffersNestedInput
   client?: Prisma.ClientUpdateOneRequiredWithoutOffersNestedInput
+  project?: Prisma.ProjectUpdateOneWithoutOfferNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutOffersNestedInput
 }
 
@@ -477,7 +477,7 @@ export type OfferUncheckedUpdateInput = {
   comments?: Prisma.CommentUncheckedUpdateManyWithoutOfferNestedInput
   products?: Prisma.ProductUncheckedUpdateManyWithoutOffersNestedInput
   documents?: Prisma.DocumentUncheckedUpdateManyWithoutOfferNestedInput
-  members?: Prisma.UserUncheckedUpdateManyWithoutMembershipOffersNestedInput
+  project?: Prisma.ProjectUncheckedUpdateOneWithoutOfferNestedInput
 }
 
 export type OfferCreateManyInput = {
@@ -605,6 +605,11 @@ export type OfferSumOrderByAggregateInput = {
   authorId?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
+}
+
+export type OfferScalarRelationFilter = {
+  is?: Prisma.OfferWhereInput
+  isNot?: Prisma.OfferWhereInput
 }
 
 export type OfferCreateNestedManyWithoutClientInput = {
@@ -735,6 +740,20 @@ export type OfferUncheckedUpdateManyWithoutProductsNestedInput = {
   deleteMany?: Prisma.OfferScalarWhereInput | Prisma.OfferScalarWhereInput[]
 }
 
+export type OfferCreateNestedOneWithoutProjectInput = {
+  create?: Prisma.XOR<Prisma.OfferCreateWithoutProjectInput, Prisma.OfferUncheckedCreateWithoutProjectInput>
+  connectOrCreate?: Prisma.OfferCreateOrConnectWithoutProjectInput
+  connect?: Prisma.OfferWhereUniqueInput
+}
+
+export type OfferUpdateOneRequiredWithoutProjectNestedInput = {
+  create?: Prisma.XOR<Prisma.OfferCreateWithoutProjectInput, Prisma.OfferUncheckedCreateWithoutProjectInput>
+  connectOrCreate?: Prisma.OfferCreateOrConnectWithoutProjectInput
+  upsert?: Prisma.OfferUpsertWithoutProjectInput
+  connect?: Prisma.OfferWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OfferUpdateToOneWithWhereWithoutProjectInput, Prisma.OfferUpdateWithoutProjectInput>, Prisma.OfferUncheckedUpdateWithoutProjectInput>
+}
+
 export type OfferCreateNestedManyWithoutTenantInput = {
   create?: Prisma.XOR<Prisma.OfferCreateWithoutTenantInput, Prisma.OfferUncheckedCreateWithoutTenantInput> | Prisma.OfferCreateWithoutTenantInput[] | Prisma.OfferUncheckedCreateWithoutTenantInput[]
   connectOrCreate?: Prisma.OfferCreateOrConnectWithoutTenantInput | Prisma.OfferCreateOrConnectWithoutTenantInput[]
@@ -784,22 +803,10 @@ export type OfferCreateNestedManyWithoutAuthorInput = {
   connect?: Prisma.OfferWhereUniqueInput | Prisma.OfferWhereUniqueInput[]
 }
 
-export type OfferCreateNestedManyWithoutMembersInput = {
-  create?: Prisma.XOR<Prisma.OfferCreateWithoutMembersInput, Prisma.OfferUncheckedCreateWithoutMembersInput> | Prisma.OfferCreateWithoutMembersInput[] | Prisma.OfferUncheckedCreateWithoutMembersInput[]
-  connectOrCreate?: Prisma.OfferCreateOrConnectWithoutMembersInput | Prisma.OfferCreateOrConnectWithoutMembersInput[]
-  connect?: Prisma.OfferWhereUniqueInput | Prisma.OfferWhereUniqueInput[]
-}
-
 export type OfferUncheckedCreateNestedManyWithoutAuthorInput = {
   create?: Prisma.XOR<Prisma.OfferCreateWithoutAuthorInput, Prisma.OfferUncheckedCreateWithoutAuthorInput> | Prisma.OfferCreateWithoutAuthorInput[] | Prisma.OfferUncheckedCreateWithoutAuthorInput[]
   connectOrCreate?: Prisma.OfferCreateOrConnectWithoutAuthorInput | Prisma.OfferCreateOrConnectWithoutAuthorInput[]
   createMany?: Prisma.OfferCreateManyAuthorInputEnvelope
-  connect?: Prisma.OfferWhereUniqueInput | Prisma.OfferWhereUniqueInput[]
-}
-
-export type OfferUncheckedCreateNestedManyWithoutMembersInput = {
-  create?: Prisma.XOR<Prisma.OfferCreateWithoutMembersInput, Prisma.OfferUncheckedCreateWithoutMembersInput> | Prisma.OfferCreateWithoutMembersInput[] | Prisma.OfferUncheckedCreateWithoutMembersInput[]
-  connectOrCreate?: Prisma.OfferCreateOrConnectWithoutMembersInput | Prisma.OfferCreateOrConnectWithoutMembersInput[]
   connect?: Prisma.OfferWhereUniqueInput | Prisma.OfferWhereUniqueInput[]
 }
 
@@ -817,19 +824,6 @@ export type OfferUpdateManyWithoutAuthorNestedInput = {
   deleteMany?: Prisma.OfferScalarWhereInput | Prisma.OfferScalarWhereInput[]
 }
 
-export type OfferUpdateManyWithoutMembersNestedInput = {
-  create?: Prisma.XOR<Prisma.OfferCreateWithoutMembersInput, Prisma.OfferUncheckedCreateWithoutMembersInput> | Prisma.OfferCreateWithoutMembersInput[] | Prisma.OfferUncheckedCreateWithoutMembersInput[]
-  connectOrCreate?: Prisma.OfferCreateOrConnectWithoutMembersInput | Prisma.OfferCreateOrConnectWithoutMembersInput[]
-  upsert?: Prisma.OfferUpsertWithWhereUniqueWithoutMembersInput | Prisma.OfferUpsertWithWhereUniqueWithoutMembersInput[]
-  set?: Prisma.OfferWhereUniqueInput | Prisma.OfferWhereUniqueInput[]
-  disconnect?: Prisma.OfferWhereUniqueInput | Prisma.OfferWhereUniqueInput[]
-  delete?: Prisma.OfferWhereUniqueInput | Prisma.OfferWhereUniqueInput[]
-  connect?: Prisma.OfferWhereUniqueInput | Prisma.OfferWhereUniqueInput[]
-  update?: Prisma.OfferUpdateWithWhereUniqueWithoutMembersInput | Prisma.OfferUpdateWithWhereUniqueWithoutMembersInput[]
-  updateMany?: Prisma.OfferUpdateManyWithWhereWithoutMembersInput | Prisma.OfferUpdateManyWithWhereWithoutMembersInput[]
-  deleteMany?: Prisma.OfferScalarWhereInput | Prisma.OfferScalarWhereInput[]
-}
-
 export type OfferUncheckedUpdateManyWithoutAuthorNestedInput = {
   create?: Prisma.XOR<Prisma.OfferCreateWithoutAuthorInput, Prisma.OfferUncheckedCreateWithoutAuthorInput> | Prisma.OfferCreateWithoutAuthorInput[] | Prisma.OfferUncheckedCreateWithoutAuthorInput[]
   connectOrCreate?: Prisma.OfferCreateOrConnectWithoutAuthorInput | Prisma.OfferCreateOrConnectWithoutAuthorInput[]
@@ -841,19 +835,6 @@ export type OfferUncheckedUpdateManyWithoutAuthorNestedInput = {
   connect?: Prisma.OfferWhereUniqueInput | Prisma.OfferWhereUniqueInput[]
   update?: Prisma.OfferUpdateWithWhereUniqueWithoutAuthorInput | Prisma.OfferUpdateWithWhereUniqueWithoutAuthorInput[]
   updateMany?: Prisma.OfferUpdateManyWithWhereWithoutAuthorInput | Prisma.OfferUpdateManyWithWhereWithoutAuthorInput[]
-  deleteMany?: Prisma.OfferScalarWhereInput | Prisma.OfferScalarWhereInput[]
-}
-
-export type OfferUncheckedUpdateManyWithoutMembersNestedInput = {
-  create?: Prisma.XOR<Prisma.OfferCreateWithoutMembersInput, Prisma.OfferUncheckedCreateWithoutMembersInput> | Prisma.OfferCreateWithoutMembersInput[] | Prisma.OfferUncheckedCreateWithoutMembersInput[]
-  connectOrCreate?: Prisma.OfferCreateOrConnectWithoutMembersInput | Prisma.OfferCreateOrConnectWithoutMembersInput[]
-  upsert?: Prisma.OfferUpsertWithWhereUniqueWithoutMembersInput | Prisma.OfferUpsertWithWhereUniqueWithoutMembersInput[]
-  set?: Prisma.OfferWhereUniqueInput | Prisma.OfferWhereUniqueInput[]
-  disconnect?: Prisma.OfferWhereUniqueInput | Prisma.OfferWhereUniqueInput[]
-  delete?: Prisma.OfferWhereUniqueInput | Prisma.OfferWhereUniqueInput[]
-  connect?: Prisma.OfferWhereUniqueInput | Prisma.OfferWhereUniqueInput[]
-  update?: Prisma.OfferUpdateWithWhereUniqueWithoutMembersInput | Prisma.OfferUpdateWithWhereUniqueWithoutMembersInput[]
-  updateMany?: Prisma.OfferUpdateManyWithWhereWithoutMembersInput | Prisma.OfferUpdateManyWithWhereWithoutMembersInput[]
   deleteMany?: Prisma.OfferScalarWhereInput | Prisma.OfferScalarWhereInput[]
 }
 
@@ -871,7 +852,7 @@ export type OfferCreateWithoutClientInput = {
   products?: Prisma.ProductCreateNestedManyWithoutOffersInput
   documents?: Prisma.DocumentCreateNestedManyWithoutOfferInput
   author: Prisma.UserCreateNestedOneWithoutCreatedOffersInput
-  members?: Prisma.UserCreateNestedManyWithoutMembershipOffersInput
+  project?: Prisma.ProjectCreateNestedOneWithoutOfferInput
   tenant: Prisma.TenantCreateNestedOneWithoutOffersInput
 }
 
@@ -891,7 +872,7 @@ export type OfferUncheckedCreateWithoutClientInput = {
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutOfferInput
   products?: Prisma.ProductUncheckedCreateNestedManyWithoutOffersInput
   documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutOfferInput
-  members?: Prisma.UserUncheckedCreateNestedManyWithoutMembershipOffersInput
+  project?: Prisma.ProjectUncheckedCreateNestedOneWithoutOfferInput
 }
 
 export type OfferCreateOrConnectWithoutClientInput = {
@@ -952,8 +933,8 @@ export type OfferCreateWithoutCommentsInput = {
   products?: Prisma.ProductCreateNestedManyWithoutOffersInput
   documents?: Prisma.DocumentCreateNestedManyWithoutOfferInput
   author: Prisma.UserCreateNestedOneWithoutCreatedOffersInput
-  members?: Prisma.UserCreateNestedManyWithoutMembershipOffersInput
   client: Prisma.ClientCreateNestedOneWithoutOffersInput
+  project?: Prisma.ProjectCreateNestedOneWithoutOfferInput
   tenant: Prisma.TenantCreateNestedOneWithoutOffersInput
 }
 
@@ -973,7 +954,7 @@ export type OfferUncheckedCreateWithoutCommentsInput = {
   createdAt?: Date | string
   products?: Prisma.ProductUncheckedCreateNestedManyWithoutOffersInput
   documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutOfferInput
-  members?: Prisma.UserUncheckedCreateNestedManyWithoutMembershipOffersInput
+  project?: Prisma.ProjectUncheckedCreateNestedOneWithoutOfferInput
 }
 
 export type OfferCreateOrConnectWithoutCommentsInput = {
@@ -1005,8 +986,8 @@ export type OfferUpdateWithoutCommentsInput = {
   products?: Prisma.ProductUpdateManyWithoutOffersNestedInput
   documents?: Prisma.DocumentUpdateManyWithoutOfferNestedInput
   author?: Prisma.UserUpdateOneRequiredWithoutCreatedOffersNestedInput
-  members?: Prisma.UserUpdateManyWithoutMembershipOffersNestedInput
   client?: Prisma.ClientUpdateOneRequiredWithoutOffersNestedInput
+  project?: Prisma.ProjectUpdateOneWithoutOfferNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutOffersNestedInput
 }
 
@@ -1026,7 +1007,7 @@ export type OfferUncheckedUpdateWithoutCommentsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   products?: Prisma.ProductUncheckedUpdateManyWithoutOffersNestedInput
   documents?: Prisma.DocumentUncheckedUpdateManyWithoutOfferNestedInput
-  members?: Prisma.UserUncheckedUpdateManyWithoutMembershipOffersNestedInput
+  project?: Prisma.ProjectUncheckedUpdateOneWithoutOfferNestedInput
 }
 
 export type OfferCreateWithoutDocumentsInput = {
@@ -1042,8 +1023,8 @@ export type OfferCreateWithoutDocumentsInput = {
   comments?: Prisma.CommentCreateNestedManyWithoutOfferInput
   products?: Prisma.ProductCreateNestedManyWithoutOffersInput
   author: Prisma.UserCreateNestedOneWithoutCreatedOffersInput
-  members?: Prisma.UserCreateNestedManyWithoutMembershipOffersInput
   client: Prisma.ClientCreateNestedOneWithoutOffersInput
+  project?: Prisma.ProjectCreateNestedOneWithoutOfferInput
   tenant: Prisma.TenantCreateNestedOneWithoutOffersInput
 }
 
@@ -1063,7 +1044,7 @@ export type OfferUncheckedCreateWithoutDocumentsInput = {
   createdAt?: Date | string
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutOfferInput
   products?: Prisma.ProductUncheckedCreateNestedManyWithoutOffersInput
-  members?: Prisma.UserUncheckedCreateNestedManyWithoutMembershipOffersInput
+  project?: Prisma.ProjectUncheckedCreateNestedOneWithoutOfferInput
 }
 
 export type OfferCreateOrConnectWithoutDocumentsInput = {
@@ -1095,8 +1076,8 @@ export type OfferUpdateWithoutDocumentsInput = {
   comments?: Prisma.CommentUpdateManyWithoutOfferNestedInput
   products?: Prisma.ProductUpdateManyWithoutOffersNestedInput
   author?: Prisma.UserUpdateOneRequiredWithoutCreatedOffersNestedInput
-  members?: Prisma.UserUpdateManyWithoutMembershipOffersNestedInput
   client?: Prisma.ClientUpdateOneRequiredWithoutOffersNestedInput
+  project?: Prisma.ProjectUpdateOneWithoutOfferNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutOffersNestedInput
 }
 
@@ -1116,7 +1097,7 @@ export type OfferUncheckedUpdateWithoutDocumentsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   comments?: Prisma.CommentUncheckedUpdateManyWithoutOfferNestedInput
   products?: Prisma.ProductUncheckedUpdateManyWithoutOffersNestedInput
-  members?: Prisma.UserUncheckedUpdateManyWithoutMembershipOffersNestedInput
+  project?: Prisma.ProjectUncheckedUpdateOneWithoutOfferNestedInput
 }
 
 export type OfferCreateWithoutProductsInput = {
@@ -1132,8 +1113,8 @@ export type OfferCreateWithoutProductsInput = {
   comments?: Prisma.CommentCreateNestedManyWithoutOfferInput
   documents?: Prisma.DocumentCreateNestedManyWithoutOfferInput
   author: Prisma.UserCreateNestedOneWithoutCreatedOffersInput
-  members?: Prisma.UserCreateNestedManyWithoutMembershipOffersInput
   client: Prisma.ClientCreateNestedOneWithoutOffersInput
+  project?: Prisma.ProjectCreateNestedOneWithoutOfferInput
   tenant: Prisma.TenantCreateNestedOneWithoutOffersInput
 }
 
@@ -1153,7 +1134,7 @@ export type OfferUncheckedCreateWithoutProductsInput = {
   createdAt?: Date | string
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutOfferInput
   documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutOfferInput
-  members?: Prisma.UserUncheckedCreateNestedManyWithoutMembershipOffersInput
+  project?: Prisma.ProjectUncheckedCreateNestedOneWithoutOfferInput
 }
 
 export type OfferCreateOrConnectWithoutProductsInput = {
@@ -1177,6 +1158,96 @@ export type OfferUpdateManyWithWhereWithoutProductsInput = {
   data: Prisma.XOR<Prisma.OfferUpdateManyMutationInput, Prisma.OfferUncheckedUpdateManyWithoutProductsInput>
 }
 
+export type OfferCreateWithoutProjectInput = {
+  title: string
+  description?: string | null
+  status?: $Enums.OfferStatus
+  amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  amountIncludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  expiryDate?: Date | string | null
+  sentAt?: Date | string | null
+  createdAt?: Date | string
+  comments?: Prisma.CommentCreateNestedManyWithoutOfferInput
+  products?: Prisma.ProductCreateNestedManyWithoutOffersInput
+  documents?: Prisma.DocumentCreateNestedManyWithoutOfferInput
+  author: Prisma.UserCreateNestedOneWithoutCreatedOffersInput
+  client: Prisma.ClientCreateNestedOneWithoutOffersInput
+  tenant: Prisma.TenantCreateNestedOneWithoutOffersInput
+}
+
+export type OfferUncheckedCreateWithoutProjectInput = {
+  id?: number
+  title: string
+  description?: string | null
+  status?: $Enums.OfferStatus
+  amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  amountIncludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  authorId: number
+  clientId: number
+  tenantId: number
+  expiryDate?: Date | string | null
+  sentAt?: Date | string | null
+  createdAt?: Date | string
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutOfferInput
+  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOffersInput
+  documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutOfferInput
+}
+
+export type OfferCreateOrConnectWithoutProjectInput = {
+  where: Prisma.OfferWhereUniqueInput
+  create: Prisma.XOR<Prisma.OfferCreateWithoutProjectInput, Prisma.OfferUncheckedCreateWithoutProjectInput>
+}
+
+export type OfferUpsertWithoutProjectInput = {
+  update: Prisma.XOR<Prisma.OfferUpdateWithoutProjectInput, Prisma.OfferUncheckedUpdateWithoutProjectInput>
+  create: Prisma.XOR<Prisma.OfferCreateWithoutProjectInput, Prisma.OfferUncheckedCreateWithoutProjectInput>
+  where?: Prisma.OfferWhereInput
+}
+
+export type OfferUpdateToOneWithWhereWithoutProjectInput = {
+  where?: Prisma.OfferWhereInput
+  data: Prisma.XOR<Prisma.OfferUpdateWithoutProjectInput, Prisma.OfferUncheckedUpdateWithoutProjectInput>
+}
+
+export type OfferUpdateWithoutProjectInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumOfferStatusFieldUpdateOperationsInput | $Enums.OfferStatus
+  amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  amountIncludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  comments?: Prisma.CommentUpdateManyWithoutOfferNestedInput
+  products?: Prisma.ProductUpdateManyWithoutOffersNestedInput
+  documents?: Prisma.DocumentUpdateManyWithoutOfferNestedInput
+  author?: Prisma.UserUpdateOneRequiredWithoutCreatedOffersNestedInput
+  client?: Prisma.ClientUpdateOneRequiredWithoutOffersNestedInput
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutOffersNestedInput
+}
+
+export type OfferUncheckedUpdateWithoutProjectInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  status?: Prisma.EnumOfferStatusFieldUpdateOperationsInput | $Enums.OfferStatus
+  amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  amountIncludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  authorId?: Prisma.IntFieldUpdateOperationsInput | number
+  clientId?: Prisma.IntFieldUpdateOperationsInput | number
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
+  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutOfferNestedInput
+  products?: Prisma.ProductUncheckedUpdateManyWithoutOffersNestedInput
+  documents?: Prisma.DocumentUncheckedUpdateManyWithoutOfferNestedInput
+}
+
 export type OfferCreateWithoutTenantInput = {
   title: string
   description?: string | null
@@ -1191,8 +1262,8 @@ export type OfferCreateWithoutTenantInput = {
   products?: Prisma.ProductCreateNestedManyWithoutOffersInput
   documents?: Prisma.DocumentCreateNestedManyWithoutOfferInput
   author: Prisma.UserCreateNestedOneWithoutCreatedOffersInput
-  members?: Prisma.UserCreateNestedManyWithoutMembershipOffersInput
   client: Prisma.ClientCreateNestedOneWithoutOffersInput
+  project?: Prisma.ProjectCreateNestedOneWithoutOfferInput
 }
 
 export type OfferUncheckedCreateWithoutTenantInput = {
@@ -1211,7 +1282,7 @@ export type OfferUncheckedCreateWithoutTenantInput = {
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutOfferInput
   products?: Prisma.ProductUncheckedCreateNestedManyWithoutOffersInput
   documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutOfferInput
-  members?: Prisma.UserUncheckedCreateNestedManyWithoutMembershipOffersInput
+  project?: Prisma.ProjectUncheckedCreateNestedOneWithoutOfferInput
 }
 
 export type OfferCreateOrConnectWithoutTenantInput = {
@@ -1253,8 +1324,8 @@ export type OfferCreateWithoutAuthorInput = {
   comments?: Prisma.CommentCreateNestedManyWithoutOfferInput
   products?: Prisma.ProductCreateNestedManyWithoutOffersInput
   documents?: Prisma.DocumentCreateNestedManyWithoutOfferInput
-  members?: Prisma.UserCreateNestedManyWithoutMembershipOffersInput
   client: Prisma.ClientCreateNestedOneWithoutOffersInput
+  project?: Prisma.ProjectCreateNestedOneWithoutOfferInput
   tenant: Prisma.TenantCreateNestedOneWithoutOffersInput
 }
 
@@ -1274,7 +1345,7 @@ export type OfferUncheckedCreateWithoutAuthorInput = {
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutOfferInput
   products?: Prisma.ProductUncheckedCreateNestedManyWithoutOffersInput
   documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutOfferInput
-  members?: Prisma.UserUncheckedCreateNestedManyWithoutMembershipOffersInput
+  project?: Prisma.ProjectUncheckedCreateNestedOneWithoutOfferInput
 }
 
 export type OfferCreateOrConnectWithoutAuthorInput = {
@@ -1285,48 +1356,6 @@ export type OfferCreateOrConnectWithoutAuthorInput = {
 export type OfferCreateManyAuthorInputEnvelope = {
   data: Prisma.OfferCreateManyAuthorInput | Prisma.OfferCreateManyAuthorInput[]
   skipDuplicates?: boolean
-}
-
-export type OfferCreateWithoutMembersInput = {
-  title: string
-  description?: string | null
-  status?: $Enums.OfferStatus
-  amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  amountIncludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  expiryDate?: Date | string | null
-  sentAt?: Date | string | null
-  createdAt?: Date | string
-  comments?: Prisma.CommentCreateNestedManyWithoutOfferInput
-  products?: Prisma.ProductCreateNestedManyWithoutOffersInput
-  documents?: Prisma.DocumentCreateNestedManyWithoutOfferInput
-  author: Prisma.UserCreateNestedOneWithoutCreatedOffersInput
-  client: Prisma.ClientCreateNestedOneWithoutOffersInput
-  tenant: Prisma.TenantCreateNestedOneWithoutOffersInput
-}
-
-export type OfferUncheckedCreateWithoutMembersInput = {
-  id?: number
-  title: string
-  description?: string | null
-  status?: $Enums.OfferStatus
-  amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  amountIncludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  authorId: number
-  clientId: number
-  tenantId: number
-  expiryDate?: Date | string | null
-  sentAt?: Date | string | null
-  createdAt?: Date | string
-  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutOfferInput
-  products?: Prisma.ProductUncheckedCreateNestedManyWithoutOffersInput
-  documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutOfferInput
-}
-
-export type OfferCreateOrConnectWithoutMembersInput = {
-  where: Prisma.OfferWhereUniqueInput
-  create: Prisma.XOR<Prisma.OfferCreateWithoutMembersInput, Prisma.OfferUncheckedCreateWithoutMembersInput>
 }
 
 export type OfferUpsertWithWhereUniqueWithoutAuthorInput = {
@@ -1343,22 +1372,6 @@ export type OfferUpdateWithWhereUniqueWithoutAuthorInput = {
 export type OfferUpdateManyWithWhereWithoutAuthorInput = {
   where: Prisma.OfferScalarWhereInput
   data: Prisma.XOR<Prisma.OfferUpdateManyMutationInput, Prisma.OfferUncheckedUpdateManyWithoutAuthorInput>
-}
-
-export type OfferUpsertWithWhereUniqueWithoutMembersInput = {
-  where: Prisma.OfferWhereUniqueInput
-  update: Prisma.XOR<Prisma.OfferUpdateWithoutMembersInput, Prisma.OfferUncheckedUpdateWithoutMembersInput>
-  create: Prisma.XOR<Prisma.OfferCreateWithoutMembersInput, Prisma.OfferUncheckedCreateWithoutMembersInput>
-}
-
-export type OfferUpdateWithWhereUniqueWithoutMembersInput = {
-  where: Prisma.OfferWhereUniqueInput
-  data: Prisma.XOR<Prisma.OfferUpdateWithoutMembersInput, Prisma.OfferUncheckedUpdateWithoutMembersInput>
-}
-
-export type OfferUpdateManyWithWhereWithoutMembersInput = {
-  where: Prisma.OfferScalarWhereInput
-  data: Prisma.XOR<Prisma.OfferUpdateManyMutationInput, Prisma.OfferUncheckedUpdateManyWithoutMembersInput>
 }
 
 export type OfferCreateManyClientInput = {
@@ -1390,7 +1403,7 @@ export type OfferUpdateWithoutClientInput = {
   products?: Prisma.ProductUpdateManyWithoutOffersNestedInput
   documents?: Prisma.DocumentUpdateManyWithoutOfferNestedInput
   author?: Prisma.UserUpdateOneRequiredWithoutCreatedOffersNestedInput
-  members?: Prisma.UserUpdateManyWithoutMembershipOffersNestedInput
+  project?: Prisma.ProjectUpdateOneWithoutOfferNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutOffersNestedInput
 }
 
@@ -1410,7 +1423,7 @@ export type OfferUncheckedUpdateWithoutClientInput = {
   comments?: Prisma.CommentUncheckedUpdateManyWithoutOfferNestedInput
   products?: Prisma.ProductUncheckedUpdateManyWithoutOffersNestedInput
   documents?: Prisma.DocumentUncheckedUpdateManyWithoutOfferNestedInput
-  members?: Prisma.UserUncheckedUpdateManyWithoutMembershipOffersNestedInput
+  project?: Prisma.ProjectUncheckedUpdateOneWithoutOfferNestedInput
 }
 
 export type OfferUncheckedUpdateManyWithoutClientInput = {
@@ -1441,8 +1454,8 @@ export type OfferUpdateWithoutProductsInput = {
   comments?: Prisma.CommentUpdateManyWithoutOfferNestedInput
   documents?: Prisma.DocumentUpdateManyWithoutOfferNestedInput
   author?: Prisma.UserUpdateOneRequiredWithoutCreatedOffersNestedInput
-  members?: Prisma.UserUpdateManyWithoutMembershipOffersNestedInput
   client?: Prisma.ClientUpdateOneRequiredWithoutOffersNestedInput
+  project?: Prisma.ProjectUpdateOneWithoutOfferNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutOffersNestedInput
 }
 
@@ -1462,7 +1475,7 @@ export type OfferUncheckedUpdateWithoutProductsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   comments?: Prisma.CommentUncheckedUpdateManyWithoutOfferNestedInput
   documents?: Prisma.DocumentUncheckedUpdateManyWithoutOfferNestedInput
-  members?: Prisma.UserUncheckedUpdateManyWithoutMembershipOffersNestedInput
+  project?: Prisma.ProjectUncheckedUpdateOneWithoutOfferNestedInput
 }
 
 export type OfferUncheckedUpdateManyWithoutProductsInput = {
@@ -1510,8 +1523,8 @@ export type OfferUpdateWithoutTenantInput = {
   products?: Prisma.ProductUpdateManyWithoutOffersNestedInput
   documents?: Prisma.DocumentUpdateManyWithoutOfferNestedInput
   author?: Prisma.UserUpdateOneRequiredWithoutCreatedOffersNestedInput
-  members?: Prisma.UserUpdateManyWithoutMembershipOffersNestedInput
   client?: Prisma.ClientUpdateOneRequiredWithoutOffersNestedInput
+  project?: Prisma.ProjectUpdateOneWithoutOfferNestedInput
 }
 
 export type OfferUncheckedUpdateWithoutTenantInput = {
@@ -1530,7 +1543,7 @@ export type OfferUncheckedUpdateWithoutTenantInput = {
   comments?: Prisma.CommentUncheckedUpdateManyWithoutOfferNestedInput
   products?: Prisma.ProductUncheckedUpdateManyWithoutOffersNestedInput
   documents?: Prisma.DocumentUncheckedUpdateManyWithoutOfferNestedInput
-  members?: Prisma.UserUncheckedUpdateManyWithoutMembershipOffersNestedInput
+  project?: Prisma.ProjectUncheckedUpdateOneWithoutOfferNestedInput
 }
 
 export type OfferUncheckedUpdateManyWithoutTenantInput = {
@@ -1576,8 +1589,8 @@ export type OfferUpdateWithoutAuthorInput = {
   comments?: Prisma.CommentUpdateManyWithoutOfferNestedInput
   products?: Prisma.ProductUpdateManyWithoutOffersNestedInput
   documents?: Prisma.DocumentUpdateManyWithoutOfferNestedInput
-  members?: Prisma.UserUpdateManyWithoutMembershipOffersNestedInput
   client?: Prisma.ClientUpdateOneRequiredWithoutOffersNestedInput
+  project?: Prisma.ProjectUpdateOneWithoutOfferNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutOffersNestedInput
 }
 
@@ -1597,7 +1610,7 @@ export type OfferUncheckedUpdateWithoutAuthorInput = {
   comments?: Prisma.CommentUncheckedUpdateManyWithoutOfferNestedInput
   products?: Prisma.ProductUncheckedUpdateManyWithoutOffersNestedInput
   documents?: Prisma.DocumentUncheckedUpdateManyWithoutOfferNestedInput
-  members?: Prisma.UserUncheckedUpdateManyWithoutMembershipOffersNestedInput
+  project?: Prisma.ProjectUncheckedUpdateOneWithoutOfferNestedInput
 }
 
 export type OfferUncheckedUpdateManyWithoutAuthorInput = {
@@ -1615,59 +1628,6 @@ export type OfferUncheckedUpdateManyWithoutAuthorInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type OfferUpdateWithoutMembersInput = {
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumOfferStatusFieldUpdateOperationsInput | $Enums.OfferStatus
-  amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  amountIncludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  comments?: Prisma.CommentUpdateManyWithoutOfferNestedInput
-  products?: Prisma.ProductUpdateManyWithoutOffersNestedInput
-  documents?: Prisma.DocumentUpdateManyWithoutOfferNestedInput
-  author?: Prisma.UserUpdateOneRequiredWithoutCreatedOffersNestedInput
-  client?: Prisma.ClientUpdateOneRequiredWithoutOffersNestedInput
-  tenant?: Prisma.TenantUpdateOneRequiredWithoutOffersNestedInput
-}
-
-export type OfferUncheckedUpdateWithoutMembersInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumOfferStatusFieldUpdateOperationsInput | $Enums.OfferStatus
-  amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  amountIncludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  authorId?: Prisma.IntFieldUpdateOperationsInput | number
-  clientId?: Prisma.IntFieldUpdateOperationsInput | number
-  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  comments?: Prisma.CommentUncheckedUpdateManyWithoutOfferNestedInput
-  products?: Prisma.ProductUncheckedUpdateManyWithoutOffersNestedInput
-  documents?: Prisma.DocumentUncheckedUpdateManyWithoutOfferNestedInput
-}
-
-export type OfferUncheckedUpdateManyWithoutMembersInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  status?: Prisma.EnumOfferStatusFieldUpdateOperationsInput | $Enums.OfferStatus
-  amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  amountIncludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  authorId?: Prisma.IntFieldUpdateOperationsInput | number
-  clientId?: Prisma.IntFieldUpdateOperationsInput | number
-  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
 
 /**
  * Count Type OfferCountOutputType
@@ -1677,14 +1637,12 @@ export type OfferCountOutputType = {
   comments: number
   products: number
   documents: number
-  members: number
 }
 
 export type OfferCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   comments?: boolean | OfferCountOutputTypeCountCommentsArgs
   products?: boolean | OfferCountOutputTypeCountProductsArgs
   documents?: boolean | OfferCountOutputTypeCountDocumentsArgs
-  members?: boolean | OfferCountOutputTypeCountMembersArgs
 }
 
 /**
@@ -1718,13 +1676,6 @@ export type OfferCountOutputTypeCountDocumentsArgs<ExtArgs extends runtime.Types
   where?: Prisma.DocumentWhereInput
 }
 
-/**
- * OfferCountOutputType without action
- */
-export type OfferCountOutputTypeCountMembersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.UserWhereInput
-}
-
 
 export type OfferSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -1744,8 +1695,8 @@ export type OfferSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   products?: boolean | Prisma.Offer$productsArgs<ExtArgs>
   documents?: boolean | Prisma.Offer$documentsArgs<ExtArgs>
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  members?: boolean | Prisma.Offer$membersArgs<ExtArgs>
   client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
+  project?: boolean | Prisma.Offer$projectArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.OfferCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["offer"]>
@@ -1810,8 +1761,8 @@ export type OfferInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   products?: boolean | Prisma.Offer$productsArgs<ExtArgs>
   documents?: boolean | Prisma.Offer$documentsArgs<ExtArgs>
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  members?: boolean | Prisma.Offer$membersArgs<ExtArgs>
   client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
+  project?: boolean | Prisma.Offer$projectArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.OfferCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -1833,8 +1784,8 @@ export type $OfferPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     products: Prisma.$ProductPayload<ExtArgs>[]
     documents: Prisma.$DocumentPayload<ExtArgs>[]
     author: Prisma.$UserPayload<ExtArgs>
-    members: Prisma.$UserPayload<ExtArgs>[]
     client: Prisma.$ClientPayload<ExtArgs>
+    project: Prisma.$ProjectPayload<ExtArgs> | null
     tenant: Prisma.$TenantPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -2249,8 +2200,8 @@ export interface Prisma__OfferClient<T, Null = never, ExtArgs extends runtime.Ty
   products<T extends Prisma.Offer$productsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Offer$productsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   documents<T extends Prisma.Offer$documentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Offer$documentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   author<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  members<T extends Prisma.Offer$membersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Offer$membersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   client<T extends Prisma.ClientDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClientDefaultArgs<ExtArgs>>): Prisma.Prisma__ClientClient<runtime.Types.Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  project<T extends Prisma.Offer$projectArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Offer$projectArgs<ExtArgs>>): Prisma.Prisma__ProjectClient<runtime.Types.Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   tenant<T extends Prisma.TenantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TenantDefaultArgs<ExtArgs>>): Prisma.Prisma__TenantClient<runtime.Types.Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2767,27 +2718,22 @@ export type Offer$documentsArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 /**
- * Offer.members
+ * Offer.project
  */
-export type Offer$membersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Offer$projectArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the User
+   * Select specific fields to fetch from the Project
    */
-  select?: Prisma.UserSelect<ExtArgs> | null
+  select?: Prisma.ProjectSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the User
+   * Omit specific fields from the Project
    */
-  omit?: Prisma.UserOmit<ExtArgs> | null
+  omit?: Prisma.ProjectOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.UserInclude<ExtArgs> | null
-  where?: Prisma.UserWhereInput
-  orderBy?: Prisma.UserOrderByWithRelationInput | Prisma.UserOrderByWithRelationInput[]
-  cursor?: Prisma.UserWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.UserScalarFieldEnum | Prisma.UserScalarFieldEnum[]
+  include?: Prisma.ProjectInclude<ExtArgs> | null
+  where?: Prisma.ProjectWhereInput
 }
 
 /**

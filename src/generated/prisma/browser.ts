@@ -43,6 +43,11 @@ export type Mission = Prisma.MissionModel
  */
 export type MissionTask = Prisma.MissionTaskModel
 /**
+ * Model Notification
+ * 
+ */
+export type Notification = Prisma.NotificationModel
+/**
  * Model Offer
  * 
  */
@@ -58,6 +63,16 @@ export type Product = Prisma.ProductModel
  */
 export type Project = Prisma.ProjectModel
 /**
+ * Model Invoice
+ * 
+ */
+export type Invoice = Prisma.InvoiceModel
+/**
+ * Model JournalEvent
+ * 
+ */
+export type JournalEvent = Prisma.JournalEventModel
+/**
  * Model Prospection
  * 
  */
@@ -67,6 +82,11 @@ export type Prospection = Prisma.ProspectionModel
  * 
  */
 export type Tenant = Prisma.TenantModel
+/**
+ * Model Timesheet
+ * 
+ */
+export type Timesheet = Prisma.TimesheetModel
 /**
  * Model User
  * 
