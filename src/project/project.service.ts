@@ -12,10 +12,24 @@ export class ProjectService {
     // -
     async findAll(tenantId: number) {
         try {
-            return await this.prismaClientService.project.findMany({ where: { tenantId }, omit: {
-                tenantId: true,
-                offerId: true
-            }});
+            const projects = await this.prismaClientService.project.findMany({ where: { tenantId }, 
+                omit: {
+                    tenantId: true,
+                    description: true
+                },
+                include: {
+                    client: {
+                        select: {
+                            id: true,
+                            type: true,
+                            enterpriseName: true,
+                            contactName: true,
+                        }
+                    }
+                }});
+
+            const count = await this.prismaClientService.project.count({ where: { tenantId } });
+            return { projects, count };
         }
         catch(err) {
             this.logger.error("Error while fetching the projects: ", err);
@@ -53,6 +67,76 @@ export class ProjectService {
             }
             this.logger.error("Error while creating the project: ", err);
             throw new InternalServerErrorException("Error while creating the project.");
+        }
+    }
+
+    // -
+    async findOne(id: number, tenantId: number) {
+        try {
+            return await this.prismaClientService.project.findFirstOrThrow({ where: { id, tenantId }, 
+                omit: {
+                    tenantId: true,
+                },
+                include: {
+                    client: {
+                        omit: {
+                            tenantId: true,
+                        }
+                    },
+                    journalEvents: {
+                        include: {
+                            author: {
+                                select: {
+                                    id: true,
+                                    fullname: true,
+                                    email: true,
+                                }
+                            }
+                        },
+                        orderBy: {
+                            id: 'desc'
+                        }
+                    },
+                    invoices: {
+                        include: {
+                            author: {
+                                select: {
+                                    id: true,
+                                    fullname: true,
+                                    email: true,
+                                }
+                            },
+                            document: {
+                                select: {
+                                    id: true,
+                                    originalName: true,
+                                    createdAt: true,
+                                    size: true,
+                                    mimetype: true
+                                }
+                            }
+                        },
+                        orderBy: {
+                            id: 'desc'
+                        }
+                    },
+                    documents: {
+                        select: {
+                            id: true,
+                            originalName: true,
+                            createdAt: true,
+                            size: true,
+                            mimetype: true
+                        },
+                        orderBy: {
+                            id: 'desc'
+                        }
+                    }
+                }});
+        }
+        catch(err) {
+            this.logger.error("Error while fetching the project: ", err);
+            throw new InternalServerErrorException("Error while fetching the project.");
         }
     }
 }

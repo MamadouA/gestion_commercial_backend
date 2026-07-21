@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
+import { Controller, Get, Param, ParseIntPipe, Post, UploadedFile, UseInterceptors } from '@nestjs/common';
 import { ProjectService } from './project.service';
 import { CurrentUser } from '../shared/current-user.decoration';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -20,4 +20,9 @@ export class ProjectController {
         return await this.projectService.create(offerId, tenantId, contractDocument);
     }
 
+    // -
+    @Get(':id')
+    async findOne(@Param('id', ParseIntPipe) id: number, @CurrentUser('tenantId') tenantId: number) {
+        return await this.projectService.findOne(id, tenantId);
+    }
 }
