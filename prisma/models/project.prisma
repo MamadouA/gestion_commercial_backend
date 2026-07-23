@@ -28,10 +28,17 @@ enum ProjectStatus {
     CANCELLED
 }
 
+enum InvoiceStatus {
+    PAID
+    UNPAID
+    CANCELLED
+}
+
 model Invoice {
     id Int @id() @default(autoincrement())
     description String
     amount Decimal
+    status InvoiceStatus
 
     documentId Int @unique()
     document Document @relation(fields: [documentId], references: [id])

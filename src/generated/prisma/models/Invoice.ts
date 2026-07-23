@@ -46,6 +46,7 @@ export type InvoiceMinAggregateOutputType = {
   id: number | null
   description: string | null
   amount: runtime.Decimal | null
+  status: $Enums.InvoiceStatus | null
   documentId: number | null
   authorId: number | null
   projectId: number | null
@@ -56,6 +57,7 @@ export type InvoiceMaxAggregateOutputType = {
   id: number | null
   description: string | null
   amount: runtime.Decimal | null
+  status: $Enums.InvoiceStatus | null
   documentId: number | null
   authorId: number | null
   projectId: number | null
@@ -66,6 +68,7 @@ export type InvoiceCountAggregateOutputType = {
   id: number
   description: number
   amount: number
+  status: number
   documentId: number
   authorId: number
   projectId: number
@@ -94,6 +97,7 @@ export type InvoiceMinAggregateInputType = {
   id?: true
   description?: true
   amount?: true
+  status?: true
   documentId?: true
   authorId?: true
   projectId?: true
@@ -104,6 +108,7 @@ export type InvoiceMaxAggregateInputType = {
   id?: true
   description?: true
   amount?: true
+  status?: true
   documentId?: true
   authorId?: true
   projectId?: true
@@ -114,6 +119,7 @@ export type InvoiceCountAggregateInputType = {
   id?: true
   description?: true
   amount?: true
+  status?: true
   documentId?: true
   authorId?: true
   projectId?: true
@@ -211,6 +217,7 @@ export type InvoiceGroupByOutputType = {
   id: number
   description: string
   amount: runtime.Decimal
+  status: $Enums.InvoiceStatus
   documentId: number
   authorId: number
   projectId: number
@@ -244,6 +251,7 @@ export type InvoiceWhereInput = {
   id?: Prisma.IntFilter<"Invoice"> | number
   description?: Prisma.StringFilter<"Invoice"> | string
   amount?: Prisma.DecimalFilter<"Invoice"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: Prisma.EnumInvoiceStatusFilter<"Invoice"> | $Enums.InvoiceStatus
   documentId?: Prisma.IntFilter<"Invoice"> | number
   authorId?: Prisma.IntFilter<"Invoice"> | number
   projectId?: Prisma.IntFilter<"Invoice"> | number
@@ -257,6 +265,7 @@ export type InvoiceOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   description?: Prisma.SortOrder
   amount?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   documentId?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
@@ -274,6 +283,7 @@ export type InvoiceWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.InvoiceWhereInput | Prisma.InvoiceWhereInput[]
   description?: Prisma.StringFilter<"Invoice"> | string
   amount?: Prisma.DecimalFilter<"Invoice"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: Prisma.EnumInvoiceStatusFilter<"Invoice"> | $Enums.InvoiceStatus
   authorId?: Prisma.IntFilter<"Invoice"> | number
   projectId?: Prisma.IntFilter<"Invoice"> | number
   createdAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string
@@ -286,6 +296,7 @@ export type InvoiceOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   description?: Prisma.SortOrder
   amount?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   documentId?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
@@ -304,6 +315,7 @@ export type InvoiceScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"Invoice"> | number
   description?: Prisma.StringWithAggregatesFilter<"Invoice"> | string
   amount?: Prisma.DecimalWithAggregatesFilter<"Invoice"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: Prisma.EnumInvoiceStatusWithAggregatesFilter<"Invoice"> | $Enums.InvoiceStatus
   documentId?: Prisma.IntWithAggregatesFilter<"Invoice"> | number
   authorId?: Prisma.IntWithAggregatesFilter<"Invoice"> | number
   projectId?: Prisma.IntWithAggregatesFilter<"Invoice"> | number
@@ -313,6 +325,7 @@ export type InvoiceScalarWhereWithAggregatesInput = {
 export type InvoiceCreateInput = {
   description: string
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  status: $Enums.InvoiceStatus
   createdAt?: Date | string
   document: Prisma.DocumentCreateNestedOneWithoutInvoiceInput
   author: Prisma.UserCreateNestedOneWithoutInvoicesInput
@@ -323,6 +336,7 @@ export type InvoiceUncheckedCreateInput = {
   id?: number
   description: string
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  status: $Enums.InvoiceStatus
   documentId: number
   authorId: number
   projectId: number
@@ -332,6 +346,7 @@ export type InvoiceUncheckedCreateInput = {
 export type InvoiceUpdateInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   document?: Prisma.DocumentUpdateOneRequiredWithoutInvoiceNestedInput
   author?: Prisma.UserUpdateOneRequiredWithoutInvoicesNestedInput
@@ -342,6 +357,7 @@ export type InvoiceUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus
   documentId?: Prisma.IntFieldUpdateOperationsInput | number
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   projectId?: Prisma.IntFieldUpdateOperationsInput | number
@@ -352,6 +368,7 @@ export type InvoiceCreateManyInput = {
   id?: number
   description: string
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  status: $Enums.InvoiceStatus
   documentId: number
   authorId: number
   projectId: number
@@ -361,6 +378,7 @@ export type InvoiceCreateManyInput = {
 export type InvoiceUpdateManyMutationInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -368,6 +386,7 @@ export type InvoiceUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus
   documentId?: Prisma.IntFieldUpdateOperationsInput | number
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   projectId?: Prisma.IntFieldUpdateOperationsInput | number
@@ -393,6 +412,7 @@ export type InvoiceCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   description?: Prisma.SortOrder
   amount?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   documentId?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
@@ -411,6 +431,7 @@ export type InvoiceMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   description?: Prisma.SortOrder
   amount?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   documentId?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
@@ -421,6 +442,7 @@ export type InvoiceMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   description?: Prisma.SortOrder
   amount?: Prisma.SortOrder
+  status?: Prisma.SortOrder
   documentId?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
@@ -509,6 +531,10 @@ export type InvoiceUncheckedUpdateManyWithoutProjectNestedInput = {
   deleteMany?: Prisma.InvoiceScalarWhereInput | Prisma.InvoiceScalarWhereInput[]
 }
 
+export type EnumInvoiceStatusFieldUpdateOperationsInput = {
+  set?: $Enums.InvoiceStatus
+}
+
 export type InvoiceCreateNestedManyWithoutAuthorInput = {
   create?: Prisma.XOR<Prisma.InvoiceCreateWithoutAuthorInput, Prisma.InvoiceUncheckedCreateWithoutAuthorInput> | Prisma.InvoiceCreateWithoutAuthorInput[] | Prisma.InvoiceUncheckedCreateWithoutAuthorInput[]
   connectOrCreate?: Prisma.InvoiceCreateOrConnectWithoutAuthorInput | Prisma.InvoiceCreateOrConnectWithoutAuthorInput[]
@@ -554,6 +580,7 @@ export type InvoiceUncheckedUpdateManyWithoutAuthorNestedInput = {
 export type InvoiceCreateWithoutDocumentInput = {
   description: string
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  status: $Enums.InvoiceStatus
   createdAt?: Date | string
   author: Prisma.UserCreateNestedOneWithoutInvoicesInput
   project: Prisma.ProjectCreateNestedOneWithoutInvoicesInput
@@ -563,6 +590,7 @@ export type InvoiceUncheckedCreateWithoutDocumentInput = {
   id?: number
   description: string
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  status: $Enums.InvoiceStatus
   authorId: number
   projectId: number
   createdAt?: Date | string
@@ -587,6 +615,7 @@ export type InvoiceUpdateToOneWithWhereWithoutDocumentInput = {
 export type InvoiceUpdateWithoutDocumentInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   author?: Prisma.UserUpdateOneRequiredWithoutInvoicesNestedInput
   project?: Prisma.ProjectUpdateOneRequiredWithoutInvoicesNestedInput
@@ -596,6 +625,7 @@ export type InvoiceUncheckedUpdateWithoutDocumentInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   projectId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -604,6 +634,7 @@ export type InvoiceUncheckedUpdateWithoutDocumentInput = {
 export type InvoiceCreateWithoutProjectInput = {
   description: string
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  status: $Enums.InvoiceStatus
   createdAt?: Date | string
   document: Prisma.DocumentCreateNestedOneWithoutInvoiceInput
   author: Prisma.UserCreateNestedOneWithoutInvoicesInput
@@ -613,6 +644,7 @@ export type InvoiceUncheckedCreateWithoutProjectInput = {
   id?: number
   description: string
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  status: $Enums.InvoiceStatus
   documentId: number
   authorId: number
   createdAt?: Date | string
@@ -651,6 +683,7 @@ export type InvoiceScalarWhereInput = {
   id?: Prisma.IntFilter<"Invoice"> | number
   description?: Prisma.StringFilter<"Invoice"> | string
   amount?: Prisma.DecimalFilter<"Invoice"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: Prisma.EnumInvoiceStatusFilter<"Invoice"> | $Enums.InvoiceStatus
   documentId?: Prisma.IntFilter<"Invoice"> | number
   authorId?: Prisma.IntFilter<"Invoice"> | number
   projectId?: Prisma.IntFilter<"Invoice"> | number
@@ -660,6 +693,7 @@ export type InvoiceScalarWhereInput = {
 export type InvoiceCreateWithoutAuthorInput = {
   description: string
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  status: $Enums.InvoiceStatus
   createdAt?: Date | string
   document: Prisma.DocumentCreateNestedOneWithoutInvoiceInput
   project: Prisma.ProjectCreateNestedOneWithoutInvoicesInput
@@ -669,6 +703,7 @@ export type InvoiceUncheckedCreateWithoutAuthorInput = {
   id?: number
   description: string
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  status: $Enums.InvoiceStatus
   documentId: number
   projectId: number
   createdAt?: Date | string
@@ -704,6 +739,7 @@ export type InvoiceCreateManyProjectInput = {
   id?: number
   description: string
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  status: $Enums.InvoiceStatus
   documentId: number
   authorId: number
   createdAt?: Date | string
@@ -712,6 +748,7 @@ export type InvoiceCreateManyProjectInput = {
 export type InvoiceUpdateWithoutProjectInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   document?: Prisma.DocumentUpdateOneRequiredWithoutInvoiceNestedInput
   author?: Prisma.UserUpdateOneRequiredWithoutInvoicesNestedInput
@@ -721,6 +758,7 @@ export type InvoiceUncheckedUpdateWithoutProjectInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus
   documentId?: Prisma.IntFieldUpdateOperationsInput | number
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -730,6 +768,7 @@ export type InvoiceUncheckedUpdateManyWithoutProjectInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus
   documentId?: Prisma.IntFieldUpdateOperationsInput | number
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -739,6 +778,7 @@ export type InvoiceCreateManyAuthorInput = {
   id?: number
   description: string
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  status: $Enums.InvoiceStatus
   documentId: number
   projectId: number
   createdAt?: Date | string
@@ -747,6 +787,7 @@ export type InvoiceCreateManyAuthorInput = {
 export type InvoiceUpdateWithoutAuthorInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   document?: Prisma.DocumentUpdateOneRequiredWithoutInvoiceNestedInput
   project?: Prisma.ProjectUpdateOneRequiredWithoutInvoicesNestedInput
@@ -756,6 +797,7 @@ export type InvoiceUncheckedUpdateWithoutAuthorInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus
   documentId?: Prisma.IntFieldUpdateOperationsInput | number
   projectId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -765,6 +807,7 @@ export type InvoiceUncheckedUpdateManyWithoutAuthorInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus
   documentId?: Prisma.IntFieldUpdateOperationsInput | number
   projectId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -776,6 +819,7 @@ export type InvoiceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   id?: boolean
   description?: boolean
   amount?: boolean
+  status?: boolean
   documentId?: boolean
   authorId?: boolean
   projectId?: boolean
@@ -789,6 +833,7 @@ export type InvoiceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   description?: boolean
   amount?: boolean
+  status?: boolean
   documentId?: boolean
   authorId?: boolean
   projectId?: boolean
@@ -802,6 +847,7 @@ export type InvoiceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   description?: boolean
   amount?: boolean
+  status?: boolean
   documentId?: boolean
   authorId?: boolean
   projectId?: boolean
@@ -815,13 +861,14 @@ export type InvoiceSelectScalar = {
   id?: boolean
   description?: boolean
   amount?: boolean
+  status?: boolean
   documentId?: boolean
   authorId?: boolean
   projectId?: boolean
   createdAt?: boolean
 }
 
-export type InvoiceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "description" | "amount" | "documentId" | "authorId" | "projectId" | "createdAt", ExtArgs["result"]["invoice"]>
+export type InvoiceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "description" | "amount" | "status" | "documentId" | "authorId" | "projectId" | "createdAt", ExtArgs["result"]["invoice"]>
 export type InvoiceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   document?: boolean | Prisma.DocumentDefaultArgs<ExtArgs>
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -849,6 +896,7 @@ export type $InvoicePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     id: number
     description: string
     amount: runtime.Decimal
+    status: $Enums.InvoiceStatus
     documentId: number
     authorId: number
     projectId: number
@@ -1282,6 +1330,7 @@ export interface InvoiceFieldRefs {
   readonly id: Prisma.FieldRef<"Invoice", 'Int'>
   readonly description: Prisma.FieldRef<"Invoice", 'String'>
   readonly amount: Prisma.FieldRef<"Invoice", 'Decimal'>
+  readonly status: Prisma.FieldRef<"Invoice", 'InvoiceStatus'>
   readonly documentId: Prisma.FieldRef<"Invoice", 'Int'>
   readonly authorId: Prisma.FieldRef<"Invoice", 'Int'>
   readonly projectId: Prisma.FieldRef<"Invoice", 'Int'>

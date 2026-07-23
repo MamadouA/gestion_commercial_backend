@@ -53,10 +53,20 @@ export type ProductDomain = (typeof ProductDomain)[keyof typeof ProductDomain]
 
 export const ProjectStatus = {
   IN_PROGRESS: 'IN_PROGRESS',
-  FINISHED: 'FINISHED'
+  DONE: 'DONE',
+  CANCELLED: 'CANCELLED'
 } as const
 
 export type ProjectStatus = (typeof ProjectStatus)[keyof typeof ProjectStatus]
+
+
+export const InvoiceStatus = {
+  PAID: 'PAID',
+  UNPAID: 'UNPAID',
+  CANCELLED: 'CANCELLED'
+} as const
+
+export type InvoiceStatus = (typeof InvoiceStatus)[keyof typeof InvoiceStatus]
 
 
 export const ProspectionStatus = {
