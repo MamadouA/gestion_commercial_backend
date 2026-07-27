@@ -12,11 +12,11 @@ export class S3ClientService {
     constructor(private readonly prismaClientService: PrismaClientService) {
         this.s3Client = new S3Client({
             region: 'us-east-1',
-            endpoint: process.env.S3_ENDPOINT ?? "",
+            endpoint: process.env.RUSTFS_ENDPOINT ?? "",
             forcePathStyle: true,
             credentials: {
-                accessKeyId: process.env.S3_ACCESS_KEY_ID ?? "",
-                secretAccessKey: process.env.S3_SECRET_ACCESS_KEY ?? "",
+                accessKeyId: process.env.RUSTFS_ACCESS_KEY_ID ?? "",
+                secretAccessKey: process.env.RUSTFS_SECRET_KEY ?? "",
             },
         });
     }
@@ -32,7 +32,7 @@ export class S3ClientService {
 
         try {
             await this.s3Client.send(new PutObjectCommand ({
-                Bucket: process.env.S3_BUCKET_NAME,
+                Bucket: process.env.RUSTFS_BUCKET_NAME,
                 Key: fileMetadata.storedName,
                 Body: file.buffer,
                 ContentType: file.mimetype
@@ -83,7 +83,7 @@ export class S3ClientService {
     async delete(key: string) {
         try {
             return await this.s3Client.send(new DeleteObjectCommand ({
-                Bucket: process.env.S3_BUCKET_NAME,
+                Bucket: process.env.RUSTFS_BUCKET_NAME,
                 Key: key
             }));
         }
@@ -106,7 +106,7 @@ export class S3ClientService {
         }
 
         return getSignedUrl(this.s3Client, new GetObjectCommand({
-            Bucket: process.env.S3_BUCKET_NAME,
+            Bucket: process.env.RUSTFS_BUCKET_NAME,
             Key: document.storedName,
             ResponseContentDisposition: "inline"
         }))

@@ -1,23 +1,45 @@
-# Use the official Node.js image as the base image
-FROM node:20
+FROM node:24-alpine AS deps
 
-# Set the working directory inside the container
-WORKDIR /usr/src/app
+WORKDIR /app
 
-# Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
+RUN corepack enable
 
-# Install the application dependencies
-RUN npm install
+COPY package.json pnpm-lock.yaml ./
 
-# Copy the rest of the application files
+RUN --mount=type=cache,id=pnpm,target=/pnpm/store \
+    pnpm install --frozen-lockfile
+
+
+FROM node:24-alpine AS builder
+
+WORKDIR /app
+
+RUN corepack enable
+
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Build the NestJS application
-RUN npm run build
+RUN pnpm prisma generate
+RUN pnpm build
 
-# Expose the application port
+
+FROM node:24-alpine AS runner
+
+WORKDIR /app
+
+ENV NODE_ENV=production
+
+RUN corepack enable
+
+COPY package.json pnpm-lock.yaml ./
+COPY --from=builder /app/node_modules ./node_modules
+
+RUN pnpm prune --prod
+
+COPY --from=builder /app/dist/src ./dist
+
+USER node
+
 EXPOSE 3000
 
-# Command to run the application
-CMD ["node", "dist/main"]
+CMD ["pnpm", "start:prod"]
