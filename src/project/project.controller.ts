@@ -13,11 +13,11 @@ import { ProjectService } from './project.service';
 import { CurrentUser } from '../shared/current-user.decoration';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { FILE_FILTER } from '../common/common.constants';
-import { UpdateProjectDTO } from './dto/update-project.dto';
 import { User } from '../generated/prisma/client';
 import { CreateInvoiceDTO } from '../invoice/dto/create-invoice.dto';
 import { InvoiceQueryDTO } from '../invoice/dto/invoice.query.dto';
 import { JournalEventQueryDTO } from './dto/journal-event-query.dto';
+import { CreateJournalEventDTO } from './dto/create-journal-event.dto';
 
 @Controller('project')
 export class ProjectController {
@@ -68,6 +68,22 @@ export class ProjectController {
     @Query() query: InvoiceQueryDTO
   ) {
     return await this.projectService.getInvoices(id, tenantId, query);
+  }
+
+  @Post(':id/journal-event/create')
+  @UseInterceptors(FileInterceptor('file', FILE_FILTER))
+  async createJournalEvent(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() journalEventDTO: CreateJournalEventDTO,
+    @UploadedFile() file: Express.Multer.File,
+    @CurrentUser() user: User,
+  ) {
+    return await this.projectService.createJournalEvent(
+      id,
+      journalEventDTO,
+      file,
+      user,
+    )
   }
 
   @Post(':id/invoice/create')

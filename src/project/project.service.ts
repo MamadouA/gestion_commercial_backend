@@ -15,6 +15,7 @@ import { connect } from 'http2';
 import { CreateInvoiceDTO } from '../invoice/dto/create-invoice.dto';
 import { InvoiceQueryDTO } from '../invoice/dto/invoice.query.dto';
 import { JournalEventQueryDTO } from './dto/journal-event-query.dto';
+import { CreateJournalEventDTO } from './dto/create-journal-event.dto';
 
 @Injectable()
 export class ProjectService {
@@ -191,10 +192,74 @@ export class ProjectService {
   // -
   async createJournalEvent(
     id: number,
-    updateDTO: UpdateProjectDTO,
+    journalEventDTO: CreateJournalEventDTO,
     file: Express.Multer.File,
-    tenantId: number,
-  ) {}
+    user: User,
+  ) {
+    let fileMetadata: FileMetadata | null = null;
+
+    try {
+      fileMetadata = await this.s3ClientService.save(file);
+
+      const project = await this.prismaClientService.project.findFirstOrThrow({
+        where: { id, tenantId: user.tenantId },
+      });
+
+      if(!project) {
+        throw new NotFoundException('Project not found.');
+      }
+
+      return await this.prismaClientService.journalEvent.create({
+        data: {
+          project: {
+            connect: {
+              id,
+            },
+          },
+          event: journalEventDTO.event,
+          author: {
+            connect: {
+              id: user.id,
+            },
+          },
+          document: {
+            create: fileMetadata,
+          },
+        },
+        select: {
+          id: true,
+          event: true,
+          createdAt: true,
+          author: {
+            select: {
+              id: true,
+              fullname: true,
+              email: true,
+            },
+          },  
+          document: {
+            select: {
+              id: true,
+              originalName: true,
+              createdAt: true,
+              size: true,
+              mimetype: true,
+            },
+          }
+        }
+      })
+    }
+    catch(err) {
+      if(fileMetadata) {
+        await this.s3ClientService.delete(fileMetadata.storedName);
+      }
+
+      this.logger.error('Error while creating the journal event: ', err);
+      throw new InternalServerErrorException(
+        'Error while creating the journal event.',
+      );
+    }
+  }
 
   // -
   async createInvoice(
