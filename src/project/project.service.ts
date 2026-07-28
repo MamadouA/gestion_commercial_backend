@@ -9,7 +9,7 @@ import { PrismaClientService } from '../database/prisma-client.service';
 import { S3ClientService } from '../common/file-manager/s3-client.service';
 import { FileMetadata } from '../shared/shared.types';
 import { UpdateProjectDTO } from './dto/update-project.dto';
-import { InvoiceWhereInput, JournalEventWhereInput, ProjectUpdateInput } from '../generated/prisma/models';
+import { InvoiceWhereInput, JournalEventWhereInput, ProjectCreateInput, ProjectUpdateInput } from '../generated/prisma/models';
 import { User } from '../generated/prisma/client';
 import { connect } from 'http2';
 import { CreateInvoiceDTO } from '../invoice/dto/create-invoice.dto';
@@ -62,32 +62,90 @@ export class ProjectService {
   // - a project is created from an existing offer
   async create(
     offerId: number,
-    tenantId: number,
+    user: User,
     contractDocument: Express.Multer.File,
   ) {
     let fileMetadata: FileMetadata | null = null;
 
     try {
-      const offer = await this.prismaClientService.offer.findFirstOrThrow({
-        where: { id: offerId, tenantId },
-      });
-
-      const projectData = {
-        title: offer.title,
-        description: offer.description,
-        offerId,
-        clientId: offer.clientId,
-        tenantId,
-      };
-
-      if (contractDocument) {
-        fileMetadata = await this.s3ClientService.save(contractDocument);
-        projectData['documents'] = { create: fileMetadata };
+      if(!contractDocument) {
+        throw new BadRequestException('Contract document is required.');
       }
 
-      return await this.prismaClientService.project.create({
-        data: projectData,
+      const offer = await this.prismaClientService.offer.findFirstOrThrow({
+        where: { id: offerId, tenantId: user.tenantId },
       });
+
+      if(offer.status === "ABANDONED" || offer.status === "LOST" || offer.status === "WON") {
+        throw new BadRequestException('Offer is already closed.');
+      }
+
+      const projectData: ProjectCreateInput = {
+        title: offer.title,
+        description: offer.description,
+        offer: {
+          connect: {
+            id: offerId,
+          },
+        },
+        client: {
+          connect: {
+            id: offer.clientId,
+          },
+        },
+        tenant: {
+          connect: {
+            id: user.tenantId,
+          },
+        },
+        journalEvents: {
+          create: {
+            event: "Contract Signé",
+            document: {
+              create: fileMetadata!
+            },
+            author: {
+              connect: {
+                id: user.id,
+              },
+            }
+          }
+        }
+      };
+
+      fileMetadata = await this.s3ClientService.save(contractDocument);
+
+      const result  = await this.prismaClientService.$transaction([
+        this.prismaClientService.offer.update({
+          where: {
+            id: offerId,
+            tenantId: user.tenantId,
+          },
+          data: {
+            status: "WON",
+          },
+        }), 
+
+        this.prismaClientService.project.create({
+          data: projectData,
+          select: {
+            id: true,
+            title: true,
+            createdAt: true,
+            status: true,
+            client: {
+              select: {
+                id: true,
+                type: true,
+                enterpriseName: true,
+                contactName: true,
+              },
+            }
+          }
+        })
+      ]);
+
+      return result[1];
     } catch (err) {
       if (fileMetadata) {
         await this.s3ClientService.delete(fileMetadata.storedName);

@@ -34,11 +34,11 @@ export class ProjectController {
   async create(
     @Param('offerId') offerId: number,
     @UploadedFile() contractDocument: Express.Multer.File,
-    @CurrentUser('tenantId') tenantId: number,
+    @CurrentUser() user: User,
   ) {
     return await this.projectService.create(
       offerId,
-      tenantId,
+      user,
       contractDocument,
     );
   }
