@@ -9,7 +9,7 @@ import { PrismaClientService } from '../database/prisma-client.service';
 import { S3ClientService } from '../common/file-manager/s3-client.service';
 import { FileMetadata } from '../shared/shared.types';
 import { UpdateProjectDTO } from './dto/update-project.dto';
-import { JournalEventWhereInput, ProjectUpdateInput } from '../generated/prisma/models';
+import { InvoiceWhereInput, JournalEventWhereInput, ProjectUpdateInput } from '../generated/prisma/models';
 import { User } from '../generated/prisma/client';
 import { connect } from 'http2';
 import { CreateInvoiceDTO } from '../invoice/dto/create-invoice.dto';
@@ -344,44 +344,64 @@ export class ProjectService {
 
   // -
   async getInvoices(id: number, tenantId: number, query: InvoiceQueryDTO) {
+    const filter: InvoiceWhereInput = { project: { id, tenantId } };
+
+    if(query.description && query.description.length) {
+      filter.description = {
+        contains: query.description,
+        mode: 'insensitive'
+      }
+    }
+
+    if(query.createdAt) {
+      filter.createdAt = {
+        lte: new Date(query.createdAt),
+      }
+    }
+
+    if(query.status) {
+      filter.status = query.status
+    }
+    
     try {
-      const project = await this.prismaClientService.project.findUnique({
-        where: { id, tenantId },
+      const invoices = await this.prismaClientService.invoice.findMany({
+        where: filter,
         select: {
-          invoices: {
+          id: true,
+          description: true,
+          amount: true,
+          createdAt: true,
+          status: true,
+          projectId: true,
+          author: {
             select: {
               id: true,
-              description: true,
-              amount: true,
+              fullname: true,
+              email: true,
+            },
+          },
+          document: {
+            select: {
+              id: true,
+              originalName: true,
               createdAt: true,
-              status: true,
-              projectId: true,
-              author: {
-                select: {
-                  id: true,
-                  fullname: true,
-                  email: true,
-                },
-              },
-              document: {
-                select: {
-                  id: true,
-                  originalName: true,
-                  createdAt: true,
-                  size: true,
-                  mimetype: true,
-                },
-              },
+              size: true,
+              mimetype: true,
             },
           },
         },
+        skip: (query.currentPage -1) * query.pageSize,
+        take: query.pageSize,
+        orderBy: {
+          id: 'desc',
+        }
       });
 
-      if (!project) {
-        throw new NotFoundException('Project not found.');
-      }
+      const count = await this.prismaClientService.invoice.count({
+        where: { project: { id, tenantId } },
+      })
 
-      return { invoices: project.invoices, count: project.invoices.length };
+      return { invoices, count };
     } catch (err) {
       this.logger.error('Error while fetching the invoices: ', err);
       throw new InternalServerErrorException(
