@@ -86,37 +86,6 @@ export class ProjectController {
     );
   }
 
-  @Post(':id/document/create')
-  @UseInterceptors(FileInterceptor('file', FILE_FILTER))
-  async createDocument(
-    @Param('id', ParseIntPipe) id: number,
-    @UploadedFile() file: Express.Multer.File,
-    @CurrentUser('tenantId') tenantId: number,
-  ) {
-    return await this.projectService.createDocument(id, file, tenantId);
-  }
-
-  @Get(':id/documents/all')
-  async getDocuments(
-    @Param('id', ParseIntPipe) id: number,
-    @CurrentUser('tenantId') tenantId: number,
-  ) {
-    return await this.projectService.getDocuments(id, tenantId);
-  }
-
-  @Get(':id/document/:documentId/url')
-  async getDocumentDownLoadUrl(
-    @Param('id', ParseIntPipe) id: number,
-    @Param('documentId', ParseIntPipe) documentId: number,
-    @CurrentUser('tenantId') tenantId: number,
-  ) {
-    return await this.projectService.getDocumentDownLoadUrl(
-      id,
-      documentId,
-      tenantId,
-    );
-  }
-
   @Get(':id/journal-event/:journalEventId/url')
   async getJournalEventDocumentUrl(
     @Param('id', ParseIntPipe) id: number,
@@ -128,5 +97,18 @@ export class ProjectController {
       journalEventId,
       tenantId,
     );
+  }
+
+  @Get(':id/invoice/:invoiceId/url')
+  async getinvoiceDocumentUrl(
+    @Param('id', ParseIntPipe) id: number,
+    @Param('invoiceId', ParseIntPipe) invoiceId: number,
+    @CurrentUser('tenantId') tenantId: number,
+  ) {
+    return await this.projectService.getinvoiceDocumentUrl(
+      id,
+      invoiceId,
+      tenantId
+    )
   }
 }

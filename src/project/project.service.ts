@@ -355,6 +355,7 @@ export class ProjectService {
               amount: true,
               createdAt: true,
               status: true,
+              projectId: true,
               author: {
                 select: {
                   id: true,
@@ -390,104 +391,29 @@ export class ProjectService {
   }
 
   // -
-  async getDocuments(id: number, tenantId: number) {
+  async getinvoiceDocumentUrl(id: number, invoiceId: number, tenantId: number) {
     try {
-      const project = await this.prismaClientService.project.findUnique({
-        where: { id, tenantId },
+      const invoice = await this.prismaClientService.invoice.findUnique({
+        where: { id: invoiceId, project: { id, tenantId } },
         select: {
-          documents: {
+          document: {
             select: {
-              id: true,
-              originalName: true,
-              createdAt: true,
-              size: true,
-              mimetype: true,
+              storedName: true,
             },
           },
-        },
+        }
       });
 
-      if (!project) {
-        throw new NotFoundException('Project not found.');
+      if (!(invoice && invoice.document)) {
+        throw new NotFoundException('Invoice not found.');
       }
 
-      return project.documents;
-    } catch (err) {
-      this.logger.error('Error while fetching the documents: ', err);
-      throw new InternalServerErrorException(
-        'Error while fetching the documents.',
-      );
+      return await this.s3ClientService.generateDownloadUrl(
+        invoice.document.storedName
+      )
     }
-  }
+    catch(err) {
 
-  // -
-  async createDocument(
-    id: number,
-    file: Express.Multer.File,
-    tenantId: number,
-  ) {
-    let fileMetadata: FileMetadata | null = null;
-
-    try {
-      fileMetadata = await this.s3ClientService.save(file);
-
-      const project = await this.prismaClientService.project.findUnique({
-        where: { id, tenantId },
-      });
-
-      if (!project) {
-        throw new NotFoundException('Project not found.');
-      }
-
-      return await this.prismaClientService.document.create({
-        data: {
-          project: {
-            connect: {
-              id,
-            },
-          },
-          ...fileMetadata,
-        },
-        select: {
-          id: true,
-          originalName: true,
-          createdAt: true,
-          size: true,
-          mimetype: true,
-        },
-      });
-    } catch (err) {
-      if (fileMetadata) {
-        await this.s3ClientService.delete(fileMetadata.storedName);
-      }
-      this.logger.error('Error while creating the document: ', err);
-      throw new InternalServerErrorException(
-        'Error while creating the document.',
-      );
-    }
-  }
-
-  // -
-  async getDocumentDownLoadUrl(
-    id: number,
-    documentId: number,
-    tenantId: number,
-  ) {
-    try {
-      const project = await this.prismaClientService.project.findUnique({
-        where: { id, tenantId, documents: { some: { id: documentId } } },
-      });
-
-      if (!project) {
-        throw new NotFoundException('Project not found.');
-      }
-
-      return this.s3ClientService.generateDownloadUrl(documentId);
-    } catch (err) {
-      this.logger.error('Error while fetching the document: ', err);
-      throw new InternalServerErrorException(
-        'Error while fetching the document.',
-      );
     }
   }
 
@@ -503,11 +429,7 @@ export class ProjectService {
           select: {
             document: {
               select: {
-                id: true,
-                originalName: true,
-                createdAt: true,
-                size: true,
-                mimetype: true,
+                storedName: true
               },
             },
           },
@@ -518,7 +440,7 @@ export class ProjectService {
         }
 
       return await this.s3ClientService.generateDownloadUrl(
-        journalEvent.document.id,
+        journalEvent.document.storedName,
       );
     } catch (err) {
       this.logger.error('Error while fetching the document: ', err);

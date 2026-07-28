@@ -94,20 +94,10 @@ export class S3ClientService {
     }
 
     // -
-    async generateDownloadUrl(id: number) {
-        const document = await this.prismaClientService.document.findUnique({
-            where: {
-                id
-            }
-        });
-
-        if(!document) {
-            throw new NotFoundException("File not found!");
-        }
-
+    async generateDownloadUrl(storedName: string) {
         return getSignedUrl(this.s3Client, new GetObjectCommand({
             Bucket: process.env.RUSTFS_BUCKET_NAME,
-            Key: document.storedName,
+            Key: storedName,
             ResponseContentDisposition: "inline"
         }))
     }

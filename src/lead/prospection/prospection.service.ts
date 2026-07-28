@@ -390,7 +390,7 @@ export class ProspectionService {
         throw new NotFoundException('Document not found!');
       }
 
-      return await this.s3ClientService.generateDownloadUrl(prospection.documents[documentIndex].id);
+      return await this.s3ClientService.generateDownloadUrl(prospection.documents[documentIndex].storedName);
     }
     catch(err) {
       console.log("Error while getting the prospection's document url: ", err);
