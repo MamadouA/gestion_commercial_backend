@@ -42,4 +42,4 @@ USER node
 
 EXPOSE 3000
 
-CMD ["pnpm", "start:prod"]
+CMD ["pnpm", "pnpm prisma migrate deploy && pnpm start:prod"]

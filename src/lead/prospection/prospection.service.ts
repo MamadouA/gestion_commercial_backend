@@ -381,7 +381,7 @@ export class ProspectionService {
       });
 
       if (!prospection) {
-        throw new NotFoundException('Prospection not found!');
+        throw new NotFoundException('Prospection not found!');  
       }
 
       const documentIndex = prospection.documents.findIndex((doc) => doc.id === documentId);
