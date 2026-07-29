@@ -45,6 +45,9 @@ export class ProjectService {
             },
           },
         },
+        orderBy: {
+          id: 'desc',
+        }
       });
 
       const count = await this.prismaClientService.project.count({
@@ -80,9 +83,13 @@ export class ProjectService {
         throw new BadRequestException('Offer is already closed.');
       }
 
+      fileMetadata = await this.s3ClientService.save(contractDocument);
       const projectData: ProjectCreateInput = {
         title: offer.title,
         description: offer.description,
+        amountExcludingTax: offer.amountExcludingTax,
+        vatAmount: offer.vatAmount,
+        amountIncludingTax: offer.amountIncludingTax,
         offer: {
           connect: {
             id: offerId,
@@ -102,7 +109,7 @@ export class ProjectService {
           create: {
             event: "Contract Signé",
             document: {
-              create: fileMetadata!
+              create: fileMetadata
             },
             author: {
               connect: {
@@ -113,8 +120,6 @@ export class ProjectService {
         }
       };
 
-      fileMetadata = await this.s3ClientService.save(contractDocument);
-
       const result  = await this.prismaClientService.$transaction([
         this.prismaClientService.offer.update({
           where: {
@@ -122,8 +127,8 @@ export class ProjectService {
             tenantId: user.tenantId,
           },
           data: {
-            status: "WON",
-          },
+            status: "WON"
+          }
         }), 
 
         this.prismaClientService.project.create({

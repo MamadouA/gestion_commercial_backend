@@ -3,6 +3,9 @@ model Project {
     id Int @id() @default(autoincrement())
     title String
     description String?
+    amountExcludingTax Decimal?
+    vatAmount Decimal?
+    amountIncludingTax Decimal?
     status ProjectStatus @default(IN_PROGRESS)
 
     documents Document[]

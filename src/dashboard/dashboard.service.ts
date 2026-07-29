@@ -1,5 +1,6 @@
 import { Injectable, InternalServerErrorException, Logger } from '@nestjs/common';
 import { PrismaClientService } from '../database/prisma-client.service';
+import { InvoiceStatus, OfferStatus, ProjectStatus, ProspectionStatus } from '../generated/prisma/enums';
 
 @Injectable()
 export class DashboardService {
@@ -17,7 +18,7 @@ export class DashboardService {
       const invoiceOverview = this.getInvoiceOverview(tenantId);
 
       const result = await  Promise.all([counts, projectOverview, offerOverview, prospectionOverview, invoiceOverview]);
-      
+
       return { counts: result[0], projects: result[1], offers: result[2], prospections: result[3], invoices: result[4] };
     }
     catch(err) {
@@ -85,19 +86,17 @@ export class DashboardService {
       where: { tenantId, status: 'CANCELLED' },
     });
 
-    const total = this.prismaClientService.project.count({ where: { tenantId } });
 
     const result = await this.prismaClientService.$transaction([
       inProgress,
       done,
       cancelled,
-      total,
     ]);
 
     return [
-      { status: "En cours", count: result[0] / result[3] * 100 },
-      { status: "Terminée", count: result[1] / result[3] * 100 },
-      { status: "Annulée", count: result[2] / result[3] * 100 },
+      { status: ProjectStatus.IN_PROGRESS, count: result[0] },
+      { status: ProjectStatus.DONE, count: result[1] },
+      { status: ProjectStatus.CANCELLED, count: result[2] },
     ];
 }
 
@@ -125,10 +124,6 @@ export class DashboardService {
       where: { tenantId, status: 'OVERDUE' },
     });
 
-    const total = this.prismaClientService.offer.count({
-      where: { tenantId },
-    });
-
     const result = await this.prismaClientService.$transaction([
       pending,
       ready,
@@ -137,17 +132,16 @@ export class DashboardService {
       lost,
       cancelled,
       overdue,
-      total
     ]);
 
     return [
-      { status: "En cours", count: (result[0] / result[7]) * 100 },
-      { status: "Prête", count: (result[1] / result[7]) * 100 },
-      { status: "Envoyée", count: (result[2] / result[7]) * 100 },
-      { status: "Gagnée", count: result[3] / result[7] * 100 },
-      { status: "Perdue", count: (result[4] / result[7]) * 100 },
-      { status: "Annulée", count: (result[5] / result[7]) * 100 }, 
-      { status: "En retard", count: (result[6] / result[7]) * 100 },
+      { status: OfferStatus.PENDING, count: result[0] },
+      { status: OfferStatus.READY, count: result[1] },
+      { status: OfferStatus.SENT, count: result[2] },
+      { status: OfferStatus.WON, count: result[3]},
+      { status: OfferStatus.LOST, count: result[4] },
+      { status: OfferStatus.CANCELLED, count: result[5] }, 
+      { status: OfferStatus.OVERDUE, count: result[6] },
     ];
   }
 
@@ -170,23 +164,18 @@ export class DashboardService {
         where: { tenantId, status: 'CANCELLED' },
       });
 
-      const total = this.prismaClientService.prospection.count({
-        where: { tenantId }
-      })
-
       const result = await this.prismaClientService.$transaction([
         opened,
         won,
         lost,
         cancelled,
-        total
       ]);
 
       return [
-        { status: "En cours", count: (result[0] / result[4]) * 100 },
-        { status: "Gagnée", count: (result[1] / result[4]) * 100},
-        { status: "Perdue", count: (result[2] / result[4]) * 100},
-        { stats: "Abandonnée", count: (result[3] / result[4]) * 100},
+        { status: ProspectionStatus.OPENED, count: result[0] },
+        { status: ProspectionStatus.WON, count: result[1]},
+        { status: ProspectionStatus.LOST, count: result[2]},
+        { stats: ProspectionStatus.CANCELLED, count: result[3]},
       ];
     }
     catch (err) {
@@ -205,19 +194,14 @@ export class DashboardService {
         where: { project: { tenantId }, status: 'UNPAID' }
       });
 
-      const total = this.prismaClientService.invoice.count({
-        where: { project: { tenantId } }
-      });
-
       const result = await this.prismaClientService.$transaction([
         paid,
         unpdaid,
-        total
       ]);
 
       return [
-        { status: "Payée", count: (result[0] / result[2]) * 100 },
-        { status: "Impayée", count: (result[1] / result[2]) * 100},
+        { status: InvoiceStatus.PAID, count: result[0] },
+        { status: InvoiceStatus.UNPAID, count: result[1] },
       ];
     }
     catch(err) {
