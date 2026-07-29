@@ -5,14 +5,14 @@ import { CurrentUser } from '../shared/current-user.decoration';
 @Controller('dashboard')
 export class DashboardController {
     constructor(private readonly dashboardService: DashboardService) {}
-
-    @Get('overview')
+    
+    @Get('stats')
     async getOverview(@CurrentUser('tenantId') tenantId: number) {
-        return await this.dashboardService.getOverview(tenantId);
+        return await this.dashboardService.getData(tenantId);
     }
 
     @Get('offers-distribution-by-status')
     async getOffersDistributionByStatus(@CurrentUser('tenantId') tenantId: number) {
-        return await this.dashboardService.getOffersDistributionByStatus(tenantId);
+        return await this.dashboardService.getData(tenantId);
     }
 }

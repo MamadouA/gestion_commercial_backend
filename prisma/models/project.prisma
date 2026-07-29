@@ -31,7 +31,6 @@ enum ProjectStatus {
 enum InvoiceStatus {
     PAID
     UNPAID
-    CANCELLED
 }
 
 model Invoice {

@@ -18,7 +18,7 @@ model Prospection {
 
 enum ProspectionStatus {
     OPENED
-    ABANDONED
+    CANCELLED
     LOST
     WON
 }

@@ -36,7 +36,7 @@ export const OfferStatus = {
   SENT: 'SENT',
   WON: 'WON',
   LOST: 'LOST',
-  ABANDONED: 'ABANDONED',
+  CANCELLED: 'CANCELLED',
   OVERDUE: 'OVERDUE'
 } as const
 
@@ -62,8 +62,7 @@ export type ProjectStatus = (typeof ProjectStatus)[keyof typeof ProjectStatus]
 
 export const InvoiceStatus = {
   PAID: 'PAID',
-  UNPAID: 'UNPAID',
-  CANCELLED: 'CANCELLED'
+  UNPAID: 'UNPAID'
 } as const
 
 export type InvoiceStatus = (typeof InvoiceStatus)[keyof typeof InvoiceStatus]
@@ -71,7 +70,7 @@ export type InvoiceStatus = (typeof InvoiceStatus)[keyof typeof InvoiceStatus]
 
 export const ProspectionStatus = {
   OPENED: 'OPENED',
-  ABANDONED: 'ABANDONED',
+  CANCELLED: 'CANCELLED',
   LOST: 'LOST',
   WON: 'WON'
 } as const
