@@ -5,10 +5,13 @@ model Tenant {
   createdAt DateTime @default(now())
   users     User[]
   clients Client[]
+  roles Role[]
   prospections Prospection[]
   products Product[]
   offers Offer[]
   missions Mission[]
   projects Project[]
   notifications Notification[]
+  subscriptionId Int 
+  subscription Subscription @relation(fields: [subscriptionId], references: [id])
 }

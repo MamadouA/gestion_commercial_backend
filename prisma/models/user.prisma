@@ -4,7 +4,8 @@ model User {
   email     String   @unique
   password String
   phone     String
-  roles Role[]
+  roleId Int
+  role Role @relation(fields: [roleId], references: [id])
   isActive  Boolean  @default(true)
   tenant    Tenant   @relation(fields: [tenantId], references: [id])
   tenantId  Int
@@ -17,34 +18,21 @@ model User {
   createdAt DateTime @default(now())
 }
 
-enum Role {
-  SUPERADMIN
-  ADMIN
-  DIRECTEUR_GENERAL
-  ASSISTANT
-  COMMERCIAL
-  INGENIEUR
-  CHEF_DE_CHANTIER
-  CONDUCTEUR_DE_TRAVAUX
-  INGENIEUR_BUREAU_ETUDES
-  DIRECTEUR_COMMERCIAL
-  REPRESENTANT_COMMERCIAL
-  RESPONSABLE_LOGISTIQUE
+model Role {
+  id Int @id() @default(autoincrement())
+  name String
+  description String
+  permissions Permission[]
+  users User[]
+  tenantId Int
+  tenant Tenant @relation(fields: [tenantId], references: [id])
 }
 
-// model Role {
-//   id Int @id() @default(autoincrement())
-//   name String
-//   description String
-//   feature AppFeature
-//   permissions String[]
-//   users User[]
-// }
-
-// model Permission {
-//   id Int @id() @default(autoincrement())
-//   name String
-//   description String
-//   feature AppFeature
-// }
+model Permission {
+  id Int @id() @default(autoincrement())
+  name String
+  description String
+  feature Feature
+  roles Role[]
+}
 

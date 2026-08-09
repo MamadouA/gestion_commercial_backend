@@ -63,9 +63,12 @@ export const ModelName = {
   Invoice: 'Invoice',
   JournalEvent: 'JournalEvent',
   Prospection: 'Prospection',
+  Subscription: 'Subscription',
   Tenant: 'Tenant',
   Timesheet: 'Timesheet',
-  User: 'User'
+  User: 'User',
+  Role: 'Role',
+  Permission: 'Permission'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -250,11 +253,24 @@ export const ProspectionScalarFieldEnum = {
 export type ProspectionScalarFieldEnum = (typeof ProspectionScalarFieldEnum)[keyof typeof ProspectionScalarFieldEnum]
 
 
+export const SubscriptionScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  maxUserCount: 'maxUserCount',
+  storage: 'storage',
+  price: 'price',
+  features: 'features'
+} as const
+
+export type SubscriptionScalarFieldEnum = (typeof SubscriptionScalarFieldEnum)[keyof typeof SubscriptionScalarFieldEnum]
+
+
 export const TenantScalarFieldEnum = {
   id: 'id',
   name: 'name',
   isActive: 'isActive',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  subscriptionId: 'subscriptionId'
 } as const
 
 export type TenantScalarFieldEnum = (typeof TenantScalarFieldEnum)[keyof typeof TenantScalarFieldEnum]
@@ -274,13 +290,33 @@ export const UserScalarFieldEnum = {
   email: 'email',
   password: 'password',
   phone: 'phone',
-  roles: 'roles',
+  roleId: 'roleId',
   isActive: 'isActive',
   tenantId: 'tenantId',
   createdAt: 'createdAt'
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const RoleScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  tenantId: 'tenantId'
+} as const
+
+export type RoleScalarFieldEnum = (typeof RoleScalarFieldEnum)[keyof typeof RoleScalarFieldEnum]
+
+
+export const PermissionScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  feature: 'feature'
+} as const
+
+export type PermissionScalarFieldEnum = (typeof PermissionScalarFieldEnum)[keyof typeof PermissionScalarFieldEnum]
 
 
 export const SortOrder = {

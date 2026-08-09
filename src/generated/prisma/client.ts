@@ -100,6 +100,11 @@ export type JournalEvent = Prisma.JournalEventModel
  */
 export type Prospection = Prisma.ProspectionModel
 /**
+ * Model Subscription
+ * 
+ */
+export type Subscription = Prisma.SubscriptionModel
+/**
  * Model Tenant
  * 
  */
@@ -114,3 +119,13 @@ export type Timesheet = Prisma.TimesheetModel
  * 
  */
 export type User = Prisma.UserModel
+/**
+ * Model Role
+ * 
+ */
+export type Role = Prisma.RoleModel
+/**
+ * Model Permission
+ * 
+ */
+export type Permission = Prisma.PermissionModel

@@ -18,12 +18,31 @@ export class AuthService {
       where: {
         email: signInDto.email,
       },
+      select: {
+        id: true,
+        email: true,
+        fullname: true,
+        password: true,
+        role: {
+          select: {
+            name: true,
+            description: true,
+            permissions: {
+              select: {
+                name: true,
+                description: true,
+                feature: true,
+              },
+            },
+          },
+        },
+      },
     });
     if (!(user && bcrypt.compareSync(signInDto.password, user.password))) {
       throw new UnauthorizedException('Invalid credentials.');
     }
 
-    const payload = { id: user.id, email: user.email, fullname: user.fullname, roles: user.roles };
+    const payload = { id: user.id, email: user.email, fullname: user.fullname, roles: user.role };
 
     const token = await this.generateJwTToken(payload);
     return { user: payload, token};

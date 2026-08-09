@@ -1,30 +1,48 @@
 import { Type } from "class-transformer";
-import { CreateUserDTO } from "../../user/dto/create-user.dto";
-import { IsBoolean, isBoolean, IsDateString, IsDefined, IsEmail, IsEnum, IsString, MaxLength, MinLength, ValidateNested } from 'class-validator';
-import { Role } from "../../generated/prisma/enums";
+import { IsArray, IsBoolean, isBoolean, IsDateString, IsDefined, IsEmail, IsEnum, IsNumber, IsString, MaxLength, Min, MinLength, ValidateNested } from 'class-validator';
+import { SubscriptionType } from "../../generated/prisma/enums";
 
-class TenantOwnerDTO extends CreateUserDTO{
+export class CreateTenantAdminDTO {
+    @IsString()
+    @MinLength(3)
+    fullname!: string
+
+    @IsString()
+    @MinLength(2)
+    email!: string
+
+    @IsString()
+    @MinLength(9)
+    @MaxLength(20)
+    phone!: string
 
     @IsString()
     @MinLength(8)
     @MaxLength(20)
-    password!: string;
+    password: string = process.env.DEFAULT_ADMIN_PASSWORD ?? ""
 
-    @IsString()
-    @MinLength(8)
-    @MaxLength(20)
-    confirmPassword!: string;
+    @IsArray()
+    @IsNumber({}, { each: true })
+    permissionIds!: number[]
+}
+
+export class CreateSubscriptionDTO {
+    type!: SubscriptionType
 }
 
 export class CreateTenantDTO {
     @IsString()
     @MinLength(3)
     @MaxLength(50)
-    name!: string;
+    name!: string
 
     @ValidateNested()
-    @Type(() => TenantOwnerDTO)
+    @Type(() => CreateTenantAdminDTO)
     @IsDefined()
-    user!: TenantOwnerDTO;
+    admin!: CreateTenantAdminDTO
+
+    @IsNumber()
+    @Min(1)
+    subscriptionId!: number
 }
 

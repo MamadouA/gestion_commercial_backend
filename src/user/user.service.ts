@@ -6,7 +6,6 @@ import * as bcrypt from 'bcrypt';
 import { UserQueryDTO } from './dto/user-query.dto';
 import { UserWhereInput } from '../generated/prisma/models';
 import { SearchDTO } from '../shared/dto/search.dto';
-import { Role } from '../generated/prisma/enums';
 
 @Injectable()
 export class UserService {
@@ -18,11 +17,19 @@ export class UserService {
     try {
       return await this.prismaClientService.user.create({
         data: {
-          tenantId,
+          tenant: {
+            connect: {
+              id: tenantId
+            }
+          },
           fullname: createUserDto.fullname,
           email: createUserDto.email,
           phone: createUserDto.phone,
-          roles: createUserDto.roles,
+          role: {
+            connect: {
+              id: createUserDto.roleId
+            }
+          },
           password: bcrypt.hashSync("testing1234", 10),
         },
         omit: {
@@ -72,7 +79,12 @@ export class UserService {
           id: true,
           fullname: true,
           email: true,
-          roles: true,
+          role: {
+            select: {
+              name: true,
+              description: true
+            }
+          },
         },
         skip: (query.currentPage - 1) * query.pageSize,
         take: query.pageSize
@@ -138,10 +150,13 @@ export class UserService {
           }
         ]
 
-        if(Object.values(Role).includes(search.keyword as Role)) {
+        if(search.keyword && search.keyword.length) {
           filter.OR.push({
-            roles: {
-              has: search.keyword as Role
+            role: {
+              name: {
+                contains: search.keyword,
+                mode: 'insensitive'
+              }
             }
           })
         }
@@ -157,7 +172,7 @@ export class UserService {
           id: true,
           fullname: true,
           email: true,
-          roles: true,
+          role: true,
         },
         skip: (search.currentPage - 1) * search.pageSize,
         take: search.pageSize

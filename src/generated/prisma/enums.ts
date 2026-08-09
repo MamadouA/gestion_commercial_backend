@@ -78,19 +78,27 @@ export const ProspectionStatus = {
 export type ProspectionStatus = (typeof ProspectionStatus)[keyof typeof ProspectionStatus]
 
 
-export const Role = {
-  SUPERADMIN: 'SUPERADMIN',
-  ADMIN: 'ADMIN',
-  DIRECTEUR_GENERAL: 'DIRECTEUR_GENERAL',
-  ASSISTANT: 'ASSISTANT',
-  COMMERCIAL: 'COMMERCIAL',
-  INGENIEUR: 'INGENIEUR',
-  CHEF_DE_CHANTIER: 'CHEF_DE_CHANTIER',
-  CONDUCTEUR_DE_TRAVAUX: 'CONDUCTEUR_DE_TRAVAUX',
-  INGENIEUR_BUREAU_ETUDES: 'INGENIEUR_BUREAU_ETUDES',
-  DIRECTEUR_COMMERCIAL: 'DIRECTEUR_COMMERCIAL',
-  REPRESENTANT_COMMERCIAL: 'REPRESENTANT_COMMERCIAL',
-  RESPONSABLE_LOGISTIQUE: 'RESPONSABLE_LOGISTIQUE'
+export const SubscriptionType = {
+  STARTER: 'STARTER',
+  PRO: 'PRO',
+  ENTERPRISE: 'ENTERPRISE'
 } as const
 
-export type Role = (typeof Role)[keyof typeof Role]
+export type SubscriptionType = (typeof SubscriptionType)[keyof typeof SubscriptionType]
+
+
+export const Feature = {
+  DASHBOARD: 'DASHBOARD',
+  TENANT: 'TENANT',
+  USER: 'USER',
+  PROJECT: 'PROJECT',
+  OFFER: 'OFFER',
+  CLIENT: 'CLIENT',
+  ROLE: 'ROLE',
+  INVOICE: 'INVOICE',
+  PROSPECTION: 'PROSPECTION',
+  TIMESHEET: 'TIMESHEET',
+  ALERTE: 'ALERTE'
+} as const
+
+export type Feature = (typeof Feature)[keyof typeof Feature]
