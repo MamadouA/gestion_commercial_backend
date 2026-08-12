@@ -23,6 +23,21 @@ export class AuthMiddleware implements NestMiddleware {
           where: {
             id: payload.id,
           },
+          include: {
+            role: {
+              select: {
+                name: true,
+                description: true,
+                permissions: {
+                  select: {
+                    name: true,
+                    description: true,
+                    feature: true,
+                  },
+                },
+              },
+            }
+          }
         });
         
         req['user'] = user;

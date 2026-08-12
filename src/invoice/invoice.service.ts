@@ -8,7 +8,12 @@ export class InvoiceService {
     constructor(private readonly prismaClientService: PrismaClientService) {}
 
     // -
-    async getAllByProjectId(projectId: number, tenantId) {
+    async findAll(tenantId: number) {
+        
+    }
+    
+    // -
+    async findAllByProjectId(projectId: number, tenantId) {
         try {
             const project = await this.prismaClientService.project.findUnique({ where: { id: projectId, tenantId }});
 

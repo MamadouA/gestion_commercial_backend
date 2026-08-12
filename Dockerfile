@@ -1,45 +1,37 @@
-FROM node:24-alpine AS deps
-
-WORKDIR /app
-
-RUN corepack enable
-
-COPY package.json pnpm-lock.yaml ./
-
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store \
-    pnpm install --frozen-lockfile
-
-
 FROM node:24-alpine AS builder
 
 WORKDIR /app
 
+COPY package*.json pnpm-lock.yaml ./
+
 RUN corepack enable
 
-COPY --from=deps /app/node_modules ./node_modules
+RUN pnpm install --frozen-lockfile
+
 COPY . .
 
-RUN pnpm prisma generate
-RUN pnpm build
-
+RUN pnpm prisma generate 
+RUN pnpm build 
 
 FROM node:24-alpine AS runner
 
 WORKDIR /app
 
-ENV NODE_ENV=production
+COPY package*.json pnpm-lock.yaml ./
+
+RUN addgroup -S nestjs && adduser -S nestjs -G nestjs
+
+
+COPY --from=builder --chown=nestjs:nestjs /app/dist/ ./dist/
+COPY --from=builder --chown=nestjs:nestjs /app/prisma ./prisma
 
 RUN corepack enable
 
-COPY package.json pnpm-lock.yaml ./
-COPY --from=builder /app/node_modules ./node_modules
+RUN pnpm install --prod --frozen-lockfile
 
-RUN pnpm prune --prod
-
-COPY --from=builder /app/dist/src ./dist
-
-USER node
+USER nestjs
 
 EXPOSE 3000
 
-CMD ["sh", "-c", "pnpm prisma migrate deploy && pnpm start:prod"]
+
+CMD ["pnpm", "start:prod"]

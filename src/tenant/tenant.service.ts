@@ -1,13 +1,12 @@
-import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException, Logger } from '@nestjs/common';
 import { UpdateTenantDto } from './dto/update-tenant.dto';
 import { PrismaClientService } from '../database/prisma-client.service';
 import * as bcrypt from 'bcrypt';
 import { CreateTenantDTO } from './dto/create-tenant.dto';
-import { APP_PERMISSIONS } from '../role-management/role-management.contants';
-import { Feature } from '../generated/prisma/enums';
 
 @Injectable()
 export class TenantService {
+  private logger = new Logger(TenantService.name);
 
   constructor(private prismaClientService: PrismaClientService) {}
   
@@ -71,8 +70,22 @@ export class TenantService {
     }
   }
 
-  findAll() {
-    return `This action returns all tenant`;
+  // -
+  async findAll() {
+    try {
+      return this.prismaClientService.tenant.findMany({
+        select: {
+          id: true,
+          name: true,
+          isActive: true, 
+          createdAt: true,
+        },
+      });
+    }
+    catch(err) {
+      console.log("Error while fetching the tenants: ", err);
+      throw new InternalServerErrorException("Error while fetching the tenants.");
+    }
   }
 
   findOne(id: number) {

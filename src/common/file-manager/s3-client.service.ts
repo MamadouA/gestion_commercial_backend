@@ -12,11 +12,11 @@ export class S3ClientService {
     constructor(private readonly prismaClientService: PrismaClientService) {
         this.s3Client = new S3Client({
             region: 'us-east-1',
-            endpoint: process.env.RUSTFS_ENDPOINT ?? "",
+            endpoint: process.env.RUSTFS_ENDPOINT!,
             forcePathStyle: true,
             credentials: {
-                accessKeyId: process.env.RUSTFS_ACCESS_KEY_ID ?? "",
-                secretAccessKey: process.env.RUSTFS_SECRET_KEY ?? "",
+                accessKeyId: process.env.RUSTFS_ACCESS_KEY!,
+                secretAccessKey: process.env.RUSTFS_SECRET_KEY!,
             },
         });
     }
