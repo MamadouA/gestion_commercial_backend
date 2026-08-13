@@ -1,6 +1,5 @@
 import { Type } from "class-transformer";
 import { IsArray, IsBoolean, isBoolean, IsDateString, IsDefined, IsEmail, IsEnum, IsNumber, IsString, MaxLength, Min, MinLength, ValidateNested } from 'class-validator';
-import { SubscriptionType } from "../../generated/prisma/enums";
 
 export class CreateTenantAdminDTO {
     @IsString()
@@ -25,11 +24,6 @@ export class CreateTenantAdminDTO {
     @IsNumber({}, { each: true })
     permissionIds!: number[]
 }
-
-export class CreateSubscriptionDTO {
-    type!: SubscriptionType
-}
-
 export class CreateTenantDTO {
     @IsString()
     @MinLength(3)

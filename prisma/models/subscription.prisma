@@ -1,18 +1,12 @@
 
 model Subscription {
     id Int @id() @default(autoincrement())
-    type SubscriptionType @default(STARTER)
+    name String @default("STARTER")
     maxUserCount Int
     storage Int
     price Int
     tenant Tenant[]
     features Feature[]
-}
-
-enum SubscriptionType {
-    STARTER
-    PRO
-    ENTERPRISE
 }
 
 enum Feature {

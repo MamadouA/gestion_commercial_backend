@@ -42,7 +42,7 @@ export type SubscriptionSumAggregateOutputType = {
 
 export type SubscriptionMinAggregateOutputType = {
   id: number | null
-  type: $Enums.SubscriptionType | null
+  name: string | null
   maxUserCount: number | null
   storage: number | null
   price: number | null
@@ -50,7 +50,7 @@ export type SubscriptionMinAggregateOutputType = {
 
 export type SubscriptionMaxAggregateOutputType = {
   id: number | null
-  type: $Enums.SubscriptionType | null
+  name: string | null
   maxUserCount: number | null
   storage: number | null
   price: number | null
@@ -58,7 +58,7 @@ export type SubscriptionMaxAggregateOutputType = {
 
 export type SubscriptionCountAggregateOutputType = {
   id: number
-  type: number
+  name: number
   maxUserCount: number
   storage: number
   price: number
@@ -83,7 +83,7 @@ export type SubscriptionSumAggregateInputType = {
 
 export type SubscriptionMinAggregateInputType = {
   id?: true
-  type?: true
+  name?: true
   maxUserCount?: true
   storage?: true
   price?: true
@@ -91,7 +91,7 @@ export type SubscriptionMinAggregateInputType = {
 
 export type SubscriptionMaxAggregateInputType = {
   id?: true
-  type?: true
+  name?: true
   maxUserCount?: true
   storage?: true
   price?: true
@@ -99,7 +99,7 @@ export type SubscriptionMaxAggregateInputType = {
 
 export type SubscriptionCountAggregateInputType = {
   id?: true
-  type?: true
+  name?: true
   maxUserCount?: true
   storage?: true
   price?: true
@@ -195,7 +195,7 @@ export type SubscriptionGroupByArgs<ExtArgs extends runtime.Types.Extensions.Int
 
 export type SubscriptionGroupByOutputType = {
   id: number
-  type: $Enums.SubscriptionType
+  name: string
   maxUserCount: number
   storage: number
   price: number
@@ -227,7 +227,7 @@ export type SubscriptionWhereInput = {
   OR?: Prisma.SubscriptionWhereInput[]
   NOT?: Prisma.SubscriptionWhereInput | Prisma.SubscriptionWhereInput[]
   id?: Prisma.IntFilter<"Subscription"> | number
-  type?: Prisma.EnumSubscriptionTypeFilter<"Subscription"> | $Enums.SubscriptionType
+  name?: Prisma.StringFilter<"Subscription"> | string
   maxUserCount?: Prisma.IntFilter<"Subscription"> | number
   storage?: Prisma.IntFilter<"Subscription"> | number
   price?: Prisma.IntFilter<"Subscription"> | number
@@ -237,7 +237,7 @@ export type SubscriptionWhereInput = {
 
 export type SubscriptionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  type?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   maxUserCount?: Prisma.SortOrder
   storage?: Prisma.SortOrder
   price?: Prisma.SortOrder
@@ -250,7 +250,7 @@ export type SubscriptionWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.SubscriptionWhereInput | Prisma.SubscriptionWhereInput[]
   OR?: Prisma.SubscriptionWhereInput[]
   NOT?: Prisma.SubscriptionWhereInput | Prisma.SubscriptionWhereInput[]
-  type?: Prisma.EnumSubscriptionTypeFilter<"Subscription"> | $Enums.SubscriptionType
+  name?: Prisma.StringFilter<"Subscription"> | string
   maxUserCount?: Prisma.IntFilter<"Subscription"> | number
   storage?: Prisma.IntFilter<"Subscription"> | number
   price?: Prisma.IntFilter<"Subscription"> | number
@@ -260,7 +260,7 @@ export type SubscriptionWhereUniqueInput = Prisma.AtLeast<{
 
 export type SubscriptionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  type?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   maxUserCount?: Prisma.SortOrder
   storage?: Prisma.SortOrder
   price?: Prisma.SortOrder
@@ -277,7 +277,7 @@ export type SubscriptionScalarWhereWithAggregatesInput = {
   OR?: Prisma.SubscriptionScalarWhereWithAggregatesInput[]
   NOT?: Prisma.SubscriptionScalarWhereWithAggregatesInput | Prisma.SubscriptionScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Subscription"> | number
-  type?: Prisma.EnumSubscriptionTypeWithAggregatesFilter<"Subscription"> | $Enums.SubscriptionType
+  name?: Prisma.StringWithAggregatesFilter<"Subscription"> | string
   maxUserCount?: Prisma.IntWithAggregatesFilter<"Subscription"> | number
   storage?: Prisma.IntWithAggregatesFilter<"Subscription"> | number
   price?: Prisma.IntWithAggregatesFilter<"Subscription"> | number
@@ -285,7 +285,7 @@ export type SubscriptionScalarWhereWithAggregatesInput = {
 }
 
 export type SubscriptionCreateInput = {
-  type?: $Enums.SubscriptionType
+  name?: string
   maxUserCount: number
   storage: number
   price: number
@@ -295,7 +295,7 @@ export type SubscriptionCreateInput = {
 
 export type SubscriptionUncheckedCreateInput = {
   id?: number
-  type?: $Enums.SubscriptionType
+  name?: string
   maxUserCount: number
   storage: number
   price: number
@@ -304,7 +304,7 @@ export type SubscriptionUncheckedCreateInput = {
 }
 
 export type SubscriptionUpdateInput = {
-  type?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   maxUserCount?: Prisma.IntFieldUpdateOperationsInput | number
   storage?: Prisma.IntFieldUpdateOperationsInput | number
   price?: Prisma.IntFieldUpdateOperationsInput | number
@@ -314,7 +314,7 @@ export type SubscriptionUpdateInput = {
 
 export type SubscriptionUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  type?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   maxUserCount?: Prisma.IntFieldUpdateOperationsInput | number
   storage?: Prisma.IntFieldUpdateOperationsInput | number
   price?: Prisma.IntFieldUpdateOperationsInput | number
@@ -324,7 +324,7 @@ export type SubscriptionUncheckedUpdateInput = {
 
 export type SubscriptionCreateManyInput = {
   id?: number
-  type?: $Enums.SubscriptionType
+  name?: string
   maxUserCount: number
   storage: number
   price: number
@@ -332,7 +332,7 @@ export type SubscriptionCreateManyInput = {
 }
 
 export type SubscriptionUpdateManyMutationInput = {
-  type?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   maxUserCount?: Prisma.IntFieldUpdateOperationsInput | number
   storage?: Prisma.IntFieldUpdateOperationsInput | number
   price?: Prisma.IntFieldUpdateOperationsInput | number
@@ -341,7 +341,7 @@ export type SubscriptionUpdateManyMutationInput = {
 
 export type SubscriptionUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  type?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   maxUserCount?: Prisma.IntFieldUpdateOperationsInput | number
   storage?: Prisma.IntFieldUpdateOperationsInput | number
   price?: Prisma.IntFieldUpdateOperationsInput | number
@@ -358,7 +358,7 @@ export type EnumFeatureNullableListFilter<$PrismaModel = never> = {
 
 export type SubscriptionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  type?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   maxUserCount?: Prisma.SortOrder
   storage?: Prisma.SortOrder
   price?: Prisma.SortOrder
@@ -374,7 +374,7 @@ export type SubscriptionAvgOrderByAggregateInput = {
 
 export type SubscriptionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  type?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   maxUserCount?: Prisma.SortOrder
   storage?: Prisma.SortOrder
   price?: Prisma.SortOrder
@@ -382,7 +382,7 @@ export type SubscriptionMaxOrderByAggregateInput = {
 
 export type SubscriptionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  type?: Prisma.SortOrder
+  name?: Prisma.SortOrder
   maxUserCount?: Prisma.SortOrder
   storage?: Prisma.SortOrder
   price?: Prisma.SortOrder
@@ -402,10 +402,6 @@ export type SubscriptionScalarRelationFilter = {
 
 export type SubscriptionCreatefeaturesInput = {
   set: $Enums.Feature[]
-}
-
-export type EnumSubscriptionTypeFieldUpdateOperationsInput = {
-  set?: $Enums.SubscriptionType
 }
 
 export type SubscriptionUpdatefeaturesInput = {
@@ -428,7 +424,7 @@ export type SubscriptionUpdateOneRequiredWithoutTenantNestedInput = {
 }
 
 export type SubscriptionCreateWithoutTenantInput = {
-  type?: $Enums.SubscriptionType
+  name?: string
   maxUserCount: number
   storage: number
   price: number
@@ -437,7 +433,7 @@ export type SubscriptionCreateWithoutTenantInput = {
 
 export type SubscriptionUncheckedCreateWithoutTenantInput = {
   id?: number
-  type?: $Enums.SubscriptionType
+  name?: string
   maxUserCount: number
   storage: number
   price: number
@@ -461,7 +457,7 @@ export type SubscriptionUpdateToOneWithWhereWithoutTenantInput = {
 }
 
 export type SubscriptionUpdateWithoutTenantInput = {
-  type?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   maxUserCount?: Prisma.IntFieldUpdateOperationsInput | number
   storage?: Prisma.IntFieldUpdateOperationsInput | number
   price?: Prisma.IntFieldUpdateOperationsInput | number
@@ -470,7 +466,7 @@ export type SubscriptionUpdateWithoutTenantInput = {
 
 export type SubscriptionUncheckedUpdateWithoutTenantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  type?: Prisma.EnumSubscriptionTypeFieldUpdateOperationsInput | $Enums.SubscriptionType
+  name?: Prisma.StringFieldUpdateOperationsInput | string
   maxUserCount?: Prisma.IntFieldUpdateOperationsInput | number
   storage?: Prisma.IntFieldUpdateOperationsInput | number
   price?: Prisma.IntFieldUpdateOperationsInput | number
@@ -510,7 +506,7 @@ export type SubscriptionCountOutputTypeCountTenantArgs<ExtArgs extends runtime.T
 
 export type SubscriptionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  type?: boolean
+  name?: boolean
   maxUserCount?: boolean
   storage?: boolean
   price?: boolean
@@ -521,7 +517,7 @@ export type SubscriptionSelect<ExtArgs extends runtime.Types.Extensions.Internal
 
 export type SubscriptionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  type?: boolean
+  name?: boolean
   maxUserCount?: boolean
   storage?: boolean
   price?: boolean
@@ -530,7 +526,7 @@ export type SubscriptionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
 
 export type SubscriptionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  type?: boolean
+  name?: boolean
   maxUserCount?: boolean
   storage?: boolean
   price?: boolean
@@ -539,14 +535,14 @@ export type SubscriptionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
 
 export type SubscriptionSelectScalar = {
   id?: boolean
-  type?: boolean
+  name?: boolean
   maxUserCount?: boolean
   storage?: boolean
   price?: boolean
   features?: boolean
 }
 
-export type SubscriptionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "type" | "maxUserCount" | "storage" | "price" | "features", ExtArgs["result"]["subscription"]>
+export type SubscriptionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "maxUserCount" | "storage" | "price" | "features", ExtArgs["result"]["subscription"]>
 export type SubscriptionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tenant?: boolean | Prisma.Subscription$tenantArgs<ExtArgs>
   _count?: boolean | Prisma.SubscriptionCountOutputTypeDefaultArgs<ExtArgs>
@@ -561,7 +557,7 @@ export type $SubscriptionPayload<ExtArgs extends runtime.Types.Extensions.Intern
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
-    type: $Enums.SubscriptionType
+    name: string
     maxUserCount: number
     storage: number
     price: number
@@ -991,7 +987,7 @@ export interface Prisma__SubscriptionClient<T, Null = never, ExtArgs extends run
  */
 export interface SubscriptionFieldRefs {
   readonly id: Prisma.FieldRef<"Subscription", 'Int'>
-  readonly type: Prisma.FieldRef<"Subscription", 'SubscriptionType'>
+  readonly name: Prisma.FieldRef<"Subscription", 'String'>
   readonly maxUserCount: Prisma.FieldRef<"Subscription", 'Int'>
   readonly storage: Prisma.FieldRef<"Subscription", 'Int'>
   readonly price: Prisma.FieldRef<"Subscription", 'Int'>

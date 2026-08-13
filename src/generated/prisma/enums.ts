@@ -78,15 +78,6 @@ export const ProspectionStatus = {
 export type ProspectionStatus = (typeof ProspectionStatus)[keyof typeof ProspectionStatus]
 
 
-export const SubscriptionType = {
-  STARTER: 'STARTER',
-  PRO: 'PRO',
-  ENTERPRISE: 'ENTERPRISE'
-} as const
-
-export type SubscriptionType = (typeof SubscriptionType)[keyof typeof SubscriptionType]
-
-
 export const Feature = {
   DASHBOARD: 'DASHBOARD',
   TENANT: 'TENANT',

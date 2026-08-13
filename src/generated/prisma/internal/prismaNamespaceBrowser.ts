@@ -255,7 +255,7 @@ export type ProspectionScalarFieldEnum = (typeof ProspectionScalarFieldEnum)[key
 
 export const SubscriptionScalarFieldEnum = {
   id: 'id',
-  type: 'type',
+  name: 'name',
   maxUserCount: 'maxUserCount',
   storage: 'storage',
   price: 'price',

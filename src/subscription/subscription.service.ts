@@ -12,7 +12,16 @@ export class SubscriptionService {
     // -
     async findAll() {
         try {
-            return await this.prismaClientService.subscription.findMany();
+            return await this.prismaClientService.subscription.findMany({
+                select: {
+                    id: true,
+                    name: true,
+                    maxUserCount: true,
+                    storage: true,
+                    price: true,
+                    features: true
+                }
+            });
         }
         catch(err) {
             this.logger.error('Error while fetching the subscriptions: ', err);
