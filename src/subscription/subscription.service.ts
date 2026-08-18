@@ -2,6 +2,8 @@ import { BadRequestException, Injectable, InternalServerErrorException, Logger, 
 import { PrismaClientService } from '../database/prisma-client.service';
 import { CreateSubscriptionDTO } from './dto/create-subscription.dto';
 import { Feature, Role } from '../generated/prisma/client';
+import { SubscriptionQueryDTO } from './dto/subscription-query.dto';
+import { SubscriptionWhereInput } from '../generated/prisma/models';
 
 @Injectable()
 export class SubscriptionService {
@@ -10,9 +12,16 @@ export class SubscriptionService {
     constructor(private readonly prismaClientService: PrismaClientService) {}
 
     // -
-    async findAll() {
+    async findAll(query: SubscriptionQueryDTO) {
+        const filter: SubscriptionWhereInput = {};
+
+        if(query.name && query.name.length) {
+            filter.name = query.name;
+        }
+
         try {
             return await this.prismaClientService.subscription.findMany({
+                where: filter,
                 select: {
                     id: true,
                     name: true,

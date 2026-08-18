@@ -13,7 +13,6 @@ import { OfferModule } from './lead/offer/offer.module';
 import { CommonModule } from './common/common.module';
 import { MissionModule } from './mission/mission.module';
 import { DashboardModule } from './dashboard/dashboard.module';
-import { ServiceModule } from './service/service.module';
 import { ProjectModule } from './project/project.module';
 import { RoleManagementModule } from './role-management/role-management.module';
 import { ScheduleModule } from '@nestjs/schedule';
@@ -33,7 +32,6 @@ import { SubscriptionModule } from './subscription/subscription.module';
     CommonModule,
     MissionModule,
     DashboardModule,
-    ServiceModule,
     ProjectModule,
     RoleManagementModule,
     ScheduleModule.forRoot(),

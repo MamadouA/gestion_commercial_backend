@@ -14,15 +14,6 @@ export class CreateTenantAdminDTO {
     @MinLength(9)
     @MaxLength(20)
     phone!: string
-
-    @IsString()
-    @MinLength(8)
-    @MaxLength(20)
-    password: string = process.env.DEFAULT_ADMIN_PASSWORD ?? ""
-
-    @IsArray()
-    @IsNumber({}, { each: true })
-    permissionIds!: number[]
 }
 export class CreateTenantDTO {
     @IsString()

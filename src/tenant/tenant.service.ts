@@ -22,6 +22,15 @@ export class TenantService {
         throw new BadRequestException('Subscription not found.');
       }
 
+      // - permissions for admin based on the type of subscription
+      const adminPermissions = await this.prismaClientService.permission.findMany({
+        where: {
+          feature: {
+            in: subscription.features
+          }
+        }
+      })
+
       const tenant = await this.prismaClientService.$transaction(async (tx) => {
         const createdTenant = await tx.tenant.create({
           data: {
@@ -32,13 +41,19 @@ export class TenantService {
               }
             }
           },
+          select: {
+            id: true,
+            name: true,
+            isActive: true,
+            createdAt: true
+          }
         });
 
-        return tx.user.create({
+        return await tx.user.create({
           data: {
             fullname: createTenantDto.admin.fullname,
             email: createTenantDto.admin.email,
-            password: bcrypt.hashSync(createTenantDto.admin.password, 10),
+            password: bcrypt.hashSync("testing1234", 10),
             phone: createTenantDto.admin.phone,
             tenant: {
               connect: {
@@ -55,7 +70,7 @@ export class TenantService {
                   },
                 },
                 permissions: {
-                  connect: createTenantDto.admin.permissionIds.map((permissionId) => ({ id: permissionId })),
+                  connect: adminPermissions.map(permission => ({ id: permission.id })),
                 },
               },
             },

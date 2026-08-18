@@ -1,7 +1,7 @@
 
 model Subscription {
     id Int @id() @default(autoincrement())
-    name String @default("STARTER")
+    name String 
     maxUserCount Int
     storage Int
     price Int

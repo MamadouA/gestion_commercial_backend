@@ -26,11 +26,12 @@ export class PrismaClientService
           name: process.env.SUPERADMIN_TENANT_NAME ?? '',
           subscription: {
             create: {
+              name: "Kinetix Max",
               maxUserCount: 10,
               price: 60000,
               storage: 20,
               features: {
-                set: ['TENANT'],
+                set: Object.keys(Feature) as Feature[],
               },
             },
           },

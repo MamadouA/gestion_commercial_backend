@@ -3,6 +3,11 @@ import { PermissionDTO } from "./role.types"
 // -
 export const PERMISSIONS_ON_DASHBOARD: PermissionDTO[] = [
     {
+        name: "dashboard.view",
+        description: "Voir le tableau de board",
+        feature: "DASHBOARD"
+    },
+    {
         name: "dashboard.view_monthly_revenue",
         description: "Voir le chiffre d'affaire mensuelle",
         feature: "DASHBOARD"
@@ -41,6 +46,11 @@ export const PERMISSIONS_ON_DASHBOARD: PermissionDTO[] = [
         name: "dashboard.view_tenant_overview",
         description: "Voir les statistiques sur les tenants",
         feature: "DASHBOARD"
+    },
+    {
+        name: "dashboard.view_client_overview",
+        description: "Voir les statistiques sur les clients",
+        feature: "DASHBOARD"
     }
 ]
 
@@ -48,22 +58,22 @@ export const PERMISSIONS_ON_DASHBOARD: PermissionDTO[] = [
 export const PERMISSIONS_ON_ROLE: PermissionDTO[] = [
     {
         name: "role.list",
-        description: "Voir la liste des roles",
+        description: "Voir la liste des rôles",
         feature: "ROLE"
     },
     {
         name: "role.create",
-        description: "Créer un role",
+        description: "Créer un rôle",
         feature: "ROLE"
     },
     {
         name: "role.update",
-        description: "Modifier un role",
+        description: "Modifier un rôle",
         feature: "ROLE"
     },
     {
         name: "role.delete",
-        description: "Supprimer un role",
+        description: "Supprimer un rôle",
         feature: "ROLE"
     }
 ]
@@ -96,22 +106,22 @@ export const PERMISSIONS_ON_USER: PermissionDTO[] = [
 export const PERMISSIONS_ON_PROSPECTION: PermissionDTO[] = [
     {
         name: "prospection.list",
-        description: "Voir la liste des prospects",
+        description: "Voir la liste des propections",
         feature: "PROSPECTION"
     },
     {
         name: "prospection.create",
-        description: "Créer un prospect",
+        description: "Créer un propection",
         feature: "PROSPECTION"
     },
     {
         name: "prospection.update",
-        description: "Modifier un prospect",
+        description: "Modifier un propection",
         feature: "PROSPECTION"
     },
     {
         name: "prospection.delete",
-        description: "Supprimer un prospect",
+        description: "Supprimer un propection",
         feature: "PROSPECTION"
     }
 ]

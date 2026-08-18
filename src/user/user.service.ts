@@ -112,8 +112,17 @@ export class UserService {
           id,
           tenantId
         },
-        omit: {
-          password: true
+        select: {
+          id: true,
+          fullname: true,
+          email: true,
+          phone: true,
+          role: {
+            select: {
+              name: true,
+              description: true
+            }
+          },
         }
       });
 

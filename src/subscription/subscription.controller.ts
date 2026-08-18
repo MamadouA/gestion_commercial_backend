@@ -1,8 +1,9 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { SubscriptionService } from './subscription.service';
 import { CreateSubscriptionDTO } from './dto/create-subscription.dto';
 import { CurrentUser } from '../shared/current-user.decoration';
 import { Role } from '../generated/prisma/client';
+import { SubscriptionQueryDTO } from './dto/subscription-query.dto';
 
 @Controller('subscription')
 export class SubscriptionController {
@@ -10,8 +11,8 @@ export class SubscriptionController {
 
     // -
     @Get('all')
-    async findAll() {
-        return await this.subscriptionService.findAll();
+    async findAll(@Query() query: SubscriptionQueryDTO) {
+        return await this.subscriptionService.findAll(query);
     }
 
     //  -

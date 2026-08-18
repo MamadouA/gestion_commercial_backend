@@ -1,4 +1,4 @@
-import { IsEmail, IsEnum, IsString, MaxLength, MinLength,  } from "class-validator";
+import { IsEmail, IsEnum, IsNumber, IsString, MaxLength, Min, MinLength,  } from "class-validator";
 
 export class CreateUserDTO {
     @IsString()
@@ -14,6 +14,8 @@ export class CreateUserDTO {
     @MaxLength(20)
     phone!: string;
 
+    @IsNumber()
+    @Min(1)
     roleId!: number;
 }
 

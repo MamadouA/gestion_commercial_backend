@@ -36,7 +36,23 @@ export class AuthMiddleware implements NestMiddleware {
                   },
                 },
               },
-            }
+            },
+            tenant: {
+              select: {
+                id: true,
+                name: true,
+                subscription: {
+                  select: {
+                    id: true,
+                    name: true,
+                    maxUserCount: true,
+                    price: true,
+                    storage: true,
+                    features: true,
+                  },
+                },
+              },
+            },
           }
         });
         

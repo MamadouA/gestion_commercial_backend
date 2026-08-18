@@ -285,7 +285,7 @@ export type SubscriptionScalarWhereWithAggregatesInput = {
 }
 
 export type SubscriptionCreateInput = {
-  name?: string
+  name: string
   maxUserCount: number
   storage: number
   price: number
@@ -295,7 +295,7 @@ export type SubscriptionCreateInput = {
 
 export type SubscriptionUncheckedCreateInput = {
   id?: number
-  name?: string
+  name: string
   maxUserCount: number
   storage: number
   price: number
@@ -324,7 +324,7 @@ export type SubscriptionUncheckedUpdateInput = {
 
 export type SubscriptionCreateManyInput = {
   id?: number
-  name?: string
+  name: string
   maxUserCount: number
   storage: number
   price: number
@@ -424,7 +424,7 @@ export type SubscriptionUpdateOneRequiredWithoutTenantNestedInput = {
 }
 
 export type SubscriptionCreateWithoutTenantInput = {
-  name?: string
+  name: string
   maxUserCount: number
   storage: number
   price: number
@@ -433,7 +433,7 @@ export type SubscriptionCreateWithoutTenantInput = {
 
 export type SubscriptionUncheckedCreateWithoutTenantInput = {
   id?: number
-  name?: string
+  name: string
   maxUserCount: number
   storage: number
   price: number
