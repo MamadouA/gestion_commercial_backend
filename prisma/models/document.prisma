@@ -1,6 +1,7 @@
 
 model Document {
     id Int @id @default(autoincrement())
+    description String?
     originalName String
     storedName String @unique()
     size Decimal

@@ -15,26 +15,18 @@ export class CommentService {
 
             switch(createCommentDTO.resourceType) {
                 case 'PROJECT':
-                    const project = await this.prismaClientService.project.findUnique({ where: { id: createCommentDTO.resourceId, tenantId: user.tenantId} });
-                    if(!project) {
-                        throw new NotFoundException('Project not found.');
-                    }
+                    const project = await this.prismaClientService.project.findFirstOrThrow({ where: { id: createCommentDTO.resourceId, tenantId: user.tenantId} });
                     data['projectId'] = project.id;
 
                     break;
                 case 'OFFER':
-                    const offer = await this.prismaClientService.offer.findUnique({ where: { id: createCommentDTO.resourceId, tenantId: user.tenantId } });
-                    if(!offer) {
-                        throw new NotFoundException('Offer not found.');
-                    }
+                    const offer = await this.prismaClientService.offer.findFirstOrThrow({ where: { id: createCommentDTO.resourceId, tenantId: user.tenantId } });
+                   
                     data['offerId'] = offer.id;
                     break;
 
                 case 'PROSPECTION':
-                    const prospection = await this.prismaClientService.prospection.findUnique({ where: { id: createCommentDTO.resourceId, tenantId: user.tenantId } });
-                    if(!prospection) {
-                        throw new NotFoundException('Prospection not found.');
-                    }
+                    const prospection = await this.prismaClientService.prospection.findFirstOrThrow({ where: { id: createCommentDTO.resourceId, tenantId: user.tenantId } });
                     data['prospectionId'] = prospection.id;
                     break;
             }

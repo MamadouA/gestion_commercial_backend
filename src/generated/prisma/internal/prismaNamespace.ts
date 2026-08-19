@@ -1824,6 +1824,7 @@ export type CommentScalarFieldEnum = (typeof CommentScalarFieldEnum)[keyof typeo
 
 export const DocumentScalarFieldEnum = {
   id: 'id',
+  description: 'description',
   originalName: 'originalName',
   storedName: 'storedName',
   size: 'size',
