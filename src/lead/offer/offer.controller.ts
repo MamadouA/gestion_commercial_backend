@@ -31,13 +31,13 @@ export class OfferController {
   }
 
   @Post('create')
-  @UseInterceptors(FilesInterceptor('files', 10, FILE_FILTER))
+  @UseInterceptors(FileInterceptor('file',FILE_FILTER))
   async create(
     @Body() createOfferDto: CreateOfferDTO,
-    @UploadedFiles() files: Array<Express.Multer.File>,
+    @UploadedFiles() file: Express.Multer.File,
     @CurrentUser() user: User,
   ) {
-    return this.offerService.create(createOfferDto, files, user.id, user.tenantId);
+    return this.offerService.create(createOfferDto, file, user.id, user.tenantId);
   }
 
   @Post(':id/file/remove')
@@ -58,10 +58,9 @@ export class OfferController {
   async update(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateOfferDto: UpdateOfferDTO,
-    @CurrentUser('id') userId: number,
     @CurrentUser('tenantId') tenantId: number,
   ) {
-    return this.offerService.update(id, updateOfferDto, userId, tenantId);
+    return this.offerService.update(id, updateOfferDto, tenantId);
   }
 
   @Post(':id/document/create')

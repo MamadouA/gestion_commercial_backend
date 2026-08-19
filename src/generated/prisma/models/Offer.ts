@@ -49,7 +49,6 @@ export type OfferSumAggregateOutputType = {
 export type OfferMinAggregateOutputType = {
   id: number | null
   title: string | null
-  description: string | null
   status: $Enums.OfferStatus | null
   amountExcludingTax: runtime.Decimal | null
   vatAmount: runtime.Decimal | null
@@ -65,7 +64,6 @@ export type OfferMinAggregateOutputType = {
 export type OfferMaxAggregateOutputType = {
   id: number | null
   title: string | null
-  description: string | null
   status: $Enums.OfferStatus | null
   amountExcludingTax: runtime.Decimal | null
   vatAmount: runtime.Decimal | null
@@ -81,7 +79,6 @@ export type OfferMaxAggregateOutputType = {
 export type OfferCountAggregateOutputType = {
   id: number
   title: number
-  description: number
   status: number
   amountExcludingTax: number
   vatAmount: number
@@ -119,7 +116,6 @@ export type OfferSumAggregateInputType = {
 export type OfferMinAggregateInputType = {
   id?: true
   title?: true
-  description?: true
   status?: true
   amountExcludingTax?: true
   vatAmount?: true
@@ -135,7 +131,6 @@ export type OfferMinAggregateInputType = {
 export type OfferMaxAggregateInputType = {
   id?: true
   title?: true
-  description?: true
   status?: true
   amountExcludingTax?: true
   vatAmount?: true
@@ -151,7 +146,6 @@ export type OfferMaxAggregateInputType = {
 export type OfferCountAggregateInputType = {
   id?: true
   title?: true
-  description?: true
   status?: true
   amountExcludingTax?: true
   vatAmount?: true
@@ -254,7 +248,6 @@ export type OfferGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 export type OfferGroupByOutputType = {
   id: number
   title: string
-  description: string | null
   status: $Enums.OfferStatus
   amountExcludingTax: runtime.Decimal | null
   vatAmount: runtime.Decimal | null
@@ -293,7 +286,6 @@ export type OfferWhereInput = {
   NOT?: Prisma.OfferWhereInput | Prisma.OfferWhereInput[]
   id?: Prisma.IntFilter<"Offer"> | number
   title?: Prisma.StringFilter<"Offer"> | string
-  description?: Prisma.StringNullableFilter<"Offer"> | string | null
   status?: Prisma.EnumOfferStatusFilter<"Offer"> | $Enums.OfferStatus
   amountExcludingTax?: Prisma.DecimalNullableFilter<"Offer"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.DecimalNullableFilter<"Offer"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -316,7 +308,6 @@ export type OfferWhereInput = {
 export type OfferOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
-  description?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   amountExcludingTax?: Prisma.SortOrderInput | Prisma.SortOrder
   vatAmount?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -342,7 +333,6 @@ export type OfferWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.OfferWhereInput[]
   NOT?: Prisma.OfferWhereInput | Prisma.OfferWhereInput[]
   title?: Prisma.StringFilter<"Offer"> | string
-  description?: Prisma.StringNullableFilter<"Offer"> | string | null
   status?: Prisma.EnumOfferStatusFilter<"Offer"> | $Enums.OfferStatus
   amountExcludingTax?: Prisma.DecimalNullableFilter<"Offer"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.DecimalNullableFilter<"Offer"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -365,7 +355,6 @@ export type OfferWhereUniqueInput = Prisma.AtLeast<{
 export type OfferOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
-  description?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   amountExcludingTax?: Prisma.SortOrderInput | Prisma.SortOrder
   vatAmount?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -389,7 +378,6 @@ export type OfferScalarWhereWithAggregatesInput = {
   NOT?: Prisma.OfferScalarWhereWithAggregatesInput | Prisma.OfferScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Offer"> | number
   title?: Prisma.StringWithAggregatesFilter<"Offer"> | string
-  description?: Prisma.StringNullableWithAggregatesFilter<"Offer"> | string | null
   status?: Prisma.EnumOfferStatusWithAggregatesFilter<"Offer"> | $Enums.OfferStatus
   amountExcludingTax?: Prisma.DecimalNullableWithAggregatesFilter<"Offer"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.DecimalNullableWithAggregatesFilter<"Offer"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -404,7 +392,6 @@ export type OfferScalarWhereWithAggregatesInput = {
 
 export type OfferCreateInput = {
   title: string
-  description?: string | null
   status?: $Enums.OfferStatus
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -424,7 +411,6 @@ export type OfferCreateInput = {
 export type OfferUncheckedCreateInput = {
   id?: number
   title: string
-  description?: string | null
   status?: $Enums.OfferStatus
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -443,7 +429,6 @@ export type OfferUncheckedCreateInput = {
 
 export type OfferUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumOfferStatusFieldUpdateOperationsInput | $Enums.OfferStatus
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -463,7 +448,6 @@ export type OfferUpdateInput = {
 export type OfferUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumOfferStatusFieldUpdateOperationsInput | $Enums.OfferStatus
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -483,7 +467,6 @@ export type OfferUncheckedUpdateInput = {
 export type OfferCreateManyInput = {
   id?: number
   title: string
-  description?: string | null
   status?: $Enums.OfferStatus
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -498,7 +481,6 @@ export type OfferCreateManyInput = {
 
 export type OfferUpdateManyMutationInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumOfferStatusFieldUpdateOperationsInput | $Enums.OfferStatus
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -511,7 +493,6 @@ export type OfferUpdateManyMutationInput = {
 export type OfferUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumOfferStatusFieldUpdateOperationsInput | $Enums.OfferStatus
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -542,7 +523,6 @@ export type OfferNullableScalarRelationFilter = {
 export type OfferCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
-  description?: Prisma.SortOrder
   status?: Prisma.SortOrder
   amountExcludingTax?: Prisma.SortOrder
   vatAmount?: Prisma.SortOrder
@@ -568,7 +548,6 @@ export type OfferAvgOrderByAggregateInput = {
 export type OfferMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
-  description?: Prisma.SortOrder
   status?: Prisma.SortOrder
   amountExcludingTax?: Prisma.SortOrder
   vatAmount?: Prisma.SortOrder
@@ -584,7 +563,6 @@ export type OfferMaxOrderByAggregateInput = {
 export type OfferMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
-  description?: Prisma.SortOrder
   status?: Prisma.SortOrder
   amountExcludingTax?: Prisma.SortOrder
   vatAmount?: Prisma.SortOrder
@@ -840,7 +818,6 @@ export type OfferUncheckedUpdateManyWithoutAuthorNestedInput = {
 
 export type OfferCreateWithoutClientInput = {
   title: string
-  description?: string | null
   status?: $Enums.OfferStatus
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -859,7 +836,6 @@ export type OfferCreateWithoutClientInput = {
 export type OfferUncheckedCreateWithoutClientInput = {
   id?: number
   title: string
-  description?: string | null
   status?: $Enums.OfferStatus
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -907,7 +883,6 @@ export type OfferScalarWhereInput = {
   NOT?: Prisma.OfferScalarWhereInput | Prisma.OfferScalarWhereInput[]
   id?: Prisma.IntFilter<"Offer"> | number
   title?: Prisma.StringFilter<"Offer"> | string
-  description?: Prisma.StringNullableFilter<"Offer"> | string | null
   status?: Prisma.EnumOfferStatusFilter<"Offer"> | $Enums.OfferStatus
   amountExcludingTax?: Prisma.DecimalNullableFilter<"Offer"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.DecimalNullableFilter<"Offer"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -922,7 +897,6 @@ export type OfferScalarWhereInput = {
 
 export type OfferCreateWithoutCommentsInput = {
   title: string
-  description?: string | null
   status?: $Enums.OfferStatus
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -941,7 +915,6 @@ export type OfferCreateWithoutCommentsInput = {
 export type OfferUncheckedCreateWithoutCommentsInput = {
   id?: number
   title: string
-  description?: string | null
   status?: $Enums.OfferStatus
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -975,7 +948,6 @@ export type OfferUpdateToOneWithWhereWithoutCommentsInput = {
 
 export type OfferUpdateWithoutCommentsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumOfferStatusFieldUpdateOperationsInput | $Enums.OfferStatus
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -994,7 +966,6 @@ export type OfferUpdateWithoutCommentsInput = {
 export type OfferUncheckedUpdateWithoutCommentsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumOfferStatusFieldUpdateOperationsInput | $Enums.OfferStatus
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1012,7 +983,6 @@ export type OfferUncheckedUpdateWithoutCommentsInput = {
 
 export type OfferCreateWithoutDocumentsInput = {
   title: string
-  description?: string | null
   status?: $Enums.OfferStatus
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1031,7 +1001,6 @@ export type OfferCreateWithoutDocumentsInput = {
 export type OfferUncheckedCreateWithoutDocumentsInput = {
   id?: number
   title: string
-  description?: string | null
   status?: $Enums.OfferStatus
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1065,7 +1034,6 @@ export type OfferUpdateToOneWithWhereWithoutDocumentsInput = {
 
 export type OfferUpdateWithoutDocumentsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumOfferStatusFieldUpdateOperationsInput | $Enums.OfferStatus
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1084,7 +1052,6 @@ export type OfferUpdateWithoutDocumentsInput = {
 export type OfferUncheckedUpdateWithoutDocumentsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumOfferStatusFieldUpdateOperationsInput | $Enums.OfferStatus
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1102,7 +1069,6 @@ export type OfferUncheckedUpdateWithoutDocumentsInput = {
 
 export type OfferCreateWithoutProductsInput = {
   title: string
-  description?: string | null
   status?: $Enums.OfferStatus
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1121,7 +1087,6 @@ export type OfferCreateWithoutProductsInput = {
 export type OfferUncheckedCreateWithoutProductsInput = {
   id?: number
   title: string
-  description?: string | null
   status?: $Enums.OfferStatus
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1160,7 +1125,6 @@ export type OfferUpdateManyWithWhereWithoutProductsInput = {
 
 export type OfferCreateWithoutProjectInput = {
   title: string
-  description?: string | null
   status?: $Enums.OfferStatus
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1179,7 +1143,6 @@ export type OfferCreateWithoutProjectInput = {
 export type OfferUncheckedCreateWithoutProjectInput = {
   id?: number
   title: string
-  description?: string | null
   status?: $Enums.OfferStatus
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1213,7 +1176,6 @@ export type OfferUpdateToOneWithWhereWithoutProjectInput = {
 
 export type OfferUpdateWithoutProjectInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumOfferStatusFieldUpdateOperationsInput | $Enums.OfferStatus
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1232,7 +1194,6 @@ export type OfferUpdateWithoutProjectInput = {
 export type OfferUncheckedUpdateWithoutProjectInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumOfferStatusFieldUpdateOperationsInput | $Enums.OfferStatus
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1250,7 +1211,6 @@ export type OfferUncheckedUpdateWithoutProjectInput = {
 
 export type OfferCreateWithoutTenantInput = {
   title: string
-  description?: string | null
   status?: $Enums.OfferStatus
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1269,7 +1229,6 @@ export type OfferCreateWithoutTenantInput = {
 export type OfferUncheckedCreateWithoutTenantInput = {
   id?: number
   title: string
-  description?: string | null
   status?: $Enums.OfferStatus
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1313,7 +1272,6 @@ export type OfferUpdateManyWithWhereWithoutTenantInput = {
 
 export type OfferCreateWithoutAuthorInput = {
   title: string
-  description?: string | null
   status?: $Enums.OfferStatus
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1332,7 +1290,6 @@ export type OfferCreateWithoutAuthorInput = {
 export type OfferUncheckedCreateWithoutAuthorInput = {
   id?: number
   title: string
-  description?: string | null
   status?: $Enums.OfferStatus
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1377,7 +1334,6 @@ export type OfferUpdateManyWithWhereWithoutAuthorInput = {
 export type OfferCreateManyClientInput = {
   id?: number
   title: string
-  description?: string | null
   status?: $Enums.OfferStatus
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1391,7 +1347,6 @@ export type OfferCreateManyClientInput = {
 
 export type OfferUpdateWithoutClientInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumOfferStatusFieldUpdateOperationsInput | $Enums.OfferStatus
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1410,7 +1365,6 @@ export type OfferUpdateWithoutClientInput = {
 export type OfferUncheckedUpdateWithoutClientInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumOfferStatusFieldUpdateOperationsInput | $Enums.OfferStatus
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1429,7 +1383,6 @@ export type OfferUncheckedUpdateWithoutClientInput = {
 export type OfferUncheckedUpdateManyWithoutClientInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumOfferStatusFieldUpdateOperationsInput | $Enums.OfferStatus
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1443,7 +1396,6 @@ export type OfferUncheckedUpdateManyWithoutClientInput = {
 
 export type OfferUpdateWithoutProductsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumOfferStatusFieldUpdateOperationsInput | $Enums.OfferStatus
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1462,7 +1414,6 @@ export type OfferUpdateWithoutProductsInput = {
 export type OfferUncheckedUpdateWithoutProductsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumOfferStatusFieldUpdateOperationsInput | $Enums.OfferStatus
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1481,7 +1432,6 @@ export type OfferUncheckedUpdateWithoutProductsInput = {
 export type OfferUncheckedUpdateManyWithoutProductsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumOfferStatusFieldUpdateOperationsInput | $Enums.OfferStatus
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1497,7 +1447,6 @@ export type OfferUncheckedUpdateManyWithoutProductsInput = {
 export type OfferCreateManyTenantInput = {
   id?: number
   title: string
-  description?: string | null
   status?: $Enums.OfferStatus
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1511,7 +1460,6 @@ export type OfferCreateManyTenantInput = {
 
 export type OfferUpdateWithoutTenantInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumOfferStatusFieldUpdateOperationsInput | $Enums.OfferStatus
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1530,7 +1478,6 @@ export type OfferUpdateWithoutTenantInput = {
 export type OfferUncheckedUpdateWithoutTenantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumOfferStatusFieldUpdateOperationsInput | $Enums.OfferStatus
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1549,7 +1496,6 @@ export type OfferUncheckedUpdateWithoutTenantInput = {
 export type OfferUncheckedUpdateManyWithoutTenantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumOfferStatusFieldUpdateOperationsInput | $Enums.OfferStatus
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1564,7 +1510,6 @@ export type OfferUncheckedUpdateManyWithoutTenantInput = {
 export type OfferCreateManyAuthorInput = {
   id?: number
   title: string
-  description?: string | null
   status?: $Enums.OfferStatus
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1578,7 +1523,6 @@ export type OfferCreateManyAuthorInput = {
 
 export type OfferUpdateWithoutAuthorInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumOfferStatusFieldUpdateOperationsInput | $Enums.OfferStatus
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1597,7 +1541,6 @@ export type OfferUpdateWithoutAuthorInput = {
 export type OfferUncheckedUpdateWithoutAuthorInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumOfferStatusFieldUpdateOperationsInput | $Enums.OfferStatus
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1616,7 +1559,6 @@ export type OfferUncheckedUpdateWithoutAuthorInput = {
 export type OfferUncheckedUpdateManyWithoutAuthorInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   status?: Prisma.EnumOfferStatusFieldUpdateOperationsInput | $Enums.OfferStatus
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1680,7 +1622,6 @@ export type OfferCountOutputTypeCountDocumentsArgs<ExtArgs extends runtime.Types
 export type OfferSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   title?: boolean
-  description?: boolean
   status?: boolean
   amountExcludingTax?: boolean
   vatAmount?: boolean
@@ -1704,7 +1645,6 @@ export type OfferSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
 export type OfferSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   title?: boolean
-  description?: boolean
   status?: boolean
   amountExcludingTax?: boolean
   vatAmount?: boolean
@@ -1723,7 +1663,6 @@ export type OfferSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type OfferSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   title?: boolean
-  description?: boolean
   status?: boolean
   amountExcludingTax?: boolean
   vatAmount?: boolean
@@ -1742,7 +1681,6 @@ export type OfferSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type OfferSelectScalar = {
   id?: boolean
   title?: boolean
-  description?: boolean
   status?: boolean
   amountExcludingTax?: boolean
   vatAmount?: boolean
@@ -1755,7 +1693,7 @@ export type OfferSelectScalar = {
   createdAt?: boolean
 }
 
-export type OfferOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "status" | "amountExcludingTax" | "vatAmount" | "amountIncludingTax" | "authorId" | "clientId" | "tenantId" | "expiryDate" | "sentAt" | "createdAt", ExtArgs["result"]["offer"]>
+export type OfferOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "status" | "amountExcludingTax" | "vatAmount" | "amountIncludingTax" | "authorId" | "clientId" | "tenantId" | "expiryDate" | "sentAt" | "createdAt", ExtArgs["result"]["offer"]>
 export type OfferInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   comments?: boolean | Prisma.Offer$commentsArgs<ExtArgs>
   products?: boolean | Prisma.Offer$productsArgs<ExtArgs>
@@ -1791,7 +1729,6 @@ export type $OfferPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     title: string
-    description: string | null
     status: $Enums.OfferStatus
     amountExcludingTax: runtime.Decimal | null
     vatAmount: runtime.Decimal | null
@@ -2234,7 +2171,6 @@ export interface Prisma__OfferClient<T, Null = never, ExtArgs extends runtime.Ty
 export interface OfferFieldRefs {
   readonly id: Prisma.FieldRef<"Offer", 'Int'>
   readonly title: Prisma.FieldRef<"Offer", 'String'>
-  readonly description: Prisma.FieldRef<"Offer", 'String'>
   readonly status: Prisma.FieldRef<"Offer", 'OfferStatus'>
   readonly amountExcludingTax: Prisma.FieldRef<"Offer", 'Decimal'>
   readonly vatAmount: Prisma.FieldRef<"Offer", 'Decimal'>

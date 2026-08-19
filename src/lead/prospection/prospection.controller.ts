@@ -21,7 +21,7 @@ import { ProspectionService } from './prospection.service';
 import { User } from '../../generated/prisma/client';
 import { ProspectionQueryDTO } from './dto/prospection-query.dto';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
-import { CreateCommentDTO } from '../../shared/dto/create.comment.dto';
+import { CreateCommentDTO } from '../../comment/dto/create.comment.dto';
 import { FILE_FILTER } from '../../common/common.constants';
 
 @Controller('prospection')
@@ -96,17 +96,37 @@ export class ProspectionController {
   // -
   @Post(':id/document/create')
   @UseInterceptors(FileInterceptor('file', FILE_FILTER))
-  async createDocument(@Param('id', ParseIntPipe) id: number, @UploadedFile() file: Express.Multer.File, @CurrentUser('tenantId') tenantId: number) {
+  async createDocument(
+    @Param('id', ParseIntPipe) id: number,
+    @UploadedFile() file: Express.Multer.File,
+    @CurrentUser('tenantId') tenantId: number,
+  ) {
     return await this.prospectionService.createDocument(id, file, tenantId);
   }
 
   @Delete(':id/document/:documentId')
-  async deleteDocument(@Param('id', ParseIntPipe) id: number, @Param('documentId', ParseIntPipe) documentId: number, @CurrentUser('tenantId') tenantId: number) {
-    return await this.prospectionService.deleteDocument(id, documentId, tenantId);
+  async deleteDocument(
+    @Param('id', ParseIntPipe) id: number,
+    @Param('documentId', ParseIntPipe) documentId: number,
+    @CurrentUser('tenantId') tenantId: number,
+  ) {
+    return await this.prospectionService.deleteDocument(
+      id,
+      documentId,
+      tenantId,
+    );
   }
 
   @Get(':id/document/:documentId/url')
-  async getDocumentUrl(@Param('id', ParseIntPipe) id: number, @Param('documentId', ParseIntPipe) documentId: number, @CurrentUser('tenantId') tenantId: number) {
-    return await this.prospectionService.getDocumentDownloadUrl(id, documentId, tenantId);
+  async getDocumentUrl(
+    @Param('id', ParseIntPipe) id: number,
+    @Param('documentId', ParseIntPipe) documentId: number,
+    @CurrentUser('tenantId') tenantId: number,
+  ) {
+    return await this.prospectionService.getDocumentDownloadUrl(
+      id,
+      documentId,
+      tenantId,
+    );
   }
 }

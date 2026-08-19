@@ -49,7 +49,6 @@ export type ProjectSumAggregateOutputType = {
 export type ProjectMinAggregateOutputType = {
   id: number | null
   title: string | null
-  description: string | null
   amountExcludingTax: runtime.Decimal | null
   vatAmount: runtime.Decimal | null
   amountIncludingTax: runtime.Decimal | null
@@ -63,7 +62,6 @@ export type ProjectMinAggregateOutputType = {
 export type ProjectMaxAggregateOutputType = {
   id: number | null
   title: string | null
-  description: string | null
   amountExcludingTax: runtime.Decimal | null
   vatAmount: runtime.Decimal | null
   amountIncludingTax: runtime.Decimal | null
@@ -77,7 +75,6 @@ export type ProjectMaxAggregateOutputType = {
 export type ProjectCountAggregateOutputType = {
   id: number
   title: number
-  description: number
   amountExcludingTax: number
   vatAmount: number
   amountIncludingTax: number
@@ -113,7 +110,6 @@ export type ProjectSumAggregateInputType = {
 export type ProjectMinAggregateInputType = {
   id?: true
   title?: true
-  description?: true
   amountExcludingTax?: true
   vatAmount?: true
   amountIncludingTax?: true
@@ -127,7 +123,6 @@ export type ProjectMinAggregateInputType = {
 export type ProjectMaxAggregateInputType = {
   id?: true
   title?: true
-  description?: true
   amountExcludingTax?: true
   vatAmount?: true
   amountIncludingTax?: true
@@ -141,7 +136,6 @@ export type ProjectMaxAggregateInputType = {
 export type ProjectCountAggregateInputType = {
   id?: true
   title?: true
-  description?: true
   amountExcludingTax?: true
   vatAmount?: true
   amountIncludingTax?: true
@@ -242,7 +236,6 @@ export type ProjectGroupByArgs<ExtArgs extends runtime.Types.Extensions.Internal
 export type ProjectGroupByOutputType = {
   id: number
   title: string
-  description: string | null
   amountExcludingTax: runtime.Decimal | null
   vatAmount: runtime.Decimal | null
   amountIncludingTax: runtime.Decimal | null
@@ -279,7 +272,6 @@ export type ProjectWhereInput = {
   NOT?: Prisma.ProjectWhereInput | Prisma.ProjectWhereInput[]
   id?: Prisma.IntFilter<"Project"> | number
   title?: Prisma.StringFilter<"Project"> | string
-  description?: Prisma.StringNullableFilter<"Project"> | string | null
   amountExcludingTax?: Prisma.DecimalNullableFilter<"Project"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.DecimalNullableFilter<"Project"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: Prisma.DecimalNullableFilter<"Project"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -300,7 +292,6 @@ export type ProjectWhereInput = {
 export type ProjectOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
-  description?: Prisma.SortOrderInput | Prisma.SortOrder
   amountExcludingTax?: Prisma.SortOrderInput | Prisma.SortOrder
   vatAmount?: Prisma.SortOrderInput | Prisma.SortOrder
   amountIncludingTax?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -325,7 +316,6 @@ export type ProjectWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.ProjectWhereInput[]
   NOT?: Prisma.ProjectWhereInput | Prisma.ProjectWhereInput[]
   title?: Prisma.StringFilter<"Project"> | string
-  description?: Prisma.StringNullableFilter<"Project"> | string | null
   amountExcludingTax?: Prisma.DecimalNullableFilter<"Project"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.DecimalNullableFilter<"Project"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: Prisma.DecimalNullableFilter<"Project"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -345,7 +335,6 @@ export type ProjectWhereUniqueInput = Prisma.AtLeast<{
 export type ProjectOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
-  description?: Prisma.SortOrderInput | Prisma.SortOrder
   amountExcludingTax?: Prisma.SortOrderInput | Prisma.SortOrder
   vatAmount?: Prisma.SortOrderInput | Prisma.SortOrder
   amountIncludingTax?: Prisma.SortOrderInput | Prisma.SortOrder
@@ -367,7 +356,6 @@ export type ProjectScalarWhereWithAggregatesInput = {
   NOT?: Prisma.ProjectScalarWhereWithAggregatesInput | Prisma.ProjectScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Project"> | number
   title?: Prisma.StringWithAggregatesFilter<"Project"> | string
-  description?: Prisma.StringNullableWithAggregatesFilter<"Project"> | string | null
   amountExcludingTax?: Prisma.DecimalNullableWithAggregatesFilter<"Project"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.DecimalNullableWithAggregatesFilter<"Project"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: Prisma.DecimalNullableWithAggregatesFilter<"Project"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -380,7 +368,6 @@ export type ProjectScalarWhereWithAggregatesInput = {
 
 export type ProjectCreateInput = {
   title: string
-  description?: string | null
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -398,7 +385,6 @@ export type ProjectCreateInput = {
 export type ProjectUncheckedCreateInput = {
   id?: number
   title: string
-  description?: string | null
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -415,7 +401,6 @@ export type ProjectUncheckedCreateInput = {
 
 export type ProjectUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -433,7 +418,6 @@ export type ProjectUpdateInput = {
 export type ProjectUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -451,7 +435,6 @@ export type ProjectUncheckedUpdateInput = {
 export type ProjectCreateManyInput = {
   id?: number
   title: string
-  description?: string | null
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -464,7 +447,6 @@ export type ProjectCreateManyInput = {
 
 export type ProjectUpdateManyMutationInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -475,7 +457,6 @@ export type ProjectUpdateManyMutationInput = {
 export type ProjectUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -504,7 +485,6 @@ export type ProjectNullableScalarRelationFilter = {
 export type ProjectCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
-  description?: Prisma.SortOrder
   amountExcludingTax?: Prisma.SortOrder
   vatAmount?: Prisma.SortOrder
   amountIncludingTax?: Prisma.SortOrder
@@ -528,7 +508,6 @@ export type ProjectAvgOrderByAggregateInput = {
 export type ProjectMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
-  description?: Prisma.SortOrder
   amountExcludingTax?: Prisma.SortOrder
   vatAmount?: Prisma.SortOrder
   amountIncludingTax?: Prisma.SortOrder
@@ -542,7 +521,6 @@ export type ProjectMaxOrderByAggregateInput = {
 export type ProjectMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
-  description?: Prisma.SortOrder
   amountExcludingTax?: Prisma.SortOrder
   vatAmount?: Prisma.SortOrder
   amountIncludingTax?: Prisma.SortOrder
@@ -748,7 +726,6 @@ export type ProjectUpdateOneRequiredWithoutTimesheetsNestedInput = {
 
 export type ProjectCreateWithoutClientInput = {
   title: string
-  description?: string | null
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -765,7 +742,6 @@ export type ProjectCreateWithoutClientInput = {
 export type ProjectUncheckedCreateWithoutClientInput = {
   id?: number
   title: string
-  description?: string | null
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -811,7 +787,6 @@ export type ProjectScalarWhereInput = {
   NOT?: Prisma.ProjectScalarWhereInput | Prisma.ProjectScalarWhereInput[]
   id?: Prisma.IntFilter<"Project"> | number
   title?: Prisma.StringFilter<"Project"> | string
-  description?: Prisma.StringNullableFilter<"Project"> | string | null
   amountExcludingTax?: Prisma.DecimalNullableFilter<"Project"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.DecimalNullableFilter<"Project"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: Prisma.DecimalNullableFilter<"Project"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -824,7 +799,6 @@ export type ProjectScalarWhereInput = {
 
 export type ProjectCreateWithoutDocumentsInput = {
   title: string
-  description?: string | null
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -841,7 +815,6 @@ export type ProjectCreateWithoutDocumentsInput = {
 export type ProjectUncheckedCreateWithoutDocumentsInput = {
   id?: number
   title: string
-  description?: string | null
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -873,7 +846,6 @@ export type ProjectUpdateToOneWithWhereWithoutDocumentsInput = {
 
 export type ProjectUpdateWithoutDocumentsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -890,7 +862,6 @@ export type ProjectUpdateWithoutDocumentsInput = {
 export type ProjectUncheckedUpdateWithoutDocumentsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -906,7 +877,6 @@ export type ProjectUncheckedUpdateWithoutDocumentsInput = {
 
 export type ProjectCreateWithoutOfferInput = {
   title: string
-  description?: string | null
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -923,7 +893,6 @@ export type ProjectCreateWithoutOfferInput = {
 export type ProjectUncheckedCreateWithoutOfferInput = {
   id?: number
   title: string
-  description?: string | null
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -955,7 +924,6 @@ export type ProjectUpdateToOneWithWhereWithoutOfferInput = {
 
 export type ProjectUpdateWithoutOfferInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -972,7 +940,6 @@ export type ProjectUpdateWithoutOfferInput = {
 export type ProjectUncheckedUpdateWithoutOfferInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -988,7 +955,6 @@ export type ProjectUncheckedUpdateWithoutOfferInput = {
 
 export type ProjectCreateWithoutInvoicesInput = {
   title: string
-  description?: string | null
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1005,7 +971,6 @@ export type ProjectCreateWithoutInvoicesInput = {
 export type ProjectUncheckedCreateWithoutInvoicesInput = {
   id?: number
   title: string
-  description?: string | null
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1037,7 +1002,6 @@ export type ProjectUpdateToOneWithWhereWithoutInvoicesInput = {
 
 export type ProjectUpdateWithoutInvoicesInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1054,7 +1018,6 @@ export type ProjectUpdateWithoutInvoicesInput = {
 export type ProjectUncheckedUpdateWithoutInvoicesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1070,7 +1033,6 @@ export type ProjectUncheckedUpdateWithoutInvoicesInput = {
 
 export type ProjectCreateWithoutJournalEventsInput = {
   title: string
-  description?: string | null
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1087,7 +1049,6 @@ export type ProjectCreateWithoutJournalEventsInput = {
 export type ProjectUncheckedCreateWithoutJournalEventsInput = {
   id?: number
   title: string
-  description?: string | null
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1119,7 +1080,6 @@ export type ProjectUpdateToOneWithWhereWithoutJournalEventsInput = {
 
 export type ProjectUpdateWithoutJournalEventsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1136,7 +1096,6 @@ export type ProjectUpdateWithoutJournalEventsInput = {
 export type ProjectUncheckedUpdateWithoutJournalEventsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1152,7 +1111,6 @@ export type ProjectUncheckedUpdateWithoutJournalEventsInput = {
 
 export type ProjectCreateWithoutTenantInput = {
   title: string
-  description?: string | null
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1169,7 +1127,6 @@ export type ProjectCreateWithoutTenantInput = {
 export type ProjectUncheckedCreateWithoutTenantInput = {
   id?: number
   title: string
-  description?: string | null
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1211,7 +1168,6 @@ export type ProjectUpdateManyWithWhereWithoutTenantInput = {
 
 export type ProjectCreateWithoutTimesheetsInput = {
   title: string
-  description?: string | null
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1228,7 +1184,6 @@ export type ProjectCreateWithoutTimesheetsInput = {
 export type ProjectUncheckedCreateWithoutTimesheetsInput = {
   id?: number
   title: string
-  description?: string | null
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1260,7 +1215,6 @@ export type ProjectUpdateToOneWithWhereWithoutTimesheetsInput = {
 
 export type ProjectUpdateWithoutTimesheetsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1277,7 +1231,6 @@ export type ProjectUpdateWithoutTimesheetsInput = {
 export type ProjectUncheckedUpdateWithoutTimesheetsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1294,7 +1247,6 @@ export type ProjectUncheckedUpdateWithoutTimesheetsInput = {
 export type ProjectCreateManyClientInput = {
   id?: number
   title: string
-  description?: string | null
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1306,7 +1258,6 @@ export type ProjectCreateManyClientInput = {
 
 export type ProjectUpdateWithoutClientInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1323,7 +1274,6 @@ export type ProjectUpdateWithoutClientInput = {
 export type ProjectUncheckedUpdateWithoutClientInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1340,7 +1290,6 @@ export type ProjectUncheckedUpdateWithoutClientInput = {
 export type ProjectUncheckedUpdateManyWithoutClientInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1353,7 +1302,6 @@ export type ProjectUncheckedUpdateManyWithoutClientInput = {
 export type ProjectCreateManyTenantInput = {
   id?: number
   title: string
-  description?: string | null
   amountExcludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1365,7 +1313,6 @@ export type ProjectCreateManyTenantInput = {
 
 export type ProjectUpdateWithoutTenantInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1382,7 +1329,6 @@ export type ProjectUpdateWithoutTenantInput = {
 export type ProjectUncheckedUpdateWithoutTenantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1399,7 +1345,6 @@ export type ProjectUncheckedUpdateWithoutTenantInput = {
 export type ProjectUncheckedUpdateManyWithoutTenantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   amountExcludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   vatAmount?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountIncludingTax?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1470,7 +1415,6 @@ export type ProjectCountOutputTypeCountJournalEventsArgs<ExtArgs extends runtime
 export type ProjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   title?: boolean
-  description?: boolean
   amountExcludingTax?: boolean
   vatAmount?: boolean
   amountIncludingTax?: boolean
@@ -1492,7 +1436,6 @@ export type ProjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
 export type ProjectSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   title?: boolean
-  description?: boolean
   amountExcludingTax?: boolean
   vatAmount?: boolean
   amountIncludingTax?: boolean
@@ -1509,7 +1452,6 @@ export type ProjectSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
 export type ProjectSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   title?: boolean
-  description?: boolean
   amountExcludingTax?: boolean
   vatAmount?: boolean
   amountIncludingTax?: boolean
@@ -1526,7 +1468,6 @@ export type ProjectSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
 export type ProjectSelectScalar = {
   id?: boolean
   title?: boolean
-  description?: boolean
   amountExcludingTax?: boolean
   vatAmount?: boolean
   amountIncludingTax?: boolean
@@ -1537,7 +1478,7 @@ export type ProjectSelectScalar = {
   createdAt?: boolean
 }
 
-export type ProjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "amountExcludingTax" | "vatAmount" | "amountIncludingTax" | "status" | "clientId" | "offerId" | "tenantId" | "createdAt", ExtArgs["result"]["project"]>
+export type ProjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "amountExcludingTax" | "vatAmount" | "amountIncludingTax" | "status" | "clientId" | "offerId" | "tenantId" | "createdAt", ExtArgs["result"]["project"]>
 export type ProjectInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   documents?: boolean | Prisma.Project$documentsArgs<ExtArgs>
   timesheets?: boolean | Prisma.Project$timesheetsArgs<ExtArgs>
@@ -1573,7 +1514,6 @@ export type $ProjectPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     title: string
-    description: string | null
     amountExcludingTax: runtime.Decimal | null
     vatAmount: runtime.Decimal | null
     amountIncludingTax: runtime.Decimal | null
@@ -2014,7 +1954,6 @@ export interface Prisma__ProjectClient<T, Null = never, ExtArgs extends runtime.
 export interface ProjectFieldRefs {
   readonly id: Prisma.FieldRef<"Project", 'Int'>
   readonly title: Prisma.FieldRef<"Project", 'String'>
-  readonly description: Prisma.FieldRef<"Project", 'String'>
   readonly amountExcludingTax: Prisma.FieldRef<"Project", 'Decimal'>
   readonly vatAmount: Prisma.FieldRef<"Project", 'Decimal'>
   readonly amountIncludingTax: Prisma.FieldRef<"Project", 'Decimal'>

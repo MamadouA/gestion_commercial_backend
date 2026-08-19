@@ -121,42 +121,41 @@ export class OfferService {
   //
   async create(
     createOfferDto: CreateOfferDTO,
-    files: Array<Express.Multer.File>,
+    file: Express.Multer.File,
     authorId: number,
     tenantId: number,
   ) {
-    let fileMetadatas: FileMetadata[] = [];
+    let fileMetadata: FileMetadata | null = null;
 
     try {
-      if (files && files.length !== 0) {
-        fileMetadatas = await this.s3ClientService.bulkSave(files);
+      const data = {
+        title: createOfferDto.title,
+        clientId: createOfferDto.clientId,
+        expiryDate: new Date(createOfferDto.expiryDate),
+        amountExcludingTax: createOfferDto.amountExcludingTax,
+        vatAmount: createOfferDto.vatAmount,
+        amountIncludingTax:
+          createOfferDto.amountExcludingTax + createOfferDto.vatAmount,
+        authorId,
+        tenantId,
+      };
+
+      if (file) {
+        fileMetadata = await this.s3ClientService.save(file);
+        data['documents'] = {
+          create: fileMetadata,
+        };
       }
 
       return await this.prismaClientService.offer.create({
-        data: {
-          title: createOfferDto.title,
-          description: createOfferDto.description,
-          clientId: createOfferDto.clientId,
-          expiryDate: new Date(createOfferDto.expiryDate),
-          amountExcludingTax: createOfferDto.amountExcludingTax,
-          vatAmount: createOfferDto.vatAmount,
-          amountIncludingTax:
-            createOfferDto.amountExcludingTax + createOfferDto.vatAmount,
-          documents: {
-            createMany: {
-              data: fileMetadatas,
-            },
-          },
-          authorId,
-          tenantId,
-        },
+        data,
         omit: {
           tenantId: true,
         },
       });
     } catch (err) {
-      if (fileMetadatas.length) {
-        await this.s3ClientService.bulkDelete(fileMetadatas);
+      if (fileMetadata) {
+        await this.s3ClientService.delete(fileMetadata.storedName);
       }
       this.logger.error('Error while creating the offer: ', err);
       throw new InternalServerErrorException('Error while creating the offer.');
@@ -242,7 +241,6 @@ export class OfferService {
   async update(
     id: number,
     updateOfferDto: UpdateOfferDTO,
-    authorId: number,
     tenantId: number,
   ) {
     const updates: OfferUpdateInput = {};
@@ -265,15 +263,6 @@ export class OfferService {
 
     if (updateOfferDto.status) {
       updates['status'] = updateOfferDto.status;
-    }
-
-    if (updateOfferDto.comment?.content) {
-      updates['comments'] = {
-        create: {
-          content: updateOfferDto.comment.content,
-          authorId,
-        },
-      };
     }
 
     try {

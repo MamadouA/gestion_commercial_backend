@@ -1,9 +1,13 @@
-import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  InternalServerErrorException,
+  NotFoundException,
+} from '@nestjs/common';
 import { PrismaClientService } from '../../database/prisma-client.service';
 import { CreateProspectionDTO } from './dto/create-prospection.dto';
 import { ProspectionQueryDTO } from './dto/prospection-query.dto';
 import { S3ClientService } from '../../common/file-manager/s3-client.service';
-import { CreateCommentDTO } from '../../shared/dto/create.comment.dto';
+import { CreateCommentDTO } from '../../comment/dto/create.comment.dto';
 import { ProspectionWhereInput } from '../../generated/prisma/models';
 import { FileMetadata } from '../../shared/shared.types';
 
@@ -270,7 +274,11 @@ export class ProspectionService {
   }
 
   // -
-  async createDocument(id: number, file: Express.Multer.File, tenantId: number) {
+  async createDocument(
+    id: number,
+    file: Express.Multer.File,
+    tenantId: number,
+  ) {
     let fileMetadata: FileMetadata = {
       originalName: '',
       storedName: '',
@@ -279,16 +287,16 @@ export class ProspectionService {
     };
     try {
       fileMetadata = await this.s3ClientService.save(file);
-      
+
       return await this.prismaClientService.prospection.update({
         where: {
           id,
-          tenantId
+          tenantId,
         },
         data: {
           documents: {
-            create: fileMetadata
-          }
+            create: fileMetadata,
+          },
         },
         select: {
           documents: {
@@ -297,7 +305,7 @@ export class ProspectionService {
               originalName: true,
               size: true,
               mimetype: true,
-              prospectionId: true
+              prospectionId: true,
             },
           },
         },
@@ -312,26 +320,34 @@ export class ProspectionService {
   }
 
   // -
-  async deleteDocument(prospectionId: number, documentId: number, tenantId: number) {
+  async deleteDocument(
+    prospectionId: number,
+    documentId: number,
+    tenantId: number,
+  ) {
     try {
-      const prospection = await this.prismaClientService.prospection.findUnique({
-        where: {
-          id: prospectionId,
-          tenantId,
+      const prospection = await this.prismaClientService.prospection.findUnique(
+        {
+          where: {
+            id: prospectionId,
+            tenantId,
+          },
+          select: {
+            id: true,
+            documents: true,
+          },
         },
-        select: {
-          id: true,
-          documents: true
-        },
-      });
+      );
 
       if (!prospection) {
         throw new NotFoundException('Prospection not found!');
       }
 
-      const documentIndex = prospection.documents.findIndex((doc) => doc.id === documentId);
+      const documentIndex = prospection.documents.findIndex(
+        (doc) => doc.id === documentId,
+      );
 
-      if(documentIndex === -1) {
+      if (documentIndex === -1) {
         throw new NotFoundException('File not found!');
       }
 
@@ -347,19 +363,21 @@ export class ProspectionService {
           },
         },
         omit: {
-          tenantId: true
-        }
-      })
-      
-      await this.s3ClientService.delete(prospection.documents[documentIndex].storedName);
+          tenantId: true,
+        },
+      });
+
+      await this.s3ClientService.delete(
+        prospection.documents[documentIndex].storedName,
+      );
 
       const deletedDocument = {
         id: prospection.documents[documentIndex].id,
         originalName: prospection.documents[documentIndex].originalName,
         mimetype: prospection.documents[documentIndex].mimetype,
         size: prospection.documents[documentIndex].size,
-      }
-      
+      };
+
       return deletedDocument;
     } catch (err) {
       console.log('Error while deleting the file: ', err);
@@ -368,33 +386,44 @@ export class ProspectionService {
   }
 
   // -
-  async getDocumentDownloadUrl(id: number, documentId: number, tenantId: number) {
+  async getDocumentDownloadUrl(
+    id: number,
+    documentId: number,
+    tenantId: number,
+  ) {
     try {
-      const prospection = await this.prismaClientService.prospection.findUnique({
-        where: {
-          id,
-          tenantId,
+      const prospection = await this.prismaClientService.prospection.findUnique(
+        {
+          where: {
+            id,
+            tenantId,
+          },
+          include: {
+            documents: true,
+          },
         },
-        include: {
-          documents: true
-        }
-      });
+      );
 
       if (!prospection) {
-        throw new NotFoundException('Prospection not found!');  
+        throw new NotFoundException('Prospection not found!');
       }
 
-      const documentIndex = prospection.documents.findIndex((doc) => doc.id === documentId);
+      const documentIndex = prospection.documents.findIndex(
+        (doc) => doc.id === documentId,
+      );
 
-      if(documentIndex === -1) {
+      if (documentIndex === -1) {
         throw new NotFoundException('Document not found!');
       }
 
-      return await this.s3ClientService.generateDownloadUrl(prospection.documents[documentIndex].storedName);
-    }
-    catch(err) {
+      return await this.s3ClientService.generateDownloadUrl(
+        prospection.documents[documentIndex].storedName,
+      );
+    } catch (err) {
       console.log("Error while getting the prospection's document url: ", err);
-      throw new InternalServerErrorException("Error while getting the prospection's document url.");
+      throw new InternalServerErrorException(
+        "Error while getting the prospection's document url.",
+      );
     }
   }
 }

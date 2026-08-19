@@ -3,53 +3,8 @@ import { PermissionDTO } from "./role.types"
 // -
 export const PERMISSIONS_ON_DASHBOARD: PermissionDTO[] = [
     {
-        name: "dashboard.view",
-        description: "Voir le tableau de board",
-        feature: "DASHBOARD"
-    },
-    {
         name: "dashboard.view_monthly_revenue",
         description: "Voir le chiffre d'affaire mensuelle",
-        feature: "DASHBOARD"
-    },
-    {
-        name: "dashboard.view_offer_overview",
-        description: "Voir les statistiques sur les offres",
-        feature: "DASHBOARD"
-    },
-    {
-        name: "dashboard.view_project_overview",
-        description: "Voir les statistiques sur les projets",
-        feature: "DASHBOARD"
-    },
-    {
-        name: "dashboard.view_prospection_overview",
-        description: "Voir les statistiques sur les prospects",
-        feature: "DASHBOARD"
-    },
-    {
-        name: "dashboard.view_invoice_overview",
-        description: "Voir les statistiques sur les factures",
-        feature: "DASHBOARD"
-    },
-    {
-        name: "dashboard.view_user_overview",
-        description: "Voir les statistiques sur les utilisateurs",
-        feature: "DASHBOARD"
-    },
-    {
-        name: "dashboard.view_timesheet_overview",
-        description: "Voir les statistiques sur les feuilles de temps",
-        feature: "DASHBOARD"
-    },
-    {
-        name: "dashboard.view_tenant_overview",
-        description: "Voir les statistiques sur les tenants",
-        feature: "DASHBOARD"
-    },
-    {
-        name: "dashboard.view_client_overview",
-        description: "Voir les statistiques sur les clients",
         feature: "DASHBOARD"
     }
 ]

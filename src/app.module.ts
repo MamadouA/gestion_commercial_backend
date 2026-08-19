@@ -18,6 +18,8 @@ import { RoleManagementModule } from './role-management/role-management.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { InvoiceModule } from './invoice/invoice.module';
 import { SubscriptionModule } from './subscription/subscription.module';
+import { CommentModule } from './comment/comment.module';
+import { DocumentModule } from './document/document.module';
 
 @Module({
   imports: [
@@ -37,6 +39,8 @@ import { SubscriptionModule } from './subscription/subscription.module';
     ScheduleModule.forRoot(),
     InvoiceModule,
     SubscriptionModule,
+    CommentModule,
+    DocumentModule,
   ],
   controllers: [AppController],
   providers: [AppService],

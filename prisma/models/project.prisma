@@ -2,7 +2,6 @@
 model Project {
     id Int @id() @default(autoincrement())
     title String
-    description String?
     amountExcludingTax Decimal?
     vatAmount Decimal?
     amountIncludingTax Decimal?

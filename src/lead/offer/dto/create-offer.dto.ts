@@ -6,11 +6,6 @@ export class CreateOfferDTO {
     @MaxLength(255)
     title!: string
 
-    @IsString()
-    @MinLength(3)
-    @IsOptional()
-    description!: string
-
     @IsNumber()
     @Min(1)
     clientId!: number

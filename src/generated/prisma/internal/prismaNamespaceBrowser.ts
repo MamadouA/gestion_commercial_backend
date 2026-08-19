@@ -170,7 +170,6 @@ export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[k
 export const OfferScalarFieldEnum = {
   id: 'id',
   title: 'title',
-  description: 'description',
   status: 'status',
   amountExcludingTax: 'amountExcludingTax',
   vatAmount: 'vatAmount',
@@ -199,7 +198,6 @@ export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeo
 export const ProjectScalarFieldEnum = {
   id: 'id',
   title: 'title',
-  description: 'description',
   amountExcludingTax: 'amountExcludingTax',
   vatAmount: 'vatAmount',
   amountIncludingTax: 'amountIncludingTax',

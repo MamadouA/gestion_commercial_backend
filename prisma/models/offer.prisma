@@ -1,7 +1,6 @@
 model Offer {
     id Int @id @default(autoincrement())
     title String
-    description String?
     status OfferStatus @default(PENDING)
 
     amountExcludingTax Decimal?
