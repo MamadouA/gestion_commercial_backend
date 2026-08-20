@@ -2,6 +2,7 @@ import {
   Injectable,
   InternalServerErrorException,
   Logger,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { PrismaClientService } from '../../database/prisma-client.service';
 import { CreateOfferDTO } from './dto/create-offer.dto';
@@ -15,6 +16,7 @@ import {
 import { type FileMetadata } from '../../shared/shared.types';
 import { create } from 'domain';
 import { Offer } from '../../generated/prisma/client';
+import { CurrentUserType } from '../../auth/auth.types';
 
 @Injectable()
 export class OfferService {
@@ -79,7 +81,7 @@ export class OfferService {
           id: true,
           title: true,
           status: true,
-          amountIncludingTax: true,
+          amountTTC: true,
           expiryDate: true,
           client: {
             select: {
@@ -132,10 +134,10 @@ export class OfferService {
         title: createOfferDto.title,
         clientId: createOfferDto.clientId,
         expiryDate: new Date(createOfferDto.expiryDate),
-        amountExcludingTax: createOfferDto.amountExcludingTax,
-        vatAmount: createOfferDto.vatAmount,
-        amountIncludingTax:
-          createOfferDto.amountExcludingTax + createOfferDto.vatAmount,
+        amountHT: createOfferDto.amountHT,
+        amountTVA: createOfferDto.amountVAT,
+        amountTTC:
+          createOfferDto.amountHT + createOfferDto.amountVAT,
         authorId,
         tenantId,
       };
@@ -241,7 +243,7 @@ export class OfferService {
   async update(
     id: number,
     updateOfferDto: UpdateOfferDTO,
-    tenantId: number,
+    user: CurrentUserType,
   ) {
     const updates: OfferUpdateInput = {};
 
@@ -261,17 +263,27 @@ export class OfferService {
       updates['vatAmount'] = updateOfferDto.vatAmount;
     }
 
-    if (updateOfferDto.status) {
-      updates['status'] = updateOfferDto.status;
-    }
-
     try {
-      let offer: Partial<Offer> | null = null;
+      if (updateOfferDto.status && updateOfferDto.status !== "PENDING") {
+        if(user.role.name !== "ADMIN") {
+            throw new UnauthorizedException('You are not authorized to mark the offer as pending.');
+        }
+      
+        await this.prismaClientService.project.deleteMany({
+          where: {
+            offerId: id,
+            tenantId: user.tenantId
+          },
+        });
+
+        updates['status'] = updateOfferDto.status;
+      }
+
       if (Object.keys(updates).length) {
-        offer = await this.prismaClientService.offer.update({
+        return await this.prismaClientService.offer.update({
           where: {
             id,
-            tenantId,
+            tenantId: user.tenantId,
           },
           data: updates,
           omit: {
@@ -315,16 +327,6 @@ export class OfferService {
                 id: 'desc',
               },
             },
-            products: {
-              select: {
-                id: true,
-                title: true,
-                domain: true,
-              },
-              orderBy: {
-                id: 'desc',
-              },
-            },
             documents: {
               omit: {
                 storedName: true,
@@ -337,7 +339,7 @@ export class OfferService {
         });
       }
 
-      return offer;
+      return null;
     } catch (err) {
       this.logger.error('Error while updating the offer: ', err);
       throw new InternalServerErrorException('Error while updating the offer.');

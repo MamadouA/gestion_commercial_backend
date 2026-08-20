@@ -3,16 +3,16 @@ model Offer {
     title String
     status OfferStatus @default(PENDING)
 
-    amountExcludingTax Decimal?
-    vatAmount Decimal?
-    amountIncludingTax Decimal?
+    amountHT Decimal?
+    amountTVA Decimal?
+    amountTTC Decimal?
 
     comments Comment[]
     products Product[]
     documents Document[]
     
     authorId Int
-    author User @relation("offerAuthor", fields: [authorId], references: [id])
+    author User @relation(fields: [authorId], references: [id])
 
     clientId Int
     client Client @relation(fields: [clientId], references: [id])

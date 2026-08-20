@@ -85,9 +85,14 @@ export class ProjectService {
       fileMetadata = await this.s3ClientService.save(contractDocument);
       const projectData: ProjectCreateInput = {
         title: offer.title,
-        amountExcludingTax: offer.amountExcludingTax,
-        vatAmount: offer.vatAmount,
-        amountIncludingTax: offer.amountIncludingTax,
+        amountTTC: offer.amountTTC,
+        amountTVA: offer.amountTVA,
+        amountHT: offer.amountHT,
+        author: {
+          connect: {
+            id: user.id,
+          },
+        },
         offer: {
           connect: {
             id: offerId,
@@ -167,6 +172,8 @@ export class ProjectService {
         where: { id, tenantId },
         omit: {
           tenantId: true,
+          offerId: true,
+          clientId: true,
         },
         include: {
           client: {

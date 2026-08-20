@@ -262,7 +262,8 @@ export type UserWhereInput = {
   comments?: Prisma.CommentListRelationFilter
   invoices?: Prisma.InvoiceListRelationFilter
   journalEvents?: Prisma.JournalEventListRelationFilter
-  createdOffers?: Prisma.OfferListRelationFilter
+  offers?: Prisma.OfferListRelationFilter
+  projects?: Prisma.ProjectListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -281,7 +282,8 @@ export type UserOrderByWithRelationInput = {
   comments?: Prisma.CommentOrderByRelationAggregateInput
   invoices?: Prisma.InvoiceOrderByRelationAggregateInput
   journalEvents?: Prisma.JournalEventOrderByRelationAggregateInput
-  createdOffers?: Prisma.OfferOrderByRelationAggregateInput
+  offers?: Prisma.OfferOrderByRelationAggregateInput
+  projects?: Prisma.ProjectOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -303,7 +305,8 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   comments?: Prisma.CommentListRelationFilter
   invoices?: Prisma.InvoiceListRelationFilter
   journalEvents?: Prisma.JournalEventListRelationFilter
-  createdOffers?: Prisma.OfferListRelationFilter
+  offers?: Prisma.OfferListRelationFilter
+  projects?: Prisma.ProjectListRelationFilter
 }, "id" | "email">
 
 export type UserOrderByWithAggregationInput = {
@@ -351,7 +354,8 @@ export type UserCreateInput = {
   comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutAuthorInput
   journalEvents?: Prisma.JournalEventCreateNestedManyWithoutAuthorInput
-  createdOffers?: Prisma.OfferCreateNestedManyWithoutAuthorInput
+  offers?: Prisma.OfferCreateNestedManyWithoutAuthorInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutAuthorInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -368,7 +372,8 @@ export type UserUncheckedCreateInput = {
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAuthorInput
   journalEvents?: Prisma.JournalEventUncheckedCreateNestedManyWithoutAuthorInput
-  createdOffers?: Prisma.OfferUncheckedCreateNestedManyWithoutAuthorInput
+  offers?: Prisma.OfferUncheckedCreateNestedManyWithoutAuthorInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutAuthorInput
 }
 
 export type UserUpdateInput = {
@@ -384,7 +389,8 @@ export type UserUpdateInput = {
   comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutAuthorNestedInput
   journalEvents?: Prisma.JournalEventUpdateManyWithoutAuthorNestedInput
-  createdOffers?: Prisma.OfferUpdateManyWithoutAuthorNestedInput
+  offers?: Prisma.OfferUpdateManyWithoutAuthorNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutAuthorNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -401,7 +407,8 @@ export type UserUncheckedUpdateInput = {
   comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAuthorNestedInput
   journalEvents?: Prisma.JournalEventUncheckedUpdateManyWithoutAuthorNestedInput
-  createdOffers?: Prisma.OfferUncheckedUpdateManyWithoutAuthorNestedInput
+  offers?: Prisma.OfferUncheckedUpdateManyWithoutAuthorNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -514,18 +521,32 @@ export type UserUpdateOneRequiredWithoutCommentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCommentsInput, Prisma.UserUpdateWithoutCommentsInput>, Prisma.UserUncheckedUpdateWithoutCommentsInput>
 }
 
-export type UserCreateNestedOneWithoutCreatedOffersInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedOffersInput, Prisma.UserUncheckedCreateWithoutCreatedOffersInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedOffersInput
+export type UserCreateNestedOneWithoutOffersInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOffersInput, Prisma.UserUncheckedCreateWithoutOffersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOffersInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutCreatedOffersNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutCreatedOffersInput, Prisma.UserUncheckedCreateWithoutCreatedOffersInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutCreatedOffersInput
-  upsert?: Prisma.UserUpsertWithoutCreatedOffersInput
+export type UserUpdateOneRequiredWithoutOffersNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutOffersInput, Prisma.UserUncheckedCreateWithoutOffersInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOffersInput
+  upsert?: Prisma.UserUpsertWithoutOffersInput
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCreatedOffersInput, Prisma.UserUpdateWithoutCreatedOffersInput>, Prisma.UserUncheckedUpdateWithoutCreatedOffersInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutOffersInput, Prisma.UserUpdateWithoutOffersInput>, Prisma.UserUncheckedUpdateWithoutOffersInput>
+}
+
+export type UserCreateNestedOneWithoutProjectsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutProjectsInput, Prisma.UserUncheckedCreateWithoutProjectsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutProjectsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutProjectsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutProjectsInput, Prisma.UserUncheckedCreateWithoutProjectsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutProjectsInput
+  upsert?: Prisma.UserUpsertWithoutProjectsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutProjectsInput, Prisma.UserUpdateWithoutProjectsInput>, Prisma.UserUncheckedUpdateWithoutProjectsInput>
 }
 
 export type UserCreateNestedOneWithoutInvoicesInput = {
@@ -666,7 +687,8 @@ export type UserCreateWithoutCommentsInput = {
   prospections?: Prisma.ProspectionCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutAuthorInput
   journalEvents?: Prisma.JournalEventCreateNestedManyWithoutAuthorInput
-  createdOffers?: Prisma.OfferCreateNestedManyWithoutAuthorInput
+  offers?: Prisma.OfferCreateNestedManyWithoutAuthorInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutAuthorInput
 }
 
 export type UserUncheckedCreateWithoutCommentsInput = {
@@ -682,7 +704,8 @@ export type UserUncheckedCreateWithoutCommentsInput = {
   prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAuthorInput
   journalEvents?: Prisma.JournalEventUncheckedCreateNestedManyWithoutAuthorInput
-  createdOffers?: Prisma.OfferUncheckedCreateNestedManyWithoutAuthorInput
+  offers?: Prisma.OfferUncheckedCreateNestedManyWithoutAuthorInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutAuthorInput
 }
 
 export type UserCreateOrConnectWithoutCommentsInput = {
@@ -713,7 +736,8 @@ export type UserUpdateWithoutCommentsInput = {
   prospections?: Prisma.ProspectionUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutAuthorNestedInput
   journalEvents?: Prisma.JournalEventUpdateManyWithoutAuthorNestedInput
-  createdOffers?: Prisma.OfferUpdateManyWithoutAuthorNestedInput
+  offers?: Prisma.OfferUpdateManyWithoutAuthorNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutAuthorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCommentsInput = {
@@ -729,10 +753,11 @@ export type UserUncheckedUpdateWithoutCommentsInput = {
   prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAuthorNestedInput
   journalEvents?: Prisma.JournalEventUncheckedUpdateManyWithoutAuthorNestedInput
-  createdOffers?: Prisma.OfferUncheckedUpdateManyWithoutAuthorNestedInput
+  offers?: Prisma.OfferUncheckedUpdateManyWithoutAuthorNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
-export type UserCreateWithoutCreatedOffersInput = {
+export type UserCreateWithoutOffersInput = {
   fullname: string
   email: string
   password: string
@@ -745,9 +770,10 @@ export type UserCreateWithoutCreatedOffersInput = {
   comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutAuthorInput
   journalEvents?: Prisma.JournalEventCreateNestedManyWithoutAuthorInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutAuthorInput
 }
 
-export type UserUncheckedCreateWithoutCreatedOffersInput = {
+export type UserUncheckedCreateWithoutOffersInput = {
   id?: number
   fullname: string
   email: string
@@ -761,25 +787,26 @@ export type UserUncheckedCreateWithoutCreatedOffersInput = {
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAuthorInput
   journalEvents?: Prisma.JournalEventUncheckedCreateNestedManyWithoutAuthorInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutAuthorInput
 }
 
-export type UserCreateOrConnectWithoutCreatedOffersInput = {
+export type UserCreateOrConnectWithoutOffersInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedOffersInput, Prisma.UserUncheckedCreateWithoutCreatedOffersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutOffersInput, Prisma.UserUncheckedCreateWithoutOffersInput>
 }
 
-export type UserUpsertWithoutCreatedOffersInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutCreatedOffersInput, Prisma.UserUncheckedUpdateWithoutCreatedOffersInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutCreatedOffersInput, Prisma.UserUncheckedCreateWithoutCreatedOffersInput>
+export type UserUpsertWithoutOffersInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutOffersInput, Prisma.UserUncheckedUpdateWithoutOffersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutOffersInput, Prisma.UserUncheckedCreateWithoutOffersInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutCreatedOffersInput = {
+export type UserUpdateToOneWithWhereWithoutOffersInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutCreatedOffersInput, Prisma.UserUncheckedUpdateWithoutCreatedOffersInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutOffersInput, Prisma.UserUncheckedUpdateWithoutOffersInput>
 }
 
-export type UserUpdateWithoutCreatedOffersInput = {
+export type UserUpdateWithoutOffersInput = {
   fullname?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
@@ -792,9 +819,10 @@ export type UserUpdateWithoutCreatedOffersInput = {
   comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutAuthorNestedInput
   journalEvents?: Prisma.JournalEventUpdateManyWithoutAuthorNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutAuthorNestedInput
 }
 
-export type UserUncheckedUpdateWithoutCreatedOffersInput = {
+export type UserUncheckedUpdateWithoutOffersInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   fullname?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
@@ -808,6 +836,89 @@ export type UserUncheckedUpdateWithoutCreatedOffersInput = {
   comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAuthorNestedInput
   journalEvents?: Prisma.JournalEventUncheckedUpdateManyWithoutAuthorNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutAuthorNestedInput
+}
+
+export type UserCreateWithoutProjectsInput = {
+  fullname: string
+  email: string
+  password: string
+  phone: string
+  isActive?: boolean
+  createdAt?: Date | string
+  role: Prisma.RoleCreateNestedOneWithoutUsersInput
+  tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
+  prospections?: Prisma.ProspectionCreateNestedManyWithoutAuthorInput
+  comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutAuthorInput
+  journalEvents?: Prisma.JournalEventCreateNestedManyWithoutAuthorInput
+  offers?: Prisma.OfferCreateNestedManyWithoutAuthorInput
+}
+
+export type UserUncheckedCreateWithoutProjectsInput = {
+  id?: number
+  fullname: string
+  email: string
+  password: string
+  phone: string
+  roleId: number
+  isActive?: boolean
+  tenantId: number
+  createdAt?: Date | string
+  prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutAuthorInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAuthorInput
+  journalEvents?: Prisma.JournalEventUncheckedCreateNestedManyWithoutAuthorInput
+  offers?: Prisma.OfferUncheckedCreateNestedManyWithoutAuthorInput
+}
+
+export type UserCreateOrConnectWithoutProjectsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutProjectsInput, Prisma.UserUncheckedCreateWithoutProjectsInput>
+}
+
+export type UserUpsertWithoutProjectsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutProjectsInput, Prisma.UserUncheckedUpdateWithoutProjectsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutProjectsInput, Prisma.UserUncheckedCreateWithoutProjectsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutProjectsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutProjectsInput, Prisma.UserUncheckedUpdateWithoutProjectsInput>
+}
+
+export type UserUpdateWithoutProjectsInput = {
+  fullname?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.RoleUpdateOneRequiredWithoutUsersNestedInput
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
+  prospections?: Prisma.ProspectionUpdateManyWithoutAuthorNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutAuthorNestedInput
+  journalEvents?: Prisma.JournalEventUpdateManyWithoutAuthorNestedInput
+  offers?: Prisma.OfferUpdateManyWithoutAuthorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutProjectsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  fullname?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  roleId?: Prisma.IntFieldUpdateOperationsInput | number
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutAuthorNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAuthorNestedInput
+  journalEvents?: Prisma.JournalEventUncheckedUpdateManyWithoutAuthorNestedInput
+  offers?: Prisma.OfferUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
 export type UserCreateWithoutInvoicesInput = {
@@ -822,7 +933,8 @@ export type UserCreateWithoutInvoicesInput = {
   prospections?: Prisma.ProspectionCreateNestedManyWithoutAuthorInput
   comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
   journalEvents?: Prisma.JournalEventCreateNestedManyWithoutAuthorInput
-  createdOffers?: Prisma.OfferCreateNestedManyWithoutAuthorInput
+  offers?: Prisma.OfferCreateNestedManyWithoutAuthorInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutAuthorInput
 }
 
 export type UserUncheckedCreateWithoutInvoicesInput = {
@@ -838,7 +950,8 @@ export type UserUncheckedCreateWithoutInvoicesInput = {
   prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutAuthorInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
   journalEvents?: Prisma.JournalEventUncheckedCreateNestedManyWithoutAuthorInput
-  createdOffers?: Prisma.OfferUncheckedCreateNestedManyWithoutAuthorInput
+  offers?: Prisma.OfferUncheckedCreateNestedManyWithoutAuthorInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutAuthorInput
 }
 
 export type UserCreateOrConnectWithoutInvoicesInput = {
@@ -869,7 +982,8 @@ export type UserUpdateWithoutInvoicesInput = {
   prospections?: Prisma.ProspectionUpdateManyWithoutAuthorNestedInput
   comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
   journalEvents?: Prisma.JournalEventUpdateManyWithoutAuthorNestedInput
-  createdOffers?: Prisma.OfferUpdateManyWithoutAuthorNestedInput
+  offers?: Prisma.OfferUpdateManyWithoutAuthorNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutAuthorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutInvoicesInput = {
@@ -885,7 +999,8 @@ export type UserUncheckedUpdateWithoutInvoicesInput = {
   prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutAuthorNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
   journalEvents?: Prisma.JournalEventUncheckedUpdateManyWithoutAuthorNestedInput
-  createdOffers?: Prisma.OfferUncheckedUpdateManyWithoutAuthorNestedInput
+  offers?: Prisma.OfferUncheckedUpdateManyWithoutAuthorNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
 export type UserCreateWithoutJournalEventsInput = {
@@ -900,7 +1015,8 @@ export type UserCreateWithoutJournalEventsInput = {
   prospections?: Prisma.ProspectionCreateNestedManyWithoutAuthorInput
   comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutAuthorInput
-  createdOffers?: Prisma.OfferCreateNestedManyWithoutAuthorInput
+  offers?: Prisma.OfferCreateNestedManyWithoutAuthorInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutAuthorInput
 }
 
 export type UserUncheckedCreateWithoutJournalEventsInput = {
@@ -916,7 +1032,8 @@ export type UserUncheckedCreateWithoutJournalEventsInput = {
   prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutAuthorInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAuthorInput
-  createdOffers?: Prisma.OfferUncheckedCreateNestedManyWithoutAuthorInput
+  offers?: Prisma.OfferUncheckedCreateNestedManyWithoutAuthorInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutAuthorInput
 }
 
 export type UserCreateOrConnectWithoutJournalEventsInput = {
@@ -947,7 +1064,8 @@ export type UserUpdateWithoutJournalEventsInput = {
   prospections?: Prisma.ProspectionUpdateManyWithoutAuthorNestedInput
   comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutAuthorNestedInput
-  createdOffers?: Prisma.OfferUpdateManyWithoutAuthorNestedInput
+  offers?: Prisma.OfferUpdateManyWithoutAuthorNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutAuthorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutJournalEventsInput = {
@@ -963,7 +1081,8 @@ export type UserUncheckedUpdateWithoutJournalEventsInput = {
   prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutAuthorNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAuthorNestedInput
-  createdOffers?: Prisma.OfferUncheckedUpdateManyWithoutAuthorNestedInput
+  offers?: Prisma.OfferUncheckedUpdateManyWithoutAuthorNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
 export type UserCreateWithoutProspectionsInput = {
@@ -978,7 +1097,8 @@ export type UserCreateWithoutProspectionsInput = {
   comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutAuthorInput
   journalEvents?: Prisma.JournalEventCreateNestedManyWithoutAuthorInput
-  createdOffers?: Prisma.OfferCreateNestedManyWithoutAuthorInput
+  offers?: Prisma.OfferCreateNestedManyWithoutAuthorInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutAuthorInput
 }
 
 export type UserUncheckedCreateWithoutProspectionsInput = {
@@ -994,7 +1114,8 @@ export type UserUncheckedCreateWithoutProspectionsInput = {
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAuthorInput
   journalEvents?: Prisma.JournalEventUncheckedCreateNestedManyWithoutAuthorInput
-  createdOffers?: Prisma.OfferUncheckedCreateNestedManyWithoutAuthorInput
+  offers?: Prisma.OfferUncheckedCreateNestedManyWithoutAuthorInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutAuthorInput
 }
 
 export type UserCreateOrConnectWithoutProspectionsInput = {
@@ -1025,7 +1146,8 @@ export type UserUpdateWithoutProspectionsInput = {
   comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutAuthorNestedInput
   journalEvents?: Prisma.JournalEventUpdateManyWithoutAuthorNestedInput
-  createdOffers?: Prisma.OfferUpdateManyWithoutAuthorNestedInput
+  offers?: Prisma.OfferUpdateManyWithoutAuthorNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutAuthorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProspectionsInput = {
@@ -1041,7 +1163,8 @@ export type UserUncheckedUpdateWithoutProspectionsInput = {
   comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAuthorNestedInput
   journalEvents?: Prisma.JournalEventUncheckedUpdateManyWithoutAuthorNestedInput
-  createdOffers?: Prisma.OfferUncheckedUpdateManyWithoutAuthorNestedInput
+  offers?: Prisma.OfferUncheckedUpdateManyWithoutAuthorNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
 export type UserCreateWithoutTenantInput = {
@@ -1056,7 +1179,8 @@ export type UserCreateWithoutTenantInput = {
   comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutAuthorInput
   journalEvents?: Prisma.JournalEventCreateNestedManyWithoutAuthorInput
-  createdOffers?: Prisma.OfferCreateNestedManyWithoutAuthorInput
+  offers?: Prisma.OfferCreateNestedManyWithoutAuthorInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutAuthorInput
 }
 
 export type UserUncheckedCreateWithoutTenantInput = {
@@ -1072,7 +1196,8 @@ export type UserUncheckedCreateWithoutTenantInput = {
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAuthorInput
   journalEvents?: Prisma.JournalEventUncheckedCreateNestedManyWithoutAuthorInput
-  createdOffers?: Prisma.OfferUncheckedCreateNestedManyWithoutAuthorInput
+  offers?: Prisma.OfferUncheckedCreateNestedManyWithoutAuthorInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutAuthorInput
 }
 
 export type UserCreateOrConnectWithoutTenantInput = {
@@ -1128,7 +1253,8 @@ export type UserCreateWithoutRoleInput = {
   comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutAuthorInput
   journalEvents?: Prisma.JournalEventCreateNestedManyWithoutAuthorInput
-  createdOffers?: Prisma.OfferCreateNestedManyWithoutAuthorInput
+  offers?: Prisma.OfferCreateNestedManyWithoutAuthorInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutAuthorInput
 }
 
 export type UserUncheckedCreateWithoutRoleInput = {
@@ -1144,7 +1270,8 @@ export type UserUncheckedCreateWithoutRoleInput = {
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAuthorInput
   journalEvents?: Prisma.JournalEventUncheckedCreateNestedManyWithoutAuthorInput
-  createdOffers?: Prisma.OfferUncheckedCreateNestedManyWithoutAuthorInput
+  offers?: Prisma.OfferUncheckedCreateNestedManyWithoutAuthorInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutAuthorInput
 }
 
 export type UserCreateOrConnectWithoutRoleInput = {
@@ -1196,7 +1323,8 @@ export type UserUpdateWithoutTenantInput = {
   comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutAuthorNestedInput
   journalEvents?: Prisma.JournalEventUpdateManyWithoutAuthorNestedInput
-  createdOffers?: Prisma.OfferUpdateManyWithoutAuthorNestedInput
+  offers?: Prisma.OfferUpdateManyWithoutAuthorNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutAuthorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutTenantInput = {
@@ -1212,7 +1340,8 @@ export type UserUncheckedUpdateWithoutTenantInput = {
   comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAuthorNestedInput
   journalEvents?: Prisma.JournalEventUncheckedUpdateManyWithoutAuthorNestedInput
-  createdOffers?: Prisma.OfferUncheckedUpdateManyWithoutAuthorNestedInput
+  offers?: Prisma.OfferUncheckedUpdateManyWithoutAuthorNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutTenantInput = {
@@ -1249,7 +1378,8 @@ export type UserUpdateWithoutRoleInput = {
   comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutAuthorNestedInput
   journalEvents?: Prisma.JournalEventUpdateManyWithoutAuthorNestedInput
-  createdOffers?: Prisma.OfferUpdateManyWithoutAuthorNestedInput
+  offers?: Prisma.OfferUpdateManyWithoutAuthorNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutAuthorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutRoleInput = {
@@ -1265,7 +1395,8 @@ export type UserUncheckedUpdateWithoutRoleInput = {
   comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAuthorNestedInput
   journalEvents?: Prisma.JournalEventUncheckedUpdateManyWithoutAuthorNestedInput
-  createdOffers?: Prisma.OfferUncheckedUpdateManyWithoutAuthorNestedInput
+  offers?: Prisma.OfferUncheckedUpdateManyWithoutAuthorNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
 export type UserUncheckedUpdateManyWithoutRoleInput = {
@@ -1289,7 +1420,8 @@ export type UserCountOutputType = {
   comments: number
   invoices: number
   journalEvents: number
-  createdOffers: number
+  offers: number
+  projects: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1297,7 +1429,8 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   comments?: boolean | UserCountOutputTypeCountCommentsArgs
   invoices?: boolean | UserCountOutputTypeCountInvoicesArgs
   journalEvents?: boolean | UserCountOutputTypeCountJournalEventsArgs
-  createdOffers?: boolean | UserCountOutputTypeCountCreatedOffersArgs
+  offers?: boolean | UserCountOutputTypeCountOffersArgs
+  projects?: boolean | UserCountOutputTypeCountProjectsArgs
 }
 
 /**
@@ -1341,8 +1474,15 @@ export type UserCountOutputTypeCountJournalEventsArgs<ExtArgs extends runtime.Ty
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountCreatedOffersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type UserCountOutputTypeCountOffersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.OfferWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountProjectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ProjectWhereInput
 }
 
 
@@ -1362,7 +1502,8 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   comments?: boolean | Prisma.User$commentsArgs<ExtArgs>
   invoices?: boolean | Prisma.User$invoicesArgs<ExtArgs>
   journalEvents?: boolean | Prisma.User$journalEventsArgs<ExtArgs>
-  createdOffers?: boolean | Prisma.User$createdOffersArgs<ExtArgs>
+  offers?: boolean | Prisma.User$offersArgs<ExtArgs>
+  projects?: boolean | Prisma.User$projectsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -1414,7 +1555,8 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   comments?: boolean | Prisma.User$commentsArgs<ExtArgs>
   invoices?: boolean | Prisma.User$invoicesArgs<ExtArgs>
   journalEvents?: boolean | Prisma.User$journalEventsArgs<ExtArgs>
-  createdOffers?: boolean | Prisma.User$createdOffersArgs<ExtArgs>
+  offers?: boolean | Prisma.User$offersArgs<ExtArgs>
+  projects?: boolean | Prisma.User$projectsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1435,7 +1577,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     comments: Prisma.$CommentPayload<ExtArgs>[]
     invoices: Prisma.$InvoicePayload<ExtArgs>[]
     journalEvents: Prisma.$JournalEventPayload<ExtArgs>[]
-    createdOffers: Prisma.$OfferPayload<ExtArgs>[]
+    offers: Prisma.$OfferPayload<ExtArgs>[]
+    projects: Prisma.$ProjectPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1847,7 +1990,8 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   comments<T extends Prisma.User$commentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   invoices<T extends Prisma.User$invoicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   journalEvents<T extends Prisma.User$journalEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$journalEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$JournalEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  createdOffers<T extends Prisma.User$createdOffersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$createdOffersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OfferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  offers<T extends Prisma.User$offersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$offersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OfferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  projects<T extends Prisma.User$projectsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$projectsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2383,9 +2527,9 @@ export type User$journalEventsArgs<ExtArgs extends runtime.Types.Extensions.Inte
 }
 
 /**
- * User.createdOffers
+ * User.offers
  */
-export type User$createdOffersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$offersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
    * Select specific fields to fetch from the Offer
    */
@@ -2404,6 +2548,30 @@ export type User$createdOffersArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.OfferScalarFieldEnum | Prisma.OfferScalarFieldEnum[]
+}
+
+/**
+ * User.projects
+ */
+export type User$projectsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Project
+   */
+  select?: Prisma.ProjectSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Project
+   */
+  omit?: Prisma.ProjectOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProjectInclude<ExtArgs> | null
+  where?: Prisma.ProjectWhereInput
+  orderBy?: Prisma.ProjectOrderByWithRelationInput | Prisma.ProjectOrderByWithRelationInput[]
+  cursor?: Prisma.ProjectWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.ProjectScalarFieldEnum | Prisma.ProjectScalarFieldEnum[]
 }
 
 /**

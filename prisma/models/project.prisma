@@ -2,9 +2,9 @@
 model Project {
     id Int @id() @default(autoincrement())
     title String
-    amountExcludingTax Decimal?
-    vatAmount Decimal?
-    amountIncludingTax Decimal?
+    amountHT Decimal?
+    amountTVA Decimal?
+    amountTTC Decimal?
     status ProjectStatus @default(IN_PROGRESS)
 
     documents Document[]
@@ -17,6 +17,9 @@ model Project {
     
     offerId Int @unique()
     offer Offer @relation(fields: [offerId], references: [id])
+
+    authorId Int
+    author User @relation(fields: [authorId], references: [id])
 
     tenantId Int
     tenant Tenant @relation(fields: [tenantId], references: [id])

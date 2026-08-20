@@ -20,6 +20,7 @@ import { RemoveFileDTO } from '../../common/file-manager/dto/remove-file.dto';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { FILE_FILTER } from '../../common/common.constants';
 import { OfferQueryDTO } from './dto/offer-query.dto';
+import { CurrentUserType } from '../../auth/auth.types';
 
 @Controller('offer')
 export class OfferController {
@@ -58,9 +59,9 @@ export class OfferController {
   async update(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateOfferDto: UpdateOfferDTO,
-    @CurrentUser('tenantId') tenantId: number,
+    @CurrentUser() user: CurrentUserType,
   ) {
-    return this.offerService.update(id, updateOfferDto, tenantId);
+    return this.offerService.update(id, updateOfferDto, user);
   }
 
   @Post(':id/document/create')

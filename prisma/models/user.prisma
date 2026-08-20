@@ -14,7 +14,8 @@ model User {
   invoices Invoice[] // invoice created by this user
   journalEvents JournalEvent[] // project events
 
-  createdOffers Offer[] @relation("offerAuthor") // offers created by the user
+  offers Offer[] 
+  projects Project[]
   createdAt DateTime @default(now())
 }
 

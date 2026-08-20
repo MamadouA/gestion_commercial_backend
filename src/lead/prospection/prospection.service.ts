@@ -1,6 +1,7 @@
 import {
   Injectable,
   InternalServerErrorException,
+  Logger,
   NotFoundException,
 } from '@nestjs/common';
 import { PrismaClientService } from '../../database/prisma-client.service';
@@ -13,6 +14,7 @@ import { FileMetadata } from '../../shared/shared.types';
 
 @Injectable()
 export class ProspectionService {
+  private logger = new Logger(ProspectionService.name);
   constructor(
     private prismaClientService: PrismaClientService,
     private s3ClientService: S3ClientService,
@@ -23,10 +25,12 @@ export class ProspectionService {
     createProspectionDto: CreateProspectionDTO,
     authorId: number,
     tenantId: number,
-    files: Array<Express.Multer.File>,
+    file: Express.Multer.File,
   ) {
+    let fileMetadata: FileMetadata | null = null;
+
     try {
-      const filesMetadata = await this.s3ClientService.bulkSave(files);
+      fileMetadata = await this.s3ClientService.save(file);
 
       const prospection = await this.prismaClientService.prospection.create({
         data: {
@@ -37,9 +41,7 @@ export class ProspectionService {
           authorId,
           tenantId,
           documents: {
-            createMany: {
-              data: filesMetadata,
-            },
+            create: fileMetadata,
           },
         },
         omit: {
@@ -49,7 +51,10 @@ export class ProspectionService {
 
       return { prospection };
     } catch (err) {
-      console.log('Error while creating the lead: ', err);
+      if(fileMetadata) {
+        await this.s3ClientService.delete(fileMetadata.storedName);
+      }
+      this.logger.error('Error while creating the lead: ', err);
       throw new InternalServerErrorException('Error while creating the lead.');
     }
   }
