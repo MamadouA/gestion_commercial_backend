@@ -87,7 +87,7 @@ export class DashboardService {
     });
 
 
-    const result = await this.prismaClientService.$transaction([
+    const result = await Promise.all([
       inProgress,
       done,
       cancelled,
@@ -124,7 +124,7 @@ export class DashboardService {
       where: { tenantId, status: 'OVERDUE' },
     });
 
-    const result = await this.prismaClientService.$transaction([
+    const result = await Promise.all([
       pending,
       ready,
       sent,
@@ -164,12 +164,7 @@ export class DashboardService {
         where: { tenantId, status: 'CANCELLED' },
       });
 
-      const result = await this.prismaClientService.$transaction([
-        opened,
-        won,
-        lost,
-        cancelled,
-      ]);
+      const result = await Promise.all([opened, won, lost, cancelled]);
 
       return [
         { status: ProspectionStatus.OPENED, count: result[0] },
@@ -190,18 +185,25 @@ export class DashboardService {
         where: { project: { tenantId }, status: 'PAID' }
       });
 
+      const paidAmount = this.prismaClientService.invoice.aggregate({
+        where: { project: { tenantId }, status: 'PAID' },
+        _sum: { amount: true }
+      });
+
+      const unpaidAmount = this.prismaClientService.invoice.aggregate({
+        where: { project: { tenantId }, status: 'UNPAID' },
+        _sum: { amount: true }
+      });
+
       const unpdaid = this.prismaClientService.invoice.count({
         where: { project: { tenantId }, status: 'UNPAID' }
       });
 
-      const result = await this.prismaClientService.$transaction([
-        paid,
-        unpdaid,
-      ]);
+      const result = await Promise.all([paid, unpdaid, paidAmount, unpaidAmount]);
 
       return [
-        { status: InvoiceStatus.PAID, count: result[0] },
-        { status: InvoiceStatus.UNPAID, count: result[1] },
+        { status: InvoiceStatus.PAID, count: result[0], sum: result[2]._sum.amount },
+        { status: InvoiceStatus.UNPAID, count: result[1], sum: result[3]._sum.amount },
       ];
     }
     catch(err) {
