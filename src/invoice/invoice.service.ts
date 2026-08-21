@@ -13,15 +13,36 @@ export class InvoiceService {
     }
     
     // -
-    async findAllByProjectId(projectId: number, tenantId) {
+    async findByProjectId(projectId: number, tenantId: number) {
         try {
             const project = await this.prismaClientService.project.findUnique({ where: { id: projectId, tenantId }});
 
             if(!project) {
                 throw new NotFoundException("Project not found.");
             }
+            const invoices = await this.prismaClientService.invoice.findMany({ 
+                where: { projectId },
+                include: {
+                    author: {
+                        select: {
+                            id: true,
+                            fullname: true,
+                        }
+                    },
+                    document: {
+                        select: {
+                            id: true,
+                            description: true,
+                            createdAt: true,
+                            size: true,
+                            originalName: true,
+                        }
+                    }
+                }
+            });
 
-            return await this.prismaClientService.invoice.findMany({ where: { projectId }});
+            const count = await this.prismaClientService.invoice.count({ where: { projectId }});
+            return { invoices, count };
         }
         catch(err) {
             this.logger.error("Error while fetching the invoices: ", err);

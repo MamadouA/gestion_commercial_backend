@@ -168,7 +168,7 @@ export class ProjectService {
   // -
   async findOne(id: number, tenantId: number) {
     try {
-      return await this.prismaClientService.project.findFirstOrThrow({
+      const project = await this.prismaClientService.project.findFirstOrThrow({
         where: { id, tenantId },
         omit: {
           tenantId: true,
@@ -179,60 +179,6 @@ export class ProjectService {
           client: {
             omit: {
               tenantId: true,
-            },
-          },
-          journalEvents: {
-            select: {
-              id: true,
-              event: true,
-              createdAt: true,
-              author: {
-                select: {
-                  id: true,
-                  fullname: true,
-                  email: true,
-                },
-              },
-              document: {
-                select: {
-                  id: true,
-                  originalName: true,
-                  createdAt: true,
-                  size: true,
-                  mimetype: true,
-                },
-              },
-            },
-            orderBy: {
-              id: 'desc',
-            },
-          },
-          invoices: {
-            select: {
-              id: true,
-              description: true,
-              amount: true,
-              status: true,
-              createdAt: true,
-              author: {
-                select: {
-                  id: true,
-                  fullname: true,
-                  email: true,
-                },
-              },
-              document: {
-                select: {
-                  id: true,
-                  originalName: true,
-                  createdAt: true,
-                  size: true,
-                  mimetype: true,
-                },
-              },
-            },
-            orderBy: {
-              id: 'desc',
             },
           },
           documents: {
@@ -249,6 +195,29 @@ export class ProjectService {
           },
         },
       });
+
+      const totalInvoiceAmount = this.prismaClientService.invoice.aggregate({
+        where: { project: { id } },
+        _sum: { amount: true },
+      });
+
+      const unpaidInvoiceAmount = this.prismaClientService.invoice.aggregate({
+        where: { project: { id }, status: 'UNPAID' },
+        _sum: { amount: true },
+      });
+
+      const paidInvoiceAmount = this.prismaClientService.invoice.aggregate({
+        where: { project: { id }, status: 'PAID' },
+        _sum: { amount: true },
+      });
+
+      const result = await Promise.all([totalInvoiceAmount, unpaidInvoiceAmount, paidInvoiceAmount]);
+
+      project['invoicesAmount'] = result[0]._sum.amount ?? 0;
+      project['unpaidInvoicesAmount'] = result[1]._sum.amount ?? 0;
+      project['paidInvoicesAmount'] = result[2]._sum.amount ?? 0;
+
+      return project;
     } catch (err) {
       this.logger.error('Error while fetching the project: ', err);
       throw new InternalServerErrorException(

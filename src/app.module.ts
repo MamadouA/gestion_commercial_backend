@@ -20,6 +20,7 @@ import { InvoiceModule } from './invoice/invoice.module';
 import { SubscriptionModule } from './subscription/subscription.module';
 import { CommentModule } from './comment/comment.module';
 import { DocumentModule } from './document/document.module';
+import { ReportModule } from './report/report.module';
 
 @Module({
   imports: [
@@ -41,6 +42,7 @@ import { DocumentModule } from './document/document.module';
     SubscriptionModule,
     CommentModule,
     DocumentModule,
+    ReportModule,
   ],
   controllers: [AppController],
   providers: [AppService],

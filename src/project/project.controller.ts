@@ -61,15 +61,6 @@ export class ProjectController {
     return await this.projectService.getJournalEvents(id, tenantId, query);
   }
 
-  @Get(':id/invoices/all')
-  async getInvoices(
-    @Param('id', ParseIntPipe) id: number,
-    @CurrentUser('tenantId') tenantId: number,
-    @Query() query: InvoiceQueryDTO
-  ) {
-    return await this.projectService.getInvoices(id, tenantId, query);
-  }
-
   @Post(':id/journal-event/create')
   @UseInterceptors(FileInterceptor('file', FILE_FILTER))
   async createJournalEvent(
