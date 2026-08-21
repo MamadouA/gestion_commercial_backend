@@ -1,11 +1,9 @@
 import {
-  Body,
   Controller,
   Get,
   Param,
   ParseIntPipe,
   Post,
-  Query,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
@@ -14,11 +12,6 @@ import { CurrentUser } from '../shared/current-user.decoration';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { FILE_FILTER } from '../common/common.constants';
 import { User } from '../generated/prisma/client';
-import { CreateInvoiceDTO } from '../invoice/dto/create-invoice.dto';
-import { InvoiceQueryDTO } from '../invoice/dto/invoice.query.dto';
-import { JournalEventQueryDTO } from './dto/journal-event-query.dto';
-import { CreateJournalEventDTO } from './dto/create-journal-event.dto';
-
 @Controller('project')
 export class ProjectController {
   constructor(private readonly projectService: ProjectService) {}
@@ -50,72 +43,5 @@ export class ProjectController {
     @CurrentUser('tenantId') tenantId: number,
   ) {
     return await this.projectService.findOne(id, tenantId);
-  }
-
-  @Get(':id/journal-events/all')
-  async getJournalEvents(
-    @Param('id', ParseIntPipe) id: number,
-    @CurrentUser('tenantId') tenantId: number,
-    @Query() query: JournalEventQueryDTO,
-  ) {
-    return await this.projectService.getJournalEvents(id, tenantId, query);
-  }
-
-  @Post(':id/journal-event/create')
-  @UseInterceptors(FileInterceptor('file', FILE_FILTER))
-  async createJournalEvent(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() journalEventDTO: CreateJournalEventDTO,
-    @UploadedFile() file: Express.Multer.File,
-    @CurrentUser() user: User,
-  ) {
-    return await this.projectService.createJournalEvent(
-      id,
-      journalEventDTO,
-      file,
-      user,
-    )
-  }
-
-  @Post(':id/invoice/create')
-  @UseInterceptors(FileInterceptor('file', FILE_FILTER))
-  async createInvoice(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() createInvoiceDTO: CreateInvoiceDTO,
-    @UploadedFile() file: Express.Multer.File,
-    @CurrentUser() user: User,
-  ) {
-    return await this.projectService.createInvoice(
-      id,
-      createInvoiceDTO,
-      file,
-      user,
-    );
-  }
-
-  @Get(':id/journal-event/:journalEventId/url')
-  async getJournalEventDocumentUrl(
-    @Param('id', ParseIntPipe) id: number,
-    @Param('journalEventId', ParseIntPipe) journalEventId: number,
-    @CurrentUser('tenantId') tenantId: number,
-  ) {
-    return await this.projectService.getJournalEventDocumentUrl(
-      id,
-      journalEventId,
-      tenantId,
-    );
-  }
-
-  @Get(':id/invoice/:invoiceId/url')
-  async getinvoiceDocumentUrl(
-    @Param('id', ParseIntPipe) id: number,
-    @Param('invoiceId', ParseIntPipe) invoiceId: number,
-    @CurrentUser('tenantId') tenantId: number,
-  ) {
-    return await this.projectService.getinvoiceDocumentUrl(
-      id,
-      invoiceId,
-      tenantId
-    )
   }
 }

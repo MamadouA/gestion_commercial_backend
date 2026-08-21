@@ -12,6 +12,8 @@ model Tenant {
   missions Mission[]
   projects Project[]
   notifications Notification[]
+  reports Report[]
+  invoices Invoice[]
   subscriptionId Int 
   subscription Subscription @relation(fields: [subscriptionId], references: [id])
 }

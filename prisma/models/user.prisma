@@ -12,7 +12,7 @@ model User {
   prospections Prospection[] // prospection created by the user
   comments Comment[] // comment made by the user
   invoices Invoice[] // invoice created by this user
-  journalEvents JournalEvent[] // project events
+  reports Report[] // reports created by this user
 
   offers Offer[] 
   projects Project[]
