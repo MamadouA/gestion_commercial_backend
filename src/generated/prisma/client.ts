@@ -55,6 +55,11 @@ export type Comment = Prisma.CommentModel
  */
 export type Document = Prisma.DocumentModel
 /**
+ * Model Invoice
+ * 
+ */
+export type Invoice = Prisma.InvoiceModel
+/**
  * Model Mission
  * 
  */
@@ -85,20 +90,15 @@ export type Product = Prisma.ProductModel
  */
 export type Project = Prisma.ProjectModel
 /**
- * Model Invoice
- * 
- */
-export type Invoice = Prisma.InvoiceModel
-/**
- * Model JournalEvent
- * 
- */
-export type JournalEvent = Prisma.JournalEventModel
-/**
  * Model Prospection
  * 
  */
 export type Prospection = Prisma.ProspectionModel
+/**
+ * Model Report
+ * 
+ */
+export type Report = Prisma.ReportModel
 /**
  * Model Subscription
  * 

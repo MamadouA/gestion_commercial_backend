@@ -3,17 +3,12 @@ import {
   Injectable,
   InternalServerErrorException,
   Logger,
-  NotFoundException,
 } from '@nestjs/common';
 import { PrismaClientService } from '../database/prisma-client.service';
 import { S3ClientService } from '../common/file-manager/s3-client.service';
 import { FileMetadata } from '../shared/shared.types';
-import { UpdateProjectDTO } from './dto/update-project.dto';
-import { InvoiceWhereInput, JournalEventWhereInput, ProjectCreateInput, ProjectUpdateInput } from '../generated/prisma/models';
+import {  ProjectCreateInput } from '../generated/prisma/models';
 import { User } from '../generated/prisma/client';
-import { connect } from 'http2';
-import { CreateInvoiceDTO } from '../invoice/dto/create-invoice.dto';
-import { InvoiceQueryDTO } from '../invoice/dto/invoice.query.dto';
 
 @Injectable()
 export class ProjectService {
@@ -81,6 +76,7 @@ export class ProjectService {
       }
 
       fileMetadata = await this.s3ClientService.save(contractDocument);
+
       const projectData: ProjectCreateInput = {
         title: offer.title,
         amountTTC: offer.amountTTC,
@@ -106,18 +102,23 @@ export class ProjectService {
             id: user.tenantId,
           },
         },
-        journalEvents: {
+        reports: {
           create: {
-            event: "Contract Signé",
+            description: 'Contrat signé',
             document: {
-              create: fileMetadata
+              create: fileMetadata,
             },
             author: {
               connect: {
                 id: user.id,
               },
-            }
-          }
+            },
+            tenant: {
+              connect: {
+                id: user.tenantId,
+              },
+            },
+          },
         }
       };
 

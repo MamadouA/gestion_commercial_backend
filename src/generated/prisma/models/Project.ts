@@ -295,7 +295,7 @@ export type ProjectWhereInput = {
   documents?: Prisma.DocumentListRelationFilter
   timesheets?: Prisma.TimesheetListRelationFilter
   invoices?: Prisma.InvoiceListRelationFilter
-  journalEvents?: Prisma.JournalEventListRelationFilter
+  reports?: Prisma.ReportListRelationFilter
   client?: Prisma.XOR<Prisma.ClientScalarRelationFilter, Prisma.ClientWhereInput>
   offer?: Prisma.XOR<Prisma.OfferScalarRelationFilter, Prisma.OfferWhereInput>
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -317,7 +317,7 @@ export type ProjectOrderByWithRelationInput = {
   documents?: Prisma.DocumentOrderByRelationAggregateInput
   timesheets?: Prisma.TimesheetOrderByRelationAggregateInput
   invoices?: Prisma.InvoiceOrderByRelationAggregateInput
-  journalEvents?: Prisma.JournalEventOrderByRelationAggregateInput
+  reports?: Prisma.ReportOrderByRelationAggregateInput
   client?: Prisma.ClientOrderByWithRelationInput
   offer?: Prisma.OfferOrderByWithRelationInput
   author?: Prisma.UserOrderByWithRelationInput
@@ -342,7 +342,7 @@ export type ProjectWhereUniqueInput = Prisma.AtLeast<{
   documents?: Prisma.DocumentListRelationFilter
   timesheets?: Prisma.TimesheetListRelationFilter
   invoices?: Prisma.InvoiceListRelationFilter
-  journalEvents?: Prisma.JournalEventListRelationFilter
+  reports?: Prisma.ReportListRelationFilter
   client?: Prisma.XOR<Prisma.ClientScalarRelationFilter, Prisma.ClientWhereInput>
   offer?: Prisma.XOR<Prisma.OfferScalarRelationFilter, Prisma.OfferWhereInput>
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -395,7 +395,7 @@ export type ProjectCreateInput = {
   documents?: Prisma.DocumentCreateNestedManyWithoutProjectInput
   timesheets?: Prisma.TimesheetCreateNestedManyWithoutProjectInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutProjectInput
-  journalEvents?: Prisma.JournalEventCreateNestedManyWithoutProjectInput
+  reports?: Prisma.ReportCreateNestedManyWithoutProjectInput
   client: Prisma.ClientCreateNestedOneWithoutProjectsInput
   offer: Prisma.OfferCreateNestedOneWithoutProjectInput
   author: Prisma.UserCreateNestedOneWithoutProjectsInput
@@ -417,7 +417,7 @@ export type ProjectUncheckedCreateInput = {
   documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutProjectInput
   timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutProjectInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutProjectInput
-  journalEvents?: Prisma.JournalEventUncheckedCreateNestedManyWithoutProjectInput
+  reports?: Prisma.ReportUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectUpdateInput = {
@@ -430,7 +430,7 @@ export type ProjectUpdateInput = {
   documents?: Prisma.DocumentUpdateManyWithoutProjectNestedInput
   timesheets?: Prisma.TimesheetUpdateManyWithoutProjectNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutProjectNestedInput
-  journalEvents?: Prisma.JournalEventUpdateManyWithoutProjectNestedInput
+  reports?: Prisma.ReportUpdateManyWithoutProjectNestedInput
   client?: Prisma.ClientUpdateOneRequiredWithoutProjectsNestedInput
   offer?: Prisma.OfferUpdateOneRequiredWithoutProjectNestedInput
   author?: Prisma.UserUpdateOneRequiredWithoutProjectsNestedInput
@@ -452,7 +452,7 @@ export type ProjectUncheckedUpdateInput = {
   documents?: Prisma.DocumentUncheckedUpdateManyWithoutProjectNestedInput
   timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutProjectNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutProjectNestedInput
-  journalEvents?: Prisma.JournalEventUncheckedUpdateManyWithoutProjectNestedInput
+  reports?: Prisma.ReportUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectCreateManyInput = {
@@ -634,6 +634,22 @@ export type ProjectUpdateOneWithoutDocumentsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutDocumentsInput, Prisma.ProjectUpdateWithoutDocumentsInput>, Prisma.ProjectUncheckedUpdateWithoutDocumentsInput>
 }
 
+export type ProjectCreateNestedOneWithoutInvoicesInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutInvoicesInput, Prisma.ProjectUncheckedCreateWithoutInvoicesInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutInvoicesInput
+  connect?: Prisma.ProjectWhereUniqueInput
+}
+
+export type ProjectUpdateOneWithoutInvoicesNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutInvoicesInput, Prisma.ProjectUncheckedCreateWithoutInvoicesInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutInvoicesInput
+  upsert?: Prisma.ProjectUpsertWithoutInvoicesInput
+  disconnect?: Prisma.ProjectWhereInput | boolean
+  delete?: Prisma.ProjectWhereInput | boolean
+  connect?: Prisma.ProjectWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutInvoicesInput, Prisma.ProjectUpdateWithoutInvoicesInput>, Prisma.ProjectUncheckedUpdateWithoutInvoicesInput>
+}
+
 export type ProjectCreateNestedOneWithoutOfferInput = {
   create?: Prisma.XOR<Prisma.ProjectCreateWithoutOfferInput, Prisma.ProjectUncheckedCreateWithoutOfferInput>
   connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutOfferInput
@@ -670,32 +686,18 @@ export type EnumProjectStatusFieldUpdateOperationsInput = {
   set?: $Enums.ProjectStatus
 }
 
-export type ProjectCreateNestedOneWithoutInvoicesInput = {
-  create?: Prisma.XOR<Prisma.ProjectCreateWithoutInvoicesInput, Prisma.ProjectUncheckedCreateWithoutInvoicesInput>
-  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutInvoicesInput
+export type ProjectCreateNestedOneWithoutReportsInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutReportsInput, Prisma.ProjectUncheckedCreateWithoutReportsInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutReportsInput
   connect?: Prisma.ProjectWhereUniqueInput
 }
 
-export type ProjectUpdateOneRequiredWithoutInvoicesNestedInput = {
-  create?: Prisma.XOR<Prisma.ProjectCreateWithoutInvoicesInput, Prisma.ProjectUncheckedCreateWithoutInvoicesInput>
-  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutInvoicesInput
-  upsert?: Prisma.ProjectUpsertWithoutInvoicesInput
+export type ProjectUpdateOneRequiredWithoutReportsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutReportsInput, Prisma.ProjectUncheckedCreateWithoutReportsInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutReportsInput
+  upsert?: Prisma.ProjectUpsertWithoutReportsInput
   connect?: Prisma.ProjectWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutInvoicesInput, Prisma.ProjectUpdateWithoutInvoicesInput>, Prisma.ProjectUncheckedUpdateWithoutInvoicesInput>
-}
-
-export type ProjectCreateNestedOneWithoutJournalEventsInput = {
-  create?: Prisma.XOR<Prisma.ProjectCreateWithoutJournalEventsInput, Prisma.ProjectUncheckedCreateWithoutJournalEventsInput>
-  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutJournalEventsInput
-  connect?: Prisma.ProjectWhereUniqueInput
-}
-
-export type ProjectUpdateOneRequiredWithoutJournalEventsNestedInput = {
-  create?: Prisma.XOR<Prisma.ProjectCreateWithoutJournalEventsInput, Prisma.ProjectUncheckedCreateWithoutJournalEventsInput>
-  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutJournalEventsInput
-  upsert?: Prisma.ProjectUpsertWithoutJournalEventsInput
-  connect?: Prisma.ProjectWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutJournalEventsInput, Prisma.ProjectUpdateWithoutJournalEventsInput>, Prisma.ProjectUncheckedUpdateWithoutJournalEventsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutReportsInput, Prisma.ProjectUpdateWithoutReportsInput>, Prisma.ProjectUncheckedUpdateWithoutReportsInput>
 }
 
 export type ProjectCreateNestedManyWithoutTenantInput = {
@@ -806,7 +808,7 @@ export type ProjectCreateWithoutClientInput = {
   documents?: Prisma.DocumentCreateNestedManyWithoutProjectInput
   timesheets?: Prisma.TimesheetCreateNestedManyWithoutProjectInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutProjectInput
-  journalEvents?: Prisma.JournalEventCreateNestedManyWithoutProjectInput
+  reports?: Prisma.ReportCreateNestedManyWithoutProjectInput
   offer: Prisma.OfferCreateNestedOneWithoutProjectInput
   author: Prisma.UserCreateNestedOneWithoutProjectsInput
   tenant: Prisma.TenantCreateNestedOneWithoutProjectsInput
@@ -826,7 +828,7 @@ export type ProjectUncheckedCreateWithoutClientInput = {
   documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutProjectInput
   timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutProjectInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutProjectInput
-  journalEvents?: Prisma.JournalEventUncheckedCreateNestedManyWithoutProjectInput
+  reports?: Prisma.ReportUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutClientInput = {
@@ -881,7 +883,7 @@ export type ProjectCreateWithoutDocumentsInput = {
   createdAt?: Date | string
   timesheets?: Prisma.TimesheetCreateNestedManyWithoutProjectInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutProjectInput
-  journalEvents?: Prisma.JournalEventCreateNestedManyWithoutProjectInput
+  reports?: Prisma.ReportCreateNestedManyWithoutProjectInput
   client: Prisma.ClientCreateNestedOneWithoutProjectsInput
   offer: Prisma.OfferCreateNestedOneWithoutProjectInput
   author: Prisma.UserCreateNestedOneWithoutProjectsInput
@@ -902,7 +904,7 @@ export type ProjectUncheckedCreateWithoutDocumentsInput = {
   createdAt?: Date | string
   timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutProjectInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutProjectInput
-  journalEvents?: Prisma.JournalEventUncheckedCreateNestedManyWithoutProjectInput
+  reports?: Prisma.ReportUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutDocumentsInput = {
@@ -930,7 +932,7 @@ export type ProjectUpdateWithoutDocumentsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   timesheets?: Prisma.TimesheetUpdateManyWithoutProjectNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutProjectNestedInput
-  journalEvents?: Prisma.JournalEventUpdateManyWithoutProjectNestedInput
+  reports?: Prisma.ReportUpdateManyWithoutProjectNestedInput
   client?: Prisma.ClientUpdateOneRequiredWithoutProjectsNestedInput
   offer?: Prisma.OfferUpdateOneRequiredWithoutProjectNestedInput
   author?: Prisma.UserUpdateOneRequiredWithoutProjectsNestedInput
@@ -951,7 +953,89 @@ export type ProjectUncheckedUpdateWithoutDocumentsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutProjectNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutProjectNestedInput
-  journalEvents?: Prisma.JournalEventUncheckedUpdateManyWithoutProjectNestedInput
+  reports?: Prisma.ReportUncheckedUpdateManyWithoutProjectNestedInput
+}
+
+export type ProjectCreateWithoutInvoicesInput = {
+  title: string
+  amountHT?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  amountTVA?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  status?: $Enums.ProjectStatus
+  createdAt?: Date | string
+  documents?: Prisma.DocumentCreateNestedManyWithoutProjectInput
+  timesheets?: Prisma.TimesheetCreateNestedManyWithoutProjectInput
+  reports?: Prisma.ReportCreateNestedManyWithoutProjectInput
+  client: Prisma.ClientCreateNestedOneWithoutProjectsInput
+  offer: Prisma.OfferCreateNestedOneWithoutProjectInput
+  author: Prisma.UserCreateNestedOneWithoutProjectsInput
+  tenant: Prisma.TenantCreateNestedOneWithoutProjectsInput
+}
+
+export type ProjectUncheckedCreateWithoutInvoicesInput = {
+  id?: number
+  title: string
+  amountHT?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  amountTVA?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  status?: $Enums.ProjectStatus
+  clientId: number
+  offerId: number
+  authorId: number
+  tenantId: number
+  createdAt?: Date | string
+  documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutProjectInput
+  timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutProjectInput
+  reports?: Prisma.ReportUncheckedCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectCreateOrConnectWithoutInvoicesInput = {
+  where: Prisma.ProjectWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutInvoicesInput, Prisma.ProjectUncheckedCreateWithoutInvoicesInput>
+}
+
+export type ProjectUpsertWithoutInvoicesInput = {
+  update: Prisma.XOR<Prisma.ProjectUpdateWithoutInvoicesInput, Prisma.ProjectUncheckedUpdateWithoutInvoicesInput>
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutInvoicesInput, Prisma.ProjectUncheckedCreateWithoutInvoicesInput>
+  where?: Prisma.ProjectWhereInput
+}
+
+export type ProjectUpdateToOneWithWhereWithoutInvoicesInput = {
+  where?: Prisma.ProjectWhereInput
+  data: Prisma.XOR<Prisma.ProjectUpdateWithoutInvoicesInput, Prisma.ProjectUncheckedUpdateWithoutInvoicesInput>
+}
+
+export type ProjectUpdateWithoutInvoicesInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  amountHT?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  amountTVA?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  documents?: Prisma.DocumentUpdateManyWithoutProjectNestedInput
+  timesheets?: Prisma.TimesheetUpdateManyWithoutProjectNestedInput
+  reports?: Prisma.ReportUpdateManyWithoutProjectNestedInput
+  client?: Prisma.ClientUpdateOneRequiredWithoutProjectsNestedInput
+  offer?: Prisma.OfferUpdateOneRequiredWithoutProjectNestedInput
+  author?: Prisma.UserUpdateOneRequiredWithoutProjectsNestedInput
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutProjectsNestedInput
+}
+
+export type ProjectUncheckedUpdateWithoutInvoicesInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  amountHT?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  amountTVA?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  clientId?: Prisma.IntFieldUpdateOperationsInput | number
+  offerId?: Prisma.IntFieldUpdateOperationsInput | number
+  authorId?: Prisma.IntFieldUpdateOperationsInput | number
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  documents?: Prisma.DocumentUncheckedUpdateManyWithoutProjectNestedInput
+  timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutProjectNestedInput
+  reports?: Prisma.ReportUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectCreateWithoutOfferInput = {
@@ -964,7 +1048,7 @@ export type ProjectCreateWithoutOfferInput = {
   documents?: Prisma.DocumentCreateNestedManyWithoutProjectInput
   timesheets?: Prisma.TimesheetCreateNestedManyWithoutProjectInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutProjectInput
-  journalEvents?: Prisma.JournalEventCreateNestedManyWithoutProjectInput
+  reports?: Prisma.ReportCreateNestedManyWithoutProjectInput
   client: Prisma.ClientCreateNestedOneWithoutProjectsInput
   author: Prisma.UserCreateNestedOneWithoutProjectsInput
   tenant: Prisma.TenantCreateNestedOneWithoutProjectsInput
@@ -984,7 +1068,7 @@ export type ProjectUncheckedCreateWithoutOfferInput = {
   documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutProjectInput
   timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutProjectInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutProjectInput
-  journalEvents?: Prisma.JournalEventUncheckedCreateNestedManyWithoutProjectInput
+  reports?: Prisma.ReportUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutOfferInput = {
@@ -1013,7 +1097,7 @@ export type ProjectUpdateWithoutOfferInput = {
   documents?: Prisma.DocumentUpdateManyWithoutProjectNestedInput
   timesheets?: Prisma.TimesheetUpdateManyWithoutProjectNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutProjectNestedInput
-  journalEvents?: Prisma.JournalEventUpdateManyWithoutProjectNestedInput
+  reports?: Prisma.ReportUpdateManyWithoutProjectNestedInput
   client?: Prisma.ClientUpdateOneRequiredWithoutProjectsNestedInput
   author?: Prisma.UserUpdateOneRequiredWithoutProjectsNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutProjectsNestedInput
@@ -1033,92 +1117,10 @@ export type ProjectUncheckedUpdateWithoutOfferInput = {
   documents?: Prisma.DocumentUncheckedUpdateManyWithoutProjectNestedInput
   timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutProjectNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutProjectNestedInput
-  journalEvents?: Prisma.JournalEventUncheckedUpdateManyWithoutProjectNestedInput
+  reports?: Prisma.ReportUncheckedUpdateManyWithoutProjectNestedInput
 }
 
-export type ProjectCreateWithoutInvoicesInput = {
-  title: string
-  amountHT?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  amountTVA?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  status?: $Enums.ProjectStatus
-  createdAt?: Date | string
-  documents?: Prisma.DocumentCreateNestedManyWithoutProjectInput
-  timesheets?: Prisma.TimesheetCreateNestedManyWithoutProjectInput
-  journalEvents?: Prisma.JournalEventCreateNestedManyWithoutProjectInput
-  client: Prisma.ClientCreateNestedOneWithoutProjectsInput
-  offer: Prisma.OfferCreateNestedOneWithoutProjectInput
-  author: Prisma.UserCreateNestedOneWithoutProjectsInput
-  tenant: Prisma.TenantCreateNestedOneWithoutProjectsInput
-}
-
-export type ProjectUncheckedCreateWithoutInvoicesInput = {
-  id?: number
-  title: string
-  amountHT?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  amountTVA?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  status?: $Enums.ProjectStatus
-  clientId: number
-  offerId: number
-  authorId: number
-  tenantId: number
-  createdAt?: Date | string
-  documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutProjectInput
-  timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutProjectInput
-  journalEvents?: Prisma.JournalEventUncheckedCreateNestedManyWithoutProjectInput
-}
-
-export type ProjectCreateOrConnectWithoutInvoicesInput = {
-  where: Prisma.ProjectWhereUniqueInput
-  create: Prisma.XOR<Prisma.ProjectCreateWithoutInvoicesInput, Prisma.ProjectUncheckedCreateWithoutInvoicesInput>
-}
-
-export type ProjectUpsertWithoutInvoicesInput = {
-  update: Prisma.XOR<Prisma.ProjectUpdateWithoutInvoicesInput, Prisma.ProjectUncheckedUpdateWithoutInvoicesInput>
-  create: Prisma.XOR<Prisma.ProjectCreateWithoutInvoicesInput, Prisma.ProjectUncheckedCreateWithoutInvoicesInput>
-  where?: Prisma.ProjectWhereInput
-}
-
-export type ProjectUpdateToOneWithWhereWithoutInvoicesInput = {
-  where?: Prisma.ProjectWhereInput
-  data: Prisma.XOR<Prisma.ProjectUpdateWithoutInvoicesInput, Prisma.ProjectUncheckedUpdateWithoutInvoicesInput>
-}
-
-export type ProjectUpdateWithoutInvoicesInput = {
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  amountHT?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  amountTVA?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  documents?: Prisma.DocumentUpdateManyWithoutProjectNestedInput
-  timesheets?: Prisma.TimesheetUpdateManyWithoutProjectNestedInput
-  journalEvents?: Prisma.JournalEventUpdateManyWithoutProjectNestedInput
-  client?: Prisma.ClientUpdateOneRequiredWithoutProjectsNestedInput
-  offer?: Prisma.OfferUpdateOneRequiredWithoutProjectNestedInput
-  author?: Prisma.UserUpdateOneRequiredWithoutProjectsNestedInput
-  tenant?: Prisma.TenantUpdateOneRequiredWithoutProjectsNestedInput
-}
-
-export type ProjectUncheckedUpdateWithoutInvoicesInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  amountHT?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  amountTVA?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
-  clientId?: Prisma.IntFieldUpdateOperationsInput | number
-  offerId?: Prisma.IntFieldUpdateOperationsInput | number
-  authorId?: Prisma.IntFieldUpdateOperationsInput | number
-  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  documents?: Prisma.DocumentUncheckedUpdateManyWithoutProjectNestedInput
-  timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutProjectNestedInput
-  journalEvents?: Prisma.JournalEventUncheckedUpdateManyWithoutProjectNestedInput
-}
-
-export type ProjectCreateWithoutJournalEventsInput = {
+export type ProjectCreateWithoutReportsInput = {
   title: string
   amountHT?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTVA?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1134,7 +1136,7 @@ export type ProjectCreateWithoutJournalEventsInput = {
   tenant: Prisma.TenantCreateNestedOneWithoutProjectsInput
 }
 
-export type ProjectUncheckedCreateWithoutJournalEventsInput = {
+export type ProjectUncheckedCreateWithoutReportsInput = {
   id?: number
   title: string
   amountHT?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1151,23 +1153,23 @@ export type ProjectUncheckedCreateWithoutJournalEventsInput = {
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutProjectInput
 }
 
-export type ProjectCreateOrConnectWithoutJournalEventsInput = {
+export type ProjectCreateOrConnectWithoutReportsInput = {
   where: Prisma.ProjectWhereUniqueInput
-  create: Prisma.XOR<Prisma.ProjectCreateWithoutJournalEventsInput, Prisma.ProjectUncheckedCreateWithoutJournalEventsInput>
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutReportsInput, Prisma.ProjectUncheckedCreateWithoutReportsInput>
 }
 
-export type ProjectUpsertWithoutJournalEventsInput = {
-  update: Prisma.XOR<Prisma.ProjectUpdateWithoutJournalEventsInput, Prisma.ProjectUncheckedUpdateWithoutJournalEventsInput>
-  create: Prisma.XOR<Prisma.ProjectCreateWithoutJournalEventsInput, Prisma.ProjectUncheckedCreateWithoutJournalEventsInput>
+export type ProjectUpsertWithoutReportsInput = {
+  update: Prisma.XOR<Prisma.ProjectUpdateWithoutReportsInput, Prisma.ProjectUncheckedUpdateWithoutReportsInput>
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutReportsInput, Prisma.ProjectUncheckedCreateWithoutReportsInput>
   where?: Prisma.ProjectWhereInput
 }
 
-export type ProjectUpdateToOneWithWhereWithoutJournalEventsInput = {
+export type ProjectUpdateToOneWithWhereWithoutReportsInput = {
   where?: Prisma.ProjectWhereInput
-  data: Prisma.XOR<Prisma.ProjectUpdateWithoutJournalEventsInput, Prisma.ProjectUncheckedUpdateWithoutJournalEventsInput>
+  data: Prisma.XOR<Prisma.ProjectUpdateWithoutReportsInput, Prisma.ProjectUncheckedUpdateWithoutReportsInput>
 }
 
-export type ProjectUpdateWithoutJournalEventsInput = {
+export type ProjectUpdateWithoutReportsInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   amountHT?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTVA?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1183,7 +1185,7 @@ export type ProjectUpdateWithoutJournalEventsInput = {
   tenant?: Prisma.TenantUpdateOneRequiredWithoutProjectsNestedInput
 }
 
-export type ProjectUncheckedUpdateWithoutJournalEventsInput = {
+export type ProjectUncheckedUpdateWithoutReportsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
   amountHT?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1210,7 +1212,7 @@ export type ProjectCreateWithoutTenantInput = {
   documents?: Prisma.DocumentCreateNestedManyWithoutProjectInput
   timesheets?: Prisma.TimesheetCreateNestedManyWithoutProjectInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutProjectInput
-  journalEvents?: Prisma.JournalEventCreateNestedManyWithoutProjectInput
+  reports?: Prisma.ReportCreateNestedManyWithoutProjectInput
   client: Prisma.ClientCreateNestedOneWithoutProjectsInput
   offer: Prisma.OfferCreateNestedOneWithoutProjectInput
   author: Prisma.UserCreateNestedOneWithoutProjectsInput
@@ -1230,7 +1232,7 @@ export type ProjectUncheckedCreateWithoutTenantInput = {
   documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutProjectInput
   timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutProjectInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutProjectInput
-  journalEvents?: Prisma.JournalEventUncheckedCreateNestedManyWithoutProjectInput
+  reports?: Prisma.ReportUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutTenantInput = {
@@ -1268,7 +1270,7 @@ export type ProjectCreateWithoutTimesheetsInput = {
   createdAt?: Date | string
   documents?: Prisma.DocumentCreateNestedManyWithoutProjectInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutProjectInput
-  journalEvents?: Prisma.JournalEventCreateNestedManyWithoutProjectInput
+  reports?: Prisma.ReportCreateNestedManyWithoutProjectInput
   client: Prisma.ClientCreateNestedOneWithoutProjectsInput
   offer: Prisma.OfferCreateNestedOneWithoutProjectInput
   author: Prisma.UserCreateNestedOneWithoutProjectsInput
@@ -1289,7 +1291,7 @@ export type ProjectUncheckedCreateWithoutTimesheetsInput = {
   createdAt?: Date | string
   documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutProjectInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutProjectInput
-  journalEvents?: Prisma.JournalEventUncheckedCreateNestedManyWithoutProjectInput
+  reports?: Prisma.ReportUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutTimesheetsInput = {
@@ -1317,7 +1319,7 @@ export type ProjectUpdateWithoutTimesheetsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   documents?: Prisma.DocumentUpdateManyWithoutProjectNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutProjectNestedInput
-  journalEvents?: Prisma.JournalEventUpdateManyWithoutProjectNestedInput
+  reports?: Prisma.ReportUpdateManyWithoutProjectNestedInput
   client?: Prisma.ClientUpdateOneRequiredWithoutProjectsNestedInput
   offer?: Prisma.OfferUpdateOneRequiredWithoutProjectNestedInput
   author?: Prisma.UserUpdateOneRequiredWithoutProjectsNestedInput
@@ -1338,7 +1340,7 @@ export type ProjectUncheckedUpdateWithoutTimesheetsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   documents?: Prisma.DocumentUncheckedUpdateManyWithoutProjectNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutProjectNestedInput
-  journalEvents?: Prisma.JournalEventUncheckedUpdateManyWithoutProjectNestedInput
+  reports?: Prisma.ReportUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectCreateWithoutAuthorInput = {
@@ -1351,7 +1353,7 @@ export type ProjectCreateWithoutAuthorInput = {
   documents?: Prisma.DocumentCreateNestedManyWithoutProjectInput
   timesheets?: Prisma.TimesheetCreateNestedManyWithoutProjectInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutProjectInput
-  journalEvents?: Prisma.JournalEventCreateNestedManyWithoutProjectInput
+  reports?: Prisma.ReportCreateNestedManyWithoutProjectInput
   client: Prisma.ClientCreateNestedOneWithoutProjectsInput
   offer: Prisma.OfferCreateNestedOneWithoutProjectInput
   tenant: Prisma.TenantCreateNestedOneWithoutProjectsInput
@@ -1371,7 +1373,7 @@ export type ProjectUncheckedCreateWithoutAuthorInput = {
   documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutProjectInput
   timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutProjectInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutProjectInput
-  journalEvents?: Prisma.JournalEventUncheckedCreateNestedManyWithoutProjectInput
+  reports?: Prisma.ReportUncheckedCreateNestedManyWithoutProjectInput
 }
 
 export type ProjectCreateOrConnectWithoutAuthorInput = {
@@ -1423,7 +1425,7 @@ export type ProjectUpdateWithoutClientInput = {
   documents?: Prisma.DocumentUpdateManyWithoutProjectNestedInput
   timesheets?: Prisma.TimesheetUpdateManyWithoutProjectNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutProjectNestedInput
-  journalEvents?: Prisma.JournalEventUpdateManyWithoutProjectNestedInput
+  reports?: Prisma.ReportUpdateManyWithoutProjectNestedInput
   offer?: Prisma.OfferUpdateOneRequiredWithoutProjectNestedInput
   author?: Prisma.UserUpdateOneRequiredWithoutProjectsNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutProjectsNestedInput
@@ -1443,7 +1445,7 @@ export type ProjectUncheckedUpdateWithoutClientInput = {
   documents?: Prisma.DocumentUncheckedUpdateManyWithoutProjectNestedInput
   timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutProjectNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutProjectNestedInput
-  journalEvents?: Prisma.JournalEventUncheckedUpdateManyWithoutProjectNestedInput
+  reports?: Prisma.ReportUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateManyWithoutClientInput = {
@@ -1482,7 +1484,7 @@ export type ProjectUpdateWithoutTenantInput = {
   documents?: Prisma.DocumentUpdateManyWithoutProjectNestedInput
   timesheets?: Prisma.TimesheetUpdateManyWithoutProjectNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutProjectNestedInput
-  journalEvents?: Prisma.JournalEventUpdateManyWithoutProjectNestedInput
+  reports?: Prisma.ReportUpdateManyWithoutProjectNestedInput
   client?: Prisma.ClientUpdateOneRequiredWithoutProjectsNestedInput
   offer?: Prisma.OfferUpdateOneRequiredWithoutProjectNestedInput
   author?: Prisma.UserUpdateOneRequiredWithoutProjectsNestedInput
@@ -1502,7 +1504,7 @@ export type ProjectUncheckedUpdateWithoutTenantInput = {
   documents?: Prisma.DocumentUncheckedUpdateManyWithoutProjectNestedInput
   timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutProjectNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutProjectNestedInput
-  journalEvents?: Prisma.JournalEventUncheckedUpdateManyWithoutProjectNestedInput
+  reports?: Prisma.ReportUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateManyWithoutTenantInput = {
@@ -1541,7 +1543,7 @@ export type ProjectUpdateWithoutAuthorInput = {
   documents?: Prisma.DocumentUpdateManyWithoutProjectNestedInput
   timesheets?: Prisma.TimesheetUpdateManyWithoutProjectNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutProjectNestedInput
-  journalEvents?: Prisma.JournalEventUpdateManyWithoutProjectNestedInput
+  reports?: Prisma.ReportUpdateManyWithoutProjectNestedInput
   client?: Prisma.ClientUpdateOneRequiredWithoutProjectsNestedInput
   offer?: Prisma.OfferUpdateOneRequiredWithoutProjectNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutProjectsNestedInput
@@ -1561,7 +1563,7 @@ export type ProjectUncheckedUpdateWithoutAuthorInput = {
   documents?: Prisma.DocumentUncheckedUpdateManyWithoutProjectNestedInput
   timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutProjectNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutProjectNestedInput
-  journalEvents?: Prisma.JournalEventUncheckedUpdateManyWithoutProjectNestedInput
+  reports?: Prisma.ReportUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectUncheckedUpdateManyWithoutAuthorInput = {
@@ -1586,14 +1588,14 @@ export type ProjectCountOutputType = {
   documents: number
   timesheets: number
   invoices: number
-  journalEvents: number
+  reports: number
 }
 
 export type ProjectCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   documents?: boolean | ProjectCountOutputTypeCountDocumentsArgs
   timesheets?: boolean | ProjectCountOutputTypeCountTimesheetsArgs
   invoices?: boolean | ProjectCountOutputTypeCountInvoicesArgs
-  journalEvents?: boolean | ProjectCountOutputTypeCountJournalEventsArgs
+  reports?: boolean | ProjectCountOutputTypeCountReportsArgs
 }
 
 /**
@@ -1630,8 +1632,8 @@ export type ProjectCountOutputTypeCountInvoicesArgs<ExtArgs extends runtime.Type
 /**
  * ProjectCountOutputType without action
  */
-export type ProjectCountOutputTypeCountJournalEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.JournalEventWhereInput
+export type ProjectCountOutputTypeCountReportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.ReportWhereInput
 }
 
 
@@ -1650,7 +1652,7 @@ export type ProjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   documents?: boolean | Prisma.Project$documentsArgs<ExtArgs>
   timesheets?: boolean | Prisma.Project$timesheetsArgs<ExtArgs>
   invoices?: boolean | Prisma.Project$invoicesArgs<ExtArgs>
-  journalEvents?: boolean | Prisma.Project$journalEventsArgs<ExtArgs>
+  reports?: boolean | Prisma.Project$reportsArgs<ExtArgs>
   client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
   offer?: boolean | Prisma.OfferDefaultArgs<ExtArgs>
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -1713,7 +1715,7 @@ export type ProjectInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs
   documents?: boolean | Prisma.Project$documentsArgs<ExtArgs>
   timesheets?: boolean | Prisma.Project$timesheetsArgs<ExtArgs>
   invoices?: boolean | Prisma.Project$invoicesArgs<ExtArgs>
-  journalEvents?: boolean | Prisma.Project$journalEventsArgs<ExtArgs>
+  reports?: boolean | Prisma.Project$reportsArgs<ExtArgs>
   client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
   offer?: boolean | Prisma.OfferDefaultArgs<ExtArgs>
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -1739,7 +1741,7 @@ export type $ProjectPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     documents: Prisma.$DocumentPayload<ExtArgs>[]
     timesheets: Prisma.$TimesheetPayload<ExtArgs>[]
     invoices: Prisma.$InvoicePayload<ExtArgs>[]
-    journalEvents: Prisma.$JournalEventPayload<ExtArgs>[]
+    reports: Prisma.$ReportPayload<ExtArgs>[]
     client: Prisma.$ClientPayload<ExtArgs>
     offer: Prisma.$OfferPayload<ExtArgs>
     author: Prisma.$UserPayload<ExtArgs>
@@ -2154,7 +2156,7 @@ export interface Prisma__ProjectClient<T, Null = never, ExtArgs extends runtime.
   documents<T extends Prisma.Project$documentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$documentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   timesheets<T extends Prisma.Project$timesheetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$timesheetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TimesheetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   invoices<T extends Prisma.Project$invoicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  journalEvents<T extends Prisma.Project$journalEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$journalEventsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$JournalEventPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  reports<T extends Prisma.Project$reportsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$reportsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   client<T extends Prisma.ClientDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClientDefaultArgs<ExtArgs>>): Prisma.Prisma__ClientClient<runtime.Types.Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   offer<T extends Prisma.OfferDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OfferDefaultArgs<ExtArgs>>): Prisma.Prisma__OfferClient<runtime.Types.Result.GetResult<Prisma.$OfferPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   author<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
@@ -2672,27 +2674,27 @@ export type Project$invoicesArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
- * Project.journalEvents
+ * Project.reports
  */
-export type Project$journalEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Project$reportsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the JournalEvent
+   * Select specific fields to fetch from the Report
    */
-  select?: Prisma.JournalEventSelect<ExtArgs> | null
+  select?: Prisma.ReportSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the JournalEvent
+   * Omit specific fields from the Report
    */
-  omit?: Prisma.JournalEventOmit<ExtArgs> | null
+  omit?: Prisma.ReportOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.JournalEventInclude<ExtArgs> | null
-  where?: Prisma.JournalEventWhereInput
-  orderBy?: Prisma.JournalEventOrderByWithRelationInput | Prisma.JournalEventOrderByWithRelationInput[]
-  cursor?: Prisma.JournalEventWhereUniqueInput
+  include?: Prisma.ReportInclude<ExtArgs> | null
+  where?: Prisma.ReportWhereInput
+  orderBy?: Prisma.ReportOrderByWithRelationInput | Prisma.ReportOrderByWithRelationInput[]
+  cursor?: Prisma.ReportWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.JournalEventScalarFieldEnum | Prisma.JournalEventScalarFieldEnum[]
+  distinct?: Prisma.ReportScalarFieldEnum | Prisma.ReportScalarFieldEnum[]
 }
 
 /**

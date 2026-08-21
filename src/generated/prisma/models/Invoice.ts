@@ -32,6 +32,7 @@ export type InvoiceAvgAggregateOutputType = {
   documentId: number | null
   authorId: number | null
   projectId: number | null
+  tenantId: number | null
 }
 
 export type InvoiceSumAggregateOutputType = {
@@ -40,6 +41,7 @@ export type InvoiceSumAggregateOutputType = {
   documentId: number | null
   authorId: number | null
   projectId: number | null
+  tenantId: number | null
 }
 
 export type InvoiceMinAggregateOutputType = {
@@ -50,6 +52,7 @@ export type InvoiceMinAggregateOutputType = {
   documentId: number | null
   authorId: number | null
   projectId: number | null
+  tenantId: number | null
   createdAt: Date | null
 }
 
@@ -61,6 +64,7 @@ export type InvoiceMaxAggregateOutputType = {
   documentId: number | null
   authorId: number | null
   projectId: number | null
+  tenantId: number | null
   createdAt: Date | null
 }
 
@@ -72,6 +76,7 @@ export type InvoiceCountAggregateOutputType = {
   documentId: number
   authorId: number
   projectId: number
+  tenantId: number
   createdAt: number
   _all: number
 }
@@ -83,6 +88,7 @@ export type InvoiceAvgAggregateInputType = {
   documentId?: true
   authorId?: true
   projectId?: true
+  tenantId?: true
 }
 
 export type InvoiceSumAggregateInputType = {
@@ -91,6 +97,7 @@ export type InvoiceSumAggregateInputType = {
   documentId?: true
   authorId?: true
   projectId?: true
+  tenantId?: true
 }
 
 export type InvoiceMinAggregateInputType = {
@@ -101,6 +108,7 @@ export type InvoiceMinAggregateInputType = {
   documentId?: true
   authorId?: true
   projectId?: true
+  tenantId?: true
   createdAt?: true
 }
 
@@ -112,6 +120,7 @@ export type InvoiceMaxAggregateInputType = {
   documentId?: true
   authorId?: true
   projectId?: true
+  tenantId?: true
   createdAt?: true
 }
 
@@ -123,6 +132,7 @@ export type InvoiceCountAggregateInputType = {
   documentId?: true
   authorId?: true
   projectId?: true
+  tenantId?: true
   createdAt?: true
   _all?: true
 }
@@ -220,7 +230,8 @@ export type InvoiceGroupByOutputType = {
   status: $Enums.InvoiceStatus
   documentId: number
   authorId: number
-  projectId: number
+  projectId: number | null
+  tenantId: number
   createdAt: Date
   _count: InvoiceCountAggregateOutputType | null
   _avg: InvoiceAvgAggregateOutputType | null
@@ -254,11 +265,13 @@ export type InvoiceWhereInput = {
   status?: Prisma.EnumInvoiceStatusFilter<"Invoice"> | $Enums.InvoiceStatus
   documentId?: Prisma.IntFilter<"Invoice"> | number
   authorId?: Prisma.IntFilter<"Invoice"> | number
-  projectId?: Prisma.IntFilter<"Invoice"> | number
+  projectId?: Prisma.IntNullableFilter<"Invoice"> | number | null
+  tenantId?: Prisma.IntFilter<"Invoice"> | number
   createdAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string
   document?: Prisma.XOR<Prisma.DocumentScalarRelationFilter, Prisma.DocumentWhereInput>
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  project?: Prisma.XOR<Prisma.ProjectScalarRelationFilter, Prisma.ProjectWhereInput>
+  project?: Prisma.XOR<Prisma.ProjectNullableScalarRelationFilter, Prisma.ProjectWhereInput> | null
+  tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
 }
 
 export type InvoiceOrderByWithRelationInput = {
@@ -268,11 +281,13 @@ export type InvoiceOrderByWithRelationInput = {
   status?: Prisma.SortOrder
   documentId?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
-  projectId?: Prisma.SortOrder
+  projectId?: Prisma.SortOrderInput | Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   document?: Prisma.DocumentOrderByWithRelationInput
   author?: Prisma.UserOrderByWithRelationInput
   project?: Prisma.ProjectOrderByWithRelationInput
+  tenant?: Prisma.TenantOrderByWithRelationInput
 }
 
 export type InvoiceWhereUniqueInput = Prisma.AtLeast<{
@@ -285,11 +300,13 @@ export type InvoiceWhereUniqueInput = Prisma.AtLeast<{
   amount?: Prisma.DecimalFilter<"Invoice"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumInvoiceStatusFilter<"Invoice"> | $Enums.InvoiceStatus
   authorId?: Prisma.IntFilter<"Invoice"> | number
-  projectId?: Prisma.IntFilter<"Invoice"> | number
+  projectId?: Prisma.IntNullableFilter<"Invoice"> | number | null
+  tenantId?: Prisma.IntFilter<"Invoice"> | number
   createdAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string
   document?: Prisma.XOR<Prisma.DocumentScalarRelationFilter, Prisma.DocumentWhereInput>
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  project?: Prisma.XOR<Prisma.ProjectScalarRelationFilter, Prisma.ProjectWhereInput>
+  project?: Prisma.XOR<Prisma.ProjectNullableScalarRelationFilter, Prisma.ProjectWhereInput> | null
+  tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
 }, "id" | "documentId">
 
 export type InvoiceOrderByWithAggregationInput = {
@@ -299,7 +316,8 @@ export type InvoiceOrderByWithAggregationInput = {
   status?: Prisma.SortOrder
   documentId?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
-  projectId?: Prisma.SortOrder
+  projectId?: Prisma.SortOrderInput | Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.InvoiceCountOrderByAggregateInput
   _avg?: Prisma.InvoiceAvgOrderByAggregateInput
@@ -318,7 +336,8 @@ export type InvoiceScalarWhereWithAggregatesInput = {
   status?: Prisma.EnumInvoiceStatusWithAggregatesFilter<"Invoice"> | $Enums.InvoiceStatus
   documentId?: Prisma.IntWithAggregatesFilter<"Invoice"> | number
   authorId?: Prisma.IntWithAggregatesFilter<"Invoice"> | number
-  projectId?: Prisma.IntWithAggregatesFilter<"Invoice"> | number
+  projectId?: Prisma.IntNullableWithAggregatesFilter<"Invoice"> | number | null
+  tenantId?: Prisma.IntWithAggregatesFilter<"Invoice"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Invoice"> | Date | string
 }
 
@@ -329,7 +348,8 @@ export type InvoiceCreateInput = {
   createdAt?: Date | string
   document: Prisma.DocumentCreateNestedOneWithoutInvoiceInput
   author: Prisma.UserCreateNestedOneWithoutInvoicesInput
-  project: Prisma.ProjectCreateNestedOneWithoutInvoicesInput
+  project?: Prisma.ProjectCreateNestedOneWithoutInvoicesInput
+  tenant: Prisma.TenantCreateNestedOneWithoutInvoicesInput
 }
 
 export type InvoiceUncheckedCreateInput = {
@@ -339,7 +359,8 @@ export type InvoiceUncheckedCreateInput = {
   status: $Enums.InvoiceStatus
   documentId: number
   authorId: number
-  projectId: number
+  projectId?: number | null
+  tenantId: number
   createdAt?: Date | string
 }
 
@@ -350,7 +371,8 @@ export type InvoiceUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   document?: Prisma.DocumentUpdateOneRequiredWithoutInvoiceNestedInput
   author?: Prisma.UserUpdateOneRequiredWithoutInvoicesNestedInput
-  project?: Prisma.ProjectUpdateOneRequiredWithoutInvoicesNestedInput
+  project?: Prisma.ProjectUpdateOneWithoutInvoicesNestedInput
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutInvoicesNestedInput
 }
 
 export type InvoiceUncheckedUpdateInput = {
@@ -360,7 +382,8 @@ export type InvoiceUncheckedUpdateInput = {
   status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus
   documentId?: Prisma.IntFieldUpdateOperationsInput | number
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
-  projectId?: Prisma.IntFieldUpdateOperationsInput | number
+  projectId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -371,7 +394,8 @@ export type InvoiceCreateManyInput = {
   status: $Enums.InvoiceStatus
   documentId: number
   authorId: number
-  projectId: number
+  projectId?: number | null
+  tenantId: number
   createdAt?: Date | string
 }
 
@@ -389,23 +413,14 @@ export type InvoiceUncheckedUpdateManyInput = {
   status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus
   documentId?: Prisma.IntFieldUpdateOperationsInput | number
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
-  projectId?: Prisma.IntFieldUpdateOperationsInput | number
+  projectId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type InvoiceNullableScalarRelationFilter = {
   is?: Prisma.InvoiceWhereInput | null
   isNot?: Prisma.InvoiceWhereInput | null
-}
-
-export type InvoiceListRelationFilter = {
-  every?: Prisma.InvoiceWhereInput
-  some?: Prisma.InvoiceWhereInput
-  none?: Prisma.InvoiceWhereInput
-}
-
-export type InvoiceOrderByRelationAggregateInput = {
-  _count?: Prisma.SortOrder
 }
 
 export type InvoiceCountOrderByAggregateInput = {
@@ -416,6 +431,7 @@ export type InvoiceCountOrderByAggregateInput = {
   documentId?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -425,6 +441,7 @@ export type InvoiceAvgOrderByAggregateInput = {
   documentId?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
 }
 
 export type InvoiceMaxOrderByAggregateInput = {
@@ -435,6 +452,7 @@ export type InvoiceMaxOrderByAggregateInput = {
   documentId?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -446,6 +464,7 @@ export type InvoiceMinOrderByAggregateInput = {
   documentId?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -455,6 +474,17 @@ export type InvoiceSumOrderByAggregateInput = {
   documentId?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
+  tenantId?: Prisma.SortOrder
+}
+
+export type InvoiceListRelationFilter = {
+  every?: Prisma.InvoiceWhereInput
+  some?: Prisma.InvoiceWhereInput
+  none?: Prisma.InvoiceWhereInput
+}
+
+export type InvoiceOrderByRelationAggregateInput = {
+  _count?: Prisma.SortOrder
 }
 
 export type InvoiceCreateNestedOneWithoutDocumentInput = {
@@ -487,6 +517,10 @@ export type InvoiceUncheckedUpdateOneWithoutDocumentNestedInput = {
   delete?: Prisma.InvoiceWhereInput | boolean
   connect?: Prisma.InvoiceWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.InvoiceUpdateToOneWithWhereWithoutDocumentInput, Prisma.InvoiceUpdateWithoutDocumentInput>, Prisma.InvoiceUncheckedUpdateWithoutDocumentInput>
+}
+
+export type EnumInvoiceStatusFieldUpdateOperationsInput = {
+  set?: $Enums.InvoiceStatus
 }
 
 export type InvoiceCreateNestedManyWithoutProjectInput = {
@@ -531,8 +565,46 @@ export type InvoiceUncheckedUpdateManyWithoutProjectNestedInput = {
   deleteMany?: Prisma.InvoiceScalarWhereInput | Prisma.InvoiceScalarWhereInput[]
 }
 
-export type EnumInvoiceStatusFieldUpdateOperationsInput = {
-  set?: $Enums.InvoiceStatus
+export type InvoiceCreateNestedManyWithoutTenantInput = {
+  create?: Prisma.XOR<Prisma.InvoiceCreateWithoutTenantInput, Prisma.InvoiceUncheckedCreateWithoutTenantInput> | Prisma.InvoiceCreateWithoutTenantInput[] | Prisma.InvoiceUncheckedCreateWithoutTenantInput[]
+  connectOrCreate?: Prisma.InvoiceCreateOrConnectWithoutTenantInput | Prisma.InvoiceCreateOrConnectWithoutTenantInput[]
+  createMany?: Prisma.InvoiceCreateManyTenantInputEnvelope
+  connect?: Prisma.InvoiceWhereUniqueInput | Prisma.InvoiceWhereUniqueInput[]
+}
+
+export type InvoiceUncheckedCreateNestedManyWithoutTenantInput = {
+  create?: Prisma.XOR<Prisma.InvoiceCreateWithoutTenantInput, Prisma.InvoiceUncheckedCreateWithoutTenantInput> | Prisma.InvoiceCreateWithoutTenantInput[] | Prisma.InvoiceUncheckedCreateWithoutTenantInput[]
+  connectOrCreate?: Prisma.InvoiceCreateOrConnectWithoutTenantInput | Prisma.InvoiceCreateOrConnectWithoutTenantInput[]
+  createMany?: Prisma.InvoiceCreateManyTenantInputEnvelope
+  connect?: Prisma.InvoiceWhereUniqueInput | Prisma.InvoiceWhereUniqueInput[]
+}
+
+export type InvoiceUpdateManyWithoutTenantNestedInput = {
+  create?: Prisma.XOR<Prisma.InvoiceCreateWithoutTenantInput, Prisma.InvoiceUncheckedCreateWithoutTenantInput> | Prisma.InvoiceCreateWithoutTenantInput[] | Prisma.InvoiceUncheckedCreateWithoutTenantInput[]
+  connectOrCreate?: Prisma.InvoiceCreateOrConnectWithoutTenantInput | Prisma.InvoiceCreateOrConnectWithoutTenantInput[]
+  upsert?: Prisma.InvoiceUpsertWithWhereUniqueWithoutTenantInput | Prisma.InvoiceUpsertWithWhereUniqueWithoutTenantInput[]
+  createMany?: Prisma.InvoiceCreateManyTenantInputEnvelope
+  set?: Prisma.InvoiceWhereUniqueInput | Prisma.InvoiceWhereUniqueInput[]
+  disconnect?: Prisma.InvoiceWhereUniqueInput | Prisma.InvoiceWhereUniqueInput[]
+  delete?: Prisma.InvoiceWhereUniqueInput | Prisma.InvoiceWhereUniqueInput[]
+  connect?: Prisma.InvoiceWhereUniqueInput | Prisma.InvoiceWhereUniqueInput[]
+  update?: Prisma.InvoiceUpdateWithWhereUniqueWithoutTenantInput | Prisma.InvoiceUpdateWithWhereUniqueWithoutTenantInput[]
+  updateMany?: Prisma.InvoiceUpdateManyWithWhereWithoutTenantInput | Prisma.InvoiceUpdateManyWithWhereWithoutTenantInput[]
+  deleteMany?: Prisma.InvoiceScalarWhereInput | Prisma.InvoiceScalarWhereInput[]
+}
+
+export type InvoiceUncheckedUpdateManyWithoutTenantNestedInput = {
+  create?: Prisma.XOR<Prisma.InvoiceCreateWithoutTenantInput, Prisma.InvoiceUncheckedCreateWithoutTenantInput> | Prisma.InvoiceCreateWithoutTenantInput[] | Prisma.InvoiceUncheckedCreateWithoutTenantInput[]
+  connectOrCreate?: Prisma.InvoiceCreateOrConnectWithoutTenantInput | Prisma.InvoiceCreateOrConnectWithoutTenantInput[]
+  upsert?: Prisma.InvoiceUpsertWithWhereUniqueWithoutTenantInput | Prisma.InvoiceUpsertWithWhereUniqueWithoutTenantInput[]
+  createMany?: Prisma.InvoiceCreateManyTenantInputEnvelope
+  set?: Prisma.InvoiceWhereUniqueInput | Prisma.InvoiceWhereUniqueInput[]
+  disconnect?: Prisma.InvoiceWhereUniqueInput | Prisma.InvoiceWhereUniqueInput[]
+  delete?: Prisma.InvoiceWhereUniqueInput | Prisma.InvoiceWhereUniqueInput[]
+  connect?: Prisma.InvoiceWhereUniqueInput | Prisma.InvoiceWhereUniqueInput[]
+  update?: Prisma.InvoiceUpdateWithWhereUniqueWithoutTenantInput | Prisma.InvoiceUpdateWithWhereUniqueWithoutTenantInput[]
+  updateMany?: Prisma.InvoiceUpdateManyWithWhereWithoutTenantInput | Prisma.InvoiceUpdateManyWithWhereWithoutTenantInput[]
+  deleteMany?: Prisma.InvoiceScalarWhereInput | Prisma.InvoiceScalarWhereInput[]
 }
 
 export type InvoiceCreateNestedManyWithoutAuthorInput = {
@@ -583,7 +655,8 @@ export type InvoiceCreateWithoutDocumentInput = {
   status: $Enums.InvoiceStatus
   createdAt?: Date | string
   author: Prisma.UserCreateNestedOneWithoutInvoicesInput
-  project: Prisma.ProjectCreateNestedOneWithoutInvoicesInput
+  project?: Prisma.ProjectCreateNestedOneWithoutInvoicesInput
+  tenant: Prisma.TenantCreateNestedOneWithoutInvoicesInput
 }
 
 export type InvoiceUncheckedCreateWithoutDocumentInput = {
@@ -592,7 +665,8 @@ export type InvoiceUncheckedCreateWithoutDocumentInput = {
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status: $Enums.InvoiceStatus
   authorId: number
-  projectId: number
+  projectId?: number | null
+  tenantId: number
   createdAt?: Date | string
 }
 
@@ -618,7 +692,8 @@ export type InvoiceUpdateWithoutDocumentInput = {
   status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   author?: Prisma.UserUpdateOneRequiredWithoutInvoicesNestedInput
-  project?: Prisma.ProjectUpdateOneRequiredWithoutInvoicesNestedInput
+  project?: Prisma.ProjectUpdateOneWithoutInvoicesNestedInput
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutInvoicesNestedInput
 }
 
 export type InvoiceUncheckedUpdateWithoutDocumentInput = {
@@ -627,7 +702,8 @@ export type InvoiceUncheckedUpdateWithoutDocumentInput = {
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
-  projectId?: Prisma.IntFieldUpdateOperationsInput | number
+  projectId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -638,6 +714,7 @@ export type InvoiceCreateWithoutProjectInput = {
   createdAt?: Date | string
   document: Prisma.DocumentCreateNestedOneWithoutInvoiceInput
   author: Prisma.UserCreateNestedOneWithoutInvoicesInput
+  tenant: Prisma.TenantCreateNestedOneWithoutInvoicesInput
 }
 
 export type InvoiceUncheckedCreateWithoutProjectInput = {
@@ -647,6 +724,7 @@ export type InvoiceUncheckedCreateWithoutProjectInput = {
   status: $Enums.InvoiceStatus
   documentId: number
   authorId: number
+  tenantId: number
   createdAt?: Date | string
 }
 
@@ -686,8 +764,56 @@ export type InvoiceScalarWhereInput = {
   status?: Prisma.EnumInvoiceStatusFilter<"Invoice"> | $Enums.InvoiceStatus
   documentId?: Prisma.IntFilter<"Invoice"> | number
   authorId?: Prisma.IntFilter<"Invoice"> | number
-  projectId?: Prisma.IntFilter<"Invoice"> | number
+  projectId?: Prisma.IntNullableFilter<"Invoice"> | number | null
+  tenantId?: Prisma.IntFilter<"Invoice"> | number
   createdAt?: Prisma.DateTimeFilter<"Invoice"> | Date | string
+}
+
+export type InvoiceCreateWithoutTenantInput = {
+  description: string
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  status: $Enums.InvoiceStatus
+  createdAt?: Date | string
+  document: Prisma.DocumentCreateNestedOneWithoutInvoiceInput
+  author: Prisma.UserCreateNestedOneWithoutInvoicesInput
+  project?: Prisma.ProjectCreateNestedOneWithoutInvoicesInput
+}
+
+export type InvoiceUncheckedCreateWithoutTenantInput = {
+  id?: number
+  description: string
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  status: $Enums.InvoiceStatus
+  documentId: number
+  authorId: number
+  projectId?: number | null
+  createdAt?: Date | string
+}
+
+export type InvoiceCreateOrConnectWithoutTenantInput = {
+  where: Prisma.InvoiceWhereUniqueInput
+  create: Prisma.XOR<Prisma.InvoiceCreateWithoutTenantInput, Prisma.InvoiceUncheckedCreateWithoutTenantInput>
+}
+
+export type InvoiceCreateManyTenantInputEnvelope = {
+  data: Prisma.InvoiceCreateManyTenantInput | Prisma.InvoiceCreateManyTenantInput[]
+  skipDuplicates?: boolean
+}
+
+export type InvoiceUpsertWithWhereUniqueWithoutTenantInput = {
+  where: Prisma.InvoiceWhereUniqueInput
+  update: Prisma.XOR<Prisma.InvoiceUpdateWithoutTenantInput, Prisma.InvoiceUncheckedUpdateWithoutTenantInput>
+  create: Prisma.XOR<Prisma.InvoiceCreateWithoutTenantInput, Prisma.InvoiceUncheckedCreateWithoutTenantInput>
+}
+
+export type InvoiceUpdateWithWhereUniqueWithoutTenantInput = {
+  where: Prisma.InvoiceWhereUniqueInput
+  data: Prisma.XOR<Prisma.InvoiceUpdateWithoutTenantInput, Prisma.InvoiceUncheckedUpdateWithoutTenantInput>
+}
+
+export type InvoiceUpdateManyWithWhereWithoutTenantInput = {
+  where: Prisma.InvoiceScalarWhereInput
+  data: Prisma.XOR<Prisma.InvoiceUpdateManyMutationInput, Prisma.InvoiceUncheckedUpdateManyWithoutTenantInput>
 }
 
 export type InvoiceCreateWithoutAuthorInput = {
@@ -696,7 +822,8 @@ export type InvoiceCreateWithoutAuthorInput = {
   status: $Enums.InvoiceStatus
   createdAt?: Date | string
   document: Prisma.DocumentCreateNestedOneWithoutInvoiceInput
-  project: Prisma.ProjectCreateNestedOneWithoutInvoicesInput
+  project?: Prisma.ProjectCreateNestedOneWithoutInvoicesInput
+  tenant: Prisma.TenantCreateNestedOneWithoutInvoicesInput
 }
 
 export type InvoiceUncheckedCreateWithoutAuthorInput = {
@@ -705,7 +832,8 @@ export type InvoiceUncheckedCreateWithoutAuthorInput = {
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status: $Enums.InvoiceStatus
   documentId: number
-  projectId: number
+  projectId?: number | null
+  tenantId: number
   createdAt?: Date | string
 }
 
@@ -742,6 +870,7 @@ export type InvoiceCreateManyProjectInput = {
   status: $Enums.InvoiceStatus
   documentId: number
   authorId: number
+  tenantId: number
   createdAt?: Date | string
 }
 
@@ -752,6 +881,7 @@ export type InvoiceUpdateWithoutProjectInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   document?: Prisma.DocumentUpdateOneRequiredWithoutInvoiceNestedInput
   author?: Prisma.UserUpdateOneRequiredWithoutInvoicesNestedInput
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutInvoicesNestedInput
 }
 
 export type InvoiceUncheckedUpdateWithoutProjectInput = {
@@ -761,6 +891,7 @@ export type InvoiceUncheckedUpdateWithoutProjectInput = {
   status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus
   documentId?: Prisma.IntFieldUpdateOperationsInput | number
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -771,6 +902,50 @@ export type InvoiceUncheckedUpdateManyWithoutProjectInput = {
   status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus
   documentId?: Prisma.IntFieldUpdateOperationsInput | number
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type InvoiceCreateManyTenantInput = {
+  id?: number
+  description: string
+  amount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  status: $Enums.InvoiceStatus
+  documentId: number
+  authorId: number
+  projectId?: number | null
+  createdAt?: Date | string
+}
+
+export type InvoiceUpdateWithoutTenantInput = {
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  document?: Prisma.DocumentUpdateOneRequiredWithoutInvoiceNestedInput
+  author?: Prisma.UserUpdateOneRequiredWithoutInvoicesNestedInput
+  project?: Prisma.ProjectUpdateOneWithoutInvoicesNestedInput
+}
+
+export type InvoiceUncheckedUpdateWithoutTenantInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus
+  documentId?: Prisma.IntFieldUpdateOperationsInput | number
+  authorId?: Prisma.IntFieldUpdateOperationsInput | number
+  projectId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type InvoiceUncheckedUpdateManyWithoutTenantInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus
+  documentId?: Prisma.IntFieldUpdateOperationsInput | number
+  authorId?: Prisma.IntFieldUpdateOperationsInput | number
+  projectId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -780,7 +955,8 @@ export type InvoiceCreateManyAuthorInput = {
   amount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status: $Enums.InvoiceStatus
   documentId: number
-  projectId: number
+  projectId?: number | null
+  tenantId: number
   createdAt?: Date | string
 }
 
@@ -790,7 +966,8 @@ export type InvoiceUpdateWithoutAuthorInput = {
   status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   document?: Prisma.DocumentUpdateOneRequiredWithoutInvoiceNestedInput
-  project?: Prisma.ProjectUpdateOneRequiredWithoutInvoicesNestedInput
+  project?: Prisma.ProjectUpdateOneWithoutInvoicesNestedInput
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutInvoicesNestedInput
 }
 
 export type InvoiceUncheckedUpdateWithoutAuthorInput = {
@@ -799,7 +976,8 @@ export type InvoiceUncheckedUpdateWithoutAuthorInput = {
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus
   documentId?: Prisma.IntFieldUpdateOperationsInput | number
-  projectId?: Prisma.IntFieldUpdateOperationsInput | number
+  projectId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -809,7 +987,8 @@ export type InvoiceUncheckedUpdateManyWithoutAuthorInput = {
   amount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumInvoiceStatusFieldUpdateOperationsInput | $Enums.InvoiceStatus
   documentId?: Prisma.IntFieldUpdateOperationsInput | number
-  projectId?: Prisma.IntFieldUpdateOperationsInput | number
+  projectId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -823,10 +1002,12 @@ export type InvoiceSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   documentId?: boolean
   authorId?: boolean
   projectId?: boolean
+  tenantId?: boolean
   createdAt?: boolean
   document?: boolean | Prisma.DocumentDefaultArgs<ExtArgs>
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
+  project?: boolean | Prisma.Invoice$projectArgs<ExtArgs>
+  tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["invoice"]>
 
 export type InvoiceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -837,10 +1018,12 @@ export type InvoiceSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   documentId?: boolean
   authorId?: boolean
   projectId?: boolean
+  tenantId?: boolean
   createdAt?: boolean
   document?: boolean | Prisma.DocumentDefaultArgs<ExtArgs>
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
+  project?: boolean | Prisma.Invoice$projectArgs<ExtArgs>
+  tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["invoice"]>
 
 export type InvoiceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -851,10 +1034,12 @@ export type InvoiceSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   documentId?: boolean
   authorId?: boolean
   projectId?: boolean
+  tenantId?: boolean
   createdAt?: boolean
   document?: boolean | Prisma.DocumentDefaultArgs<ExtArgs>
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
+  project?: boolean | Prisma.Invoice$projectArgs<ExtArgs>
+  tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["invoice"]>
 
 export type InvoiceSelectScalar = {
@@ -865,24 +1050,28 @@ export type InvoiceSelectScalar = {
   documentId?: boolean
   authorId?: boolean
   projectId?: boolean
+  tenantId?: boolean
   createdAt?: boolean
 }
 
-export type InvoiceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "description" | "amount" | "status" | "documentId" | "authorId" | "projectId" | "createdAt", ExtArgs["result"]["invoice"]>
+export type InvoiceOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "description" | "amount" | "status" | "documentId" | "authorId" | "projectId" | "tenantId" | "createdAt", ExtArgs["result"]["invoice"]>
 export type InvoiceInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   document?: boolean | Prisma.DocumentDefaultArgs<ExtArgs>
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
+  project?: boolean | Prisma.Invoice$projectArgs<ExtArgs>
+  tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }
 export type InvoiceIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   document?: boolean | Prisma.DocumentDefaultArgs<ExtArgs>
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
+  project?: boolean | Prisma.Invoice$projectArgs<ExtArgs>
+  tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }
 export type InvoiceIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   document?: boolean | Prisma.DocumentDefaultArgs<ExtArgs>
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
+  project?: boolean | Prisma.Invoice$projectArgs<ExtArgs>
+  tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }
 
 export type $InvoicePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -890,7 +1079,8 @@ export type $InvoicePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
   objects: {
     document: Prisma.$DocumentPayload<ExtArgs>
     author: Prisma.$UserPayload<ExtArgs>
-    project: Prisma.$ProjectPayload<ExtArgs>
+    project: Prisma.$ProjectPayload<ExtArgs> | null
+    tenant: Prisma.$TenantPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -899,7 +1089,8 @@ export type $InvoicePayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     status: $Enums.InvoiceStatus
     documentId: number
     authorId: number
-    projectId: number
+    projectId: number | null
+    tenantId: number
     createdAt: Date
   }, ExtArgs["result"]["invoice"]>
   composites: {}
@@ -1297,7 +1488,8 @@ export interface Prisma__InvoiceClient<T, Null = never, ExtArgs extends runtime.
   readonly [Symbol.toStringTag]: "PrismaPromise"
   document<T extends Prisma.DocumentDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DocumentDefaultArgs<ExtArgs>>): Prisma.Prisma__DocumentClient<runtime.Types.Result.GetResult<Prisma.$DocumentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   author<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  project<T extends Prisma.ProjectDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProjectDefaultArgs<ExtArgs>>): Prisma.Prisma__ProjectClient<runtime.Types.Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  project<T extends Prisma.Invoice$projectArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Invoice$projectArgs<ExtArgs>>): Prisma.Prisma__ProjectClient<runtime.Types.Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  tenant<T extends Prisma.TenantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TenantDefaultArgs<ExtArgs>>): Prisma.Prisma__TenantClient<runtime.Types.Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1334,6 +1526,7 @@ export interface InvoiceFieldRefs {
   readonly documentId: Prisma.FieldRef<"Invoice", 'Int'>
   readonly authorId: Prisma.FieldRef<"Invoice", 'Int'>
   readonly projectId: Prisma.FieldRef<"Invoice", 'Int'>
+  readonly tenantId: Prisma.FieldRef<"Invoice", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Invoice", 'DateTime'>
 }
     
@@ -1733,6 +1926,25 @@ export type InvoiceDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * Limit how many Invoices to delete.
    */
   limit?: number
+}
+
+/**
+ * Invoice.project
+ */
+export type Invoice$projectArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Project
+   */
+  select?: Prisma.ProjectSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Project
+   */
+  omit?: Prisma.ProjectOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProjectInclude<ExtArgs> | null
+  where?: Prisma.ProjectWhereInput
 }
 
 /**

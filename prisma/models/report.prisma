@@ -7,10 +7,12 @@ model Report {
     author User @relation(fields: [authorId], references: [id])
 
     projectId Int
-    project Project @relation(fields: [projectId], references: [id])
+    project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
 
     tenantId Int
     tenant Tenant @relation(fields: [tenantId], references: [id])
-    
+
+    documentId Int @unique()
+    document Document @relation(fields: [documentId], references: [id])
     createdAt DateTime @default(now())
 }

@@ -30,6 +30,14 @@ export const EnterpriseLegalForm = {
 export type EnterpriseLegalForm = (typeof EnterpriseLegalForm)[keyof typeof EnterpriseLegalForm]
 
 
+export const InvoiceStatus = {
+  PAID: 'PAID',
+  UNPAID: 'UNPAID'
+} as const
+
+export type InvoiceStatus = (typeof InvoiceStatus)[keyof typeof InvoiceStatus]
+
+
 export const OfferStatus = {
   PENDING: 'PENDING',
   READY: 'READY',
@@ -58,14 +66,6 @@ export const ProjectStatus = {
 } as const
 
 export type ProjectStatus = (typeof ProjectStatus)[keyof typeof ProjectStatus]
-
-
-export const InvoiceStatus = {
-  PAID: 'PAID',
-  UNPAID: 'UNPAID'
-} as const
-
-export type InvoiceStatus = (typeof InvoiceStatus)[keyof typeof InvoiceStatus]
 
 
 export const ProspectionStatus = {

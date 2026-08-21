@@ -32,7 +32,6 @@ export type DocumentAvgAggregateOutputType = {
   prospectionId: number | null
   offerId: number | null
   projectId: number | null
-  journalEventId: number | null
 }
 
 export type DocumentSumAggregateOutputType = {
@@ -41,7 +40,6 @@ export type DocumentSumAggregateOutputType = {
   prospectionId: number | null
   offerId: number | null
   projectId: number | null
-  journalEventId: number | null
 }
 
 export type DocumentMinAggregateOutputType = {
@@ -55,7 +53,6 @@ export type DocumentMinAggregateOutputType = {
   prospectionId: number | null
   offerId: number | null
   projectId: number | null
-  journalEventId: number | null
 }
 
 export type DocumentMaxAggregateOutputType = {
@@ -69,7 +66,6 @@ export type DocumentMaxAggregateOutputType = {
   prospectionId: number | null
   offerId: number | null
   projectId: number | null
-  journalEventId: number | null
 }
 
 export type DocumentCountAggregateOutputType = {
@@ -83,7 +79,6 @@ export type DocumentCountAggregateOutputType = {
   prospectionId: number
   offerId: number
   projectId: number
-  journalEventId: number
   _all: number
 }
 
@@ -94,7 +89,6 @@ export type DocumentAvgAggregateInputType = {
   prospectionId?: true
   offerId?: true
   projectId?: true
-  journalEventId?: true
 }
 
 export type DocumentSumAggregateInputType = {
@@ -103,7 +97,6 @@ export type DocumentSumAggregateInputType = {
   prospectionId?: true
   offerId?: true
   projectId?: true
-  journalEventId?: true
 }
 
 export type DocumentMinAggregateInputType = {
@@ -117,7 +110,6 @@ export type DocumentMinAggregateInputType = {
   prospectionId?: true
   offerId?: true
   projectId?: true
-  journalEventId?: true
 }
 
 export type DocumentMaxAggregateInputType = {
@@ -131,7 +123,6 @@ export type DocumentMaxAggregateInputType = {
   prospectionId?: true
   offerId?: true
   projectId?: true
-  journalEventId?: true
 }
 
 export type DocumentCountAggregateInputType = {
@@ -145,7 +136,6 @@ export type DocumentCountAggregateInputType = {
   prospectionId?: true
   offerId?: true
   projectId?: true
-  journalEventId?: true
   _all?: true
 }
 
@@ -246,7 +236,6 @@ export type DocumentGroupByOutputType = {
   prospectionId: number | null
   offerId: number | null
   projectId: number | null
-  journalEventId: number | null
   _count: DocumentCountAggregateOutputType | null
   _avg: DocumentAvgAggregateOutputType | null
   _sum: DocumentSumAggregateOutputType | null
@@ -283,12 +272,11 @@ export type DocumentWhereInput = {
   prospectionId?: Prisma.IntNullableFilter<"Document"> | number | null
   offerId?: Prisma.IntNullableFilter<"Document"> | number | null
   projectId?: Prisma.IntNullableFilter<"Document"> | number | null
-  journalEventId?: Prisma.IntNullableFilter<"Document"> | number | null
   prospection?: Prisma.XOR<Prisma.ProspectionNullableScalarRelationFilter, Prisma.ProspectionWhereInput> | null
   offer?: Prisma.XOR<Prisma.OfferNullableScalarRelationFilter, Prisma.OfferWhereInput> | null
   project?: Prisma.XOR<Prisma.ProjectNullableScalarRelationFilter, Prisma.ProjectWhereInput> | null
-  journalEvents?: Prisma.XOR<Prisma.JournalEventNullableScalarRelationFilter, Prisma.JournalEventWhereInput> | null
   invoice?: Prisma.XOR<Prisma.InvoiceNullableScalarRelationFilter, Prisma.InvoiceWhereInput> | null
+  report?: Prisma.XOR<Prisma.ReportNullableScalarRelationFilter, Prisma.ReportWhereInput> | null
 }
 
 export type DocumentOrderByWithRelationInput = {
@@ -302,18 +290,16 @@ export type DocumentOrderByWithRelationInput = {
   prospectionId?: Prisma.SortOrderInput | Prisma.SortOrder
   offerId?: Prisma.SortOrderInput | Prisma.SortOrder
   projectId?: Prisma.SortOrderInput | Prisma.SortOrder
-  journalEventId?: Prisma.SortOrderInput | Prisma.SortOrder
   prospection?: Prisma.ProspectionOrderByWithRelationInput
   offer?: Prisma.OfferOrderByWithRelationInput
   project?: Prisma.ProjectOrderByWithRelationInput
-  journalEvents?: Prisma.JournalEventOrderByWithRelationInput
   invoice?: Prisma.InvoiceOrderByWithRelationInput
+  report?: Prisma.ReportOrderByWithRelationInput
 }
 
 export type DocumentWhereUniqueInput = Prisma.AtLeast<{
   id?: number
   storedName?: string
-  journalEventId?: number
   AND?: Prisma.DocumentWhereInput | Prisma.DocumentWhereInput[]
   OR?: Prisma.DocumentWhereInput[]
   NOT?: Prisma.DocumentWhereInput | Prisma.DocumentWhereInput[]
@@ -328,9 +314,9 @@ export type DocumentWhereUniqueInput = Prisma.AtLeast<{
   prospection?: Prisma.XOR<Prisma.ProspectionNullableScalarRelationFilter, Prisma.ProspectionWhereInput> | null
   offer?: Prisma.XOR<Prisma.OfferNullableScalarRelationFilter, Prisma.OfferWhereInput> | null
   project?: Prisma.XOR<Prisma.ProjectNullableScalarRelationFilter, Prisma.ProjectWhereInput> | null
-  journalEvents?: Prisma.XOR<Prisma.JournalEventNullableScalarRelationFilter, Prisma.JournalEventWhereInput> | null
   invoice?: Prisma.XOR<Prisma.InvoiceNullableScalarRelationFilter, Prisma.InvoiceWhereInput> | null
-}, "id" | "storedName" | "journalEventId">
+  report?: Prisma.XOR<Prisma.ReportNullableScalarRelationFilter, Prisma.ReportWhereInput> | null
+}, "id" | "storedName">
 
 export type DocumentOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -343,7 +329,6 @@ export type DocumentOrderByWithAggregationInput = {
   prospectionId?: Prisma.SortOrderInput | Prisma.SortOrder
   offerId?: Prisma.SortOrderInput | Prisma.SortOrder
   projectId?: Prisma.SortOrderInput | Prisma.SortOrder
-  journalEventId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.DocumentCountOrderByAggregateInput
   _avg?: Prisma.DocumentAvgOrderByAggregateInput
   _max?: Prisma.DocumentMaxOrderByAggregateInput
@@ -365,7 +350,6 @@ export type DocumentScalarWhereWithAggregatesInput = {
   prospectionId?: Prisma.IntNullableWithAggregatesFilter<"Document"> | number | null
   offerId?: Prisma.IntNullableWithAggregatesFilter<"Document"> | number | null
   projectId?: Prisma.IntNullableWithAggregatesFilter<"Document"> | number | null
-  journalEventId?: Prisma.IntNullableWithAggregatesFilter<"Document"> | number | null
 }
 
 export type DocumentCreateInput = {
@@ -378,8 +362,8 @@ export type DocumentCreateInput = {
   prospection?: Prisma.ProspectionCreateNestedOneWithoutDocumentsInput
   offer?: Prisma.OfferCreateNestedOneWithoutDocumentsInput
   project?: Prisma.ProjectCreateNestedOneWithoutDocumentsInput
-  journalEvents?: Prisma.JournalEventCreateNestedOneWithoutDocumentInput
   invoice?: Prisma.InvoiceCreateNestedOneWithoutDocumentInput
+  report?: Prisma.ReportCreateNestedOneWithoutDocumentInput
 }
 
 export type DocumentUncheckedCreateInput = {
@@ -393,8 +377,8 @@ export type DocumentUncheckedCreateInput = {
   prospectionId?: number | null
   offerId?: number | null
   projectId?: number | null
-  journalEventId?: number | null
   invoice?: Prisma.InvoiceUncheckedCreateNestedOneWithoutDocumentInput
+  report?: Prisma.ReportUncheckedCreateNestedOneWithoutDocumentInput
 }
 
 export type DocumentUpdateInput = {
@@ -407,8 +391,8 @@ export type DocumentUpdateInput = {
   prospection?: Prisma.ProspectionUpdateOneWithoutDocumentsNestedInput
   offer?: Prisma.OfferUpdateOneWithoutDocumentsNestedInput
   project?: Prisma.ProjectUpdateOneWithoutDocumentsNestedInput
-  journalEvents?: Prisma.JournalEventUpdateOneWithoutDocumentNestedInput
   invoice?: Prisma.InvoiceUpdateOneWithoutDocumentNestedInput
+  report?: Prisma.ReportUpdateOneWithoutDocumentNestedInput
 }
 
 export type DocumentUncheckedUpdateInput = {
@@ -422,8 +406,8 @@ export type DocumentUncheckedUpdateInput = {
   prospectionId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   offerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   projectId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  journalEventId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   invoice?: Prisma.InvoiceUncheckedUpdateOneWithoutDocumentNestedInput
+  report?: Prisma.ReportUncheckedUpdateOneWithoutDocumentNestedInput
 }
 
 export type DocumentCreateManyInput = {
@@ -437,7 +421,6 @@ export type DocumentCreateManyInput = {
   prospectionId?: number | null
   offerId?: number | null
   projectId?: number | null
-  journalEventId?: number | null
 }
 
 export type DocumentUpdateManyMutationInput = {
@@ -460,7 +443,6 @@ export type DocumentUncheckedUpdateManyInput = {
   prospectionId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   offerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   projectId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  journalEventId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type DocumentCountOrderByAggregateInput = {
@@ -474,7 +456,6 @@ export type DocumentCountOrderByAggregateInput = {
   prospectionId?: Prisma.SortOrder
   offerId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
-  journalEventId?: Prisma.SortOrder
 }
 
 export type DocumentAvgOrderByAggregateInput = {
@@ -483,7 +464,6 @@ export type DocumentAvgOrderByAggregateInput = {
   prospectionId?: Prisma.SortOrder
   offerId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
-  journalEventId?: Prisma.SortOrder
 }
 
 export type DocumentMaxOrderByAggregateInput = {
@@ -497,7 +477,6 @@ export type DocumentMaxOrderByAggregateInput = {
   prospectionId?: Prisma.SortOrder
   offerId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
-  journalEventId?: Prisma.SortOrder
 }
 
 export type DocumentMinOrderByAggregateInput = {
@@ -511,7 +490,6 @@ export type DocumentMinOrderByAggregateInput = {
   prospectionId?: Prisma.SortOrder
   offerId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
-  journalEventId?: Prisma.SortOrder
 }
 
 export type DocumentSumOrderByAggregateInput = {
@@ -520,7 +498,11 @@ export type DocumentSumOrderByAggregateInput = {
   prospectionId?: Prisma.SortOrder
   offerId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
-  journalEventId?: Prisma.SortOrder
+}
+
+export type DocumentScalarRelationFilter = {
+  is?: Prisma.DocumentWhereInput
+  isNot?: Prisma.DocumentWhereInput
 }
 
 export type DocumentListRelationFilter = {
@@ -533,22 +515,26 @@ export type DocumentOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type DocumentScalarRelationFilter = {
-  is?: Prisma.DocumentWhereInput
-  isNot?: Prisma.DocumentWhereInput
-}
-
-export type DocumentNullableScalarRelationFilter = {
-  is?: Prisma.DocumentWhereInput | null
-  isNot?: Prisma.DocumentWhereInput | null
-}
-
 export type DecimalFieldUpdateOperationsInput = {
   set?: runtime.Decimal | runtime.DecimalJsLike | number | string
   increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
   decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
   multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
   divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
+}
+
+export type DocumentCreateNestedOneWithoutInvoiceInput = {
+  create?: Prisma.XOR<Prisma.DocumentCreateWithoutInvoiceInput, Prisma.DocumentUncheckedCreateWithoutInvoiceInput>
+  connectOrCreate?: Prisma.DocumentCreateOrConnectWithoutInvoiceInput
+  connect?: Prisma.DocumentWhereUniqueInput
+}
+
+export type DocumentUpdateOneRequiredWithoutInvoiceNestedInput = {
+  create?: Prisma.XOR<Prisma.DocumentCreateWithoutInvoiceInput, Prisma.DocumentUncheckedCreateWithoutInvoiceInput>
+  connectOrCreate?: Prisma.DocumentCreateOrConnectWithoutInvoiceInput
+  upsert?: Prisma.DocumentUpsertWithoutInvoiceInput
+  connect?: Prisma.DocumentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.DocumentUpdateToOneWithWhereWithoutInvoiceInput, Prisma.DocumentUpdateWithoutInvoiceInput>, Prisma.DocumentUncheckedUpdateWithoutInvoiceInput>
 }
 
 export type DocumentCreateNestedManyWithoutOfferInput = {
@@ -635,52 +621,6 @@ export type DocumentUncheckedUpdateManyWithoutProjectNestedInput = {
   deleteMany?: Prisma.DocumentScalarWhereInput | Prisma.DocumentScalarWhereInput[]
 }
 
-export type DocumentCreateNestedOneWithoutInvoiceInput = {
-  create?: Prisma.XOR<Prisma.DocumentCreateWithoutInvoiceInput, Prisma.DocumentUncheckedCreateWithoutInvoiceInput>
-  connectOrCreate?: Prisma.DocumentCreateOrConnectWithoutInvoiceInput
-  connect?: Prisma.DocumentWhereUniqueInput
-}
-
-export type DocumentUpdateOneRequiredWithoutInvoiceNestedInput = {
-  create?: Prisma.XOR<Prisma.DocumentCreateWithoutInvoiceInput, Prisma.DocumentUncheckedCreateWithoutInvoiceInput>
-  connectOrCreate?: Prisma.DocumentCreateOrConnectWithoutInvoiceInput
-  upsert?: Prisma.DocumentUpsertWithoutInvoiceInput
-  connect?: Prisma.DocumentWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.DocumentUpdateToOneWithWhereWithoutInvoiceInput, Prisma.DocumentUpdateWithoutInvoiceInput>, Prisma.DocumentUncheckedUpdateWithoutInvoiceInput>
-}
-
-export type DocumentCreateNestedOneWithoutJournalEventsInput = {
-  create?: Prisma.XOR<Prisma.DocumentCreateWithoutJournalEventsInput, Prisma.DocumentUncheckedCreateWithoutJournalEventsInput>
-  connectOrCreate?: Prisma.DocumentCreateOrConnectWithoutJournalEventsInput
-  connect?: Prisma.DocumentWhereUniqueInput
-}
-
-export type DocumentUncheckedCreateNestedOneWithoutJournalEventsInput = {
-  create?: Prisma.XOR<Prisma.DocumentCreateWithoutJournalEventsInput, Prisma.DocumentUncheckedCreateWithoutJournalEventsInput>
-  connectOrCreate?: Prisma.DocumentCreateOrConnectWithoutJournalEventsInput
-  connect?: Prisma.DocumentWhereUniqueInput
-}
-
-export type DocumentUpdateOneWithoutJournalEventsNestedInput = {
-  create?: Prisma.XOR<Prisma.DocumentCreateWithoutJournalEventsInput, Prisma.DocumentUncheckedCreateWithoutJournalEventsInput>
-  connectOrCreate?: Prisma.DocumentCreateOrConnectWithoutJournalEventsInput
-  upsert?: Prisma.DocumentUpsertWithoutJournalEventsInput
-  disconnect?: Prisma.DocumentWhereInput | boolean
-  delete?: Prisma.DocumentWhereInput | boolean
-  connect?: Prisma.DocumentWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.DocumentUpdateToOneWithWhereWithoutJournalEventsInput, Prisma.DocumentUpdateWithoutJournalEventsInput>, Prisma.DocumentUncheckedUpdateWithoutJournalEventsInput>
-}
-
-export type DocumentUncheckedUpdateOneWithoutJournalEventsNestedInput = {
-  create?: Prisma.XOR<Prisma.DocumentCreateWithoutJournalEventsInput, Prisma.DocumentUncheckedCreateWithoutJournalEventsInput>
-  connectOrCreate?: Prisma.DocumentCreateOrConnectWithoutJournalEventsInput
-  upsert?: Prisma.DocumentUpsertWithoutJournalEventsInput
-  disconnect?: Prisma.DocumentWhereInput | boolean
-  delete?: Prisma.DocumentWhereInput | boolean
-  connect?: Prisma.DocumentWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.DocumentUpdateToOneWithWhereWithoutJournalEventsInput, Prisma.DocumentUpdateWithoutJournalEventsInput>, Prisma.DocumentUncheckedUpdateWithoutJournalEventsInput>
-}
-
 export type DocumentCreateNestedManyWithoutProspectionInput = {
   create?: Prisma.XOR<Prisma.DocumentCreateWithoutProspectionInput, Prisma.DocumentUncheckedCreateWithoutProspectionInput> | Prisma.DocumentCreateWithoutProspectionInput[] | Prisma.DocumentUncheckedCreateWithoutProspectionInput[]
   connectOrCreate?: Prisma.DocumentCreateOrConnectWithoutProspectionInput | Prisma.DocumentCreateOrConnectWithoutProspectionInput[]
@@ -723,6 +663,90 @@ export type DocumentUncheckedUpdateManyWithoutProspectionNestedInput = {
   deleteMany?: Prisma.DocumentScalarWhereInput | Prisma.DocumentScalarWhereInput[]
 }
 
+export type DocumentCreateNestedOneWithoutReportInput = {
+  create?: Prisma.XOR<Prisma.DocumentCreateWithoutReportInput, Prisma.DocumentUncheckedCreateWithoutReportInput>
+  connectOrCreate?: Prisma.DocumentCreateOrConnectWithoutReportInput
+  connect?: Prisma.DocumentWhereUniqueInput
+}
+
+export type DocumentUpdateOneRequiredWithoutReportNestedInput = {
+  create?: Prisma.XOR<Prisma.DocumentCreateWithoutReportInput, Prisma.DocumentUncheckedCreateWithoutReportInput>
+  connectOrCreate?: Prisma.DocumentCreateOrConnectWithoutReportInput
+  upsert?: Prisma.DocumentUpsertWithoutReportInput
+  connect?: Prisma.DocumentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.DocumentUpdateToOneWithWhereWithoutReportInput, Prisma.DocumentUpdateWithoutReportInput>, Prisma.DocumentUncheckedUpdateWithoutReportInput>
+}
+
+export type DocumentCreateWithoutInvoiceInput = {
+  description?: string | null
+  originalName: string
+  storedName: string
+  size: runtime.Decimal | runtime.DecimalJsLike | number | string
+  mimetype: string
+  createdAt?: Date | string
+  prospection?: Prisma.ProspectionCreateNestedOneWithoutDocumentsInput
+  offer?: Prisma.OfferCreateNestedOneWithoutDocumentsInput
+  project?: Prisma.ProjectCreateNestedOneWithoutDocumentsInput
+  report?: Prisma.ReportCreateNestedOneWithoutDocumentInput
+}
+
+export type DocumentUncheckedCreateWithoutInvoiceInput = {
+  id?: number
+  description?: string | null
+  originalName: string
+  storedName: string
+  size: runtime.Decimal | runtime.DecimalJsLike | number | string
+  mimetype: string
+  createdAt?: Date | string
+  prospectionId?: number | null
+  offerId?: number | null
+  projectId?: number | null
+  report?: Prisma.ReportUncheckedCreateNestedOneWithoutDocumentInput
+}
+
+export type DocumentCreateOrConnectWithoutInvoiceInput = {
+  where: Prisma.DocumentWhereUniqueInput
+  create: Prisma.XOR<Prisma.DocumentCreateWithoutInvoiceInput, Prisma.DocumentUncheckedCreateWithoutInvoiceInput>
+}
+
+export type DocumentUpsertWithoutInvoiceInput = {
+  update: Prisma.XOR<Prisma.DocumentUpdateWithoutInvoiceInput, Prisma.DocumentUncheckedUpdateWithoutInvoiceInput>
+  create: Prisma.XOR<Prisma.DocumentCreateWithoutInvoiceInput, Prisma.DocumentUncheckedCreateWithoutInvoiceInput>
+  where?: Prisma.DocumentWhereInput
+}
+
+export type DocumentUpdateToOneWithWhereWithoutInvoiceInput = {
+  where?: Prisma.DocumentWhereInput
+  data: Prisma.XOR<Prisma.DocumentUpdateWithoutInvoiceInput, Prisma.DocumentUncheckedUpdateWithoutInvoiceInput>
+}
+
+export type DocumentUpdateWithoutInvoiceInput = {
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  originalName?: Prisma.StringFieldUpdateOperationsInput | string
+  storedName?: Prisma.StringFieldUpdateOperationsInput | string
+  size?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  mimetype?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  prospection?: Prisma.ProspectionUpdateOneWithoutDocumentsNestedInput
+  offer?: Prisma.OfferUpdateOneWithoutDocumentsNestedInput
+  project?: Prisma.ProjectUpdateOneWithoutDocumentsNestedInput
+  report?: Prisma.ReportUpdateOneWithoutDocumentNestedInput
+}
+
+export type DocumentUncheckedUpdateWithoutInvoiceInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  originalName?: Prisma.StringFieldUpdateOperationsInput | string
+  storedName?: Prisma.StringFieldUpdateOperationsInput | string
+  size?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  mimetype?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  prospectionId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  offerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  projectId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  report?: Prisma.ReportUncheckedUpdateOneWithoutDocumentNestedInput
+}
+
 export type DocumentCreateWithoutOfferInput = {
   description?: string | null
   originalName: string
@@ -732,8 +756,8 @@ export type DocumentCreateWithoutOfferInput = {
   createdAt?: Date | string
   prospection?: Prisma.ProspectionCreateNestedOneWithoutDocumentsInput
   project?: Prisma.ProjectCreateNestedOneWithoutDocumentsInput
-  journalEvents?: Prisma.JournalEventCreateNestedOneWithoutDocumentInput
   invoice?: Prisma.InvoiceCreateNestedOneWithoutDocumentInput
+  report?: Prisma.ReportCreateNestedOneWithoutDocumentInput
 }
 
 export type DocumentUncheckedCreateWithoutOfferInput = {
@@ -746,8 +770,8 @@ export type DocumentUncheckedCreateWithoutOfferInput = {
   createdAt?: Date | string
   prospectionId?: number | null
   projectId?: number | null
-  journalEventId?: number | null
   invoice?: Prisma.InvoiceUncheckedCreateNestedOneWithoutDocumentInput
+  report?: Prisma.ReportUncheckedCreateNestedOneWithoutDocumentInput
 }
 
 export type DocumentCreateOrConnectWithoutOfferInput = {
@@ -790,7 +814,6 @@ export type DocumentScalarWhereInput = {
   prospectionId?: Prisma.IntNullableFilter<"Document"> | number | null
   offerId?: Prisma.IntNullableFilter<"Document"> | number | null
   projectId?: Prisma.IntNullableFilter<"Document"> | number | null
-  journalEventId?: Prisma.IntNullableFilter<"Document"> | number | null
 }
 
 export type DocumentCreateWithoutProjectInput = {
@@ -802,8 +825,8 @@ export type DocumentCreateWithoutProjectInput = {
   createdAt?: Date | string
   prospection?: Prisma.ProspectionCreateNestedOneWithoutDocumentsInput
   offer?: Prisma.OfferCreateNestedOneWithoutDocumentsInput
-  journalEvents?: Prisma.JournalEventCreateNestedOneWithoutDocumentInput
   invoice?: Prisma.InvoiceCreateNestedOneWithoutDocumentInput
+  report?: Prisma.ReportCreateNestedOneWithoutDocumentInput
 }
 
 export type DocumentUncheckedCreateWithoutProjectInput = {
@@ -816,8 +839,8 @@ export type DocumentUncheckedCreateWithoutProjectInput = {
   createdAt?: Date | string
   prospectionId?: number | null
   offerId?: number | null
-  journalEventId?: number | null
   invoice?: Prisma.InvoiceUncheckedCreateNestedOneWithoutDocumentInput
+  report?: Prisma.ReportUncheckedCreateNestedOneWithoutDocumentInput
 }
 
 export type DocumentCreateOrConnectWithoutProjectInput = {
@@ -846,146 +869,6 @@ export type DocumentUpdateManyWithWhereWithoutProjectInput = {
   data: Prisma.XOR<Prisma.DocumentUpdateManyMutationInput, Prisma.DocumentUncheckedUpdateManyWithoutProjectInput>
 }
 
-export type DocumentCreateWithoutInvoiceInput = {
-  description?: string | null
-  originalName: string
-  storedName: string
-  size: runtime.Decimal | runtime.DecimalJsLike | number | string
-  mimetype: string
-  createdAt?: Date | string
-  prospection?: Prisma.ProspectionCreateNestedOneWithoutDocumentsInput
-  offer?: Prisma.OfferCreateNestedOneWithoutDocumentsInput
-  project?: Prisma.ProjectCreateNestedOneWithoutDocumentsInput
-  journalEvents?: Prisma.JournalEventCreateNestedOneWithoutDocumentInput
-}
-
-export type DocumentUncheckedCreateWithoutInvoiceInput = {
-  id?: number
-  description?: string | null
-  originalName: string
-  storedName: string
-  size: runtime.Decimal | runtime.DecimalJsLike | number | string
-  mimetype: string
-  createdAt?: Date | string
-  prospectionId?: number | null
-  offerId?: number | null
-  projectId?: number | null
-  journalEventId?: number | null
-}
-
-export type DocumentCreateOrConnectWithoutInvoiceInput = {
-  where: Prisma.DocumentWhereUniqueInput
-  create: Prisma.XOR<Prisma.DocumentCreateWithoutInvoiceInput, Prisma.DocumentUncheckedCreateWithoutInvoiceInput>
-}
-
-export type DocumentUpsertWithoutInvoiceInput = {
-  update: Prisma.XOR<Prisma.DocumentUpdateWithoutInvoiceInput, Prisma.DocumentUncheckedUpdateWithoutInvoiceInput>
-  create: Prisma.XOR<Prisma.DocumentCreateWithoutInvoiceInput, Prisma.DocumentUncheckedCreateWithoutInvoiceInput>
-  where?: Prisma.DocumentWhereInput
-}
-
-export type DocumentUpdateToOneWithWhereWithoutInvoiceInput = {
-  where?: Prisma.DocumentWhereInput
-  data: Prisma.XOR<Prisma.DocumentUpdateWithoutInvoiceInput, Prisma.DocumentUncheckedUpdateWithoutInvoiceInput>
-}
-
-export type DocumentUpdateWithoutInvoiceInput = {
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  originalName?: Prisma.StringFieldUpdateOperationsInput | string
-  storedName?: Prisma.StringFieldUpdateOperationsInput | string
-  size?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  mimetype?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  prospection?: Prisma.ProspectionUpdateOneWithoutDocumentsNestedInput
-  offer?: Prisma.OfferUpdateOneWithoutDocumentsNestedInput
-  project?: Prisma.ProjectUpdateOneWithoutDocumentsNestedInput
-  journalEvents?: Prisma.JournalEventUpdateOneWithoutDocumentNestedInput
-}
-
-export type DocumentUncheckedUpdateWithoutInvoiceInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  originalName?: Prisma.StringFieldUpdateOperationsInput | string
-  storedName?: Prisma.StringFieldUpdateOperationsInput | string
-  size?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  mimetype?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  prospectionId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  offerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  projectId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  journalEventId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-}
-
-export type DocumentCreateWithoutJournalEventsInput = {
-  description?: string | null
-  originalName: string
-  storedName: string
-  size: runtime.Decimal | runtime.DecimalJsLike | number | string
-  mimetype: string
-  createdAt?: Date | string
-  prospection?: Prisma.ProspectionCreateNestedOneWithoutDocumentsInput
-  offer?: Prisma.OfferCreateNestedOneWithoutDocumentsInput
-  project?: Prisma.ProjectCreateNestedOneWithoutDocumentsInput
-  invoice?: Prisma.InvoiceCreateNestedOneWithoutDocumentInput
-}
-
-export type DocumentUncheckedCreateWithoutJournalEventsInput = {
-  id?: number
-  description?: string | null
-  originalName: string
-  storedName: string
-  size: runtime.Decimal | runtime.DecimalJsLike | number | string
-  mimetype: string
-  createdAt?: Date | string
-  prospectionId?: number | null
-  offerId?: number | null
-  projectId?: number | null
-  invoice?: Prisma.InvoiceUncheckedCreateNestedOneWithoutDocumentInput
-}
-
-export type DocumentCreateOrConnectWithoutJournalEventsInput = {
-  where: Prisma.DocumentWhereUniqueInput
-  create: Prisma.XOR<Prisma.DocumentCreateWithoutJournalEventsInput, Prisma.DocumentUncheckedCreateWithoutJournalEventsInput>
-}
-
-export type DocumentUpsertWithoutJournalEventsInput = {
-  update: Prisma.XOR<Prisma.DocumentUpdateWithoutJournalEventsInput, Prisma.DocumentUncheckedUpdateWithoutJournalEventsInput>
-  create: Prisma.XOR<Prisma.DocumentCreateWithoutJournalEventsInput, Prisma.DocumentUncheckedCreateWithoutJournalEventsInput>
-  where?: Prisma.DocumentWhereInput
-}
-
-export type DocumentUpdateToOneWithWhereWithoutJournalEventsInput = {
-  where?: Prisma.DocumentWhereInput
-  data: Prisma.XOR<Prisma.DocumentUpdateWithoutJournalEventsInput, Prisma.DocumentUncheckedUpdateWithoutJournalEventsInput>
-}
-
-export type DocumentUpdateWithoutJournalEventsInput = {
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  originalName?: Prisma.StringFieldUpdateOperationsInput | string
-  storedName?: Prisma.StringFieldUpdateOperationsInput | string
-  size?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  mimetype?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  prospection?: Prisma.ProspectionUpdateOneWithoutDocumentsNestedInput
-  offer?: Prisma.OfferUpdateOneWithoutDocumentsNestedInput
-  project?: Prisma.ProjectUpdateOneWithoutDocumentsNestedInput
-  invoice?: Prisma.InvoiceUpdateOneWithoutDocumentNestedInput
-}
-
-export type DocumentUncheckedUpdateWithoutJournalEventsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  originalName?: Prisma.StringFieldUpdateOperationsInput | string
-  storedName?: Prisma.StringFieldUpdateOperationsInput | string
-  size?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
-  mimetype?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  prospectionId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  offerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  projectId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  invoice?: Prisma.InvoiceUncheckedUpdateOneWithoutDocumentNestedInput
-}
-
 export type DocumentCreateWithoutProspectionInput = {
   description?: string | null
   originalName: string
@@ -995,8 +878,8 @@ export type DocumentCreateWithoutProspectionInput = {
   createdAt?: Date | string
   offer?: Prisma.OfferCreateNestedOneWithoutDocumentsInput
   project?: Prisma.ProjectCreateNestedOneWithoutDocumentsInput
-  journalEvents?: Prisma.JournalEventCreateNestedOneWithoutDocumentInput
   invoice?: Prisma.InvoiceCreateNestedOneWithoutDocumentInput
+  report?: Prisma.ReportCreateNestedOneWithoutDocumentInput
 }
 
 export type DocumentUncheckedCreateWithoutProspectionInput = {
@@ -1009,8 +892,8 @@ export type DocumentUncheckedCreateWithoutProspectionInput = {
   createdAt?: Date | string
   offerId?: number | null
   projectId?: number | null
-  journalEventId?: number | null
   invoice?: Prisma.InvoiceUncheckedCreateNestedOneWithoutDocumentInput
+  report?: Prisma.ReportUncheckedCreateNestedOneWithoutDocumentInput
 }
 
 export type DocumentCreateOrConnectWithoutProspectionInput = {
@@ -1039,6 +922,76 @@ export type DocumentUpdateManyWithWhereWithoutProspectionInput = {
   data: Prisma.XOR<Prisma.DocumentUpdateManyMutationInput, Prisma.DocumentUncheckedUpdateManyWithoutProspectionInput>
 }
 
+export type DocumentCreateWithoutReportInput = {
+  description?: string | null
+  originalName: string
+  storedName: string
+  size: runtime.Decimal | runtime.DecimalJsLike | number | string
+  mimetype: string
+  createdAt?: Date | string
+  prospection?: Prisma.ProspectionCreateNestedOneWithoutDocumentsInput
+  offer?: Prisma.OfferCreateNestedOneWithoutDocumentsInput
+  project?: Prisma.ProjectCreateNestedOneWithoutDocumentsInput
+  invoice?: Prisma.InvoiceCreateNestedOneWithoutDocumentInput
+}
+
+export type DocumentUncheckedCreateWithoutReportInput = {
+  id?: number
+  description?: string | null
+  originalName: string
+  storedName: string
+  size: runtime.Decimal | runtime.DecimalJsLike | number | string
+  mimetype: string
+  createdAt?: Date | string
+  prospectionId?: number | null
+  offerId?: number | null
+  projectId?: number | null
+  invoice?: Prisma.InvoiceUncheckedCreateNestedOneWithoutDocumentInput
+}
+
+export type DocumentCreateOrConnectWithoutReportInput = {
+  where: Prisma.DocumentWhereUniqueInput
+  create: Prisma.XOR<Prisma.DocumentCreateWithoutReportInput, Prisma.DocumentUncheckedCreateWithoutReportInput>
+}
+
+export type DocumentUpsertWithoutReportInput = {
+  update: Prisma.XOR<Prisma.DocumentUpdateWithoutReportInput, Prisma.DocumentUncheckedUpdateWithoutReportInput>
+  create: Prisma.XOR<Prisma.DocumentCreateWithoutReportInput, Prisma.DocumentUncheckedCreateWithoutReportInput>
+  where?: Prisma.DocumentWhereInput
+}
+
+export type DocumentUpdateToOneWithWhereWithoutReportInput = {
+  where?: Prisma.DocumentWhereInput
+  data: Prisma.XOR<Prisma.DocumentUpdateWithoutReportInput, Prisma.DocumentUncheckedUpdateWithoutReportInput>
+}
+
+export type DocumentUpdateWithoutReportInput = {
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  originalName?: Prisma.StringFieldUpdateOperationsInput | string
+  storedName?: Prisma.StringFieldUpdateOperationsInput | string
+  size?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  mimetype?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  prospection?: Prisma.ProspectionUpdateOneWithoutDocumentsNestedInput
+  offer?: Prisma.OfferUpdateOneWithoutDocumentsNestedInput
+  project?: Prisma.ProjectUpdateOneWithoutDocumentsNestedInput
+  invoice?: Prisma.InvoiceUpdateOneWithoutDocumentNestedInput
+}
+
+export type DocumentUncheckedUpdateWithoutReportInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  originalName?: Prisma.StringFieldUpdateOperationsInput | string
+  storedName?: Prisma.StringFieldUpdateOperationsInput | string
+  size?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  mimetype?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  prospectionId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  offerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  projectId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  invoice?: Prisma.InvoiceUncheckedUpdateOneWithoutDocumentNestedInput
+}
+
 export type DocumentCreateManyOfferInput = {
   id?: number
   description?: string | null
@@ -1049,7 +1002,6 @@ export type DocumentCreateManyOfferInput = {
   createdAt?: Date | string
   prospectionId?: number | null
   projectId?: number | null
-  journalEventId?: number | null
 }
 
 export type DocumentUpdateWithoutOfferInput = {
@@ -1061,8 +1013,8 @@ export type DocumentUpdateWithoutOfferInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   prospection?: Prisma.ProspectionUpdateOneWithoutDocumentsNestedInput
   project?: Prisma.ProjectUpdateOneWithoutDocumentsNestedInput
-  journalEvents?: Prisma.JournalEventUpdateOneWithoutDocumentNestedInput
   invoice?: Prisma.InvoiceUpdateOneWithoutDocumentNestedInput
+  report?: Prisma.ReportUpdateOneWithoutDocumentNestedInput
 }
 
 export type DocumentUncheckedUpdateWithoutOfferInput = {
@@ -1075,8 +1027,8 @@ export type DocumentUncheckedUpdateWithoutOfferInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   prospectionId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   projectId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  journalEventId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   invoice?: Prisma.InvoiceUncheckedUpdateOneWithoutDocumentNestedInput
+  report?: Prisma.ReportUncheckedUpdateOneWithoutDocumentNestedInput
 }
 
 export type DocumentUncheckedUpdateManyWithoutOfferInput = {
@@ -1089,7 +1041,6 @@ export type DocumentUncheckedUpdateManyWithoutOfferInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   prospectionId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   projectId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  journalEventId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type DocumentCreateManyProjectInput = {
@@ -1102,7 +1053,6 @@ export type DocumentCreateManyProjectInput = {
   createdAt?: Date | string
   prospectionId?: number | null
   offerId?: number | null
-  journalEventId?: number | null
 }
 
 export type DocumentUpdateWithoutProjectInput = {
@@ -1114,8 +1064,8 @@ export type DocumentUpdateWithoutProjectInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   prospection?: Prisma.ProspectionUpdateOneWithoutDocumentsNestedInput
   offer?: Prisma.OfferUpdateOneWithoutDocumentsNestedInput
-  journalEvents?: Prisma.JournalEventUpdateOneWithoutDocumentNestedInput
   invoice?: Prisma.InvoiceUpdateOneWithoutDocumentNestedInput
+  report?: Prisma.ReportUpdateOneWithoutDocumentNestedInput
 }
 
 export type DocumentUncheckedUpdateWithoutProjectInput = {
@@ -1128,8 +1078,8 @@ export type DocumentUncheckedUpdateWithoutProjectInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   prospectionId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   offerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  journalEventId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   invoice?: Prisma.InvoiceUncheckedUpdateOneWithoutDocumentNestedInput
+  report?: Prisma.ReportUncheckedUpdateOneWithoutDocumentNestedInput
 }
 
 export type DocumentUncheckedUpdateManyWithoutProjectInput = {
@@ -1142,7 +1092,6 @@ export type DocumentUncheckedUpdateManyWithoutProjectInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   prospectionId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   offerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  journalEventId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type DocumentCreateManyProspectionInput = {
@@ -1155,7 +1104,6 @@ export type DocumentCreateManyProspectionInput = {
   createdAt?: Date | string
   offerId?: number | null
   projectId?: number | null
-  journalEventId?: number | null
 }
 
 export type DocumentUpdateWithoutProspectionInput = {
@@ -1167,8 +1115,8 @@ export type DocumentUpdateWithoutProspectionInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   offer?: Prisma.OfferUpdateOneWithoutDocumentsNestedInput
   project?: Prisma.ProjectUpdateOneWithoutDocumentsNestedInput
-  journalEvents?: Prisma.JournalEventUpdateOneWithoutDocumentNestedInput
   invoice?: Prisma.InvoiceUpdateOneWithoutDocumentNestedInput
+  report?: Prisma.ReportUpdateOneWithoutDocumentNestedInput
 }
 
 export type DocumentUncheckedUpdateWithoutProspectionInput = {
@@ -1181,8 +1129,8 @@ export type DocumentUncheckedUpdateWithoutProspectionInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   offerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   projectId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  journalEventId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   invoice?: Prisma.InvoiceUncheckedUpdateOneWithoutDocumentNestedInput
+  report?: Prisma.ReportUncheckedUpdateOneWithoutDocumentNestedInput
 }
 
 export type DocumentUncheckedUpdateManyWithoutProspectionInput = {
@@ -1195,7 +1143,6 @@ export type DocumentUncheckedUpdateManyWithoutProspectionInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   offerId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   projectId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  journalEventId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 
@@ -1211,12 +1158,11 @@ export type DocumentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   prospectionId?: boolean
   offerId?: boolean
   projectId?: boolean
-  journalEventId?: boolean
   prospection?: boolean | Prisma.Document$prospectionArgs<ExtArgs>
   offer?: boolean | Prisma.Document$offerArgs<ExtArgs>
   project?: boolean | Prisma.Document$projectArgs<ExtArgs>
-  journalEvents?: boolean | Prisma.Document$journalEventsArgs<ExtArgs>
   invoice?: boolean | Prisma.Document$invoiceArgs<ExtArgs>
+  report?: boolean | Prisma.Document$reportArgs<ExtArgs>
 }, ExtArgs["result"]["document"]>
 
 export type DocumentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1230,11 +1176,9 @@ export type DocumentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   prospectionId?: boolean
   offerId?: boolean
   projectId?: boolean
-  journalEventId?: boolean
   prospection?: boolean | Prisma.Document$prospectionArgs<ExtArgs>
   offer?: boolean | Prisma.Document$offerArgs<ExtArgs>
   project?: boolean | Prisma.Document$projectArgs<ExtArgs>
-  journalEvents?: boolean | Prisma.Document$journalEventsArgs<ExtArgs>
 }, ExtArgs["result"]["document"]>
 
 export type DocumentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1248,11 +1192,9 @@ export type DocumentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   prospectionId?: boolean
   offerId?: boolean
   projectId?: boolean
-  journalEventId?: boolean
   prospection?: boolean | Prisma.Document$prospectionArgs<ExtArgs>
   offer?: boolean | Prisma.Document$offerArgs<ExtArgs>
   project?: boolean | Prisma.Document$projectArgs<ExtArgs>
-  journalEvents?: boolean | Prisma.Document$journalEventsArgs<ExtArgs>
 }, ExtArgs["result"]["document"]>
 
 export type DocumentSelectScalar = {
@@ -1266,28 +1208,25 @@ export type DocumentSelectScalar = {
   prospectionId?: boolean
   offerId?: boolean
   projectId?: boolean
-  journalEventId?: boolean
 }
 
-export type DocumentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "description" | "originalName" | "storedName" | "size" | "mimetype" | "createdAt" | "prospectionId" | "offerId" | "projectId" | "journalEventId", ExtArgs["result"]["document"]>
+export type DocumentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "description" | "originalName" | "storedName" | "size" | "mimetype" | "createdAt" | "prospectionId" | "offerId" | "projectId", ExtArgs["result"]["document"]>
 export type DocumentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   prospection?: boolean | Prisma.Document$prospectionArgs<ExtArgs>
   offer?: boolean | Prisma.Document$offerArgs<ExtArgs>
   project?: boolean | Prisma.Document$projectArgs<ExtArgs>
-  journalEvents?: boolean | Prisma.Document$journalEventsArgs<ExtArgs>
   invoice?: boolean | Prisma.Document$invoiceArgs<ExtArgs>
+  report?: boolean | Prisma.Document$reportArgs<ExtArgs>
 }
 export type DocumentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   prospection?: boolean | Prisma.Document$prospectionArgs<ExtArgs>
   offer?: boolean | Prisma.Document$offerArgs<ExtArgs>
   project?: boolean | Prisma.Document$projectArgs<ExtArgs>
-  journalEvents?: boolean | Prisma.Document$journalEventsArgs<ExtArgs>
 }
 export type DocumentIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   prospection?: boolean | Prisma.Document$prospectionArgs<ExtArgs>
   offer?: boolean | Prisma.Document$offerArgs<ExtArgs>
   project?: boolean | Prisma.Document$projectArgs<ExtArgs>
-  journalEvents?: boolean | Prisma.Document$journalEventsArgs<ExtArgs>
 }
 
 export type $DocumentPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -1296,8 +1235,8 @@ export type $DocumentPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     prospection: Prisma.$ProspectionPayload<ExtArgs> | null
     offer: Prisma.$OfferPayload<ExtArgs> | null
     project: Prisma.$ProjectPayload<ExtArgs> | null
-    journalEvents: Prisma.$JournalEventPayload<ExtArgs> | null
     invoice: Prisma.$InvoicePayload<ExtArgs> | null
+    report: Prisma.$ReportPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1310,7 +1249,6 @@ export type $DocumentPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     prospectionId: number | null
     offerId: number | null
     projectId: number | null
-    journalEventId: number | null
   }, ExtArgs["result"]["document"]>
   composites: {}
 }
@@ -1708,8 +1646,8 @@ export interface Prisma__DocumentClient<T, Null = never, ExtArgs extends runtime
   prospection<T extends Prisma.Document$prospectionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Document$prospectionArgs<ExtArgs>>): Prisma.Prisma__ProspectionClient<runtime.Types.Result.GetResult<Prisma.$ProspectionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   offer<T extends Prisma.Document$offerArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Document$offerArgs<ExtArgs>>): Prisma.Prisma__OfferClient<runtime.Types.Result.GetResult<Prisma.$OfferPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   project<T extends Prisma.Document$projectArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Document$projectArgs<ExtArgs>>): Prisma.Prisma__ProjectClient<runtime.Types.Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
-  journalEvents<T extends Prisma.Document$journalEventsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Document$journalEventsArgs<ExtArgs>>): Prisma.Prisma__JournalEventClient<runtime.Types.Result.GetResult<Prisma.$JournalEventPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   invoice<T extends Prisma.Document$invoiceArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Document$invoiceArgs<ExtArgs>>): Prisma.Prisma__InvoiceClient<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  report<T extends Prisma.Document$reportArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Document$reportArgs<ExtArgs>>): Prisma.Prisma__ReportClient<runtime.Types.Result.GetResult<Prisma.$ReportPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1749,7 +1687,6 @@ export interface DocumentFieldRefs {
   readonly prospectionId: Prisma.FieldRef<"Document", 'Int'>
   readonly offerId: Prisma.FieldRef<"Document", 'Int'>
   readonly projectId: Prisma.FieldRef<"Document", 'Int'>
-  readonly journalEventId: Prisma.FieldRef<"Document", 'Int'>
 }
     
 
@@ -2208,25 +2145,6 @@ export type Document$projectArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
- * Document.journalEvents
- */
-export type Document$journalEventsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the JournalEvent
-   */
-  select?: Prisma.JournalEventSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the JournalEvent
-   */
-  omit?: Prisma.JournalEventOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.JournalEventInclude<ExtArgs> | null
-  where?: Prisma.JournalEventWhereInput
-}
-
-/**
  * Document.invoice
  */
 export type Document$invoiceArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2243,6 +2161,25 @@ export type Document$invoiceArgs<ExtArgs extends runtime.Types.Extensions.Intern
    */
   include?: Prisma.InvoiceInclude<ExtArgs> | null
   where?: Prisma.InvoiceWhereInput
+}
+
+/**
+ * Document.report
+ */
+export type Document$reportArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Report
+   */
+  select?: Prisma.ReportSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Report
+   */
+  omit?: Prisma.ReportOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ReportInclude<ExtArgs> | null
+  where?: Prisma.ReportWhereInput
 }
 
 /**

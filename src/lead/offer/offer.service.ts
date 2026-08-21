@@ -264,17 +264,24 @@ export class OfferService {
     }
 
     try {
-      if (updateOfferDto.status && updateOfferDto.status !== "PENDING") {
-        if(user.role.name !== "ADMIN") {
+      if (updateOfferDto.status) {
+        // The default status is PENDING for all offers. 
+        // In order to reset the status to PENDING the user must be an admin
+        if(updateOfferDto.status === "PENDING") { 
+          if(user.role.name !== "ADMIN" && user.role.name !== "SUPERADMIN") {
             throw new UnauthorizedException('You are not authorized to mark the offer as pending.');
+          }
+          else {
+            // - if the offer was marked as WON a project was created automatically
+            // = So we must delete the project associated to the offer
+            await this.prismaClientService.project.deleteMany({
+              where: {
+                offerId: id,
+                tenantId: user.tenantId
+              }
+            });
+          }
         }
-      
-        await this.prismaClientService.project.deleteMany({
-          where: {
-            offerId: id,
-            tenantId: user.tenantId
-          },
-        });
 
         updates['status'] = updateOfferDto.status;
       }
@@ -338,7 +345,6 @@ export class OfferService {
           },
         });
       }
-
       return null;
     } catch (err) {
       this.logger.error('Error while updating the offer: ', err);

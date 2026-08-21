@@ -54,15 +54,15 @@ export const ModelName = {
   Client: 'Client',
   Comment: 'Comment',
   Document: 'Document',
+  Invoice: 'Invoice',
   Mission: 'Mission',
   MissionTask: 'MissionTask',
   Notification: 'Notification',
   Offer: 'Offer',
   Product: 'Product',
   Project: 'Project',
-  Invoice: 'Invoice',
-  JournalEvent: 'JournalEvent',
   Prospection: 'Prospection',
+  Report: 'Report',
   Subscription: 'Subscription',
   Tenant: 'Tenant',
   Timesheet: 'Timesheet',
@@ -127,11 +127,25 @@ export const DocumentScalarFieldEnum = {
   createdAt: 'createdAt',
   prospectionId: 'prospectionId',
   offerId: 'offerId',
-  projectId: 'projectId',
-  journalEventId: 'journalEventId'
+  projectId: 'projectId'
 } as const
 
 export type DocumentScalarFieldEnum = (typeof DocumentScalarFieldEnum)[keyof typeof DocumentScalarFieldEnum]
+
+
+export const InvoiceScalarFieldEnum = {
+  id: 'id',
+  description: 'description',
+  amount: 'amount',
+  status: 'status',
+  documentId: 'documentId',
+  authorId: 'authorId',
+  projectId: 'projectId',
+  tenantId: 'tenantId',
+  createdAt: 'createdAt'
+} as const
+
+export type InvoiceScalarFieldEnum = (typeof InvoiceScalarFieldEnum)[keyof typeof InvoiceScalarFieldEnum]
 
 
 export const MissionScalarFieldEnum = {
@@ -213,31 +227,6 @@ export const ProjectScalarFieldEnum = {
 export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum]
 
 
-export const InvoiceScalarFieldEnum = {
-  id: 'id',
-  description: 'description',
-  amount: 'amount',
-  status: 'status',
-  documentId: 'documentId',
-  authorId: 'authorId',
-  projectId: 'projectId',
-  createdAt: 'createdAt'
-} as const
-
-export type InvoiceScalarFieldEnum = (typeof InvoiceScalarFieldEnum)[keyof typeof InvoiceScalarFieldEnum]
-
-
-export const JournalEventScalarFieldEnum = {
-  id: 'id',
-  event: 'event',
-  authorId: 'authorId',
-  projectId: 'projectId',
-  createdAt: 'createdAt'
-} as const
-
-export type JournalEventScalarFieldEnum = (typeof JournalEventScalarFieldEnum)[keyof typeof JournalEventScalarFieldEnum]
-
-
 export const ProspectionScalarFieldEnum = {
   id: 'id',
   proposedService: 'proposedService',
@@ -251,6 +240,19 @@ export const ProspectionScalarFieldEnum = {
 } as const
 
 export type ProspectionScalarFieldEnum = (typeof ProspectionScalarFieldEnum)[keyof typeof ProspectionScalarFieldEnum]
+
+
+export const ReportScalarFieldEnum = {
+  id: 'id',
+  description: 'description',
+  authorId: 'authorId',
+  projectId: 'projectId',
+  tenantId: 'tenantId',
+  documentId: 'documentId',
+  createdAt: 'createdAt'
+} as const
+
+export type ReportScalarFieldEnum = (typeof ReportScalarFieldEnum)[keyof typeof ReportScalarFieldEnum]
 
 
 export const SubscriptionScalarFieldEnum = {
