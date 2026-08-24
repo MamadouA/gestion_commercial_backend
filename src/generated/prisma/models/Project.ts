@@ -692,10 +692,12 @@ export type ProjectCreateNestedOneWithoutReportsInput = {
   connect?: Prisma.ProjectWhereUniqueInput
 }
 
-export type ProjectUpdateOneRequiredWithoutReportsNestedInput = {
+export type ProjectUpdateOneWithoutReportsNestedInput = {
   create?: Prisma.XOR<Prisma.ProjectCreateWithoutReportsInput, Prisma.ProjectUncheckedCreateWithoutReportsInput>
   connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutReportsInput
   upsert?: Prisma.ProjectUpsertWithoutReportsInput
+  disconnect?: Prisma.ProjectWhereInput | boolean
+  delete?: Prisma.ProjectWhereInput | boolean
   connect?: Prisma.ProjectWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutReportsInput, Prisma.ProjectUpdateWithoutReportsInput>, Prisma.ProjectUncheckedUpdateWithoutReportsInput>
 }

@@ -211,7 +211,7 @@ export type ReportGroupByOutputType = {
   id: number
   description: string
   authorId: number
-  projectId: number
+  projectId: number | null
   tenantId: number
   documentId: number
   createdAt: Date
@@ -244,12 +244,12 @@ export type ReportWhereInput = {
   id?: Prisma.IntFilter<"Report"> | number
   description?: Prisma.StringFilter<"Report"> | string
   authorId?: Prisma.IntFilter<"Report"> | number
-  projectId?: Prisma.IntFilter<"Report"> | number
+  projectId?: Prisma.IntNullableFilter<"Report"> | number | null
   tenantId?: Prisma.IntFilter<"Report"> | number
   documentId?: Prisma.IntFilter<"Report"> | number
   createdAt?: Prisma.DateTimeFilter<"Report"> | Date | string
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  project?: Prisma.XOR<Prisma.ProjectScalarRelationFilter, Prisma.ProjectWhereInput>
+  project?: Prisma.XOR<Prisma.ProjectNullableScalarRelationFilter, Prisma.ProjectWhereInput> | null
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   document?: Prisma.XOR<Prisma.DocumentScalarRelationFilter, Prisma.DocumentWhereInput>
 }
@@ -258,7 +258,7 @@ export type ReportOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   description?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
-  projectId?: Prisma.SortOrder
+  projectId?: Prisma.SortOrderInput | Prisma.SortOrder
   tenantId?: Prisma.SortOrder
   documentId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -276,11 +276,11 @@ export type ReportWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.ReportWhereInput | Prisma.ReportWhereInput[]
   description?: Prisma.StringFilter<"Report"> | string
   authorId?: Prisma.IntFilter<"Report"> | number
-  projectId?: Prisma.IntFilter<"Report"> | number
+  projectId?: Prisma.IntNullableFilter<"Report"> | number | null
   tenantId?: Prisma.IntFilter<"Report"> | number
   createdAt?: Prisma.DateTimeFilter<"Report"> | Date | string
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
-  project?: Prisma.XOR<Prisma.ProjectScalarRelationFilter, Prisma.ProjectWhereInput>
+  project?: Prisma.XOR<Prisma.ProjectNullableScalarRelationFilter, Prisma.ProjectWhereInput> | null
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
   document?: Prisma.XOR<Prisma.DocumentScalarRelationFilter, Prisma.DocumentWhereInput>
 }, "id" | "documentId">
@@ -289,7 +289,7 @@ export type ReportOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   description?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
-  projectId?: Prisma.SortOrder
+  projectId?: Prisma.SortOrderInput | Prisma.SortOrder
   tenantId?: Prisma.SortOrder
   documentId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -307,7 +307,7 @@ export type ReportScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"Report"> | number
   description?: Prisma.StringWithAggregatesFilter<"Report"> | string
   authorId?: Prisma.IntWithAggregatesFilter<"Report"> | number
-  projectId?: Prisma.IntWithAggregatesFilter<"Report"> | number
+  projectId?: Prisma.IntNullableWithAggregatesFilter<"Report"> | number | null
   tenantId?: Prisma.IntWithAggregatesFilter<"Report"> | number
   documentId?: Prisma.IntWithAggregatesFilter<"Report"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Report"> | Date | string
@@ -317,7 +317,7 @@ export type ReportCreateInput = {
   description: string
   createdAt?: Date | string
   author: Prisma.UserCreateNestedOneWithoutReportsInput
-  project: Prisma.ProjectCreateNestedOneWithoutReportsInput
+  project?: Prisma.ProjectCreateNestedOneWithoutReportsInput
   tenant: Prisma.TenantCreateNestedOneWithoutReportsInput
   document: Prisma.DocumentCreateNestedOneWithoutReportInput
 }
@@ -326,7 +326,7 @@ export type ReportUncheckedCreateInput = {
   id?: number
   description: string
   authorId: number
-  projectId: number
+  projectId?: number | null
   tenantId: number
   documentId: number
   createdAt?: Date | string
@@ -336,7 +336,7 @@ export type ReportUpdateInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   author?: Prisma.UserUpdateOneRequiredWithoutReportsNestedInput
-  project?: Prisma.ProjectUpdateOneRequiredWithoutReportsNestedInput
+  project?: Prisma.ProjectUpdateOneWithoutReportsNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutReportsNestedInput
   document?: Prisma.DocumentUpdateOneRequiredWithoutReportNestedInput
 }
@@ -345,7 +345,7 @@ export type ReportUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
-  projectId?: Prisma.IntFieldUpdateOperationsInput | number
+  projectId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   documentId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -355,7 +355,7 @@ export type ReportCreateManyInput = {
   id?: number
   description: string
   authorId: number
-  projectId: number
+  projectId?: number | null
   tenantId: number
   documentId: number
   createdAt?: Date | string
@@ -370,7 +370,7 @@ export type ReportUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
-  projectId?: Prisma.IntFieldUpdateOperationsInput | number
+  projectId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   documentId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -599,7 +599,7 @@ export type ReportCreateWithoutDocumentInput = {
   description: string
   createdAt?: Date | string
   author: Prisma.UserCreateNestedOneWithoutReportsInput
-  project: Prisma.ProjectCreateNestedOneWithoutReportsInput
+  project?: Prisma.ProjectCreateNestedOneWithoutReportsInput
   tenant: Prisma.TenantCreateNestedOneWithoutReportsInput
 }
 
@@ -607,7 +607,7 @@ export type ReportUncheckedCreateWithoutDocumentInput = {
   id?: number
   description: string
   authorId: number
-  projectId: number
+  projectId?: number | null
   tenantId: number
   createdAt?: Date | string
 }
@@ -632,7 +632,7 @@ export type ReportUpdateWithoutDocumentInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   author?: Prisma.UserUpdateOneRequiredWithoutReportsNestedInput
-  project?: Prisma.ProjectUpdateOneRequiredWithoutReportsNestedInput
+  project?: Prisma.ProjectUpdateOneWithoutReportsNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutReportsNestedInput
 }
 
@@ -640,7 +640,7 @@ export type ReportUncheckedUpdateWithoutDocumentInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
-  projectId?: Prisma.IntFieldUpdateOperationsInput | number
+  projectId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -695,7 +695,7 @@ export type ReportScalarWhereInput = {
   id?: Prisma.IntFilter<"Report"> | number
   description?: Prisma.StringFilter<"Report"> | string
   authorId?: Prisma.IntFilter<"Report"> | number
-  projectId?: Prisma.IntFilter<"Report"> | number
+  projectId?: Prisma.IntNullableFilter<"Report"> | number | null
   tenantId?: Prisma.IntFilter<"Report"> | number
   documentId?: Prisma.IntFilter<"Report"> | number
   createdAt?: Prisma.DateTimeFilter<"Report"> | Date | string
@@ -705,7 +705,7 @@ export type ReportCreateWithoutTenantInput = {
   description: string
   createdAt?: Date | string
   author: Prisma.UserCreateNestedOneWithoutReportsInput
-  project: Prisma.ProjectCreateNestedOneWithoutReportsInput
+  project?: Prisma.ProjectCreateNestedOneWithoutReportsInput
   document: Prisma.DocumentCreateNestedOneWithoutReportInput
 }
 
@@ -713,7 +713,7 @@ export type ReportUncheckedCreateWithoutTenantInput = {
   id?: number
   description: string
   authorId: number
-  projectId: number
+  projectId?: number | null
   documentId: number
   createdAt?: Date | string
 }
@@ -747,7 +747,7 @@ export type ReportUpdateManyWithWhereWithoutTenantInput = {
 export type ReportCreateWithoutAuthorInput = {
   description: string
   createdAt?: Date | string
-  project: Prisma.ProjectCreateNestedOneWithoutReportsInput
+  project?: Prisma.ProjectCreateNestedOneWithoutReportsInput
   tenant: Prisma.TenantCreateNestedOneWithoutReportsInput
   document: Prisma.DocumentCreateNestedOneWithoutReportInput
 }
@@ -755,7 +755,7 @@ export type ReportCreateWithoutAuthorInput = {
 export type ReportUncheckedCreateWithoutAuthorInput = {
   id?: number
   description: string
-  projectId: number
+  projectId?: number | null
   tenantId: number
   documentId: number
   createdAt?: Date | string
@@ -826,7 +826,7 @@ export type ReportCreateManyTenantInput = {
   id?: number
   description: string
   authorId: number
-  projectId: number
+  projectId?: number | null
   documentId: number
   createdAt?: Date | string
 }
@@ -835,7 +835,7 @@ export type ReportUpdateWithoutTenantInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   author?: Prisma.UserUpdateOneRequiredWithoutReportsNestedInput
-  project?: Prisma.ProjectUpdateOneRequiredWithoutReportsNestedInput
+  project?: Prisma.ProjectUpdateOneWithoutReportsNestedInput
   document?: Prisma.DocumentUpdateOneRequiredWithoutReportNestedInput
 }
 
@@ -843,7 +843,7 @@ export type ReportUncheckedUpdateWithoutTenantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
-  projectId?: Prisma.IntFieldUpdateOperationsInput | number
+  projectId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   documentId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -852,7 +852,7 @@ export type ReportUncheckedUpdateManyWithoutTenantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
-  projectId?: Prisma.IntFieldUpdateOperationsInput | number
+  projectId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   documentId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -860,7 +860,7 @@ export type ReportUncheckedUpdateManyWithoutTenantInput = {
 export type ReportCreateManyAuthorInput = {
   id?: number
   description: string
-  projectId: number
+  projectId?: number | null
   tenantId: number
   documentId: number
   createdAt?: Date | string
@@ -869,7 +869,7 @@ export type ReportCreateManyAuthorInput = {
 export type ReportUpdateWithoutAuthorInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  project?: Prisma.ProjectUpdateOneRequiredWithoutReportsNestedInput
+  project?: Prisma.ProjectUpdateOneWithoutReportsNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutReportsNestedInput
   document?: Prisma.DocumentUpdateOneRequiredWithoutReportNestedInput
 }
@@ -877,7 +877,7 @@ export type ReportUpdateWithoutAuthorInput = {
 export type ReportUncheckedUpdateWithoutAuthorInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  projectId?: Prisma.IntFieldUpdateOperationsInput | number
+  projectId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   documentId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -886,7 +886,7 @@ export type ReportUncheckedUpdateWithoutAuthorInput = {
 export type ReportUncheckedUpdateManyWithoutAuthorInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
-  projectId?: Prisma.IntFieldUpdateOperationsInput | number
+  projectId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   documentId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -903,7 +903,7 @@ export type ReportSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   documentId?: boolean
   createdAt?: boolean
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
+  project?: boolean | Prisma.Report$projectArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   document?: boolean | Prisma.DocumentDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["report"]>
@@ -917,7 +917,7 @@ export type ReportSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   documentId?: boolean
   createdAt?: boolean
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
+  project?: boolean | Prisma.Report$projectArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   document?: boolean | Prisma.DocumentDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["report"]>
@@ -931,7 +931,7 @@ export type ReportSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   documentId?: boolean
   createdAt?: boolean
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
+  project?: boolean | Prisma.Report$projectArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   document?: boolean | Prisma.DocumentDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["report"]>
@@ -949,19 +949,19 @@ export type ReportSelectScalar = {
 export type ReportOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "description" | "authorId" | "projectId" | "tenantId" | "documentId" | "createdAt", ExtArgs["result"]["report"]>
 export type ReportInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
+  project?: boolean | Prisma.Report$projectArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   document?: boolean | Prisma.DocumentDefaultArgs<ExtArgs>
 }
 export type ReportIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
+  project?: boolean | Prisma.Report$projectArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   document?: boolean | Prisma.DocumentDefaultArgs<ExtArgs>
 }
 export type ReportIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
-  project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
+  project?: boolean | Prisma.Report$projectArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   document?: boolean | Prisma.DocumentDefaultArgs<ExtArgs>
 }
@@ -970,7 +970,7 @@ export type $ReportPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   name: "Report"
   objects: {
     author: Prisma.$UserPayload<ExtArgs>
-    project: Prisma.$ProjectPayload<ExtArgs>
+    project: Prisma.$ProjectPayload<ExtArgs> | null
     tenant: Prisma.$TenantPayload<ExtArgs>
     document: Prisma.$DocumentPayload<ExtArgs>
   }
@@ -978,7 +978,7 @@ export type $ReportPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     id: number
     description: string
     authorId: number
-    projectId: number
+    projectId: number | null
     tenantId: number
     documentId: number
     createdAt: Date
@@ -1377,7 +1377,7 @@ readonly fields: ReportFieldRefs;
 export interface Prisma__ReportClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   author<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  project<T extends Prisma.ProjectDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProjectDefaultArgs<ExtArgs>>): Prisma.Prisma__ProjectClient<runtime.Types.Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  project<T extends Prisma.Report$projectArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Report$projectArgs<ExtArgs>>): Prisma.Prisma__ProjectClient<runtime.Types.Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   tenant<T extends Prisma.TenantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TenantDefaultArgs<ExtArgs>>): Prisma.Prisma__TenantClient<runtime.Types.Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   document<T extends Prisma.DocumentDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DocumentDefaultArgs<ExtArgs>>): Prisma.Prisma__DocumentClient<runtime.Types.Result.GetResult<Prisma.$DocumentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
@@ -1814,6 +1814,25 @@ export type ReportDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
    * Limit how many Reports to delete.
    */
   limit?: number
+}
+
+/**
+ * Report.project
+ */
+export type Report$projectArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Project
+   */
+  select?: Prisma.ProjectSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Project
+   */
+  omit?: Prisma.ProjectOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ProjectInclude<ExtArgs> | null
+  where?: Prisma.ProjectWhereInput
 }
 
 /**
