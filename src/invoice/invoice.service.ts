@@ -4,6 +4,8 @@ import { CreateInvoiceDTO } from './dto/create-invoice.dto';
 import { CurrentUserType } from '../auth/auth.types';
 import { FileMetadata } from '../shared/shared.types';
 import { S3ClientService } from '../common/file-manager/s3-client.service';
+import { InvoiceQueryDTO } from './dto/invoice.query.dto';
+import { InvoiceWhereInput } from '../generated/prisma/models';
 
 @Injectable()
 export class InvoiceService {
@@ -77,8 +79,57 @@ export class InvoiceService {
     }
 
     // -
-    async findAll(tenantId: number) {
-        
+    async findAll(invoiceQueryDTO: InvoiceQueryDTO, tenantId: number) {
+        const filter: InvoiceWhereInput = { tenantId };
+        try {
+            if(invoiceQueryDTO.description) {
+                filter.description = { contains: invoiceQueryDTO.description, mode: 'insensitive' };
+            }
+
+            if(invoiceQueryDTO.status) {
+                filter.status = invoiceQueryDTO.status;
+            }
+
+            if(invoiceQueryDTO.createdAt) {
+                filter.createdAt = { lte: new Date(invoiceQueryDTO.createdAt) };
+            }
+
+            const invoices = await this.prismaClientService.invoice.findMany({ 
+                where: filter,
+                omit: {
+                    authorId: true,
+                    tenantId: true,
+                    documentId: true
+                },
+                include: {
+                    author: {
+                        select: {
+                            id: true,
+                            fullname: true,
+                        }
+                    },
+                    project: {
+                        include: {
+                            client: {
+                                select: {
+                                    id: true,
+                                    type: true,
+                                    enterpriseName: true,
+                                    contactName: true,
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const count = await this.prismaClientService.invoice.count({ where: { tenantId } });
+            return { invoices, count };
+        }
+        catch(err) {
+            this.logger.error("Error while fetching the invoices: ", err);
+            throw new InternalServerErrorException("Error while fetching the invoices.");
+        }
     }
     
     // -

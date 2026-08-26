@@ -5,6 +5,7 @@ import { CreateInvoiceDTO } from './dto/create-invoice.dto';
 import { CurrentUserType } from '../auth/auth.types';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { FILE_FILTER } from '../common/common.constants';
+import { InvoiceQueryDTO } from './dto/invoice.query.dto';
 
 @Controller('invoice')
 export class InvoiceController {
@@ -17,8 +18,8 @@ export class InvoiceController {
     }
 
     @Get('all')
-    async findAll(tenantId: number) {
-        return this.invoiceService.findAll(tenantId);
+    async findAll(@Query() query: InvoiceQueryDTO, tenantId: number) {
+        return this.invoiceService.findAll(query, tenantId);
     }
 
     @Get('project/:projectId')
