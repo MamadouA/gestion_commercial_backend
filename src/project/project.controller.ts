@@ -1,8 +1,10 @@
 import {
+  Body,
   Controller,
   Get,
   Param,
   ParseIntPipe,
+  Patch,
   Post,
   UploadedFile,
   UseInterceptors,
@@ -13,6 +15,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { FILE_FILTER } from '../common/common.constants';
 import { User } from '../generated/prisma/client';
 import { CurrentUserType } from '../auth/auth.types';
+import { UpdateTimesheetDTO } from './dto/update-timesheet.dto';
 @Controller('project')
 export class ProjectController {
   constructor(private readonly projectService: ProjectService) {}
@@ -30,6 +33,15 @@ export class ProjectController {
   @Post(':projectId/timesheet/create')
   async createTimesheet(@Param('projectId', ParseIntPipe) projectId: number, @CurrentUser() user: CurrentUserType) {
     return await this.projectService.createTimesheet(projectId, user);
+  }
+
+  @Patch(':projectId/timesheet/:timesheetId/update')
+  async updateTimesheet(
+    @Param('projectId', ParseIntPipe) projectId: number, 
+    @Param('timesheetId', ParseIntPipe) timesheetId: number, 
+    @Body() updateTimesheetDTO: UpdateTimesheetDTO,
+    @CurrentUser() user: CurrentUserType) {
+    return await this.projectService.updateTimesheet(projectId, timesheetId, updateTimesheetDTO, user);
   }
 
   // -

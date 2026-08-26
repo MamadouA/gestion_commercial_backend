@@ -12,6 +12,7 @@ import { User } from '../generated/prisma/client';
 import { CurrentUserType } from '../auth/auth.types';
 import { getPastMonday } from '../utils/getPastMonday';
 import { getNextSunday } from '../utils/getNextSunday';
+import { UpdateTimesheetDTO } from './dto/update-timesheet.dto';
 
 @Injectable()
 export class ProjectService {
@@ -242,9 +243,18 @@ export class ProjectService {
   }
 
   // -
-  async updateCurrentUserTimesheet(projectId: number, timesheetId: number, day: string, value: number, user: CurrentUserType) {
+  async updateTimesheet(projectId: number, timesheetId: number, updateTimesheetDTO: UpdateTimesheetDTO, user: CurrentUserType) {
     try {
+      const temesheet = await this.prismaClientService.timesheet.findFirstOrThrow({
+        where: { id: timesheetId, projectId, ownerId: user.id }
+      });
 
+      return await this.prismaClientService.timesheet.update({
+        where: { id: temesheet.id },
+        data: {
+          [updateTimesheetDTO.day]: updateTimesheetDTO.value
+        }
+      });
     }
     catch(err) {
       this.logger.error("Error while updating the timesheet: ", err);
