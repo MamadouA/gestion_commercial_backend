@@ -1,6 +1,19 @@
 model Timesheet {
     id Int @id() @default(autoincrement())
+    startDate DateTime 
+    endDate DateTime 
+    monday Decimal @default(0)
+    tuesday Decimal @default(0)
+    wednesday Decimal @default(0)
+    thursday Decimal @default(0)
+    friday Decimal @default(0)
+    saturday Decimal @default(0)
+    sunday Decimal @default(0)
+    ownerId Int
+    owner User @relation(fields: [ownerId], references: [id])
 
     projectId Int
     project Project @relation(fields: [projectId], references: [id])
+
+    createdAt DateTime @default(now())
 }

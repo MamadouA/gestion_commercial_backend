@@ -9,6 +9,9 @@ import { S3ClientService } from '../common/file-manager/s3-client.service';
 import { FileMetadata } from '../shared/shared.types';
 import {  ProjectCreateInput } from '../generated/prisma/models';
 import { User } from '../generated/prisma/client';
+import { CurrentUserType } from '../auth/auth.types';
+import { getPastMonday } from '../utils/getPastMonday';
+import { getNextSunday } from '../utils/getNextSunday';
 
 @Injectable()
 export class ProjectService {
@@ -222,6 +225,75 @@ export class ProjectService {
       throw new InternalServerErrorException(
         'Error while fetching the project.',
       );
+    }
+  }
+
+  // -
+  async findCurrentUserTimesheets(projectId: number, user: CurrentUserType) {
+    try {
+      return await this.prismaClientService.timesheet.findMany({
+        where: { projectId, ownerId: user.id }
+      });
+    }
+    catch(err) {
+      this.logger.error("Error while fetching the timesheet: ", err);
+      throw new InternalServerErrorException("Error while fetching the timehseet.");
+    }
+  }
+
+  // -
+  async updateCurrentUserTimesheet(projectId: number, timesheetId: number, day: string, value: number, user: CurrentUserType) {
+    try {
+
+    }
+    catch(err) {
+      this.logger.error("Error while updating the timesheet: ", err);
+      throw new InternalServerErrorException("Error while updating the timehseet.");
+    }
+  }
+
+  // -
+  async createTimesheet(projectId: number, user: CurrentUserType) {
+    try {
+      const existingTimesheet = await this.prismaClientService.timesheet.findFirst({
+        where: { 
+          projectId, 
+          startDate: {
+            gte: getPastMonday()
+          },
+          endDate: {
+            lte: getNextSunday()
+          }
+        },
+        omit: {
+          projectId: true,     
+        }
+      });
+
+      if(existingTimesheet) {
+        throw new BadRequestException("Timesheet already created for this week!");
+      }
+
+      return await this.prismaClientService.timesheet.create({
+        data: {
+          startDate: getPastMonday(),
+          endDate: getNextSunday(),
+          owner: {
+            connect: {
+              id: user.id
+            }
+          },
+          project: {
+            connect: {
+              id: projectId
+            }
+          }
+        }
+      })
+    }
+    catch(err) {
+      this.logger.error("Error while creating the timesheet", err);
+      throw new InternalServerErrorException("Error while creating the timesheet.");
     }
   }
 }

@@ -41,7 +41,7 @@ export class InvoiceService {
                     }
                 };
             }
-
+            
             fileMetadata = await this.s3ClientService.save(file);
             return await this.prismaClientService.invoice.create({ 
                 data: {...data, document: { create: fileMetadata}},

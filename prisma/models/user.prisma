@@ -13,6 +13,7 @@ model User {
   comments Comment[] // comment made by the user
   invoices Invoice[] // invoice created by this user
   reports Report[] // reports created by this user
+  timesheets Timesheet[] // timesheets of this user
 
   offers Offer[] 
   projects Project[]

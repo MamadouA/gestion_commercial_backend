@@ -28,54 +28,142 @@ export type AggregateTimesheet = {
 
 export type TimesheetAvgAggregateOutputType = {
   id: number | null
+  monday: runtime.Decimal | null
+  tuesday: runtime.Decimal | null
+  wednesday: runtime.Decimal | null
+  thursday: runtime.Decimal | null
+  friday: runtime.Decimal | null
+  saturday: runtime.Decimal | null
+  ownerId: number | null
   projectId: number | null
 }
 
 export type TimesheetSumAggregateOutputType = {
   id: number | null
+  monday: runtime.Decimal | null
+  tuesday: runtime.Decimal | null
+  wednesday: runtime.Decimal | null
+  thursday: runtime.Decimal | null
+  friday: runtime.Decimal | null
+  saturday: runtime.Decimal | null
+  ownerId: number | null
   projectId: number | null
 }
 
 export type TimesheetMinAggregateOutputType = {
   id: number | null
+  startDate: Date | null
+  endDate: Date | null
+  monday: runtime.Decimal | null
+  tuesday: runtime.Decimal | null
+  wednesday: runtime.Decimal | null
+  thursday: runtime.Decimal | null
+  friday: runtime.Decimal | null
+  saturday: runtime.Decimal | null
+  ownerId: number | null
   projectId: number | null
+  createdAt: Date | null
 }
 
 export type TimesheetMaxAggregateOutputType = {
   id: number | null
+  startDate: Date | null
+  endDate: Date | null
+  monday: runtime.Decimal | null
+  tuesday: runtime.Decimal | null
+  wednesday: runtime.Decimal | null
+  thursday: runtime.Decimal | null
+  friday: runtime.Decimal | null
+  saturday: runtime.Decimal | null
+  ownerId: number | null
   projectId: number | null
+  createdAt: Date | null
 }
 
 export type TimesheetCountAggregateOutputType = {
   id: number
+  startDate: number
+  endDate: number
+  monday: number
+  tuesday: number
+  wednesday: number
+  thursday: number
+  friday: number
+  saturday: number
+  ownerId: number
   projectId: number
+  createdAt: number
   _all: number
 }
 
 
 export type TimesheetAvgAggregateInputType = {
   id?: true
+  monday?: true
+  tuesday?: true
+  wednesday?: true
+  thursday?: true
+  friday?: true
+  saturday?: true
+  ownerId?: true
   projectId?: true
 }
 
 export type TimesheetSumAggregateInputType = {
   id?: true
+  monday?: true
+  tuesday?: true
+  wednesday?: true
+  thursday?: true
+  friday?: true
+  saturday?: true
+  ownerId?: true
   projectId?: true
 }
 
 export type TimesheetMinAggregateInputType = {
   id?: true
+  startDate?: true
+  endDate?: true
+  monday?: true
+  tuesday?: true
+  wednesday?: true
+  thursday?: true
+  friday?: true
+  saturday?: true
+  ownerId?: true
   projectId?: true
+  createdAt?: true
 }
 
 export type TimesheetMaxAggregateInputType = {
   id?: true
+  startDate?: true
+  endDate?: true
+  monday?: true
+  tuesday?: true
+  wednesday?: true
+  thursday?: true
+  friday?: true
+  saturday?: true
+  ownerId?: true
   projectId?: true
+  createdAt?: true
 }
 
 export type TimesheetCountAggregateInputType = {
   id?: true
+  startDate?: true
+  endDate?: true
+  monday?: true
+  tuesday?: true
+  wednesday?: true
+  thursday?: true
+  friday?: true
+  saturday?: true
+  ownerId?: true
   projectId?: true
+  createdAt?: true
   _all?: true
 }
 
@@ -167,7 +255,17 @@ export type TimesheetGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
 
 export type TimesheetGroupByOutputType = {
   id: number
+  startDate: Date
+  endDate: Date
+  monday: runtime.Decimal
+  tuesday: runtime.Decimal
+  wednesday: runtime.Decimal
+  thursday: runtime.Decimal
+  friday: runtime.Decimal
+  saturday: runtime.Decimal
+  ownerId: number
   projectId: number
+  createdAt: Date
   _count: TimesheetCountAggregateOutputType | null
   _avg: TimesheetAvgAggregateOutputType | null
   _sum: TimesheetSumAggregateOutputType | null
@@ -195,13 +293,35 @@ export type TimesheetWhereInput = {
   OR?: Prisma.TimesheetWhereInput[]
   NOT?: Prisma.TimesheetWhereInput | Prisma.TimesheetWhereInput[]
   id?: Prisma.IntFilter<"Timesheet"> | number
+  startDate?: Prisma.DateTimeFilter<"Timesheet"> | Date | string
+  endDate?: Prisma.DateTimeFilter<"Timesheet"> | Date | string
+  monday?: Prisma.DecimalFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  tuesday?: Prisma.DecimalFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  wednesday?: Prisma.DecimalFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  thursday?: Prisma.DecimalFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  friday?: Prisma.DecimalFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  saturday?: Prisma.DecimalFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  ownerId?: Prisma.IntFilter<"Timesheet"> | number
   projectId?: Prisma.IntFilter<"Timesheet"> | number
+  createdAt?: Prisma.DateTimeFilter<"Timesheet"> | Date | string
+  owner?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   project?: Prisma.XOR<Prisma.ProjectScalarRelationFilter, Prisma.ProjectWhereInput>
 }
 
 export type TimesheetOrderByWithRelationInput = {
   id?: Prisma.SortOrder
+  startDate?: Prisma.SortOrder
+  endDate?: Prisma.SortOrder
+  monday?: Prisma.SortOrder
+  tuesday?: Prisma.SortOrder
+  wednesday?: Prisma.SortOrder
+  thursday?: Prisma.SortOrder
+  friday?: Prisma.SortOrder
+  saturday?: Prisma.SortOrder
+  ownerId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
+  owner?: Prisma.UserOrderByWithRelationInput
   project?: Prisma.ProjectOrderByWithRelationInput
 }
 
@@ -210,13 +330,34 @@ export type TimesheetWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.TimesheetWhereInput | Prisma.TimesheetWhereInput[]
   OR?: Prisma.TimesheetWhereInput[]
   NOT?: Prisma.TimesheetWhereInput | Prisma.TimesheetWhereInput[]
+  startDate?: Prisma.DateTimeFilter<"Timesheet"> | Date | string
+  endDate?: Prisma.DateTimeFilter<"Timesheet"> | Date | string
+  monday?: Prisma.DecimalFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  tuesday?: Prisma.DecimalFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  wednesday?: Prisma.DecimalFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  thursday?: Prisma.DecimalFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  friday?: Prisma.DecimalFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  saturday?: Prisma.DecimalFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  ownerId?: Prisma.IntFilter<"Timesheet"> | number
   projectId?: Prisma.IntFilter<"Timesheet"> | number
+  createdAt?: Prisma.DateTimeFilter<"Timesheet"> | Date | string
+  owner?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   project?: Prisma.XOR<Prisma.ProjectScalarRelationFilter, Prisma.ProjectWhereInput>
 }, "id">
 
 export type TimesheetOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
+  startDate?: Prisma.SortOrder
+  endDate?: Prisma.SortOrder
+  monday?: Prisma.SortOrder
+  tuesday?: Prisma.SortOrder
+  wednesday?: Prisma.SortOrder
+  thursday?: Prisma.SortOrder
+  friday?: Prisma.SortOrder
+  saturday?: Prisma.SortOrder
+  ownerId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
   _count?: Prisma.TimesheetCountOrderByAggregateInput
   _avg?: Prisma.TimesheetAvgOrderByAggregateInput
   _max?: Prisma.TimesheetMaxOrderByAggregateInput
@@ -229,39 +370,117 @@ export type TimesheetScalarWhereWithAggregatesInput = {
   OR?: Prisma.TimesheetScalarWhereWithAggregatesInput[]
   NOT?: Prisma.TimesheetScalarWhereWithAggregatesInput | Prisma.TimesheetScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Timesheet"> | number
+  startDate?: Prisma.DateTimeWithAggregatesFilter<"Timesheet"> | Date | string
+  endDate?: Prisma.DateTimeWithAggregatesFilter<"Timesheet"> | Date | string
+  monday?: Prisma.DecimalWithAggregatesFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  tuesday?: Prisma.DecimalWithAggregatesFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  wednesday?: Prisma.DecimalWithAggregatesFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  thursday?: Prisma.DecimalWithAggregatesFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  friday?: Prisma.DecimalWithAggregatesFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  saturday?: Prisma.DecimalWithAggregatesFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  ownerId?: Prisma.IntWithAggregatesFilter<"Timesheet"> | number
   projectId?: Prisma.IntWithAggregatesFilter<"Timesheet"> | number
+  createdAt?: Prisma.DateTimeWithAggregatesFilter<"Timesheet"> | Date | string
 }
 
 export type TimesheetCreateInput = {
+  startDate: Date | string
+  endDate: Date | string
+  monday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  tuesday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  wednesday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  thursday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  friday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  saturday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Date | string
+  owner: Prisma.UserCreateNestedOneWithoutTimesheetsInput
   project: Prisma.ProjectCreateNestedOneWithoutTimesheetsInput
 }
 
 export type TimesheetUncheckedCreateInput = {
   id?: number
+  startDate: Date | string
+  endDate: Date | string
+  monday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  tuesday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  wednesday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  thursday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  friday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  saturday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  ownerId: number
   projectId: number
+  createdAt?: Date | string
 }
 
 export type TimesheetUpdateInput = {
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  monday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  tuesday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  wednesday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  thursday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  friday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  saturday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner?: Prisma.UserUpdateOneRequiredWithoutTimesheetsNestedInput
   project?: Prisma.ProjectUpdateOneRequiredWithoutTimesheetsNestedInput
 }
 
 export type TimesheetUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  monday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  tuesday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  wednesday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  thursday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  friday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  saturday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  ownerId?: Prisma.IntFieldUpdateOperationsInput | number
   projectId?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TimesheetCreateManyInput = {
   id?: number
+  startDate: Date | string
+  endDate: Date | string
+  monday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  tuesday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  wednesday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  thursday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  friday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  saturday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  ownerId: number
   projectId: number
+  createdAt?: Date | string
 }
 
 export type TimesheetUpdateManyMutationInput = {
-
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  monday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  tuesday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  wednesday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  thursday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  friday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  saturday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TimesheetUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  monday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  tuesday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  wednesday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  thursday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  friday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  saturday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  ownerId?: Prisma.IntFieldUpdateOperationsInput | number
   projectId?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TimesheetListRelationFilter = {
@@ -276,26 +495,70 @@ export type TimesheetOrderByRelationAggregateInput = {
 
 export type TimesheetCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  startDate?: Prisma.SortOrder
+  endDate?: Prisma.SortOrder
+  monday?: Prisma.SortOrder
+  tuesday?: Prisma.SortOrder
+  wednesday?: Prisma.SortOrder
+  thursday?: Prisma.SortOrder
+  friday?: Prisma.SortOrder
+  saturday?: Prisma.SortOrder
+  ownerId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type TimesheetAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  monday?: Prisma.SortOrder
+  tuesday?: Prisma.SortOrder
+  wednesday?: Prisma.SortOrder
+  thursday?: Prisma.SortOrder
+  friday?: Prisma.SortOrder
+  saturday?: Prisma.SortOrder
+  ownerId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
 }
 
 export type TimesheetMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  startDate?: Prisma.SortOrder
+  endDate?: Prisma.SortOrder
+  monday?: Prisma.SortOrder
+  tuesday?: Prisma.SortOrder
+  wednesday?: Prisma.SortOrder
+  thursday?: Prisma.SortOrder
+  friday?: Prisma.SortOrder
+  saturday?: Prisma.SortOrder
+  ownerId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type TimesheetMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  startDate?: Prisma.SortOrder
+  endDate?: Prisma.SortOrder
+  monday?: Prisma.SortOrder
+  tuesday?: Prisma.SortOrder
+  wednesday?: Prisma.SortOrder
+  thursday?: Prisma.SortOrder
+  friday?: Prisma.SortOrder
+  saturday?: Prisma.SortOrder
+  ownerId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
+  createdAt?: Prisma.SortOrder
 }
 
 export type TimesheetSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  monday?: Prisma.SortOrder
+  tuesday?: Prisma.SortOrder
+  wednesday?: Prisma.SortOrder
+  thursday?: Prisma.SortOrder
+  friday?: Prisma.SortOrder
+  saturday?: Prisma.SortOrder
+  ownerId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
 }
 
@@ -341,12 +604,73 @@ export type TimesheetUncheckedUpdateManyWithoutProjectNestedInput = {
   deleteMany?: Prisma.TimesheetScalarWhereInput | Prisma.TimesheetScalarWhereInput[]
 }
 
-export type TimesheetCreateWithoutProjectInput = {
+export type TimesheetCreateNestedManyWithoutOwnerInput = {
+  create?: Prisma.XOR<Prisma.TimesheetCreateWithoutOwnerInput, Prisma.TimesheetUncheckedCreateWithoutOwnerInput> | Prisma.TimesheetCreateWithoutOwnerInput[] | Prisma.TimesheetUncheckedCreateWithoutOwnerInput[]
+  connectOrCreate?: Prisma.TimesheetCreateOrConnectWithoutOwnerInput | Prisma.TimesheetCreateOrConnectWithoutOwnerInput[]
+  createMany?: Prisma.TimesheetCreateManyOwnerInputEnvelope
+  connect?: Prisma.TimesheetWhereUniqueInput | Prisma.TimesheetWhereUniqueInput[]
+}
 
+export type TimesheetUncheckedCreateNestedManyWithoutOwnerInput = {
+  create?: Prisma.XOR<Prisma.TimesheetCreateWithoutOwnerInput, Prisma.TimesheetUncheckedCreateWithoutOwnerInput> | Prisma.TimesheetCreateWithoutOwnerInput[] | Prisma.TimesheetUncheckedCreateWithoutOwnerInput[]
+  connectOrCreate?: Prisma.TimesheetCreateOrConnectWithoutOwnerInput | Prisma.TimesheetCreateOrConnectWithoutOwnerInput[]
+  createMany?: Prisma.TimesheetCreateManyOwnerInputEnvelope
+  connect?: Prisma.TimesheetWhereUniqueInput | Prisma.TimesheetWhereUniqueInput[]
+}
+
+export type TimesheetUpdateManyWithoutOwnerNestedInput = {
+  create?: Prisma.XOR<Prisma.TimesheetCreateWithoutOwnerInput, Prisma.TimesheetUncheckedCreateWithoutOwnerInput> | Prisma.TimesheetCreateWithoutOwnerInput[] | Prisma.TimesheetUncheckedCreateWithoutOwnerInput[]
+  connectOrCreate?: Prisma.TimesheetCreateOrConnectWithoutOwnerInput | Prisma.TimesheetCreateOrConnectWithoutOwnerInput[]
+  upsert?: Prisma.TimesheetUpsertWithWhereUniqueWithoutOwnerInput | Prisma.TimesheetUpsertWithWhereUniqueWithoutOwnerInput[]
+  createMany?: Prisma.TimesheetCreateManyOwnerInputEnvelope
+  set?: Prisma.TimesheetWhereUniqueInput | Prisma.TimesheetWhereUniqueInput[]
+  disconnect?: Prisma.TimesheetWhereUniqueInput | Prisma.TimesheetWhereUniqueInput[]
+  delete?: Prisma.TimesheetWhereUniqueInput | Prisma.TimesheetWhereUniqueInput[]
+  connect?: Prisma.TimesheetWhereUniqueInput | Prisma.TimesheetWhereUniqueInput[]
+  update?: Prisma.TimesheetUpdateWithWhereUniqueWithoutOwnerInput | Prisma.TimesheetUpdateWithWhereUniqueWithoutOwnerInput[]
+  updateMany?: Prisma.TimesheetUpdateManyWithWhereWithoutOwnerInput | Prisma.TimesheetUpdateManyWithWhereWithoutOwnerInput[]
+  deleteMany?: Prisma.TimesheetScalarWhereInput | Prisma.TimesheetScalarWhereInput[]
+}
+
+export type TimesheetUncheckedUpdateManyWithoutOwnerNestedInput = {
+  create?: Prisma.XOR<Prisma.TimesheetCreateWithoutOwnerInput, Prisma.TimesheetUncheckedCreateWithoutOwnerInput> | Prisma.TimesheetCreateWithoutOwnerInput[] | Prisma.TimesheetUncheckedCreateWithoutOwnerInput[]
+  connectOrCreate?: Prisma.TimesheetCreateOrConnectWithoutOwnerInput | Prisma.TimesheetCreateOrConnectWithoutOwnerInput[]
+  upsert?: Prisma.TimesheetUpsertWithWhereUniqueWithoutOwnerInput | Prisma.TimesheetUpsertWithWhereUniqueWithoutOwnerInput[]
+  createMany?: Prisma.TimesheetCreateManyOwnerInputEnvelope
+  set?: Prisma.TimesheetWhereUniqueInput | Prisma.TimesheetWhereUniqueInput[]
+  disconnect?: Prisma.TimesheetWhereUniqueInput | Prisma.TimesheetWhereUniqueInput[]
+  delete?: Prisma.TimesheetWhereUniqueInput | Prisma.TimesheetWhereUniqueInput[]
+  connect?: Prisma.TimesheetWhereUniqueInput | Prisma.TimesheetWhereUniqueInput[]
+  update?: Prisma.TimesheetUpdateWithWhereUniqueWithoutOwnerInput | Prisma.TimesheetUpdateWithWhereUniqueWithoutOwnerInput[]
+  updateMany?: Prisma.TimesheetUpdateManyWithWhereWithoutOwnerInput | Prisma.TimesheetUpdateManyWithWhereWithoutOwnerInput[]
+  deleteMany?: Prisma.TimesheetScalarWhereInput | Prisma.TimesheetScalarWhereInput[]
+}
+
+export type TimesheetCreateWithoutProjectInput = {
+  startDate: Date | string
+  endDate: Date | string
+  monday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  tuesday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  wednesday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  thursday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  friday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  saturday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Date | string
+  owner: Prisma.UserCreateNestedOneWithoutTimesheetsInput
 }
 
 export type TimesheetUncheckedCreateWithoutProjectInput = {
   id?: number
+  startDate: Date | string
+  endDate: Date | string
+  monday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  tuesday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  wednesday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  thursday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  friday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  saturday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  ownerId: number
+  createdAt?: Date | string
 }
 
 export type TimesheetCreateOrConnectWithoutProjectInput = {
@@ -380,69 +704,283 @@ export type TimesheetScalarWhereInput = {
   OR?: Prisma.TimesheetScalarWhereInput[]
   NOT?: Prisma.TimesheetScalarWhereInput | Prisma.TimesheetScalarWhereInput[]
   id?: Prisma.IntFilter<"Timesheet"> | number
+  startDate?: Prisma.DateTimeFilter<"Timesheet"> | Date | string
+  endDate?: Prisma.DateTimeFilter<"Timesheet"> | Date | string
+  monday?: Prisma.DecimalFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  tuesday?: Prisma.DecimalFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  wednesday?: Prisma.DecimalFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  thursday?: Prisma.DecimalFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  friday?: Prisma.DecimalFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  saturday?: Prisma.DecimalFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  ownerId?: Prisma.IntFilter<"Timesheet"> | number
   projectId?: Prisma.IntFilter<"Timesheet"> | number
+  createdAt?: Prisma.DateTimeFilter<"Timesheet"> | Date | string
+}
+
+export type TimesheetCreateWithoutOwnerInput = {
+  startDate: Date | string
+  endDate: Date | string
+  monday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  tuesday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  wednesday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  thursday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  friday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  saturday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Date | string
+  project: Prisma.ProjectCreateNestedOneWithoutTimesheetsInput
+}
+
+export type TimesheetUncheckedCreateWithoutOwnerInput = {
+  id?: number
+  startDate: Date | string
+  endDate: Date | string
+  monday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  tuesday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  wednesday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  thursday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  friday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  saturday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  projectId: number
+  createdAt?: Date | string
+}
+
+export type TimesheetCreateOrConnectWithoutOwnerInput = {
+  where: Prisma.TimesheetWhereUniqueInput
+  create: Prisma.XOR<Prisma.TimesheetCreateWithoutOwnerInput, Prisma.TimesheetUncheckedCreateWithoutOwnerInput>
+}
+
+export type TimesheetCreateManyOwnerInputEnvelope = {
+  data: Prisma.TimesheetCreateManyOwnerInput | Prisma.TimesheetCreateManyOwnerInput[]
+  skipDuplicates?: boolean
+}
+
+export type TimesheetUpsertWithWhereUniqueWithoutOwnerInput = {
+  where: Prisma.TimesheetWhereUniqueInput
+  update: Prisma.XOR<Prisma.TimesheetUpdateWithoutOwnerInput, Prisma.TimesheetUncheckedUpdateWithoutOwnerInput>
+  create: Prisma.XOR<Prisma.TimesheetCreateWithoutOwnerInput, Prisma.TimesheetUncheckedCreateWithoutOwnerInput>
+}
+
+export type TimesheetUpdateWithWhereUniqueWithoutOwnerInput = {
+  where: Prisma.TimesheetWhereUniqueInput
+  data: Prisma.XOR<Prisma.TimesheetUpdateWithoutOwnerInput, Prisma.TimesheetUncheckedUpdateWithoutOwnerInput>
+}
+
+export type TimesheetUpdateManyWithWhereWithoutOwnerInput = {
+  where: Prisma.TimesheetScalarWhereInput
+  data: Prisma.XOR<Prisma.TimesheetUpdateManyMutationInput, Prisma.TimesheetUncheckedUpdateManyWithoutOwnerInput>
 }
 
 export type TimesheetCreateManyProjectInput = {
   id?: number
+  startDate: Date | string
+  endDate: Date | string
+  monday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  tuesday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  wednesday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  thursday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  friday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  saturday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  ownerId: number
+  createdAt?: Date | string
 }
 
 export type TimesheetUpdateWithoutProjectInput = {
-
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  monday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  tuesday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  wednesday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  thursday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  friday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  saturday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  owner?: Prisma.UserUpdateOneRequiredWithoutTimesheetsNestedInput
 }
 
 export type TimesheetUncheckedUpdateWithoutProjectInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  monday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  tuesday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  wednesday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  thursday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  friday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  saturday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  ownerId?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type TimesheetUncheckedUpdateManyWithoutProjectInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  monday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  tuesday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  wednesday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  thursday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  friday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  saturday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  ownerId?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type TimesheetCreateManyOwnerInput = {
+  id?: number
+  startDate: Date | string
+  endDate: Date | string
+  monday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  tuesday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  wednesday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  thursday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  friday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  saturday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  projectId: number
+  createdAt?: Date | string
+}
+
+export type TimesheetUpdateWithoutOwnerInput = {
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  monday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  tuesday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  wednesday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  thursday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  friday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  saturday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  project?: Prisma.ProjectUpdateOneRequiredWithoutTimesheetsNestedInput
+}
+
+export type TimesheetUncheckedUpdateWithoutOwnerInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  monday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  tuesday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  wednesday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  thursday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  friday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  saturday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  projectId?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type TimesheetUncheckedUpdateManyWithoutOwnerInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  monday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  tuesday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  wednesday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  thursday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  friday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  saturday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  projectId?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 
 
 export type TimesheetSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  startDate?: boolean
+  endDate?: boolean
+  monday?: boolean
+  tuesday?: boolean
+  wednesday?: boolean
+  thursday?: boolean
+  friday?: boolean
+  saturday?: boolean
+  ownerId?: boolean
   projectId?: boolean
+  createdAt?: boolean
+  owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["timesheet"]>
 
 export type TimesheetSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  startDate?: boolean
+  endDate?: boolean
+  monday?: boolean
+  tuesday?: boolean
+  wednesday?: boolean
+  thursday?: boolean
+  friday?: boolean
+  saturday?: boolean
+  ownerId?: boolean
   projectId?: boolean
+  createdAt?: boolean
+  owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["timesheet"]>
 
 export type TimesheetSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
+  startDate?: boolean
+  endDate?: boolean
+  monday?: boolean
+  tuesday?: boolean
+  wednesday?: boolean
+  thursday?: boolean
+  friday?: boolean
+  saturday?: boolean
+  ownerId?: boolean
   projectId?: boolean
+  createdAt?: boolean
+  owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["timesheet"]>
 
 export type TimesheetSelectScalar = {
   id?: boolean
+  startDate?: boolean
+  endDate?: boolean
+  monday?: boolean
+  tuesday?: boolean
+  wednesday?: boolean
+  thursday?: boolean
+  friday?: boolean
+  saturday?: boolean
+  ownerId?: boolean
   projectId?: boolean
+  createdAt?: boolean
 }
 
-export type TimesheetOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "projectId", ExtArgs["result"]["timesheet"]>
+export type TimesheetOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "startDate" | "endDate" | "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "ownerId" | "projectId" | "createdAt", ExtArgs["result"]["timesheet"]>
 export type TimesheetInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
 }
 export type TimesheetIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
 }
 export type TimesheetIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
 }
 
 export type $TimesheetPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Timesheet"
   objects: {
+    owner: Prisma.$UserPayload<ExtArgs>
     project: Prisma.$ProjectPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
+    startDate: Date
+    endDate: Date
+    monday: runtime.Decimal
+    tuesday: runtime.Decimal
+    wednesday: runtime.Decimal
+    thursday: runtime.Decimal
+    friday: runtime.Decimal
+    saturday: runtime.Decimal
+    ownerId: number
     projectId: number
+    createdAt: Date
   }, ExtArgs["result"]["timesheet"]>
   composites: {}
 }
@@ -837,6 +1375,7 @@ readonly fields: TimesheetFieldRefs;
  */
 export interface Prisma__TimesheetClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  owner<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   project<T extends Prisma.ProjectDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ProjectDefaultArgs<ExtArgs>>): Prisma.Prisma__ProjectClient<runtime.Types.Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -868,7 +1407,17 @@ export interface Prisma__TimesheetClient<T, Null = never, ExtArgs extends runtim
  */
 export interface TimesheetFieldRefs {
   readonly id: Prisma.FieldRef<"Timesheet", 'Int'>
+  readonly startDate: Prisma.FieldRef<"Timesheet", 'DateTime'>
+  readonly endDate: Prisma.FieldRef<"Timesheet", 'DateTime'>
+  readonly monday: Prisma.FieldRef<"Timesheet", 'Decimal'>
+  readonly tuesday: Prisma.FieldRef<"Timesheet", 'Decimal'>
+  readonly wednesday: Prisma.FieldRef<"Timesheet", 'Decimal'>
+  readonly thursday: Prisma.FieldRef<"Timesheet", 'Decimal'>
+  readonly friday: Prisma.FieldRef<"Timesheet", 'Decimal'>
+  readonly saturday: Prisma.FieldRef<"Timesheet", 'Decimal'>
+  readonly ownerId: Prisma.FieldRef<"Timesheet", 'Int'>
   readonly projectId: Prisma.FieldRef<"Timesheet", 'Int'>
+  readonly createdAt: Prisma.FieldRef<"Timesheet", 'DateTime'>
 }
     
 

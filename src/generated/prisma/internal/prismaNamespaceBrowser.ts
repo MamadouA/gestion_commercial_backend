@@ -280,7 +280,17 @@ export type TenantScalarFieldEnum = (typeof TenantScalarFieldEnum)[keyof typeof 
 
 export const TimesheetScalarFieldEnum = {
   id: 'id',
-  projectId: 'projectId'
+  startDate: 'startDate',
+  endDate: 'endDate',
+  monday: 'monday',
+  tuesday: 'tuesday',
+  wednesday: 'wednesday',
+  thursday: 'thursday',
+  friday: 'friday',
+  saturday: 'saturday',
+  ownerId: 'ownerId',
+  projectId: 'projectId',
+  createdAt: 'createdAt'
 } as const
 
 export type TimesheetScalarFieldEnum = (typeof TimesheetScalarFieldEnum)[keyof typeof TimesheetScalarFieldEnum]

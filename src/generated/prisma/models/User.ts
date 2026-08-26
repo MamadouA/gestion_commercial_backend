@@ -262,6 +262,7 @@ export type UserWhereInput = {
   comments?: Prisma.CommentListRelationFilter
   invoices?: Prisma.InvoiceListRelationFilter
   reports?: Prisma.ReportListRelationFilter
+  timesheets?: Prisma.TimesheetListRelationFilter
   offers?: Prisma.OfferListRelationFilter
   projects?: Prisma.ProjectListRelationFilter
 }
@@ -282,6 +283,7 @@ export type UserOrderByWithRelationInput = {
   comments?: Prisma.CommentOrderByRelationAggregateInput
   invoices?: Prisma.InvoiceOrderByRelationAggregateInput
   reports?: Prisma.ReportOrderByRelationAggregateInput
+  timesheets?: Prisma.TimesheetOrderByRelationAggregateInput
   offers?: Prisma.OfferOrderByRelationAggregateInput
   projects?: Prisma.ProjectOrderByRelationAggregateInput
 }
@@ -305,6 +307,7 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   comments?: Prisma.CommentListRelationFilter
   invoices?: Prisma.InvoiceListRelationFilter
   reports?: Prisma.ReportListRelationFilter
+  timesheets?: Prisma.TimesheetListRelationFilter
   offers?: Prisma.OfferListRelationFilter
   projects?: Prisma.ProjectListRelationFilter
 }, "id" | "email">
@@ -354,6 +357,7 @@ export type UserCreateInput = {
   comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutAuthorInput
   reports?: Prisma.ReportCreateNestedManyWithoutAuthorInput
+  timesheets?: Prisma.TimesheetCreateNestedManyWithoutOwnerInput
   offers?: Prisma.OfferCreateNestedManyWithoutAuthorInput
   projects?: Prisma.ProjectCreateNestedManyWithoutAuthorInput
 }
@@ -372,6 +376,7 @@ export type UserUncheckedCreateInput = {
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAuthorInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
+  timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutOwnerInput
   offers?: Prisma.OfferUncheckedCreateNestedManyWithoutAuthorInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutAuthorInput
 }
@@ -389,6 +394,7 @@ export type UserUpdateInput = {
   comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutAuthorNestedInput
   reports?: Prisma.ReportUpdateManyWithoutAuthorNestedInput
+  timesheets?: Prisma.TimesheetUpdateManyWithoutOwnerNestedInput
   offers?: Prisma.OfferUpdateManyWithoutAuthorNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutAuthorNestedInput
 }
@@ -407,6 +413,7 @@ export type UserUncheckedUpdateInput = {
   comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAuthorNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutAuthorNestedInput
+  timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutOwnerNestedInput
   offers?: Prisma.OfferUncheckedUpdateManyWithoutAuthorNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutAuthorNestedInput
 }
@@ -633,6 +640,20 @@ export type UserUncheckedUpdateManyWithoutTenantNestedInput = {
   deleteMany?: Prisma.UserScalarWhereInput | Prisma.UserScalarWhereInput[]
 }
 
+export type UserCreateNestedOneWithoutTimesheetsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTimesheetsInput, Prisma.UserUncheckedCreateWithoutTimesheetsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTimesheetsInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutTimesheetsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutTimesheetsInput, Prisma.UserUncheckedCreateWithoutTimesheetsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutTimesheetsInput
+  upsert?: Prisma.UserUpsertWithoutTimesheetsInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutTimesheetsInput, Prisma.UserUpdateWithoutTimesheetsInput>, Prisma.UserUncheckedUpdateWithoutTimesheetsInput>
+}
+
 export type UserCreateNestedManyWithoutRoleInput = {
   create?: Prisma.XOR<Prisma.UserCreateWithoutRoleInput, Prisma.UserUncheckedCreateWithoutRoleInput> | Prisma.UserCreateWithoutRoleInput[] | Prisma.UserUncheckedCreateWithoutRoleInput[]
   connectOrCreate?: Prisma.UserCreateOrConnectWithoutRoleInput | Prisma.UserCreateOrConnectWithoutRoleInput[]
@@ -687,6 +708,7 @@ export type UserCreateWithoutCommentsInput = {
   prospections?: Prisma.ProspectionCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutAuthorInput
   reports?: Prisma.ReportCreateNestedManyWithoutAuthorInput
+  timesheets?: Prisma.TimesheetCreateNestedManyWithoutOwnerInput
   offers?: Prisma.OfferCreateNestedManyWithoutAuthorInput
   projects?: Prisma.ProjectCreateNestedManyWithoutAuthorInput
 }
@@ -704,6 +726,7 @@ export type UserUncheckedCreateWithoutCommentsInput = {
   prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAuthorInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
+  timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutOwnerInput
   offers?: Prisma.OfferUncheckedCreateNestedManyWithoutAuthorInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutAuthorInput
 }
@@ -736,6 +759,7 @@ export type UserUpdateWithoutCommentsInput = {
   prospections?: Prisma.ProspectionUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutAuthorNestedInput
   reports?: Prisma.ReportUpdateManyWithoutAuthorNestedInput
+  timesheets?: Prisma.TimesheetUpdateManyWithoutOwnerNestedInput
   offers?: Prisma.OfferUpdateManyWithoutAuthorNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutAuthorNestedInput
 }
@@ -753,6 +777,7 @@ export type UserUncheckedUpdateWithoutCommentsInput = {
   prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAuthorNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutAuthorNestedInput
+  timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutOwnerNestedInput
   offers?: Prisma.OfferUncheckedUpdateManyWithoutAuthorNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutAuthorNestedInput
 }
@@ -769,6 +794,7 @@ export type UserCreateWithoutInvoicesInput = {
   prospections?: Prisma.ProspectionCreateNestedManyWithoutAuthorInput
   comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
   reports?: Prisma.ReportCreateNestedManyWithoutAuthorInput
+  timesheets?: Prisma.TimesheetCreateNestedManyWithoutOwnerInput
   offers?: Prisma.OfferCreateNestedManyWithoutAuthorInput
   projects?: Prisma.ProjectCreateNestedManyWithoutAuthorInput
 }
@@ -786,6 +812,7 @@ export type UserUncheckedCreateWithoutInvoicesInput = {
   prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutAuthorInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
+  timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutOwnerInput
   offers?: Prisma.OfferUncheckedCreateNestedManyWithoutAuthorInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutAuthorInput
 }
@@ -818,6 +845,7 @@ export type UserUpdateWithoutInvoicesInput = {
   prospections?: Prisma.ProspectionUpdateManyWithoutAuthorNestedInput
   comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
   reports?: Prisma.ReportUpdateManyWithoutAuthorNestedInput
+  timesheets?: Prisma.TimesheetUpdateManyWithoutOwnerNestedInput
   offers?: Prisma.OfferUpdateManyWithoutAuthorNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutAuthorNestedInput
 }
@@ -835,6 +863,7 @@ export type UserUncheckedUpdateWithoutInvoicesInput = {
   prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutAuthorNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutAuthorNestedInput
+  timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutOwnerNestedInput
   offers?: Prisma.OfferUncheckedUpdateManyWithoutAuthorNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutAuthorNestedInput
 }
@@ -852,6 +881,7 @@ export type UserCreateWithoutOffersInput = {
   comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutAuthorInput
   reports?: Prisma.ReportCreateNestedManyWithoutAuthorInput
+  timesheets?: Prisma.TimesheetCreateNestedManyWithoutOwnerInput
   projects?: Prisma.ProjectCreateNestedManyWithoutAuthorInput
 }
 
@@ -869,6 +899,7 @@ export type UserUncheckedCreateWithoutOffersInput = {
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAuthorInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
+  timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutOwnerInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutAuthorInput
 }
 
@@ -901,6 +932,7 @@ export type UserUpdateWithoutOffersInput = {
   comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutAuthorNestedInput
   reports?: Prisma.ReportUpdateManyWithoutAuthorNestedInput
+  timesheets?: Prisma.TimesheetUpdateManyWithoutOwnerNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutAuthorNestedInput
 }
 
@@ -918,6 +950,7 @@ export type UserUncheckedUpdateWithoutOffersInput = {
   comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAuthorNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutAuthorNestedInput
+  timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutOwnerNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
@@ -934,6 +967,7 @@ export type UserCreateWithoutProjectsInput = {
   comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutAuthorInput
   reports?: Prisma.ReportCreateNestedManyWithoutAuthorInput
+  timesheets?: Prisma.TimesheetCreateNestedManyWithoutOwnerInput
   offers?: Prisma.OfferCreateNestedManyWithoutAuthorInput
 }
 
@@ -951,6 +985,7 @@ export type UserUncheckedCreateWithoutProjectsInput = {
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAuthorInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
+  timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutOwnerInput
   offers?: Prisma.OfferUncheckedCreateNestedManyWithoutAuthorInput
 }
 
@@ -983,6 +1018,7 @@ export type UserUpdateWithoutProjectsInput = {
   comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutAuthorNestedInput
   reports?: Prisma.ReportUpdateManyWithoutAuthorNestedInput
+  timesheets?: Prisma.TimesheetUpdateManyWithoutOwnerNestedInput
   offers?: Prisma.OfferUpdateManyWithoutAuthorNestedInput
 }
 
@@ -1000,6 +1036,7 @@ export type UserUncheckedUpdateWithoutProjectsInput = {
   comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAuthorNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutAuthorNestedInput
+  timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutOwnerNestedInput
   offers?: Prisma.OfferUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
@@ -1015,6 +1052,7 @@ export type UserCreateWithoutProspectionsInput = {
   comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutAuthorInput
   reports?: Prisma.ReportCreateNestedManyWithoutAuthorInput
+  timesheets?: Prisma.TimesheetCreateNestedManyWithoutOwnerInput
   offers?: Prisma.OfferCreateNestedManyWithoutAuthorInput
   projects?: Prisma.ProjectCreateNestedManyWithoutAuthorInput
 }
@@ -1032,6 +1070,7 @@ export type UserUncheckedCreateWithoutProspectionsInput = {
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAuthorInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
+  timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutOwnerInput
   offers?: Prisma.OfferUncheckedCreateNestedManyWithoutAuthorInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutAuthorInput
 }
@@ -1064,6 +1103,7 @@ export type UserUpdateWithoutProspectionsInput = {
   comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutAuthorNestedInput
   reports?: Prisma.ReportUpdateManyWithoutAuthorNestedInput
+  timesheets?: Prisma.TimesheetUpdateManyWithoutOwnerNestedInput
   offers?: Prisma.OfferUpdateManyWithoutAuthorNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutAuthorNestedInput
 }
@@ -1081,6 +1121,7 @@ export type UserUncheckedUpdateWithoutProspectionsInput = {
   comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAuthorNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutAuthorNestedInput
+  timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutOwnerNestedInput
   offers?: Prisma.OfferUncheckedUpdateManyWithoutAuthorNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutAuthorNestedInput
 }
@@ -1097,6 +1138,7 @@ export type UserCreateWithoutReportsInput = {
   prospections?: Prisma.ProspectionCreateNestedManyWithoutAuthorInput
   comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutAuthorInput
+  timesheets?: Prisma.TimesheetCreateNestedManyWithoutOwnerInput
   offers?: Prisma.OfferCreateNestedManyWithoutAuthorInput
   projects?: Prisma.ProjectCreateNestedManyWithoutAuthorInput
 }
@@ -1114,6 +1156,7 @@ export type UserUncheckedCreateWithoutReportsInput = {
   prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutAuthorInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAuthorInput
+  timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutOwnerInput
   offers?: Prisma.OfferUncheckedCreateNestedManyWithoutAuthorInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutAuthorInput
 }
@@ -1146,6 +1189,7 @@ export type UserUpdateWithoutReportsInput = {
   prospections?: Prisma.ProspectionUpdateManyWithoutAuthorNestedInput
   comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutAuthorNestedInput
+  timesheets?: Prisma.TimesheetUpdateManyWithoutOwnerNestedInput
   offers?: Prisma.OfferUpdateManyWithoutAuthorNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutAuthorNestedInput
 }
@@ -1163,6 +1207,7 @@ export type UserUncheckedUpdateWithoutReportsInput = {
   prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutAuthorNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAuthorNestedInput
+  timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutOwnerNestedInput
   offers?: Prisma.OfferUncheckedUpdateManyWithoutAuthorNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutAuthorNestedInput
 }
@@ -1179,6 +1224,7 @@ export type UserCreateWithoutTenantInput = {
   comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutAuthorInput
   reports?: Prisma.ReportCreateNestedManyWithoutAuthorInput
+  timesheets?: Prisma.TimesheetCreateNestedManyWithoutOwnerInput
   offers?: Prisma.OfferCreateNestedManyWithoutAuthorInput
   projects?: Prisma.ProjectCreateNestedManyWithoutAuthorInput
 }
@@ -1196,6 +1242,7 @@ export type UserUncheckedCreateWithoutTenantInput = {
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAuthorInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
+  timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutOwnerInput
   offers?: Prisma.OfferUncheckedCreateNestedManyWithoutAuthorInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutAuthorInput
 }
@@ -1241,6 +1288,92 @@ export type UserScalarWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
 }
 
+export type UserCreateWithoutTimesheetsInput = {
+  fullname: string
+  email: string
+  password: string
+  phone: string
+  isActive?: boolean
+  createdAt?: Date | string
+  role: Prisma.RoleCreateNestedOneWithoutUsersInput
+  tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
+  prospections?: Prisma.ProspectionCreateNestedManyWithoutAuthorInput
+  comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutAuthorInput
+  reports?: Prisma.ReportCreateNestedManyWithoutAuthorInput
+  offers?: Prisma.OfferCreateNestedManyWithoutAuthorInput
+  projects?: Prisma.ProjectCreateNestedManyWithoutAuthorInput
+}
+
+export type UserUncheckedCreateWithoutTimesheetsInput = {
+  id?: number
+  fullname: string
+  email: string
+  password: string
+  phone: string
+  roleId: number
+  isActive?: boolean
+  tenantId: number
+  createdAt?: Date | string
+  prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutAuthorInput
+  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAuthorInput
+  reports?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
+  offers?: Prisma.OfferUncheckedCreateNestedManyWithoutAuthorInput
+  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutAuthorInput
+}
+
+export type UserCreateOrConnectWithoutTimesheetsInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutTimesheetsInput, Prisma.UserUncheckedCreateWithoutTimesheetsInput>
+}
+
+export type UserUpsertWithoutTimesheetsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutTimesheetsInput, Prisma.UserUncheckedUpdateWithoutTimesheetsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutTimesheetsInput, Prisma.UserUncheckedCreateWithoutTimesheetsInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutTimesheetsInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutTimesheetsInput, Prisma.UserUncheckedUpdateWithoutTimesheetsInput>
+}
+
+export type UserUpdateWithoutTimesheetsInput = {
+  fullname?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  role?: Prisma.RoleUpdateOneRequiredWithoutUsersNestedInput
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
+  prospections?: Prisma.ProspectionUpdateManyWithoutAuthorNestedInput
+  comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutAuthorNestedInput
+  reports?: Prisma.ReportUpdateManyWithoutAuthorNestedInput
+  offers?: Prisma.OfferUpdateManyWithoutAuthorNestedInput
+  projects?: Prisma.ProjectUpdateManyWithoutAuthorNestedInput
+}
+
+export type UserUncheckedUpdateWithoutTimesheetsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  fullname?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  password?: Prisma.StringFieldUpdateOperationsInput | string
+  phone?: Prisma.StringFieldUpdateOperationsInput | string
+  roleId?: Prisma.IntFieldUpdateOperationsInput | number
+  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutAuthorNestedInput
+  comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAuthorNestedInput
+  reports?: Prisma.ReportUncheckedUpdateManyWithoutAuthorNestedInput
+  offers?: Prisma.OfferUncheckedUpdateManyWithoutAuthorNestedInput
+  projects?: Prisma.ProjectUncheckedUpdateManyWithoutAuthorNestedInput
+}
+
 export type UserCreateWithoutRoleInput = {
   fullname: string
   email: string
@@ -1253,6 +1386,7 @@ export type UserCreateWithoutRoleInput = {
   comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutAuthorInput
   reports?: Prisma.ReportCreateNestedManyWithoutAuthorInput
+  timesheets?: Prisma.TimesheetCreateNestedManyWithoutOwnerInput
   offers?: Prisma.OfferCreateNestedManyWithoutAuthorInput
   projects?: Prisma.ProjectCreateNestedManyWithoutAuthorInput
 }
@@ -1270,6 +1404,7 @@ export type UserUncheckedCreateWithoutRoleInput = {
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAuthorInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
+  timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutOwnerInput
   offers?: Prisma.OfferUncheckedCreateNestedManyWithoutAuthorInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutAuthorInput
 }
@@ -1323,6 +1458,7 @@ export type UserUpdateWithoutTenantInput = {
   comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutAuthorNestedInput
   reports?: Prisma.ReportUpdateManyWithoutAuthorNestedInput
+  timesheets?: Prisma.TimesheetUpdateManyWithoutOwnerNestedInput
   offers?: Prisma.OfferUpdateManyWithoutAuthorNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutAuthorNestedInput
 }
@@ -1340,6 +1476,7 @@ export type UserUncheckedUpdateWithoutTenantInput = {
   comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAuthorNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutAuthorNestedInput
+  timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutOwnerNestedInput
   offers?: Prisma.OfferUncheckedUpdateManyWithoutAuthorNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutAuthorNestedInput
 }
@@ -1378,6 +1515,7 @@ export type UserUpdateWithoutRoleInput = {
   comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutAuthorNestedInput
   reports?: Prisma.ReportUpdateManyWithoutAuthorNestedInput
+  timesheets?: Prisma.TimesheetUpdateManyWithoutOwnerNestedInput
   offers?: Prisma.OfferUpdateManyWithoutAuthorNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutAuthorNestedInput
 }
@@ -1395,6 +1533,7 @@ export type UserUncheckedUpdateWithoutRoleInput = {
   comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAuthorNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutAuthorNestedInput
+  timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutOwnerNestedInput
   offers?: Prisma.OfferUncheckedUpdateManyWithoutAuthorNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutAuthorNestedInput
 }
@@ -1420,6 +1559,7 @@ export type UserCountOutputType = {
   comments: number
   invoices: number
   reports: number
+  timesheets: number
   offers: number
   projects: number
 }
@@ -1429,6 +1569,7 @@ export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.I
   comments?: boolean | UserCountOutputTypeCountCommentsArgs
   invoices?: boolean | UserCountOutputTypeCountInvoicesArgs
   reports?: boolean | UserCountOutputTypeCountReportsArgs
+  timesheets?: boolean | UserCountOutputTypeCountTimesheetsArgs
   offers?: boolean | UserCountOutputTypeCountOffersArgs
   projects?: boolean | UserCountOutputTypeCountProjectsArgs
 }
@@ -1474,6 +1615,13 @@ export type UserCountOutputTypeCountReportsArgs<ExtArgs extends runtime.Types.Ex
 /**
  * UserCountOutputType without action
  */
+export type UserCountOutputTypeCountTimesheetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.TimesheetWhereInput
+}
+
+/**
+ * UserCountOutputType without action
+ */
 export type UserCountOutputTypeCountOffersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   where?: Prisma.OfferWhereInput
 }
@@ -1502,6 +1650,7 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   comments?: boolean | Prisma.User$commentsArgs<ExtArgs>
   invoices?: boolean | Prisma.User$invoicesArgs<ExtArgs>
   reports?: boolean | Prisma.User$reportsArgs<ExtArgs>
+  timesheets?: boolean | Prisma.User$timesheetsArgs<ExtArgs>
   offers?: boolean | Prisma.User$offersArgs<ExtArgs>
   projects?: boolean | Prisma.User$projectsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -1555,6 +1704,7 @@ export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   comments?: boolean | Prisma.User$commentsArgs<ExtArgs>
   invoices?: boolean | Prisma.User$invoicesArgs<ExtArgs>
   reports?: boolean | Prisma.User$reportsArgs<ExtArgs>
+  timesheets?: boolean | Prisma.User$timesheetsArgs<ExtArgs>
   offers?: boolean | Prisma.User$offersArgs<ExtArgs>
   projects?: boolean | Prisma.User$projectsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
@@ -1577,6 +1727,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     comments: Prisma.$CommentPayload<ExtArgs>[]
     invoices: Prisma.$InvoicePayload<ExtArgs>[]
     reports: Prisma.$ReportPayload<ExtArgs>[]
+    timesheets: Prisma.$TimesheetPayload<ExtArgs>[]
     offers: Prisma.$OfferPayload<ExtArgs>[]
     projects: Prisma.$ProjectPayload<ExtArgs>[]
   }
@@ -1990,6 +2141,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   comments<T extends Prisma.User$commentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   invoices<T extends Prisma.User$invoicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   reports<T extends Prisma.User$reportsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reportsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  timesheets<T extends Prisma.User$timesheetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$timesheetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TimesheetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   offers<T extends Prisma.User$offersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$offersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OfferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   projects<T extends Prisma.User$projectsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$projectsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
@@ -2524,6 +2676,30 @@ export type User$reportsArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   take?: number
   skip?: number
   distinct?: Prisma.ReportScalarFieldEnum | Prisma.ReportScalarFieldEnum[]
+}
+
+/**
+ * User.timesheets
+ */
+export type User$timesheetsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Timesheet
+   */
+  select?: Prisma.TimesheetSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Timesheet
+   */
+  omit?: Prisma.TimesheetOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.TimesheetInclude<ExtArgs> | null
+  where?: Prisma.TimesheetWhereInput
+  orderBy?: Prisma.TimesheetOrderByWithRelationInput | Prisma.TimesheetOrderByWithRelationInput[]
+  cursor?: Prisma.TimesheetWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.TimesheetScalarFieldEnum | Prisma.TimesheetScalarFieldEnum[]
 }
 
 /**
