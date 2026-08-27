@@ -85,11 +85,7 @@ export const Feature = {
   PROJECT: 'PROJECT',
   OFFER: 'OFFER',
   CLIENT: 'CLIENT',
-  ROLE: 'ROLE',
-  INVOICE: 'INVOICE',
-  PROSPECTION: 'PROSPECTION',
-  TIMESHEET: 'TIMESHEET',
-  ALERTE: 'ALERTE'
+  PROSPECTION: 'PROSPECTION'
 } as const
 
 export type Feature = (typeof Feature)[keyof typeof Feature]

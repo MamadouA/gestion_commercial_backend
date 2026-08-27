@@ -1,6 +1,6 @@
 import { Feature } from "../generated/prisma/enums";
 
-export interface PermissionDTO {
+export interface PermissionType {
     name: string;
     description: string;
     feature: Feature;

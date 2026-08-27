@@ -1993,6 +1993,7 @@ export const TimesheetScalarFieldEnum = {
   thursday: 'thursday',
   friday: 'friday',
   saturday: 'saturday',
+  sunday: 'sunday',
   ownerId: 'ownerId',
   projectId: 'projectId',
   createdAt: 'createdAt'

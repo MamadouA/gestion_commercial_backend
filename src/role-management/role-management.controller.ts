@@ -17,8 +17,8 @@ export class RoleManagementController {
     }
 
     @Get('permissions/all')
-    async findAllPermissions(@Query() query: PermissionQueryDTO, @CurrentUser('tenant') tenant: Tenant) {
-        return await this.roleManagementService.findAllPermissions(query, tenant.name);
+    async findAllPermissions(@Query() query: PermissionQueryDTO, @CurrentUser('role') role: Role) {
+        return await this.roleManagementService.findAllPermissions(query, role.name);
     }
 
     @Post('roles/create')

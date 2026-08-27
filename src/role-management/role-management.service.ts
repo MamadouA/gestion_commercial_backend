@@ -111,16 +111,17 @@ export class RoleManagementService {
 
     // -
     async findAllPermissions (query: PermissionQueryDTO, roleName: string) {
+        if(!["SUPERADMIN", "ADMIN"].includes(roleName)) {
+            throw new UnauthorizedException("You are not authorized to access this resource!");
+        }
+        
         const filter: PermissionWhereInput = {
+            name: {
+                notIn: ['tenant.manage', 'user.manage']
+            },
             description: {
                 contains: query.description,
                 mode: 'insensitive'
-            }
-        }
-
-        if(roleName !== 'SUPERADMIN') { 
-            filter.name = {
-                not: 'tenant.manage'
             }
         }
 

@@ -1,7 +1,7 @@
 import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { Feature, PrismaClient } from '../generated/prisma/client';
-import { APP_PERMISSIONS } from '../role-management/role-management.contants';
+import { USER_PERMISSIONS } from '../role-management/role-management.contants';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
@@ -26,7 +26,7 @@ export class PrismaClientService
           name: process.env.SUPERADMIN_TENANT_NAME ?? '',
           subscription: {
             create: {
-              name: "Kinetix Max",
+              name: 'Kinetix Max',
               maxUserCount: 10,
               price: 60000,
               storage: 20,
@@ -42,7 +42,7 @@ export class PrismaClientService
               permissions: {
                 create: {
                   name: 'tenant.manage',
-                  description: "Voir et gérer l'ensemble des tenants",
+                  description: "Super administrateur chargé de la gestion de l'application",
                   feature: 'TENANT',
                 },
               },
@@ -78,17 +78,19 @@ export class PrismaClientService
         },
       });
 
-      const permissions: {name: string, description: string, feature: Feature}[] = []
+      const permissions: {
+        name: string;
+        description: string;
+        feature: Feature;
+      }[] = [];
 
-      Object.values(APP_PERMISSIONS).forEach((featurePermissions) => {
-        featurePermissions.forEach((permission) => {
-          permissions.push({
-            name: permission.name,
-            description: permission.description,
-            feature: permission.feature as Feature,
-          });
+      Object.values(USER_PERMISSIONS).forEach((permission) => {
+        permissions.push({
+          name: permission.name,
+          description: permission.description,
+          feature: permission.feature as Feature,
         });
-      })
+      });
 
       await this.permission.createMany({
         data: permissions,

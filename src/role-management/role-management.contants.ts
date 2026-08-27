@@ -1,243 +1,41 @@
-import { PermissionDTO } from "./role.types"
+import { PermissionType } from "./role.types"
 
 // -
-export const PERMISSIONS_ON_DASHBOARD: PermissionDTO[] = [
+export const USER_PERMISSIONS: PermissionType[] = [
     {
-        name: "dashboard.view_monthly_revenue",
-        description: "Voir le chiffre d'affaire mensuelle",
-        feature: "DASHBOARD"
-    }
-]
-
-// -
-export const PERMISSIONS_ON_ROLE: PermissionDTO[] = [
-    {
-        name: "role.list",
-        description: "Voir la liste des rôles",
-        feature: "ROLE"
-    },
-    {
-        name: "role.create",
-        description: "Créer un rôle",
-        feature: "ROLE"
-    },
-    {
-        name: "role.update",
-        description: "Modifier un rôle",
-        feature: "ROLE"
-    },
-    {
-        name: "role.delete",
-        description: "Supprimer un rôle",
-        feature: "ROLE"
-    }
-]
-
-// -
-export const PERMISSIONS_ON_USER: PermissionDTO[] = [
-    {
-        name: "user.list",
-        description: "Voir la liste des utilisateurs",
+        name: "user.access",
+        description: "Consulter la liste des utilisateurs",
         feature: "USER"
     },
     {
-        name: "user.create",
-        description: "Créer un utilisateur",
-        feature: "USER"
-    },
-    {
-        name: "user.update",
-        description: "Modifier un utilisateur",
-        feature: "USER"
-    },
-    {
-        name: "user.delete",
-        description: "Supprimer un utilisateur",
-        feature: "USER"
-    },
-]
-
-// -
-export const PERMISSIONS_ON_PROSPECTION: PermissionDTO[] = [
-    {
-        name: "prospection.list",
-        description: "Voir la liste des propections",
-        feature: "PROSPECTION"
-    },
-    {
-        name: "prospection.create",
-        description: "Créer un propection",
-        feature: "PROSPECTION"
-    },
-    {
-        name: "prospection.update",
-        description: "Modifier un propection",
-        feature: "PROSPECTION"
-    },
-    {
-        name: "prospection.delete",
-        description: "Supprimer un propection",
-        feature: "PROSPECTION"
-    }
-]
-
-// -
-export const PERMISSIONS_ON_CLIENT: PermissionDTO[] = [
-    {
-        name: "client.list",
-        description: "Voir la liste des clients",
+        name: "client.manage",
+        description: "Gérer les clients",
         feature: "CLIENT"
     },
     {
-        name: "client.create",
-        description: "Créer un client",
-        feature: "CLIENT"
+        name: "prospection.manage",
+        description: "Gérer les prospection",
+        feature: "PROSPECTION"
     },
     {
-        name: "client.update",
-        description: "Modifier un client",
-        feature: "CLIENT"
+        name: "offer.manage",
+        description: "Gérer les offres",
+        feature: "OFFER"
     },
     {
-        name: "client.delete",
-        description: "Supprimer un client",
-        feature: "CLIENT"
-    }
-]
-
-// -
-export const PERMISSIONS_ON_PROJECT: PermissionDTO[] = [
-    {
-        name: "project.list",
-        description: "Voir la liste des projets",
-        feature: "PROJECT"
-    },
-    {
-        name: "project.create",
-        description: "Créer un projet",
-        feature: "PROJECT"
-    },
-    {
-        name: "project.update",
-        description: "Modifier un projet",
-        feature: "PROJECT"
-    },
-    {
-        name: "project.delete",
-        description: "Supprimer un projet",
+        name: "project.manage",
+        description: "Gérer les projets",
         feature: "PROJECT"
     }
 ]
 
-// -
-export const PERMISSIONS_ON_OFFER: PermissionDTO[] = [
-    {
-        name: "offer.list",
-        description: "Voir la liste des offres",
-        feature: "OFFER"
-    },
-    {
-        name: "offer.create",
-        description: "Créer une offre",
-        feature: "OFFER"
-    },
-    {
-        name: "offer.update",
-        description: "Modifier une offre",
-        feature: "OFFER"
-    },
-    {
-        name: "offer.delete",
-        description: "Supprimer une offre",
-        feature: "OFFER"
-    }
-]
 
 // -
-export const PERMISSIONS_ON_TIMESHEET: PermissionDTO[] = [
+export const ADMIN_PERMISSIONS: PermissionType[] = [
     {
-        name: "timesheet.list",
-        description: "Voir la liste des feuilles de temps",
-        feature: "TIMESHEET"
+        name: "user.manage",
+        description: "Gérer les utilisateurs",
+        feature: "USER"
     },
-    {
-        name: "timesheet.create",
-        description: "Créer une feuille de temps",
-        feature: "TIMESHEET"
-    },
-    {
-        name: "timesheet.update",
-        description: "Modifier une feuille de temps",
-        feature: "TIMESHEET"
-    },
-    {
-        name: "timesheet.delete",
-        description: "Supprimer une feuille de temps",
-        feature: "TIMESHEET"
-    }
+    ...USER_PERMISSIONS
 ]
-
-export const PERMISSIONS_ON_ALERTE: PermissionDTO[] = [
-    {
-        name: "alerte.list",
-        description: "Voir la liste des alertes",
-        feature: "ALERTE"
-    },
-    {
-        name: "alerte.update",
-        description: "Modifier une alerte",
-        feature: "ALERTE"
-    },
-    {
-        name: "alerte.delete",
-        description: "Supprimer une alerte",
-        feature: "ALERTE"
-    }
-]
-
-// -
-export const PERMISSIONS_ON_INVOICE: PermissionDTO[] = [
-    {
-        name: "invoice.list",
-        description: "Voir la liste des factures",
-        feature: "INVOICE"
-    },
-    {
-        name: "invoice.create",
-        description: "Créer une facture",
-        feature: "INVOICE"
-    },
-    {
-        name: "invoice.update",
-        description: "Modifier une facture",
-        feature: "INVOICE"
-    },
-    {
-        name: "invoice.delete",
-        description: "Supprimer une facture",
-        feature: "INVOICE"
-    }
-]
-
-// -
-export const PERMISSIONS_ON_TENANT: PermissionDTO[] = [
-    {
-        name: "tenant.manage",
-        description: "Voir et gérer l'ensemble des des tenants",
-        feature: "TENANT"
-    },
-]
-
-export const APP_PERMISSIONS = {
-    DASHBOARD: PERMISSIONS_ON_DASHBOARD,
-    ROLE: PERMISSIONS_ON_ROLE,
-    USER: PERMISSIONS_ON_USER,
-    PROSPECTION: PERMISSIONS_ON_PROSPECTION,
-    CLIENT: PERMISSIONS_ON_CLIENT,
-    PROJECT: PERMISSIONS_ON_PROJECT,
-    OFFER: PERMISSIONS_ON_OFFER,
-    INVOICE: PERMISSIONS_ON_INVOICE,
-    TENANT: PERMISSIONS_ON_TENANT,
-    TIMESHEET: PERMISSIONS_ON_TIMESHEET,
-    ALERTE: PERMISSIONS_ON_ALERTE
-}

@@ -16,9 +16,5 @@ enum Feature {
     PROJECT
     OFFER
     CLIENT
-    ROLE
-    INVOICE
     PROSPECTION
-    TIMESHEET
-    ALERTE
 }

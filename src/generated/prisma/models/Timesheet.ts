@@ -34,6 +34,7 @@ export type TimesheetAvgAggregateOutputType = {
   thursday: runtime.Decimal | null
   friday: runtime.Decimal | null
   saturday: runtime.Decimal | null
+  sunday: runtime.Decimal | null
   ownerId: number | null
   projectId: number | null
 }
@@ -46,6 +47,7 @@ export type TimesheetSumAggregateOutputType = {
   thursday: runtime.Decimal | null
   friday: runtime.Decimal | null
   saturday: runtime.Decimal | null
+  sunday: runtime.Decimal | null
   ownerId: number | null
   projectId: number | null
 }
@@ -60,6 +62,7 @@ export type TimesheetMinAggregateOutputType = {
   thursday: runtime.Decimal | null
   friday: runtime.Decimal | null
   saturday: runtime.Decimal | null
+  sunday: runtime.Decimal | null
   ownerId: number | null
   projectId: number | null
   createdAt: Date | null
@@ -75,6 +78,7 @@ export type TimesheetMaxAggregateOutputType = {
   thursday: runtime.Decimal | null
   friday: runtime.Decimal | null
   saturday: runtime.Decimal | null
+  sunday: runtime.Decimal | null
   ownerId: number | null
   projectId: number | null
   createdAt: Date | null
@@ -90,6 +94,7 @@ export type TimesheetCountAggregateOutputType = {
   thursday: number
   friday: number
   saturday: number
+  sunday: number
   ownerId: number
   projectId: number
   createdAt: number
@@ -105,6 +110,7 @@ export type TimesheetAvgAggregateInputType = {
   thursday?: true
   friday?: true
   saturday?: true
+  sunday?: true
   ownerId?: true
   projectId?: true
 }
@@ -117,6 +123,7 @@ export type TimesheetSumAggregateInputType = {
   thursday?: true
   friday?: true
   saturday?: true
+  sunday?: true
   ownerId?: true
   projectId?: true
 }
@@ -131,6 +138,7 @@ export type TimesheetMinAggregateInputType = {
   thursday?: true
   friday?: true
   saturday?: true
+  sunday?: true
   ownerId?: true
   projectId?: true
   createdAt?: true
@@ -146,6 +154,7 @@ export type TimesheetMaxAggregateInputType = {
   thursday?: true
   friday?: true
   saturday?: true
+  sunday?: true
   ownerId?: true
   projectId?: true
   createdAt?: true
@@ -161,6 +170,7 @@ export type TimesheetCountAggregateInputType = {
   thursday?: true
   friday?: true
   saturday?: true
+  sunday?: true
   ownerId?: true
   projectId?: true
   createdAt?: true
@@ -263,6 +273,7 @@ export type TimesheetGroupByOutputType = {
   thursday: runtime.Decimal
   friday: runtime.Decimal
   saturday: runtime.Decimal
+  sunday: runtime.Decimal
   ownerId: number
   projectId: number
   createdAt: Date
@@ -301,6 +312,7 @@ export type TimesheetWhereInput = {
   thursday?: Prisma.DecimalFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   friday?: Prisma.DecimalFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   saturday?: Prisma.DecimalFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sunday?: Prisma.DecimalFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   ownerId?: Prisma.IntFilter<"Timesheet"> | number
   projectId?: Prisma.IntFilter<"Timesheet"> | number
   createdAt?: Prisma.DateTimeFilter<"Timesheet"> | Date | string
@@ -318,6 +330,7 @@ export type TimesheetOrderByWithRelationInput = {
   thursday?: Prisma.SortOrder
   friday?: Prisma.SortOrder
   saturday?: Prisma.SortOrder
+  sunday?: Prisma.SortOrder
   ownerId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -338,6 +351,7 @@ export type TimesheetWhereUniqueInput = Prisma.AtLeast<{
   thursday?: Prisma.DecimalFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   friday?: Prisma.DecimalFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   saturday?: Prisma.DecimalFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sunday?: Prisma.DecimalFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   ownerId?: Prisma.IntFilter<"Timesheet"> | number
   projectId?: Prisma.IntFilter<"Timesheet"> | number
   createdAt?: Prisma.DateTimeFilter<"Timesheet"> | Date | string
@@ -355,6 +369,7 @@ export type TimesheetOrderByWithAggregationInput = {
   thursday?: Prisma.SortOrder
   friday?: Prisma.SortOrder
   saturday?: Prisma.SortOrder
+  sunday?: Prisma.SortOrder
   ownerId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -378,6 +393,7 @@ export type TimesheetScalarWhereWithAggregatesInput = {
   thursday?: Prisma.DecimalWithAggregatesFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   friday?: Prisma.DecimalWithAggregatesFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   saturday?: Prisma.DecimalWithAggregatesFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sunday?: Prisma.DecimalWithAggregatesFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   ownerId?: Prisma.IntWithAggregatesFilter<"Timesheet"> | number
   projectId?: Prisma.IntWithAggregatesFilter<"Timesheet"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Timesheet"> | Date | string
@@ -392,6 +408,7 @@ export type TimesheetCreateInput = {
   thursday?: runtime.Decimal | runtime.DecimalJsLike | number | string
   friday?: runtime.Decimal | runtime.DecimalJsLike | number | string
   saturday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  sunday?: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   owner: Prisma.UserCreateNestedOneWithoutTimesheetsInput
   project: Prisma.ProjectCreateNestedOneWithoutTimesheetsInput
@@ -407,6 +424,7 @@ export type TimesheetUncheckedCreateInput = {
   thursday?: runtime.Decimal | runtime.DecimalJsLike | number | string
   friday?: runtime.Decimal | runtime.DecimalJsLike | number | string
   saturday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  sunday?: runtime.Decimal | runtime.DecimalJsLike | number | string
   ownerId: number
   projectId: number
   createdAt?: Date | string
@@ -421,6 +439,7 @@ export type TimesheetUpdateInput = {
   thursday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   friday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   saturday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sunday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   owner?: Prisma.UserUpdateOneRequiredWithoutTimesheetsNestedInput
   project?: Prisma.ProjectUpdateOneRequiredWithoutTimesheetsNestedInput
@@ -436,6 +455,7 @@ export type TimesheetUncheckedUpdateInput = {
   thursday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   friday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   saturday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sunday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   ownerId?: Prisma.IntFieldUpdateOperationsInput | number
   projectId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -451,6 +471,7 @@ export type TimesheetCreateManyInput = {
   thursday?: runtime.Decimal | runtime.DecimalJsLike | number | string
   friday?: runtime.Decimal | runtime.DecimalJsLike | number | string
   saturday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  sunday?: runtime.Decimal | runtime.DecimalJsLike | number | string
   ownerId: number
   projectId: number
   createdAt?: Date | string
@@ -465,6 +486,7 @@ export type TimesheetUpdateManyMutationInput = {
   thursday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   friday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   saturday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sunday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -478,6 +500,7 @@ export type TimesheetUncheckedUpdateManyInput = {
   thursday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   friday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   saturday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sunday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   ownerId?: Prisma.IntFieldUpdateOperationsInput | number
   projectId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -503,6 +526,7 @@ export type TimesheetCountOrderByAggregateInput = {
   thursday?: Prisma.SortOrder
   friday?: Prisma.SortOrder
   saturday?: Prisma.SortOrder
+  sunday?: Prisma.SortOrder
   ownerId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -516,6 +540,7 @@ export type TimesheetAvgOrderByAggregateInput = {
   thursday?: Prisma.SortOrder
   friday?: Prisma.SortOrder
   saturday?: Prisma.SortOrder
+  sunday?: Prisma.SortOrder
   ownerId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
 }
@@ -530,6 +555,7 @@ export type TimesheetMaxOrderByAggregateInput = {
   thursday?: Prisma.SortOrder
   friday?: Prisma.SortOrder
   saturday?: Prisma.SortOrder
+  sunday?: Prisma.SortOrder
   ownerId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -545,6 +571,7 @@ export type TimesheetMinOrderByAggregateInput = {
   thursday?: Prisma.SortOrder
   friday?: Prisma.SortOrder
   saturday?: Prisma.SortOrder
+  sunday?: Prisma.SortOrder
   ownerId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -558,6 +585,7 @@ export type TimesheetSumOrderByAggregateInput = {
   thursday?: Prisma.SortOrder
   friday?: Prisma.SortOrder
   saturday?: Prisma.SortOrder
+  sunday?: Prisma.SortOrder
   ownerId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
 }
@@ -655,6 +683,7 @@ export type TimesheetCreateWithoutProjectInput = {
   thursday?: runtime.Decimal | runtime.DecimalJsLike | number | string
   friday?: runtime.Decimal | runtime.DecimalJsLike | number | string
   saturday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  sunday?: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   owner: Prisma.UserCreateNestedOneWithoutTimesheetsInput
 }
@@ -669,6 +698,7 @@ export type TimesheetUncheckedCreateWithoutProjectInput = {
   thursday?: runtime.Decimal | runtime.DecimalJsLike | number | string
   friday?: runtime.Decimal | runtime.DecimalJsLike | number | string
   saturday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  sunday?: runtime.Decimal | runtime.DecimalJsLike | number | string
   ownerId: number
   createdAt?: Date | string
 }
@@ -712,6 +742,7 @@ export type TimesheetScalarWhereInput = {
   thursday?: Prisma.DecimalFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   friday?: Prisma.DecimalFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   saturday?: Prisma.DecimalFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sunday?: Prisma.DecimalFilter<"Timesheet"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   ownerId?: Prisma.IntFilter<"Timesheet"> | number
   projectId?: Prisma.IntFilter<"Timesheet"> | number
   createdAt?: Prisma.DateTimeFilter<"Timesheet"> | Date | string
@@ -726,6 +757,7 @@ export type TimesheetCreateWithoutOwnerInput = {
   thursday?: runtime.Decimal | runtime.DecimalJsLike | number | string
   friday?: runtime.Decimal | runtime.DecimalJsLike | number | string
   saturday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  sunday?: runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Date | string
   project: Prisma.ProjectCreateNestedOneWithoutTimesheetsInput
 }
@@ -740,6 +772,7 @@ export type TimesheetUncheckedCreateWithoutOwnerInput = {
   thursday?: runtime.Decimal | runtime.DecimalJsLike | number | string
   friday?: runtime.Decimal | runtime.DecimalJsLike | number | string
   saturday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  sunday?: runtime.Decimal | runtime.DecimalJsLike | number | string
   projectId: number
   createdAt?: Date | string
 }
@@ -780,6 +813,7 @@ export type TimesheetCreateManyProjectInput = {
   thursday?: runtime.Decimal | runtime.DecimalJsLike | number | string
   friday?: runtime.Decimal | runtime.DecimalJsLike | number | string
   saturday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  sunday?: runtime.Decimal | runtime.DecimalJsLike | number | string
   ownerId: number
   createdAt?: Date | string
 }
@@ -793,6 +827,7 @@ export type TimesheetUpdateWithoutProjectInput = {
   thursday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   friday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   saturday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sunday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   owner?: Prisma.UserUpdateOneRequiredWithoutTimesheetsNestedInput
 }
@@ -807,6 +842,7 @@ export type TimesheetUncheckedUpdateWithoutProjectInput = {
   thursday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   friday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   saturday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sunday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   ownerId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -821,6 +857,7 @@ export type TimesheetUncheckedUpdateManyWithoutProjectInput = {
   thursday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   friday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   saturday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sunday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   ownerId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -835,6 +872,7 @@ export type TimesheetCreateManyOwnerInput = {
   thursday?: runtime.Decimal | runtime.DecimalJsLike | number | string
   friday?: runtime.Decimal | runtime.DecimalJsLike | number | string
   saturday?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  sunday?: runtime.Decimal | runtime.DecimalJsLike | number | string
   projectId: number
   createdAt?: Date | string
 }
@@ -848,6 +886,7 @@ export type TimesheetUpdateWithoutOwnerInput = {
   thursday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   friday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   saturday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sunday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   project?: Prisma.ProjectUpdateOneRequiredWithoutTimesheetsNestedInput
 }
@@ -862,6 +901,7 @@ export type TimesheetUncheckedUpdateWithoutOwnerInput = {
   thursday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   friday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   saturday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sunday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   projectId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -876,6 +916,7 @@ export type TimesheetUncheckedUpdateManyWithoutOwnerInput = {
   thursday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   friday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   saturday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  sunday?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   projectId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -892,6 +933,7 @@ export type TimesheetSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   thursday?: boolean
   friday?: boolean
   saturday?: boolean
+  sunday?: boolean
   ownerId?: boolean
   projectId?: boolean
   createdAt?: boolean
@@ -909,6 +951,7 @@ export type TimesheetSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ext
   thursday?: boolean
   friday?: boolean
   saturday?: boolean
+  sunday?: boolean
   ownerId?: boolean
   projectId?: boolean
   createdAt?: boolean
@@ -926,6 +969,7 @@ export type TimesheetSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
   thursday?: boolean
   friday?: boolean
   saturday?: boolean
+  sunday?: boolean
   ownerId?: boolean
   projectId?: boolean
   createdAt?: boolean
@@ -943,12 +987,13 @@ export type TimesheetSelectScalar = {
   thursday?: boolean
   friday?: boolean
   saturday?: boolean
+  sunday?: boolean
   ownerId?: boolean
   projectId?: boolean
   createdAt?: boolean
 }
 
-export type TimesheetOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "startDate" | "endDate" | "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "ownerId" | "projectId" | "createdAt", ExtArgs["result"]["timesheet"]>
+export type TimesheetOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "startDate" | "endDate" | "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday" | "sunday" | "ownerId" | "projectId" | "createdAt", ExtArgs["result"]["timesheet"]>
 export type TimesheetInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   owner?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   project?: boolean | Prisma.ProjectDefaultArgs<ExtArgs>
@@ -978,6 +1023,7 @@ export type $TimesheetPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     thursday: runtime.Decimal
     friday: runtime.Decimal
     saturday: runtime.Decimal
+    sunday: runtime.Decimal
     ownerId: number
     projectId: number
     createdAt: Date
@@ -1415,6 +1461,7 @@ export interface TimesheetFieldRefs {
   readonly thursday: Prisma.FieldRef<"Timesheet", 'Decimal'>
   readonly friday: Prisma.FieldRef<"Timesheet", 'Decimal'>
   readonly saturday: Prisma.FieldRef<"Timesheet", 'Decimal'>
+  readonly sunday: Prisma.FieldRef<"Timesheet", 'Decimal'>
   readonly ownerId: Prisma.FieldRef<"Timesheet", 'Int'>
   readonly projectId: Prisma.FieldRef<"Timesheet", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Timesheet", 'DateTime'>
