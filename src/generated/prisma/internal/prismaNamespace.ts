@@ -1879,8 +1879,10 @@ export type MissionTaskScalarFieldEnum = (typeof MissionTaskScalarFieldEnum)[key
 
 export const NotificationScalarFieldEnum = {
   id: 'id',
-  content: 'content',
+  message: 'message',
   tenantId: 'tenantId',
+  feature: 'feature',
+  isNew: 'isNew',
   createdAt: 'createdAt'
 } as const
 
@@ -2166,6 +2168,27 @@ export type ListEnumInvoiceStatusFieldRefInput<$PrismaModel> = FieldRefInputType
 
 
 /**
+ * Reference to a field of type 'Feature'
+ */
+export type EnumFeatureFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Feature'>
+    
+
+
+/**
+ * Reference to a field of type 'Feature[]'
+ */
+export type ListEnumFeatureFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Feature[]'>
+    
+
+
+/**
+ * Reference to a field of type 'Boolean'
+ */
+export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+/**
  * Reference to a field of type 'OfferStatus'
  */
 export type EnumOfferStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'OfferStatus'>
@@ -2204,27 +2227,6 @@ export type EnumProspectionStatusFieldRefInput<$PrismaModel> = FieldRefInputType
  * Reference to a field of type 'ProspectionStatus[]'
  */
 export type ListEnumProspectionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'ProspectionStatus[]'>
-    
-
-
-/**
- * Reference to a field of type 'Feature[]'
- */
-export type ListEnumFeatureFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Feature[]'>
-    
-
-
-/**
- * Reference to a field of type 'Feature'
- */
-export type EnumFeatureFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Feature'>
-    
-
-
-/**
- * Reference to a field of type 'Boolean'
- */
-export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 

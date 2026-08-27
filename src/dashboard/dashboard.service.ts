@@ -117,12 +117,6 @@ export class DashboardService {
     const lost = this.prismaClientService.offer.count({
       where: { tenantId, status: 'LOST' },
     });
-    const cancelled = this.prismaClientService.offer.count({
-      where: { tenantId, status: 'CANCELLED' },
-    });
-    const overdue = this.prismaClientService.offer.count({
-      where: { tenantId, status: 'OVERDUE' },
-    });
 
     const result = await Promise.all([
       pending,
@@ -130,8 +124,6 @@ export class DashboardService {
       sent,
       won,
       lost,
-      cancelled,
-      overdue,
     ]);
 
     return [
@@ -140,8 +132,6 @@ export class DashboardService {
       { status: OfferStatus.SENT, count: result[2] },
       { status: OfferStatus.WON, count: result[3]},
       { status: OfferStatus.LOST, count: result[4] },
-      { status: OfferStatus.CANCELLED, count: result[5] }, 
-      { status: OfferStatus.OVERDUE, count: result[6] },
     ];
   }
 

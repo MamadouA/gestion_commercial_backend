@@ -43,9 +43,7 @@ export const OfferStatus = {
   READY: 'READY',
   SENT: 'SENT',
   WON: 'WON',
-  LOST: 'LOST',
-  CANCELLED: 'CANCELLED',
-  OVERDUE: 'OVERDUE'
+  LOST: 'LOST'
 } as const
 
 export type OfferStatus = (typeof OfferStatus)[keyof typeof OfferStatus]

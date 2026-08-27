@@ -21,6 +21,7 @@ import { SubscriptionModule } from './subscription/subscription.module';
 import { CommentModule } from './comment/comment.module';
 import { DocumentModule } from './document/document.module';
 import { ReportModule } from './report/report.module';
+import { NotificationModule } from './notification/notification.module';
 
 @Module({
   imports: [
@@ -43,6 +44,7 @@ import { ReportModule } from './report/report.module';
     CommentModule,
     DocumentModule,
     ReportModule,
+    NotificationModule,
   ],
   controllers: [AppController],
   providers: [AppService],

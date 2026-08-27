@@ -17,6 +17,7 @@ import { type FileMetadata } from '../../shared/shared.types';
 import { create } from 'domain';
 import { Offer } from '../../generated/prisma/client';
 import { CurrentUserType } from '../../auth/auth.types';
+import { Cron, CronExpression } from '@nestjs/schedule';
 
 @Injectable()
 export class OfferService {
@@ -394,6 +395,46 @@ export class OfferService {
       }
       this.logger.error('Error while uploading the file: ', err);
       throw new InternalServerErrorException('Error while uploading the file.');
+    }
+  }
+
+  // -
+  @Cron(CronExpression.EVERY_DAY_AT_3AM)
+  async createNotifications() {
+    try {
+      const now = new Date();
+
+      const twoDaysFromNow = new Date(now.getTime() + 2 * 24 * 60 * 60 * 1000);
+
+      const tenants = await this.prismaClientService.offer.groupBy({
+        by: ["tenantId"],
+        where: {
+          status: "PENDING",
+          expiryDate: {
+            gte: now,
+            lte: twoDaysFromNow,
+          },
+        },
+      });
+
+     if(tenants.length) {
+       await Promise.all(
+        tenants.map((tenant) =>
+          this.prismaClientService.notification.create({
+            data: {
+              feature: "OFFER", // this notification is related to offers
+              message:
+                "Certaines de vos offres arrivent bientôt à échéance. Consultez la liste des offres afin de les traiter avant leur date d'expiration.",
+              tenantId: tenant.tenantId,
+            },
+          })
+        )
+      );
+    }
+     }
+    catch(err) {
+      this.logger.error('Error while creating notifications: ', err);
+      throw new InternalServerErrorException('Error while creating notifications.');
     }
   }
 }

@@ -75,7 +75,7 @@ export class ProjectService {
         where: { id: offerId, tenantId: user.tenantId },
       });
 
-      if(offer.status === "CANCELLED" || offer.status === "LOST" || offer.status === "WON") {
+      if(offer.status === "LOST" || offer.status === "WON") {
         throw new BadRequestException('Offer is already closed.');
       }
 

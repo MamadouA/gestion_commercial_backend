@@ -33,6 +33,4 @@ enum OfferStatus {
     SENT
     WON
     LOST
-    CANCELLED
-    OVERDUE
 }

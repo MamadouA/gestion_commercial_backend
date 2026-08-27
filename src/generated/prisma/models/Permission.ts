@@ -379,10 +379,6 @@ export type PermissionUncheckedUpdateManyWithoutRolesNestedInput = {
   deleteMany?: Prisma.PermissionScalarWhereInput | Prisma.PermissionScalarWhereInput[]
 }
 
-export type EnumFeatureFieldUpdateOperationsInput = {
-  set?: $Enums.Feature
-}
-
 export type PermissionCreateWithoutRolesInput = {
   name: string
   description: string

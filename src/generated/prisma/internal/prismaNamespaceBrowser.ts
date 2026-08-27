@@ -174,8 +174,10 @@ export type MissionTaskScalarFieldEnum = (typeof MissionTaskScalarFieldEnum)[key
 
 export const NotificationScalarFieldEnum = {
   id: 'id',
-  content: 'content',
+  message: 'message',
   tenantId: 'tenantId',
+  feature: 'feature',
+  isNew: 'isNew',
   createdAt: 'createdAt'
 } as const
 
