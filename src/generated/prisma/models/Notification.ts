@@ -41,7 +41,7 @@ export type NotificationMinAggregateOutputType = {
   message: string | null
   tenantId: number | null
   feature: $Enums.Feature | null
-  isNew: boolean | null
+  isRead: boolean | null
   createdAt: Date | null
 }
 
@@ -50,7 +50,7 @@ export type NotificationMaxAggregateOutputType = {
   message: string | null
   tenantId: number | null
   feature: $Enums.Feature | null
-  isNew: boolean | null
+  isRead: boolean | null
   createdAt: Date | null
 }
 
@@ -59,7 +59,7 @@ export type NotificationCountAggregateOutputType = {
   message: number
   tenantId: number
   feature: number
-  isNew: number
+  isRead: number
   createdAt: number
   _all: number
 }
@@ -80,7 +80,7 @@ export type NotificationMinAggregateInputType = {
   message?: true
   tenantId?: true
   feature?: true
-  isNew?: true
+  isRead?: true
   createdAt?: true
 }
 
@@ -89,7 +89,7 @@ export type NotificationMaxAggregateInputType = {
   message?: true
   tenantId?: true
   feature?: true
-  isNew?: true
+  isRead?: true
   createdAt?: true
 }
 
@@ -98,7 +98,7 @@ export type NotificationCountAggregateInputType = {
   message?: true
   tenantId?: true
   feature?: true
-  isNew?: true
+  isRead?: true
   createdAt?: true
   _all?: true
 }
@@ -194,7 +194,7 @@ export type NotificationGroupByOutputType = {
   message: string
   tenantId: number
   feature: $Enums.Feature
-  isNew: boolean
+  isRead: boolean
   createdAt: Date
   _count: NotificationCountAggregateOutputType | null
   _avg: NotificationAvgAggregateOutputType | null
@@ -226,7 +226,7 @@ export type NotificationWhereInput = {
   message?: Prisma.StringFilter<"Notification"> | string
   tenantId?: Prisma.IntFilter<"Notification"> | number
   feature?: Prisma.EnumFeatureFilter<"Notification"> | $Enums.Feature
-  isNew?: Prisma.BoolFilter<"Notification"> | boolean
+  isRead?: Prisma.BoolFilter<"Notification"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Notification"> | Date | string
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
 }
@@ -236,7 +236,7 @@ export type NotificationOrderByWithRelationInput = {
   message?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
   feature?: Prisma.SortOrder
-  isNew?: Prisma.SortOrder
+  isRead?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   tenant?: Prisma.TenantOrderByWithRelationInput
 }
@@ -249,7 +249,7 @@ export type NotificationWhereUniqueInput = Prisma.AtLeast<{
   message?: Prisma.StringFilter<"Notification"> | string
   tenantId?: Prisma.IntFilter<"Notification"> | number
   feature?: Prisma.EnumFeatureFilter<"Notification"> | $Enums.Feature
-  isNew?: Prisma.BoolFilter<"Notification"> | boolean
+  isRead?: Prisma.BoolFilter<"Notification"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Notification"> | Date | string
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
 }, "id">
@@ -259,7 +259,7 @@ export type NotificationOrderByWithAggregationInput = {
   message?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
   feature?: Prisma.SortOrder
-  isNew?: Prisma.SortOrder
+  isRead?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.NotificationCountOrderByAggregateInput
   _avg?: Prisma.NotificationAvgOrderByAggregateInput
@@ -276,14 +276,14 @@ export type NotificationScalarWhereWithAggregatesInput = {
   message?: Prisma.StringWithAggregatesFilter<"Notification"> | string
   tenantId?: Prisma.IntWithAggregatesFilter<"Notification"> | number
   feature?: Prisma.EnumFeatureWithAggregatesFilter<"Notification"> | $Enums.Feature
-  isNew?: Prisma.BoolWithAggregatesFilter<"Notification"> | boolean
+  isRead?: Prisma.BoolWithAggregatesFilter<"Notification"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Notification"> | Date | string
 }
 
 export type NotificationCreateInput = {
   message: string
   feature: $Enums.Feature
-  isNew?: boolean
+  isRead?: boolean
   createdAt?: Date | string
   tenant: Prisma.TenantCreateNestedOneWithoutNotificationsInput
 }
@@ -293,14 +293,14 @@ export type NotificationUncheckedCreateInput = {
   message: string
   tenantId: number
   feature: $Enums.Feature
-  isNew?: boolean
+  isRead?: boolean
   createdAt?: Date | string
 }
 
 export type NotificationUpdateInput = {
   message?: Prisma.StringFieldUpdateOperationsInput | string
   feature?: Prisma.EnumFeatureFieldUpdateOperationsInput | $Enums.Feature
-  isNew?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isRead?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tenant?: Prisma.TenantUpdateOneRequiredWithoutNotificationsNestedInput
 }
@@ -310,7 +310,7 @@ export type NotificationUncheckedUpdateInput = {
   message?: Prisma.StringFieldUpdateOperationsInput | string
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   feature?: Prisma.EnumFeatureFieldUpdateOperationsInput | $Enums.Feature
-  isNew?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isRead?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -319,14 +319,14 @@ export type NotificationCreateManyInput = {
   message: string
   tenantId: number
   feature: $Enums.Feature
-  isNew?: boolean
+  isRead?: boolean
   createdAt?: Date | string
 }
 
 export type NotificationUpdateManyMutationInput = {
   message?: Prisma.StringFieldUpdateOperationsInput | string
   feature?: Prisma.EnumFeatureFieldUpdateOperationsInput | $Enums.Feature
-  isNew?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isRead?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -335,7 +335,7 @@ export type NotificationUncheckedUpdateManyInput = {
   message?: Prisma.StringFieldUpdateOperationsInput | string
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   feature?: Prisma.EnumFeatureFieldUpdateOperationsInput | $Enums.Feature
-  isNew?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isRead?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -344,7 +344,7 @@ export type NotificationCountOrderByAggregateInput = {
   message?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
   feature?: Prisma.SortOrder
-  isNew?: Prisma.SortOrder
+  isRead?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -358,7 +358,7 @@ export type NotificationMaxOrderByAggregateInput = {
   message?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
   feature?: Prisma.SortOrder
-  isNew?: Prisma.SortOrder
+  isRead?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -367,7 +367,7 @@ export type NotificationMinOrderByAggregateInput = {
   message?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
   feature?: Prisma.SortOrder
-  isNew?: Prisma.SortOrder
+  isRead?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -439,7 +439,7 @@ export type NotificationUncheckedUpdateManyWithoutTenantNestedInput = {
 export type NotificationCreateWithoutTenantInput = {
   message: string
   feature: $Enums.Feature
-  isNew?: boolean
+  isRead?: boolean
   createdAt?: Date | string
 }
 
@@ -447,7 +447,7 @@ export type NotificationUncheckedCreateWithoutTenantInput = {
   id?: number
   message: string
   feature: $Enums.Feature
-  isNew?: boolean
+  isRead?: boolean
   createdAt?: Date | string
 }
 
@@ -485,7 +485,7 @@ export type NotificationScalarWhereInput = {
   message?: Prisma.StringFilter<"Notification"> | string
   tenantId?: Prisma.IntFilter<"Notification"> | number
   feature?: Prisma.EnumFeatureFilter<"Notification"> | $Enums.Feature
-  isNew?: Prisma.BoolFilter<"Notification"> | boolean
+  isRead?: Prisma.BoolFilter<"Notification"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Notification"> | Date | string
 }
 
@@ -493,14 +493,14 @@ export type NotificationCreateManyTenantInput = {
   id?: number
   message: string
   feature: $Enums.Feature
-  isNew?: boolean
+  isRead?: boolean
   createdAt?: Date | string
 }
 
 export type NotificationUpdateWithoutTenantInput = {
   message?: Prisma.StringFieldUpdateOperationsInput | string
   feature?: Prisma.EnumFeatureFieldUpdateOperationsInput | $Enums.Feature
-  isNew?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isRead?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -508,7 +508,7 @@ export type NotificationUncheckedUpdateWithoutTenantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   message?: Prisma.StringFieldUpdateOperationsInput | string
   feature?: Prisma.EnumFeatureFieldUpdateOperationsInput | $Enums.Feature
-  isNew?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isRead?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -516,7 +516,7 @@ export type NotificationUncheckedUpdateManyWithoutTenantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   message?: Prisma.StringFieldUpdateOperationsInput | string
   feature?: Prisma.EnumFeatureFieldUpdateOperationsInput | $Enums.Feature
-  isNew?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isRead?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -527,7 +527,7 @@ export type NotificationSelect<ExtArgs extends runtime.Types.Extensions.Internal
   message?: boolean
   tenantId?: boolean
   feature?: boolean
-  isNew?: boolean
+  isRead?: boolean
   createdAt?: boolean
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["notification"]>
@@ -537,7 +537,7 @@ export type NotificationSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   message?: boolean
   tenantId?: boolean
   feature?: boolean
-  isNew?: boolean
+  isRead?: boolean
   createdAt?: boolean
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["notification"]>
@@ -547,7 +547,7 @@ export type NotificationSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   message?: boolean
   tenantId?: boolean
   feature?: boolean
-  isNew?: boolean
+  isRead?: boolean
   createdAt?: boolean
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["notification"]>
@@ -557,11 +557,11 @@ export type NotificationSelectScalar = {
   message?: boolean
   tenantId?: boolean
   feature?: boolean
-  isNew?: boolean
+  isRead?: boolean
   createdAt?: boolean
 }
 
-export type NotificationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "message" | "tenantId" | "feature" | "isNew" | "createdAt", ExtArgs["result"]["notification"]>
+export type NotificationOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "message" | "tenantId" | "feature" | "isRead" | "createdAt", ExtArgs["result"]["notification"]>
 export type NotificationInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }
@@ -582,7 +582,7 @@ export type $NotificationPayload<ExtArgs extends runtime.Types.Extensions.Intern
     message: string
     tenantId: number
     feature: $Enums.Feature
-    isNew: boolean
+    isRead: boolean
     createdAt: Date
   }, ExtArgs["result"]["notification"]>
   composites: {}
@@ -1012,7 +1012,7 @@ export interface NotificationFieldRefs {
   readonly message: Prisma.FieldRef<"Notification", 'String'>
   readonly tenantId: Prisma.FieldRef<"Notification", 'Int'>
   readonly feature: Prisma.FieldRef<"Notification", 'Feature'>
-  readonly isNew: Prisma.FieldRef<"Notification", 'Boolean'>
+  readonly isRead: Prisma.FieldRef<"Notification", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Notification", 'DateTime'>
 }
     

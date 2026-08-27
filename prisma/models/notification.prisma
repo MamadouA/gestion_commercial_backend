@@ -4,7 +4,7 @@ model Notification {
     message String
     tenantId Int
     feature Feature  
-    isNew Boolean @default(true)
+    isRead Boolean @default(false)
     tenant Tenant @relation(fields: [tenantId], references: [id])
     createdAt DateTime @default(now())
 }

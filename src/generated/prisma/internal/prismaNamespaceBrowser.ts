@@ -177,7 +177,7 @@ export const NotificationScalarFieldEnum = {
   message: 'message',
   tenantId: 'tenantId',
   feature: 'feature',
-  isNew: 'isNew',
+  isRead: 'isRead',
   createdAt: 'createdAt'
 } as const
 
