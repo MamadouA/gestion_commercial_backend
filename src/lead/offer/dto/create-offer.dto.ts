@@ -1,4 +1,5 @@
-import { IsArray, IsDateString, IsIn, IsInt, IsNumber, IsOptional, IsString, MaxLength, Min, MinLength, Validate, ValidateNested } from "class-validator"
+import { IsDateString, IsNumber, IsOptional, IsString, MaxLength, Min, MinLength } from "class-validator"
+import { CreateDocumentDTO } from "../../../document/dto/create-document.dto"
 
 export class CreateOfferDTO {
     @IsString()
@@ -21,4 +22,6 @@ export class CreateOfferDTO {
     @IsNumber()
     @Min(0)
     amountVAT!: number  
+
+    document?: Pick<CreateDocumentDTO, "description">
 }

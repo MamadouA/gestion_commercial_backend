@@ -66,6 +66,20 @@ export class NotificationService {
             throw new InternalServerErrorException('Error while fetching the notifications.');
         }
     }
+
+    // -
+    async marAllAsRead(tenantId: number) {
+        try {
+            return await this.prismaClientService.notification.updateMany({ 
+                where: { tenantId, isRead: false },
+                data: { isRead: true },
+             });
+        }
+        catch(err) {
+            this.logger.error('Error while marking the notifications as read: ', err);
+            throw new InternalServerErrorException('Error while marking the notifications as read.');
+        }
+    }
 }
 
 

@@ -18,4 +18,10 @@ export class NotificationController {
     async getNewCount (@CurrentUser() user: CurrentUserType) {
         return this.notificationService.getUnreadCount(user, user.tenantId);
     }
+
+    // -
+    @Get('mark-all-as-read')
+    async markAllAsRead (@CurrentUser('tenantId') tenantId: number) {
+        return this.notificationService.marAllAsRead(tenantId);
+    }
 }

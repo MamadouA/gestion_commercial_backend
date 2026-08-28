@@ -10,6 +10,7 @@ import { UpdateOfferDTO } from './dto/update-offer.dto';
 import { S3ClientService } from '../../common/file-manager/s3-client.service';
 import { OfferQueryDTO } from './dto/offer-query.dto';
 import {
+  OfferCreateInput,
   OfferUpdateInput,
   OfferWhereInput,
 } from '../../generated/prisma/models';
@@ -131,22 +132,37 @@ export class OfferService {
     let fileMetadata: FileMetadata | null = null;
 
     try {
-      const data = {
+      const data: OfferCreateInput = {
         title: createOfferDto.title,
-        clientId: createOfferDto.clientId,
+        client: {
+          connect: {
+            id: createOfferDto.clientId,
+          },
+        },
         expiryDate: new Date(createOfferDto.expiryDate),
         amountHT: createOfferDto.amountHT,
         amountTVA: createOfferDto.amountVAT,
         amountTTC:
           createOfferDto.amountHT + createOfferDto.amountVAT,
-        authorId,
-        tenantId,
+        author: {
+          connect: {
+            id: authorId,
+          },
+        },
+        tenant: {
+          connect: {
+            id: tenantId,
+          },
+        },
       };
 
       if (file) {
         fileMetadata = await this.s3ClientService.save(file);
         data['documents'] = {
-          create: fileMetadata,
+          create: {
+            description: createOfferDto.document?.description,
+            ...fileMetadata,
+          },
         };
       }
 
