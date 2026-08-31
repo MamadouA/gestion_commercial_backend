@@ -1,7 +1,7 @@
 import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { Feature, PrismaClient } from '../generated/prisma/client';
-import { USER_PERMISSIONS } from '../role-management/role-management.contants';
+import { APP_PERMISSIONS } from '../role-management/role-management.contants';
 import * as bcrypt from 'bcrypt';
 
 @Injectable()
@@ -84,7 +84,7 @@ export class PrismaClientService
         feature: Feature;
       }[] = [];
 
-      Object.values(USER_PERMISSIONS).forEach((permission) => {
+      Object.values(APP_PERMISSIONS).forEach((permission) => {
         permissions.push({
           name: permission.name,
           description: permission.description,

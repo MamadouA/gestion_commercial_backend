@@ -16,15 +16,52 @@ export class DashboardService {
       const offerOverview = this.getOfferOverview(tenantId);
       const prospectionOverview = this.getProspectionOverview(tenantId);
       const invoiceOverview = this.getInvoiceOverview(tenantId);
+      const revenues = this.getMonthlyRevenues(tenantId);  
 
-      const result = await  Promise.all([counts, projectOverview, offerOverview, prospectionOverview, invoiceOverview]);
+      const result = await  Promise.all([counts, projectOverview, offerOverview, prospectionOverview, invoiceOverview, revenues]);
 
-      return { counts: result[0], projects: result[1], offers: result[2], prospections: result[3], invoices: result[4] };
+      return { counts: result[0], projects: result[1], offers: result[2], prospections: result[3], invoices: result[4], revenues: result[5] };
     }
     catch(err) {
       this.logger.error("Error while fetching the overview: ", err);
       throw new InternalServerErrorException("Error while fetching the overview.");
     }                                                              
+  }
+
+  async getMonthlyRevenues(tenantId: number) {
+    const year = new Date().getUTCFullYear();
+    const revenues = [
+      { 'month': 'Janvier', 'revenue': 0 },
+      { 'month': "Février", 'revenue': 0 },
+      { 'month': 'Mars', 'revenue': 0 },
+      { 'month': 'Avril', 'revenue': 0 },
+      { 'month': 'Mai', 'revenue': 0 },
+      { 'month': 'Juin', 'revenue': 0 },
+      { 'month': 'Juillet', 'revenue': 0 },
+      { 'month': 'Aout', 'revenue': 0 },
+      { 'month': 'Septembre', 'revenue': 0 },
+      { 'month': 'Octobre', 'revenue': 0 },
+      { 'month': 'Novembre', 'revenue': 0 },
+      { 'month': 'Décembre', 'revenue': 0 },
+    ]
+
+    const result = await this.prismaClientService.$queryRaw<{ month: number; revenue: number }[]>`
+      SELECT
+        EXTRACT(MONTH FROM "createdAt") AS month,
+        SUM("amountHT") AS revenue
+      FROM "Project"
+      WHERE
+        "status" = 'DONE'AND "tenantId" = ${tenantId}
+        AND EXTRACT(YEAR FROM "createdAt") = ${year}
+      GROUP BY EXTRACT(MONTH FROM "createdAt")
+      ORDER BY month ASC;
+    `;
+
+    result.forEach(item => {
+      revenues[item.month].revenue = item.revenue;
+    });
+
+    return revenues;
   }
 
   // -
