@@ -36,7 +36,7 @@ export class ProjectService {
             select: {
               id: true,
               type: true,
-              enterpriseName: true,
+              companyName: true,
               contactName: true,
             },
           },
@@ -148,7 +148,7 @@ export class ProjectService {
               select: {
                 id: true,
                 type: true,
-                enterpriseName: true,
+                companyName: true,
                 contactName: true,
               },
             }

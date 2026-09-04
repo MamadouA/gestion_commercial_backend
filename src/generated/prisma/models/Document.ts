@@ -44,7 +44,7 @@ export type DocumentSumAggregateOutputType = {
 
 export type DocumentMinAggregateOutputType = {
   id: number | null
-  description: string | null
+  summary: string | null
   originalName: string | null
   storedName: string | null
   size: runtime.Decimal | null
@@ -57,7 +57,7 @@ export type DocumentMinAggregateOutputType = {
 
 export type DocumentMaxAggregateOutputType = {
   id: number | null
-  description: string | null
+  summary: string | null
   originalName: string | null
   storedName: string | null
   size: runtime.Decimal | null
@@ -70,7 +70,7 @@ export type DocumentMaxAggregateOutputType = {
 
 export type DocumentCountAggregateOutputType = {
   id: number
-  description: number
+  summary: number
   originalName: number
   storedName: number
   size: number
@@ -101,7 +101,7 @@ export type DocumentSumAggregateInputType = {
 
 export type DocumentMinAggregateInputType = {
   id?: true
-  description?: true
+  summary?: true
   originalName?: true
   storedName?: true
   size?: true
@@ -114,7 +114,7 @@ export type DocumentMinAggregateInputType = {
 
 export type DocumentMaxAggregateInputType = {
   id?: true
-  description?: true
+  summary?: true
   originalName?: true
   storedName?: true
   size?: true
@@ -127,7 +127,7 @@ export type DocumentMaxAggregateInputType = {
 
 export type DocumentCountAggregateInputType = {
   id?: true
-  description?: true
+  summary?: true
   originalName?: true
   storedName?: true
   size?: true
@@ -227,7 +227,7 @@ export type DocumentGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 
 export type DocumentGroupByOutputType = {
   id: number
-  description: string | null
+  summary: string | null
   originalName: string
   storedName: string
   size: runtime.Decimal
@@ -263,7 +263,7 @@ export type DocumentWhereInput = {
   OR?: Prisma.DocumentWhereInput[]
   NOT?: Prisma.DocumentWhereInput | Prisma.DocumentWhereInput[]
   id?: Prisma.IntFilter<"Document"> | number
-  description?: Prisma.StringNullableFilter<"Document"> | string | null
+  summary?: Prisma.StringNullableFilter<"Document"> | string | null
   originalName?: Prisma.StringFilter<"Document"> | string
   storedName?: Prisma.StringFilter<"Document"> | string
   size?: Prisma.DecimalFilter<"Document"> | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -281,7 +281,7 @@ export type DocumentWhereInput = {
 
 export type DocumentOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  description?: Prisma.SortOrderInput | Prisma.SortOrder
+  summary?: Prisma.SortOrderInput | Prisma.SortOrder
   originalName?: Prisma.SortOrder
   storedName?: Prisma.SortOrder
   size?: Prisma.SortOrder
@@ -303,7 +303,7 @@ export type DocumentWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.DocumentWhereInput | Prisma.DocumentWhereInput[]
   OR?: Prisma.DocumentWhereInput[]
   NOT?: Prisma.DocumentWhereInput | Prisma.DocumentWhereInput[]
-  description?: Prisma.StringNullableFilter<"Document"> | string | null
+  summary?: Prisma.StringNullableFilter<"Document"> | string | null
   originalName?: Prisma.StringFilter<"Document"> | string
   size?: Prisma.DecimalFilter<"Document"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   mimetype?: Prisma.StringFilter<"Document"> | string
@@ -320,7 +320,7 @@ export type DocumentWhereUniqueInput = Prisma.AtLeast<{
 
 export type DocumentOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  description?: Prisma.SortOrderInput | Prisma.SortOrder
+  summary?: Prisma.SortOrderInput | Prisma.SortOrder
   originalName?: Prisma.SortOrder
   storedName?: Prisma.SortOrder
   size?: Prisma.SortOrder
@@ -341,7 +341,7 @@ export type DocumentScalarWhereWithAggregatesInput = {
   OR?: Prisma.DocumentScalarWhereWithAggregatesInput[]
   NOT?: Prisma.DocumentScalarWhereWithAggregatesInput | Prisma.DocumentScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Document"> | number
-  description?: Prisma.StringNullableWithAggregatesFilter<"Document"> | string | null
+  summary?: Prisma.StringNullableWithAggregatesFilter<"Document"> | string | null
   originalName?: Prisma.StringWithAggregatesFilter<"Document"> | string
   storedName?: Prisma.StringWithAggregatesFilter<"Document"> | string
   size?: Prisma.DecimalWithAggregatesFilter<"Document"> | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -353,7 +353,7 @@ export type DocumentScalarWhereWithAggregatesInput = {
 }
 
 export type DocumentCreateInput = {
-  description?: string | null
+  summary?: string | null
   originalName: string
   storedName: string
   size: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -368,7 +368,7 @@ export type DocumentCreateInput = {
 
 export type DocumentUncheckedCreateInput = {
   id?: number
-  description?: string | null
+  summary?: string | null
   originalName: string
   storedName: string
   size: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -382,7 +382,7 @@ export type DocumentUncheckedCreateInput = {
 }
 
 export type DocumentUpdateInput = {
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   storedName?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -397,7 +397,7 @@ export type DocumentUpdateInput = {
 
 export type DocumentUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   storedName?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -412,7 +412,7 @@ export type DocumentUncheckedUpdateInput = {
 
 export type DocumentCreateManyInput = {
   id?: number
-  description?: string | null
+  summary?: string | null
   originalName: string
   storedName: string
   size: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -424,7 +424,7 @@ export type DocumentCreateManyInput = {
 }
 
 export type DocumentUpdateManyMutationInput = {
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   storedName?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -434,7 +434,7 @@ export type DocumentUpdateManyMutationInput = {
 
 export type DocumentUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   storedName?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -447,7 +447,7 @@ export type DocumentUncheckedUpdateManyInput = {
 
 export type DocumentCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  description?: Prisma.SortOrder
+  summary?: Prisma.SortOrder
   originalName?: Prisma.SortOrder
   storedName?: Prisma.SortOrder
   size?: Prisma.SortOrder
@@ -468,7 +468,7 @@ export type DocumentAvgOrderByAggregateInput = {
 
 export type DocumentMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  description?: Prisma.SortOrder
+  summary?: Prisma.SortOrder
   originalName?: Prisma.SortOrder
   storedName?: Prisma.SortOrder
   size?: Prisma.SortOrder
@@ -481,7 +481,7 @@ export type DocumentMaxOrderByAggregateInput = {
 
 export type DocumentMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  description?: Prisma.SortOrder
+  summary?: Prisma.SortOrder
   originalName?: Prisma.SortOrder
   storedName?: Prisma.SortOrder
   size?: Prisma.SortOrder
@@ -678,7 +678,7 @@ export type DocumentUpdateOneRequiredWithoutReportNestedInput = {
 }
 
 export type DocumentCreateWithoutInvoiceInput = {
-  description?: string | null
+  summary?: string | null
   originalName: string
   storedName: string
   size: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -692,7 +692,7 @@ export type DocumentCreateWithoutInvoiceInput = {
 
 export type DocumentUncheckedCreateWithoutInvoiceInput = {
   id?: number
-  description?: string | null
+  summary?: string | null
   originalName: string
   storedName: string
   size: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -721,7 +721,7 @@ export type DocumentUpdateToOneWithWhereWithoutInvoiceInput = {
 }
 
 export type DocumentUpdateWithoutInvoiceInput = {
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   storedName?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -735,7 +735,7 @@ export type DocumentUpdateWithoutInvoiceInput = {
 
 export type DocumentUncheckedUpdateWithoutInvoiceInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   storedName?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -748,7 +748,7 @@ export type DocumentUncheckedUpdateWithoutInvoiceInput = {
 }
 
 export type DocumentCreateWithoutOfferInput = {
-  description?: string | null
+  summary?: string | null
   originalName: string
   storedName: string
   size: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -762,7 +762,7 @@ export type DocumentCreateWithoutOfferInput = {
 
 export type DocumentUncheckedCreateWithoutOfferInput = {
   id?: number
-  description?: string | null
+  summary?: string | null
   originalName: string
   storedName: string
   size: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -805,7 +805,7 @@ export type DocumentScalarWhereInput = {
   OR?: Prisma.DocumentScalarWhereInput[]
   NOT?: Prisma.DocumentScalarWhereInput | Prisma.DocumentScalarWhereInput[]
   id?: Prisma.IntFilter<"Document"> | number
-  description?: Prisma.StringNullableFilter<"Document"> | string | null
+  summary?: Prisma.StringNullableFilter<"Document"> | string | null
   originalName?: Prisma.StringFilter<"Document"> | string
   storedName?: Prisma.StringFilter<"Document"> | string
   size?: Prisma.DecimalFilter<"Document"> | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -817,7 +817,7 @@ export type DocumentScalarWhereInput = {
 }
 
 export type DocumentCreateWithoutProjectInput = {
-  description?: string | null
+  summary?: string | null
   originalName: string
   storedName: string
   size: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -831,7 +831,7 @@ export type DocumentCreateWithoutProjectInput = {
 
 export type DocumentUncheckedCreateWithoutProjectInput = {
   id?: number
-  description?: string | null
+  summary?: string | null
   originalName: string
   storedName: string
   size: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -870,7 +870,7 @@ export type DocumentUpdateManyWithWhereWithoutProjectInput = {
 }
 
 export type DocumentCreateWithoutProspectionInput = {
-  description?: string | null
+  summary?: string | null
   originalName: string
   storedName: string
   size: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -884,7 +884,7 @@ export type DocumentCreateWithoutProspectionInput = {
 
 export type DocumentUncheckedCreateWithoutProspectionInput = {
   id?: number
-  description?: string | null
+  summary?: string | null
   originalName: string
   storedName: string
   size: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -923,7 +923,7 @@ export type DocumentUpdateManyWithWhereWithoutProspectionInput = {
 }
 
 export type DocumentCreateWithoutReportInput = {
-  description?: string | null
+  summary?: string | null
   originalName: string
   storedName: string
   size: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -937,7 +937,7 @@ export type DocumentCreateWithoutReportInput = {
 
 export type DocumentUncheckedCreateWithoutReportInput = {
   id?: number
-  description?: string | null
+  summary?: string | null
   originalName: string
   storedName: string
   size: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -966,7 +966,7 @@ export type DocumentUpdateToOneWithWhereWithoutReportInput = {
 }
 
 export type DocumentUpdateWithoutReportInput = {
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   storedName?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -980,7 +980,7 @@ export type DocumentUpdateWithoutReportInput = {
 
 export type DocumentUncheckedUpdateWithoutReportInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   storedName?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -994,7 +994,7 @@ export type DocumentUncheckedUpdateWithoutReportInput = {
 
 export type DocumentCreateManyOfferInput = {
   id?: number
-  description?: string | null
+  summary?: string | null
   originalName: string
   storedName: string
   size: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1005,7 +1005,7 @@ export type DocumentCreateManyOfferInput = {
 }
 
 export type DocumentUpdateWithoutOfferInput = {
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   storedName?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1019,7 +1019,7 @@ export type DocumentUpdateWithoutOfferInput = {
 
 export type DocumentUncheckedUpdateWithoutOfferInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   storedName?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1033,7 +1033,7 @@ export type DocumentUncheckedUpdateWithoutOfferInput = {
 
 export type DocumentUncheckedUpdateManyWithoutOfferInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   storedName?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1045,7 +1045,7 @@ export type DocumentUncheckedUpdateManyWithoutOfferInput = {
 
 export type DocumentCreateManyProjectInput = {
   id?: number
-  description?: string | null
+  summary?: string | null
   originalName: string
   storedName: string
   size: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1056,7 +1056,7 @@ export type DocumentCreateManyProjectInput = {
 }
 
 export type DocumentUpdateWithoutProjectInput = {
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   storedName?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1070,7 +1070,7 @@ export type DocumentUpdateWithoutProjectInput = {
 
 export type DocumentUncheckedUpdateWithoutProjectInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   storedName?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1084,7 +1084,7 @@ export type DocumentUncheckedUpdateWithoutProjectInput = {
 
 export type DocumentUncheckedUpdateManyWithoutProjectInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   storedName?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1096,7 +1096,7 @@ export type DocumentUncheckedUpdateManyWithoutProjectInput = {
 
 export type DocumentCreateManyProspectionInput = {
   id?: number
-  description?: string | null
+  summary?: string | null
   originalName: string
   storedName: string
   size: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1107,7 +1107,7 @@ export type DocumentCreateManyProspectionInput = {
 }
 
 export type DocumentUpdateWithoutProspectionInput = {
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   storedName?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1121,7 +1121,7 @@ export type DocumentUpdateWithoutProspectionInput = {
 
 export type DocumentUncheckedUpdateWithoutProspectionInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   storedName?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1135,7 +1135,7 @@ export type DocumentUncheckedUpdateWithoutProspectionInput = {
 
 export type DocumentUncheckedUpdateManyWithoutProspectionInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  summary?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   originalName?: Prisma.StringFieldUpdateOperationsInput | string
   storedName?: Prisma.StringFieldUpdateOperationsInput | string
   size?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1149,7 +1149,7 @@ export type DocumentUncheckedUpdateManyWithoutProspectionInput = {
 
 export type DocumentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  description?: boolean
+  summary?: boolean
   originalName?: boolean
   storedName?: boolean
   size?: boolean
@@ -1167,7 +1167,7 @@ export type DocumentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
 
 export type DocumentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  description?: boolean
+  summary?: boolean
   originalName?: boolean
   storedName?: boolean
   size?: boolean
@@ -1183,7 +1183,7 @@ export type DocumentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
 
 export type DocumentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  description?: boolean
+  summary?: boolean
   originalName?: boolean
   storedName?: boolean
   size?: boolean
@@ -1199,7 +1199,7 @@ export type DocumentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 
 export type DocumentSelectScalar = {
   id?: boolean
-  description?: boolean
+  summary?: boolean
   originalName?: boolean
   storedName?: boolean
   size?: boolean
@@ -1210,7 +1210,7 @@ export type DocumentSelectScalar = {
   projectId?: boolean
 }
 
-export type DocumentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "description" | "originalName" | "storedName" | "size" | "mimetype" | "createdAt" | "prospectionId" | "offerId" | "projectId", ExtArgs["result"]["document"]>
+export type DocumentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "summary" | "originalName" | "storedName" | "size" | "mimetype" | "createdAt" | "prospectionId" | "offerId" | "projectId", ExtArgs["result"]["document"]>
 export type DocumentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   prospection?: boolean | Prisma.Document$prospectionArgs<ExtArgs>
   offer?: boolean | Prisma.Document$offerArgs<ExtArgs>
@@ -1240,7 +1240,7 @@ export type $DocumentPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
-    description: string | null
+    summary: string | null
     originalName: string
     storedName: string
     size: runtime.Decimal
@@ -1678,7 +1678,7 @@ export interface Prisma__DocumentClient<T, Null = never, ExtArgs extends runtime
  */
 export interface DocumentFieldRefs {
   readonly id: Prisma.FieldRef<"Document", 'Int'>
-  readonly description: Prisma.FieldRef<"Document", 'String'>
+  readonly summary: Prisma.FieldRef<"Document", 'String'>
   readonly originalName: Prisma.FieldRef<"Document", 'String'>
   readonly storedName: Prisma.FieldRef<"Document", 'String'>
   readonly size: Prisma.FieldRef<"Document", 'Decimal'>

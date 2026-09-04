@@ -41,7 +41,6 @@ export type InvoiceStatus = (typeof InvoiceStatus)[keyof typeof InvoiceStatus]
 export const OfferStatus = {
   PENDING: 'PENDING',
   READY: 'READY',
-  SENT: 'SENT',
   WON: 'WON',
   LOST: 'LOST'
 } as const
@@ -68,7 +67,6 @@ export type ProjectStatus = (typeof ProjectStatus)[keyof typeof ProjectStatus]
 
 export const ProspectionStatus = {
   OPENED: 'OPENED',
-  CANCELLED: 'CANCELLED',
   LOST: 'LOST',
   WON: 'WON'
 } as const

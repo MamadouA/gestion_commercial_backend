@@ -33,30 +33,24 @@ export class OfferService {
   async findAll(query: OfferQueryDTO, tenantId: number) {
     const filter: OfferWhereInput = { tenantId };
 
-    if (
-      query.contactNameOrEnterpriseName &&
-      query.contactNameOrEnterpriseName.length
-    ) {
-      filter.OR = [
-        {
-          client: {
-            enterpriseName: {
-              contains: query.contactNameOrEnterpriseName,
-              mode: 'insensitive',
-            },
-          },
-        },
-        {
-          client: {
-            contactName: {
-              contains: query.contactNameOrEnterpriseName,
-              mode: 'insensitive',
-            },
-          },
-        },
-      ];
+    if(query.companyName && query.companyName.length) {
+      filter.client = {
+        companyName: {
+          contains: query.companyName,
+          mode: 'insensitive'
+        }
+      }
     }
 
+    if(query.contactName && query.contactName.length) {
+      filter.client = {
+        contactName: {
+          contains: query.contactName,
+          mode: 'insensitive'
+        }
+      }
+    }
+  
     if (query.authorName && query.authorName.length) {
       filter.author = {
         fullname: {
@@ -70,9 +64,9 @@ export class OfferService {
       filter.status = query.status;
     }
 
-    if (query.expiryDate && query.expiryDate.length) {
-      filter.expiryDate = {
-        lte: new Date(query.expiryDate),
+    if (query.deadline && query.deadline.length) {
+      filter.deadline = {
+        lte: new Date(query.deadline),
       };
     }
 
@@ -84,11 +78,11 @@ export class OfferService {
           title: true,
           status: true,
           amountTTC: true,
-          expiryDate: true,
+          deadline: true,
           client: {
             select: {
               type: true,
-              enterpriseName: true,
+              companyName: true,
               contactName: true,
             },
           },
@@ -139,7 +133,7 @@ export class OfferService {
             id: createOfferDto.clientId,
           },
         },
-        expiryDate: new Date(createOfferDto.expiryDate),
+        deadline: new Date(createOfferDto.deadline),
         amountHT: createOfferDto.amountHT,
         amountTVA: createOfferDto.amountVAT,
         amountTTC:
@@ -160,7 +154,7 @@ export class OfferService {
         fileMetadata = await this.s3ClientService.save(file);
         data['documents'] = {
           create: {
-            description: createOfferDto.document?.description,
+            summary: createOfferDto.document?.summary,
             ...fileMetadata,
           },
         };
@@ -206,7 +200,7 @@ export class OfferService {
             select: {
               id: true,
               type: true,
-              enterpriseName: true,
+              companyName: true,
               contactName: true,
               email: true,
               phone: true,
@@ -327,7 +321,7 @@ export class OfferService {
               select: {
                 id: true,
                 type: true,
-                enterpriseName: true,
+                companyName: true,
                 contactName: true,
                 email: true,
                 phone: true,
@@ -426,7 +420,7 @@ export class OfferService {
         by: ["tenantId"],
         where: {
           status: "PENDING",
-          expiryDate: {
+          deadline: {
             gte: now,
             lte: twoDaysFromNow,
           },

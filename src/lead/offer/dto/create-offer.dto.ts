@@ -13,7 +13,7 @@ export class CreateOfferDTO {
 
     @IsDateString()
     @IsOptional()
-    expiryDate!: string
+    deadline!: string
     
     @IsNumber()
     @Min(0)
@@ -23,5 +23,5 @@ export class CreateOfferDTO {
     @Min(0)
     amountVAT!: number  
 
-    document?: Pick<CreateDocumentDTO, "description">
+    document?: CreateDocumentDTO
 }

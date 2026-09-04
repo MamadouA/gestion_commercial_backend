@@ -114,7 +114,7 @@ export class InvoiceService {
                                 select: {
                                     id: true,
                                     type: true,
-                                    enterpriseName: true,
+                                    companyName: true,
                                     contactName: true,
                                 }
                             }
@@ -149,7 +149,7 @@ export class InvoiceService {
                     document: {
                         select: {
                             id: true,
-                            description: true,
+                            summary: true,
                             createdAt: true,
                             size: true,
                             originalName: true,

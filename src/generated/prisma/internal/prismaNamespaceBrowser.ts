@@ -95,9 +95,9 @@ export const ClientScalarFieldEnum = {
   contactName: 'contactName',
   phone: 'phone',
   email: 'email',
-  enterpriseName: 'enterpriseName',
-  enterpriseLegalForm: 'enterpriseLegalForm',
-  mainActivity: 'mainActivity',
+  companyName: 'companyName',
+  companyLegalForm: 'companyLegalForm',
+  industry: 'industry',
   createdAt: 'createdAt',
   tenantId: 'tenantId'
 } as const
@@ -119,7 +119,7 @@ export type CommentScalarFieldEnum = (typeof CommentScalarFieldEnum)[keyof typeo
 
 export const DocumentScalarFieldEnum = {
   id: 'id',
-  description: 'description',
+  summary: 'summary',
   originalName: 'originalName',
   storedName: 'storedName',
   size: 'size',
@@ -194,7 +194,7 @@ export const OfferScalarFieldEnum = {
   authorId: 'authorId',
   clientId: 'clientId',
   tenantId: 'tenantId',
-  expiryDate: 'expiryDate',
+  deadline: 'deadline',
   sentAt: 'sentAt',
   createdAt: 'createdAt'
 } as const
@@ -231,9 +231,8 @@ export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeo
 
 export const ProspectionScalarFieldEnum = {
   id: 'id',
-  proposedService: 'proposedService',
-  startDate: 'startDate',
-  endDate: 'endDate',
+  service: 'service',
+  deadline: 'deadline',
   status: 'status',
   clientId: 'clientId',
   tenantId: 'tenantId',

@@ -5,3 +5,4 @@ export interface FileMetadata {
     size: number
     mimetype: string
 }
+

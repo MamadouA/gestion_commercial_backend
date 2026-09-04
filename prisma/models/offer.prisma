@@ -22,7 +22,7 @@ model Offer {
     tenantId Int
     tenant Tenant @relation(fields: [tenantId], references: [id])
     
-    expiryDate DateTime?
+    deadline DateTime?
     sentAt DateTime?
     createdAt DateTime @default(now())
 }
@@ -30,7 +30,6 @@ model Offer {
 enum OfferStatus {
     PENDING
     READY
-    SENT
     WON
     LOST
 }

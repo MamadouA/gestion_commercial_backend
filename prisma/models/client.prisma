@@ -7,9 +7,9 @@ model Client {
     contactName String
     phone String
     email String
-    enterpriseName String?
-    enterpriseLegalForm EnterpriseLegalForm?
-    mainActivity String?
+    companyName String?
+    companyLegalForm EnterpriseLegalForm?
+    industry String?
     createdAt DateTime @default(now())
 
     tenantId Int 

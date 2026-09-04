@@ -56,7 +56,7 @@ export type OfferMinAggregateOutputType = {
   authorId: number | null
   clientId: number | null
   tenantId: number | null
-  expiryDate: Date | null
+  deadline: Date | null
   sentAt: Date | null
   createdAt: Date | null
 }
@@ -71,7 +71,7 @@ export type OfferMaxAggregateOutputType = {
   authorId: number | null
   clientId: number | null
   tenantId: number | null
-  expiryDate: Date | null
+  deadline: Date | null
   sentAt: Date | null
   createdAt: Date | null
 }
@@ -86,7 +86,7 @@ export type OfferCountAggregateOutputType = {
   authorId: number
   clientId: number
   tenantId: number
-  expiryDate: number
+  deadline: number
   sentAt: number
   createdAt: number
   _all: number
@@ -123,7 +123,7 @@ export type OfferMinAggregateInputType = {
   authorId?: true
   clientId?: true
   tenantId?: true
-  expiryDate?: true
+  deadline?: true
   sentAt?: true
   createdAt?: true
 }
@@ -138,7 +138,7 @@ export type OfferMaxAggregateInputType = {
   authorId?: true
   clientId?: true
   tenantId?: true
-  expiryDate?: true
+  deadline?: true
   sentAt?: true
   createdAt?: true
 }
@@ -153,7 +153,7 @@ export type OfferCountAggregateInputType = {
   authorId?: true
   clientId?: true
   tenantId?: true
-  expiryDate?: true
+  deadline?: true
   sentAt?: true
   createdAt?: true
   _all?: true
@@ -255,7 +255,7 @@ export type OfferGroupByOutputType = {
   authorId: number
   clientId: number
   tenantId: number
-  expiryDate: Date | null
+  deadline: Date | null
   sentAt: Date | null
   createdAt: Date
   _count: OfferCountAggregateOutputType | null
@@ -293,7 +293,7 @@ export type OfferWhereInput = {
   authorId?: Prisma.IntFilter<"Offer"> | number
   clientId?: Prisma.IntFilter<"Offer"> | number
   tenantId?: Prisma.IntFilter<"Offer"> | number
-  expiryDate?: Prisma.DateTimeNullableFilter<"Offer"> | Date | string | null
+  deadline?: Prisma.DateTimeNullableFilter<"Offer"> | Date | string | null
   sentAt?: Prisma.DateTimeNullableFilter<"Offer"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Offer"> | Date | string
   comments?: Prisma.CommentListRelationFilter
@@ -315,7 +315,7 @@ export type OfferOrderByWithRelationInput = {
   authorId?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
-  expiryDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  deadline?: Prisma.SortOrderInput | Prisma.SortOrder
   sentAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   comments?: Prisma.CommentOrderByRelationAggregateInput
@@ -340,7 +340,7 @@ export type OfferWhereUniqueInput = Prisma.AtLeast<{
   authorId?: Prisma.IntFilter<"Offer"> | number
   clientId?: Prisma.IntFilter<"Offer"> | number
   tenantId?: Prisma.IntFilter<"Offer"> | number
-  expiryDate?: Prisma.DateTimeNullableFilter<"Offer"> | Date | string | null
+  deadline?: Prisma.DateTimeNullableFilter<"Offer"> | Date | string | null
   sentAt?: Prisma.DateTimeNullableFilter<"Offer"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Offer"> | Date | string
   comments?: Prisma.CommentListRelationFilter
@@ -362,7 +362,7 @@ export type OfferOrderByWithAggregationInput = {
   authorId?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
-  expiryDate?: Prisma.SortOrderInput | Prisma.SortOrder
+  deadline?: Prisma.SortOrderInput | Prisma.SortOrder
   sentAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.OfferCountOrderByAggregateInput
@@ -385,7 +385,7 @@ export type OfferScalarWhereWithAggregatesInput = {
   authorId?: Prisma.IntWithAggregatesFilter<"Offer"> | number
   clientId?: Prisma.IntWithAggregatesFilter<"Offer"> | number
   tenantId?: Prisma.IntWithAggregatesFilter<"Offer"> | number
-  expiryDate?: Prisma.DateTimeNullableWithAggregatesFilter<"Offer"> | Date | string | null
+  deadline?: Prisma.DateTimeNullableWithAggregatesFilter<"Offer"> | Date | string | null
   sentAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Offer"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Offer"> | Date | string
 }
@@ -396,7 +396,7 @@ export type OfferCreateInput = {
   amountHT?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTVA?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  expiryDate?: Date | string | null
+  deadline?: Date | string | null
   sentAt?: Date | string | null
   createdAt?: Date | string
   comments?: Prisma.CommentCreateNestedManyWithoutOfferInput
@@ -418,7 +418,7 @@ export type OfferUncheckedCreateInput = {
   authorId: number
   clientId: number
   tenantId: number
-  expiryDate?: Date | string | null
+  deadline?: Date | string | null
   sentAt?: Date | string | null
   createdAt?: Date | string
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutOfferInput
@@ -433,7 +433,7 @@ export type OfferUpdateInput = {
   amountHT?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTVA?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   comments?: Prisma.CommentUpdateManyWithoutOfferNestedInput
@@ -455,7 +455,7 @@ export type OfferUncheckedUpdateInput = {
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   clientId?: Prisma.IntFieldUpdateOperationsInput | number
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   comments?: Prisma.CommentUncheckedUpdateManyWithoutOfferNestedInput
@@ -474,7 +474,7 @@ export type OfferCreateManyInput = {
   authorId: number
   clientId: number
   tenantId: number
-  expiryDate?: Date | string | null
+  deadline?: Date | string | null
   sentAt?: Date | string | null
   createdAt?: Date | string
 }
@@ -485,7 +485,7 @@ export type OfferUpdateManyMutationInput = {
   amountHT?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTVA?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -500,7 +500,7 @@ export type OfferUncheckedUpdateManyInput = {
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   clientId?: Prisma.IntFieldUpdateOperationsInput | number
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -530,7 +530,7 @@ export type OfferCountOrderByAggregateInput = {
   authorId?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
-  expiryDate?: Prisma.SortOrder
+  deadline?: Prisma.SortOrder
   sentAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -555,7 +555,7 @@ export type OfferMaxOrderByAggregateInput = {
   authorId?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
-  expiryDate?: Prisma.SortOrder
+  deadline?: Prisma.SortOrder
   sentAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -570,7 +570,7 @@ export type OfferMinOrderByAggregateInput = {
   authorId?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
-  expiryDate?: Prisma.SortOrder
+  deadline?: Prisma.SortOrder
   sentAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
@@ -822,7 +822,7 @@ export type OfferCreateWithoutClientInput = {
   amountHT?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTVA?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  expiryDate?: Date | string | null
+  deadline?: Date | string | null
   sentAt?: Date | string | null
   createdAt?: Date | string
   comments?: Prisma.CommentCreateNestedManyWithoutOfferInput
@@ -842,7 +842,7 @@ export type OfferUncheckedCreateWithoutClientInput = {
   amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   authorId: number
   tenantId: number
-  expiryDate?: Date | string | null
+  deadline?: Date | string | null
   sentAt?: Date | string | null
   createdAt?: Date | string
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutOfferInput
@@ -890,7 +890,7 @@ export type OfferScalarWhereInput = {
   authorId?: Prisma.IntFilter<"Offer"> | number
   clientId?: Prisma.IntFilter<"Offer"> | number
   tenantId?: Prisma.IntFilter<"Offer"> | number
-  expiryDate?: Prisma.DateTimeNullableFilter<"Offer"> | Date | string | null
+  deadline?: Prisma.DateTimeNullableFilter<"Offer"> | Date | string | null
   sentAt?: Prisma.DateTimeNullableFilter<"Offer"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Offer"> | Date | string
 }
@@ -901,7 +901,7 @@ export type OfferCreateWithoutCommentsInput = {
   amountHT?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTVA?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  expiryDate?: Date | string | null
+  deadline?: Date | string | null
   sentAt?: Date | string | null
   createdAt?: Date | string
   products?: Prisma.ProductCreateNestedManyWithoutOffersInput
@@ -922,7 +922,7 @@ export type OfferUncheckedCreateWithoutCommentsInput = {
   authorId: number
   clientId: number
   tenantId: number
-  expiryDate?: Date | string | null
+  deadline?: Date | string | null
   sentAt?: Date | string | null
   createdAt?: Date | string
   products?: Prisma.ProductUncheckedCreateNestedManyWithoutOffersInput
@@ -952,7 +952,7 @@ export type OfferUpdateWithoutCommentsInput = {
   amountHT?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTVA?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   products?: Prisma.ProductUpdateManyWithoutOffersNestedInput
@@ -973,7 +973,7 @@ export type OfferUncheckedUpdateWithoutCommentsInput = {
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   clientId?: Prisma.IntFieldUpdateOperationsInput | number
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   products?: Prisma.ProductUncheckedUpdateManyWithoutOffersNestedInput
@@ -987,7 +987,7 @@ export type OfferCreateWithoutDocumentsInput = {
   amountHT?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTVA?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  expiryDate?: Date | string | null
+  deadline?: Date | string | null
   sentAt?: Date | string | null
   createdAt?: Date | string
   comments?: Prisma.CommentCreateNestedManyWithoutOfferInput
@@ -1008,7 +1008,7 @@ export type OfferUncheckedCreateWithoutDocumentsInput = {
   authorId: number
   clientId: number
   tenantId: number
-  expiryDate?: Date | string | null
+  deadline?: Date | string | null
   sentAt?: Date | string | null
   createdAt?: Date | string
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutOfferInput
@@ -1038,7 +1038,7 @@ export type OfferUpdateWithoutDocumentsInput = {
   amountHT?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTVA?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   comments?: Prisma.CommentUpdateManyWithoutOfferNestedInput
@@ -1059,7 +1059,7 @@ export type OfferUncheckedUpdateWithoutDocumentsInput = {
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   clientId?: Prisma.IntFieldUpdateOperationsInput | number
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   comments?: Prisma.CommentUncheckedUpdateManyWithoutOfferNestedInput
@@ -1073,7 +1073,7 @@ export type OfferCreateWithoutProductsInput = {
   amountHT?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTVA?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  expiryDate?: Date | string | null
+  deadline?: Date | string | null
   sentAt?: Date | string | null
   createdAt?: Date | string
   comments?: Prisma.CommentCreateNestedManyWithoutOfferInput
@@ -1094,7 +1094,7 @@ export type OfferUncheckedCreateWithoutProductsInput = {
   authorId: number
   clientId: number
   tenantId: number
-  expiryDate?: Date | string | null
+  deadline?: Date | string | null
   sentAt?: Date | string | null
   createdAt?: Date | string
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutOfferInput
@@ -1129,7 +1129,7 @@ export type OfferCreateWithoutProjectInput = {
   amountHT?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTVA?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  expiryDate?: Date | string | null
+  deadline?: Date | string | null
   sentAt?: Date | string | null
   createdAt?: Date | string
   comments?: Prisma.CommentCreateNestedManyWithoutOfferInput
@@ -1150,7 +1150,7 @@ export type OfferUncheckedCreateWithoutProjectInput = {
   authorId: number
   clientId: number
   tenantId: number
-  expiryDate?: Date | string | null
+  deadline?: Date | string | null
   sentAt?: Date | string | null
   createdAt?: Date | string
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutOfferInput
@@ -1180,7 +1180,7 @@ export type OfferUpdateWithoutProjectInput = {
   amountHT?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTVA?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   comments?: Prisma.CommentUpdateManyWithoutOfferNestedInput
@@ -1201,7 +1201,7 @@ export type OfferUncheckedUpdateWithoutProjectInput = {
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   clientId?: Prisma.IntFieldUpdateOperationsInput | number
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   comments?: Prisma.CommentUncheckedUpdateManyWithoutOfferNestedInput
@@ -1215,7 +1215,7 @@ export type OfferCreateWithoutTenantInput = {
   amountHT?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTVA?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  expiryDate?: Date | string | null
+  deadline?: Date | string | null
   sentAt?: Date | string | null
   createdAt?: Date | string
   comments?: Prisma.CommentCreateNestedManyWithoutOfferInput
@@ -1235,7 +1235,7 @@ export type OfferUncheckedCreateWithoutTenantInput = {
   amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   authorId: number
   clientId: number
-  expiryDate?: Date | string | null
+  deadline?: Date | string | null
   sentAt?: Date | string | null
   createdAt?: Date | string
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutOfferInput
@@ -1276,7 +1276,7 @@ export type OfferCreateWithoutAuthorInput = {
   amountHT?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTVA?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  expiryDate?: Date | string | null
+  deadline?: Date | string | null
   sentAt?: Date | string | null
   createdAt?: Date | string
   comments?: Prisma.CommentCreateNestedManyWithoutOfferInput
@@ -1296,7 +1296,7 @@ export type OfferUncheckedCreateWithoutAuthorInput = {
   amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   clientId: number
   tenantId: number
-  expiryDate?: Date | string | null
+  deadline?: Date | string | null
   sentAt?: Date | string | null
   createdAt?: Date | string
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutOfferInput
@@ -1340,7 +1340,7 @@ export type OfferCreateManyClientInput = {
   amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   authorId: number
   tenantId: number
-  expiryDate?: Date | string | null
+  deadline?: Date | string | null
   sentAt?: Date | string | null
   createdAt?: Date | string
 }
@@ -1351,7 +1351,7 @@ export type OfferUpdateWithoutClientInput = {
   amountHT?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTVA?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   comments?: Prisma.CommentUpdateManyWithoutOfferNestedInput
@@ -1371,7 +1371,7 @@ export type OfferUncheckedUpdateWithoutClientInput = {
   amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   comments?: Prisma.CommentUncheckedUpdateManyWithoutOfferNestedInput
@@ -1389,7 +1389,7 @@ export type OfferUncheckedUpdateManyWithoutClientInput = {
   amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1400,7 +1400,7 @@ export type OfferUpdateWithoutProductsInput = {
   amountHT?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTVA?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   comments?: Prisma.CommentUpdateManyWithoutOfferNestedInput
@@ -1421,7 +1421,7 @@ export type OfferUncheckedUpdateWithoutProductsInput = {
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   clientId?: Prisma.IntFieldUpdateOperationsInput | number
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   comments?: Prisma.CommentUncheckedUpdateManyWithoutOfferNestedInput
@@ -1439,7 +1439,7 @@ export type OfferUncheckedUpdateManyWithoutProductsInput = {
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   clientId?: Prisma.IntFieldUpdateOperationsInput | number
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1453,7 +1453,7 @@ export type OfferCreateManyTenantInput = {
   amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   authorId: number
   clientId: number
-  expiryDate?: Date | string | null
+  deadline?: Date | string | null
   sentAt?: Date | string | null
   createdAt?: Date | string
 }
@@ -1464,7 +1464,7 @@ export type OfferUpdateWithoutTenantInput = {
   amountHT?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTVA?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   comments?: Prisma.CommentUpdateManyWithoutOfferNestedInput
@@ -1484,7 +1484,7 @@ export type OfferUncheckedUpdateWithoutTenantInput = {
   amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   clientId?: Prisma.IntFieldUpdateOperationsInput | number
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   comments?: Prisma.CommentUncheckedUpdateManyWithoutOfferNestedInput
@@ -1502,7 +1502,7 @@ export type OfferUncheckedUpdateManyWithoutTenantInput = {
   amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   clientId?: Prisma.IntFieldUpdateOperationsInput | number
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1516,7 +1516,7 @@ export type OfferCreateManyAuthorInput = {
   amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   clientId: number
   tenantId: number
-  expiryDate?: Date | string | null
+  deadline?: Date | string | null
   sentAt?: Date | string | null
   createdAt?: Date | string
 }
@@ -1527,7 +1527,7 @@ export type OfferUpdateWithoutAuthorInput = {
   amountHT?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTVA?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   comments?: Prisma.CommentUpdateManyWithoutOfferNestedInput
@@ -1547,7 +1547,7 @@ export type OfferUncheckedUpdateWithoutAuthorInput = {
   amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   clientId?: Prisma.IntFieldUpdateOperationsInput | number
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   comments?: Prisma.CommentUncheckedUpdateManyWithoutOfferNestedInput
@@ -1565,7 +1565,7 @@ export type OfferUncheckedUpdateManyWithoutAuthorInput = {
   amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   clientId?: Prisma.IntFieldUpdateOperationsInput | number
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
-  expiryDate?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  deadline?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   sentAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1629,7 +1629,7 @@ export type OfferSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   authorId?: boolean
   clientId?: boolean
   tenantId?: boolean
-  expiryDate?: boolean
+  deadline?: boolean
   sentAt?: boolean
   createdAt?: boolean
   comments?: boolean | Prisma.Offer$commentsArgs<ExtArgs>
@@ -1652,7 +1652,7 @@ export type OfferSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   authorId?: boolean
   clientId?: boolean
   tenantId?: boolean
-  expiryDate?: boolean
+  deadline?: boolean
   sentAt?: boolean
   createdAt?: boolean
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -1670,7 +1670,7 @@ export type OfferSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   authorId?: boolean
   clientId?: boolean
   tenantId?: boolean
-  expiryDate?: boolean
+  deadline?: boolean
   sentAt?: boolean
   createdAt?: boolean
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -1688,12 +1688,12 @@ export type OfferSelectScalar = {
   authorId?: boolean
   clientId?: boolean
   tenantId?: boolean
-  expiryDate?: boolean
+  deadline?: boolean
   sentAt?: boolean
   createdAt?: boolean
 }
 
-export type OfferOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "status" | "amountHT" | "amountTVA" | "amountTTC" | "authorId" | "clientId" | "tenantId" | "expiryDate" | "sentAt" | "createdAt", ExtArgs["result"]["offer"]>
+export type OfferOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "status" | "amountHT" | "amountTVA" | "amountTTC" | "authorId" | "clientId" | "tenantId" | "deadline" | "sentAt" | "createdAt", ExtArgs["result"]["offer"]>
 export type OfferInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   comments?: boolean | Prisma.Offer$commentsArgs<ExtArgs>
   products?: boolean | Prisma.Offer$productsArgs<ExtArgs>
@@ -1736,7 +1736,7 @@ export type $OfferPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     authorId: number
     clientId: number
     tenantId: number
-    expiryDate: Date | null
+    deadline: Date | null
     sentAt: Date | null
     createdAt: Date
   }, ExtArgs["result"]["offer"]>
@@ -2178,7 +2178,7 @@ export interface OfferFieldRefs {
   readonly authorId: Prisma.FieldRef<"Offer", 'Int'>
   readonly clientId: Prisma.FieldRef<"Offer", 'Int'>
   readonly tenantId: Prisma.FieldRef<"Offer", 'Int'>
-  readonly expiryDate: Prisma.FieldRef<"Offer", 'DateTime'>
+  readonly deadline: Prisma.FieldRef<"Offer", 'DateTime'>
   readonly sentAt: Prisma.FieldRef<"Offer", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"Offer", 'DateTime'>
 }

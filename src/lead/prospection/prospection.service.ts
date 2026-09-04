@@ -35,9 +35,8 @@ export class ProspectionService {
       const prospection = await this.prismaClientService.prospection.create({
         data: {
           clientId: createProspectionDto.clientId,
-          endDate: createProspectionDto.endDate,
-          startDate: createProspectionDto.startDate,
-          proposedService: createProspectionDto.prosposedService,
+          deadline: createProspectionDto.deadline,
+          service: createProspectionDto.service,
           authorId,
           tenantId,
           documents: {
@@ -63,7 +62,7 @@ export class ProspectionService {
   async findAll(query: ProspectionQueryDTO, tenantId: number) {
     const filter: ProspectionWhereInput = { tenantId };
 
-    if (query.authorName) {
+    if (query.authorName && query.authorName.length) {
       filter.author = {
         fullname: {
           contains: query.authorName,
@@ -72,36 +71,27 @@ export class ProspectionService {
       };
     }
 
-    if (query.contactNameOrEnterpriseName) {
-      filter.OR = [
-        {
-          client: {
-            enterpriseName: {
-              contains: query.contactNameOrEnterpriseName,
-              mode: 'insensitive',
-            },
-          },
-        },
-        {
-          client: {
-            contactName: {
-              contains: query.contactNameOrEnterpriseName,
-              mode: 'insensitive',
-            },
-          },
-        },
-      ];
+    if(query.companyName && query.companyName.length) {
+      filter.client = {
+        companyName: {
+          contains: query.companyName,
+          mode: 'insensitive'
+        }
+      }
     }
 
-    if (query.startDate) {
-      filter.startDate = {
-        gte: new Date(query.startDate),
-      };
+    if(query.contactName && query.contactName.length) {
+      filter.client = {
+        contactName: {
+          contains: query.contactName,
+          mode: 'insensitive'
+        }
+      }
     }
 
-    if (query.endDate) {
-      filter.endDate = {
-        lte: new Date(query.endDate),
+    if (query.deadline) {
+      filter.deadline = {
+        lte: new Date(query.deadline),
       };
     }
 
@@ -121,15 +111,14 @@ export class ProspectionService {
         },
         select: {
           id: true,
-          proposedService: true,
-          startDate: true,
-          endDate: true,
+          service: true,
+          deadline: true,
           status: true,
           createdAt: true,
           client: {
             select: {
               type: true,
-              enterpriseName: true,
+              companyName: true,
               contactName: true,
             },
           },

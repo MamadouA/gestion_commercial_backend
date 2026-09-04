@@ -145,9 +145,7 @@ export class DashboardService {
     const ready = this.prismaClientService.offer.count({
       where: { tenantId, status: 'READY' },
     });
-    const sent = this.prismaClientService.offer.count({
-      where: { tenantId, status: 'SENT' },
-    });
+
     const won = this.prismaClientService.offer.count({
       where: { tenantId, status: 'WON' },
     });
@@ -158,7 +156,6 @@ export class DashboardService {
     const result = await Promise.all([
       pending,
       ready,
-      sent,
       won,
       lost,
     ]);
@@ -166,9 +163,8 @@ export class DashboardService {
     return [
       { status: OfferStatus.PENDING, count: result[0] },
       { status: OfferStatus.READY, count: result[1] },
-      { status: OfferStatus.SENT, count: result[2] },
-      { status: OfferStatus.WON, count: result[3]},
-      { status: OfferStatus.LOST, count: result[4] },
+      { status: OfferStatus.WON, count: result[2]},
+      { status: OfferStatus.LOST, count: result[3] },
     ];
   }
 
@@ -187,17 +183,12 @@ export class DashboardService {
         where: { tenantId, status: 'LOST' },
       });
 
-      const cancelled = this.prismaClientService.prospection.count({
-        where: { tenantId, status: 'CANCELLED' },
-      });
-
-      const result = await Promise.all([opened, won, lost, cancelled]);
+      const result = await Promise.all([opened, won, lost]);
 
       return [
         { status: ProspectionStatus.OPENED, count: result[0] },
         { status: ProspectionStatus.WON, count: result[1]},
         { status: ProspectionStatus.LOST, count: result[2]},
-        { stats: ProspectionStatus.CANCELLED, count: result[3]},
       ];
     }
     catch (err) {

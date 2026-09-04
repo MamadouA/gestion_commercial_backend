@@ -3,9 +3,9 @@ import { IsEnum, IsNumber, IsString, Min, MinLength } from "class-validator"
 export class CreateDocumentDTO {
     @IsString()
     @MinLength(10)
-    description!: string
+    summary!: string
 
-    @IsEnum(["PROJECT", "OFFER", "PROSPECTION", "INVOICE", "JOUNRAL"])
+    @IsEnum(["PROJECT", "OFFER", "PROSPECTION", "INVOICE", "REPORT"])
     resourceType!: string
 
     @IsNumber()

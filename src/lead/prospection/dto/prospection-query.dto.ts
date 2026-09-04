@@ -10,15 +10,15 @@ export class ProspectionQueryDTO extends PaginationDTO {
 
     @IsDateString()
     @IsOptional()
-    startDate?: string
-
-    @IsDateString()
-    @IsOptional()
-    endDate?: string
+    deadline?: string
 
     @IsString()
     @IsOptional()
-    contactNameOrEnterpriseName?: string
+    companyName?: string
+
+    @IsString()
+    @IsOptional()
+    contactName?: string
     
     @Transform(({ value }) => value === "" ? undefined : value)
     @IsEnum(ProspectionStatus)

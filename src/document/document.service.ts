@@ -14,7 +14,7 @@ export class DocumentService {
         try {
             fileMetadata = await this.s3ClientService.save(file);
 
-            const data = {...fileMetadata, description: createDocumentDTO.description};
+            const data = {...fileMetadata, description: createDocumentDTO.summary};
 
             switch(createDocumentDTO.resourceType) {
                 case "PROJECT": 
@@ -45,7 +45,7 @@ export class DocumentService {
                     id: true,
                     originalName: true,
                     createdAt: true,
-                    description: true,
+                    summary: true,
                     size: true,
                 }
              });

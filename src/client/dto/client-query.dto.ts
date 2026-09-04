@@ -9,7 +9,11 @@ export class ClientQueryDTO extends PaginationDTO {
 
     @IsString()
     @IsOptional()
-    contactNameOrEnterpriseName?: string
+    companyName?: string
+
+    @IsString()
+    @IsOptional()
+    contactName?: string
 
     @IsString()
     @IsOptional()

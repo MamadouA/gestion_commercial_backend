@@ -1,9 +1,8 @@
 
 model Prospection {
     id Int @id @default(autoincrement())
-    proposedService String
-    startDate DateTime @default(now())
-    endDate DateTime
+    service String
+    deadline DateTime 
     status ProspectionStatus @default(OPENED)
     clientId Int
     client Client @relation(fields: [clientId], references: [id], onDelete: Cascade)
@@ -18,7 +17,6 @@ model Prospection {
 
 enum ProspectionStatus {
     OPENED
-    CANCELLED
     LOST
     WON
 }

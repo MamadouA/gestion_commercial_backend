@@ -6,8 +6,12 @@ import { Transform } from "class-transformer";
 export class OfferQueryDTO extends PaginationDTO {
     @IsString()
     @IsOptional()
-    contactNameOrEnterpriseName?: string
+    companyName?: string
 
+    @IsString()
+    @IsOptional()
+    contactName?: string
+    
     @IsString()
     @IsOptional()
     authorName?: string
@@ -19,5 +23,5 @@ export class OfferQueryDTO extends PaginationDTO {
 
     @IsDateString()
     @IsOptional()
-    expiryDate?: string
+    deadline?: string
 }

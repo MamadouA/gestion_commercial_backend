@@ -33,23 +33,21 @@ export class ClientService {
             if (query.type && query.type.length) {
                 filter['type'] = query.type;
             }
-            if (query.contactNameOrEnterpriseName) {
-                filter.OR = [
-                    {
-                        enterpriseName: {
-                            contains: query.contactNameOrEnterpriseName,
-                            mode: 'insensitive'
-                        }
-                    },
-                    {
-                        contactName: {
-                            contains: query.contactNameOrEnterpriseName,
-                            mode: 'insensitive'
-                        }
-                    }
-                ]
+
+            if(query.companyName && query.companyName.length) {
+                filter['companyName'] = {
+                    contains: query.companyName,
+                    mode: 'insensitive'
+                }
             }
 
+            if (query.contactName && query.contactName.length) {
+                filter['contactName'] = {
+                    contains: query.contactName,
+                    mode: 'insensitive'
+                }
+            }
+            
             if (query.country) {
                 filter['country'] = {
                     contains: query.country,

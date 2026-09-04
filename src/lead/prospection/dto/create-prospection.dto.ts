@@ -4,13 +4,10 @@ import { IsDateString, IsEnum, IsInt, IsString, MinLength, Validate } from "clas
 export class CreateProspectionDTO {
     @IsString()
     @MinLength(3)
-    prosposedService!: string;
+    service!: string;
 
     @IsDateString()
-    startDate!: string;
-
-    @IsDateString()
-    endDate!: string;
+    deadline!: string;
 
     @IsInt()
     clientId!: number;

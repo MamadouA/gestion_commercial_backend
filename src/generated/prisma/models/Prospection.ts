@@ -42,9 +42,8 @@ export type ProspectionSumAggregateOutputType = {
 
 export type ProspectionMinAggregateOutputType = {
   id: number | null
-  proposedService: string | null
-  startDate: Date | null
-  endDate: Date | null
+  service: string | null
+  deadline: Date | null
   status: $Enums.ProspectionStatus | null
   clientId: number | null
   tenantId: number | null
@@ -54,9 +53,8 @@ export type ProspectionMinAggregateOutputType = {
 
 export type ProspectionMaxAggregateOutputType = {
   id: number | null
-  proposedService: string | null
-  startDate: Date | null
-  endDate: Date | null
+  service: string | null
+  deadline: Date | null
   status: $Enums.ProspectionStatus | null
   clientId: number | null
   tenantId: number | null
@@ -66,9 +64,8 @@ export type ProspectionMaxAggregateOutputType = {
 
 export type ProspectionCountAggregateOutputType = {
   id: number
-  proposedService: number
-  startDate: number
-  endDate: number
+  service: number
+  deadline: number
   status: number
   clientId: number
   tenantId: number
@@ -94,9 +91,8 @@ export type ProspectionSumAggregateInputType = {
 
 export type ProspectionMinAggregateInputType = {
   id?: true
-  proposedService?: true
-  startDate?: true
-  endDate?: true
+  service?: true
+  deadline?: true
   status?: true
   clientId?: true
   tenantId?: true
@@ -106,9 +102,8 @@ export type ProspectionMinAggregateInputType = {
 
 export type ProspectionMaxAggregateInputType = {
   id?: true
-  proposedService?: true
-  startDate?: true
-  endDate?: true
+  service?: true
+  deadline?: true
   status?: true
   clientId?: true
   tenantId?: true
@@ -118,9 +113,8 @@ export type ProspectionMaxAggregateInputType = {
 
 export type ProspectionCountAggregateInputType = {
   id?: true
-  proposedService?: true
-  startDate?: true
-  endDate?: true
+  service?: true
+  deadline?: true
   status?: true
   clientId?: true
   tenantId?: true
@@ -217,9 +211,8 @@ export type ProspectionGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inte
 
 export type ProspectionGroupByOutputType = {
   id: number
-  proposedService: string
-  startDate: Date
-  endDate: Date
+  service: string
+  deadline: Date
   status: $Enums.ProspectionStatus
   clientId: number
   tenantId: number
@@ -252,9 +245,8 @@ export type ProspectionWhereInput = {
   OR?: Prisma.ProspectionWhereInput[]
   NOT?: Prisma.ProspectionWhereInput | Prisma.ProspectionWhereInput[]
   id?: Prisma.IntFilter<"Prospection"> | number
-  proposedService?: Prisma.StringFilter<"Prospection"> | string
-  startDate?: Prisma.DateTimeFilter<"Prospection"> | Date | string
-  endDate?: Prisma.DateTimeFilter<"Prospection"> | Date | string
+  service?: Prisma.StringFilter<"Prospection"> | string
+  deadline?: Prisma.DateTimeFilter<"Prospection"> | Date | string
   status?: Prisma.EnumProspectionStatusFilter<"Prospection"> | $Enums.ProspectionStatus
   clientId?: Prisma.IntFilter<"Prospection"> | number
   tenantId?: Prisma.IntFilter<"Prospection"> | number
@@ -269,9 +261,8 @@ export type ProspectionWhereInput = {
 
 export type ProspectionOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  proposedService?: Prisma.SortOrder
-  startDate?: Prisma.SortOrder
-  endDate?: Prisma.SortOrder
+  service?: Prisma.SortOrder
+  deadline?: Prisma.SortOrder
   status?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
@@ -289,9 +280,8 @@ export type ProspectionWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.ProspectionWhereInput | Prisma.ProspectionWhereInput[]
   OR?: Prisma.ProspectionWhereInput[]
   NOT?: Prisma.ProspectionWhereInput | Prisma.ProspectionWhereInput[]
-  proposedService?: Prisma.StringFilter<"Prospection"> | string
-  startDate?: Prisma.DateTimeFilter<"Prospection"> | Date | string
-  endDate?: Prisma.DateTimeFilter<"Prospection"> | Date | string
+  service?: Prisma.StringFilter<"Prospection"> | string
+  deadline?: Prisma.DateTimeFilter<"Prospection"> | Date | string
   status?: Prisma.EnumProspectionStatusFilter<"Prospection"> | $Enums.ProspectionStatus
   clientId?: Prisma.IntFilter<"Prospection"> | number
   tenantId?: Prisma.IntFilter<"Prospection"> | number
@@ -306,9 +296,8 @@ export type ProspectionWhereUniqueInput = Prisma.AtLeast<{
 
 export type ProspectionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  proposedService?: Prisma.SortOrder
-  startDate?: Prisma.SortOrder
-  endDate?: Prisma.SortOrder
+  service?: Prisma.SortOrder
+  deadline?: Prisma.SortOrder
   status?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
@@ -326,9 +315,8 @@ export type ProspectionScalarWhereWithAggregatesInput = {
   OR?: Prisma.ProspectionScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ProspectionScalarWhereWithAggregatesInput | Prisma.ProspectionScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Prospection"> | number
-  proposedService?: Prisma.StringWithAggregatesFilter<"Prospection"> | string
-  startDate?: Prisma.DateTimeWithAggregatesFilter<"Prospection"> | Date | string
-  endDate?: Prisma.DateTimeWithAggregatesFilter<"Prospection"> | Date | string
+  service?: Prisma.StringWithAggregatesFilter<"Prospection"> | string
+  deadline?: Prisma.DateTimeWithAggregatesFilter<"Prospection"> | Date | string
   status?: Prisma.EnumProspectionStatusWithAggregatesFilter<"Prospection"> | $Enums.ProspectionStatus
   clientId?: Prisma.IntWithAggregatesFilter<"Prospection"> | number
   tenantId?: Prisma.IntWithAggregatesFilter<"Prospection"> | number
@@ -337,9 +325,8 @@ export type ProspectionScalarWhereWithAggregatesInput = {
 }
 
 export type ProspectionCreateInput = {
-  proposedService: string
-  startDate?: Date | string
-  endDate: Date | string
+  service: string
+  deadline: Date | string
   status?: $Enums.ProspectionStatus
   createdAt?: Date | string
   client: Prisma.ClientCreateNestedOneWithoutProspectionsInput
@@ -351,9 +338,8 @@ export type ProspectionCreateInput = {
 
 export type ProspectionUncheckedCreateInput = {
   id?: number
-  proposedService: string
-  startDate?: Date | string
-  endDate: Date | string
+  service: string
+  deadline: Date | string
   status?: $Enums.ProspectionStatus
   clientId: number
   tenantId: number
@@ -364,9 +350,8 @@ export type ProspectionUncheckedCreateInput = {
 }
 
 export type ProspectionUpdateInput = {
-  proposedService?: Prisma.StringFieldUpdateOperationsInput | string
-  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  service?: Prisma.StringFieldUpdateOperationsInput | string
+  deadline?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumProspectionStatusFieldUpdateOperationsInput | $Enums.ProspectionStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   client?: Prisma.ClientUpdateOneRequiredWithoutProspectionsNestedInput
@@ -378,9 +363,8 @@ export type ProspectionUpdateInput = {
 
 export type ProspectionUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  proposedService?: Prisma.StringFieldUpdateOperationsInput | string
-  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  service?: Prisma.StringFieldUpdateOperationsInput | string
+  deadline?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumProspectionStatusFieldUpdateOperationsInput | $Enums.ProspectionStatus
   clientId?: Prisma.IntFieldUpdateOperationsInput | number
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
@@ -392,9 +376,8 @@ export type ProspectionUncheckedUpdateInput = {
 
 export type ProspectionCreateManyInput = {
   id?: number
-  proposedService: string
-  startDate?: Date | string
-  endDate: Date | string
+  service: string
+  deadline: Date | string
   status?: $Enums.ProspectionStatus
   clientId: number
   tenantId: number
@@ -403,18 +386,16 @@ export type ProspectionCreateManyInput = {
 }
 
 export type ProspectionUpdateManyMutationInput = {
-  proposedService?: Prisma.StringFieldUpdateOperationsInput | string
-  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  service?: Prisma.StringFieldUpdateOperationsInput | string
+  deadline?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumProspectionStatusFieldUpdateOperationsInput | $Enums.ProspectionStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
 export type ProspectionUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  proposedService?: Prisma.StringFieldUpdateOperationsInput | string
-  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  service?: Prisma.StringFieldUpdateOperationsInput | string
+  deadline?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumProspectionStatusFieldUpdateOperationsInput | $Enums.ProspectionStatus
   clientId?: Prisma.IntFieldUpdateOperationsInput | number
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
@@ -439,9 +420,8 @@ export type ProspectionNullableScalarRelationFilter = {
 
 export type ProspectionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  proposedService?: Prisma.SortOrder
-  startDate?: Prisma.SortOrder
-  endDate?: Prisma.SortOrder
+  service?: Prisma.SortOrder
+  deadline?: Prisma.SortOrder
   status?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
@@ -458,9 +438,8 @@ export type ProspectionAvgOrderByAggregateInput = {
 
 export type ProspectionMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  proposedService?: Prisma.SortOrder
-  startDate?: Prisma.SortOrder
-  endDate?: Prisma.SortOrder
+  service?: Prisma.SortOrder
+  deadline?: Prisma.SortOrder
   status?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
@@ -470,9 +449,8 @@ export type ProspectionMaxOrderByAggregateInput = {
 
 export type ProspectionMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  proposedService?: Prisma.SortOrder
-  startDate?: Prisma.SortOrder
-  endDate?: Prisma.SortOrder
+  service?: Prisma.SortOrder
+  deadline?: Prisma.SortOrder
   status?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
@@ -650,9 +628,8 @@ export type ProspectionUncheckedUpdateManyWithoutAuthorNestedInput = {
 }
 
 export type ProspectionCreateWithoutClientInput = {
-  proposedService: string
-  startDate?: Date | string
-  endDate: Date | string
+  service: string
+  deadline: Date | string
   status?: $Enums.ProspectionStatus
   createdAt?: Date | string
   tenant: Prisma.TenantCreateNestedOneWithoutProspectionsInput
@@ -663,9 +640,8 @@ export type ProspectionCreateWithoutClientInput = {
 
 export type ProspectionUncheckedCreateWithoutClientInput = {
   id?: number
-  proposedService: string
-  startDate?: Date | string
-  endDate: Date | string
+  service: string
+  deadline: Date | string
   status?: $Enums.ProspectionStatus
   tenantId: number
   authorId: number
@@ -705,9 +681,8 @@ export type ProspectionScalarWhereInput = {
   OR?: Prisma.ProspectionScalarWhereInput[]
   NOT?: Prisma.ProspectionScalarWhereInput | Prisma.ProspectionScalarWhereInput[]
   id?: Prisma.IntFilter<"Prospection"> | number
-  proposedService?: Prisma.StringFilter<"Prospection"> | string
-  startDate?: Prisma.DateTimeFilter<"Prospection"> | Date | string
-  endDate?: Prisma.DateTimeFilter<"Prospection"> | Date | string
+  service?: Prisma.StringFilter<"Prospection"> | string
+  deadline?: Prisma.DateTimeFilter<"Prospection"> | Date | string
   status?: Prisma.EnumProspectionStatusFilter<"Prospection"> | $Enums.ProspectionStatus
   clientId?: Prisma.IntFilter<"Prospection"> | number
   tenantId?: Prisma.IntFilter<"Prospection"> | number
@@ -716,9 +691,8 @@ export type ProspectionScalarWhereInput = {
 }
 
 export type ProspectionCreateWithoutCommentsInput = {
-  proposedService: string
-  startDate?: Date | string
-  endDate: Date | string
+  service: string
+  deadline: Date | string
   status?: $Enums.ProspectionStatus
   createdAt?: Date | string
   client: Prisma.ClientCreateNestedOneWithoutProspectionsInput
@@ -729,9 +703,8 @@ export type ProspectionCreateWithoutCommentsInput = {
 
 export type ProspectionUncheckedCreateWithoutCommentsInput = {
   id?: number
-  proposedService: string
-  startDate?: Date | string
-  endDate: Date | string
+  service: string
+  deadline: Date | string
   status?: $Enums.ProspectionStatus
   clientId: number
   tenantId: number
@@ -757,9 +730,8 @@ export type ProspectionUpdateToOneWithWhereWithoutCommentsInput = {
 }
 
 export type ProspectionUpdateWithoutCommentsInput = {
-  proposedService?: Prisma.StringFieldUpdateOperationsInput | string
-  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  service?: Prisma.StringFieldUpdateOperationsInput | string
+  deadline?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumProspectionStatusFieldUpdateOperationsInput | $Enums.ProspectionStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   client?: Prisma.ClientUpdateOneRequiredWithoutProspectionsNestedInput
@@ -770,9 +742,8 @@ export type ProspectionUpdateWithoutCommentsInput = {
 
 export type ProspectionUncheckedUpdateWithoutCommentsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  proposedService?: Prisma.StringFieldUpdateOperationsInput | string
-  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  service?: Prisma.StringFieldUpdateOperationsInput | string
+  deadline?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumProspectionStatusFieldUpdateOperationsInput | $Enums.ProspectionStatus
   clientId?: Prisma.IntFieldUpdateOperationsInput | number
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
@@ -782,9 +753,8 @@ export type ProspectionUncheckedUpdateWithoutCommentsInput = {
 }
 
 export type ProspectionCreateWithoutDocumentsInput = {
-  proposedService: string
-  startDate?: Date | string
-  endDate: Date | string
+  service: string
+  deadline: Date | string
   status?: $Enums.ProspectionStatus
   createdAt?: Date | string
   client: Prisma.ClientCreateNestedOneWithoutProspectionsInput
@@ -795,9 +765,8 @@ export type ProspectionCreateWithoutDocumentsInput = {
 
 export type ProspectionUncheckedCreateWithoutDocumentsInput = {
   id?: number
-  proposedService: string
-  startDate?: Date | string
-  endDate: Date | string
+  service: string
+  deadline: Date | string
   status?: $Enums.ProspectionStatus
   clientId: number
   tenantId: number
@@ -823,9 +792,8 @@ export type ProspectionUpdateToOneWithWhereWithoutDocumentsInput = {
 }
 
 export type ProspectionUpdateWithoutDocumentsInput = {
-  proposedService?: Prisma.StringFieldUpdateOperationsInput | string
-  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  service?: Prisma.StringFieldUpdateOperationsInput | string
+  deadline?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumProspectionStatusFieldUpdateOperationsInput | $Enums.ProspectionStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   client?: Prisma.ClientUpdateOneRequiredWithoutProspectionsNestedInput
@@ -836,9 +804,8 @@ export type ProspectionUpdateWithoutDocumentsInput = {
 
 export type ProspectionUncheckedUpdateWithoutDocumentsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  proposedService?: Prisma.StringFieldUpdateOperationsInput | string
-  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  service?: Prisma.StringFieldUpdateOperationsInput | string
+  deadline?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumProspectionStatusFieldUpdateOperationsInput | $Enums.ProspectionStatus
   clientId?: Prisma.IntFieldUpdateOperationsInput | number
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
@@ -848,9 +815,8 @@ export type ProspectionUncheckedUpdateWithoutDocumentsInput = {
 }
 
 export type ProspectionCreateWithoutTenantInput = {
-  proposedService: string
-  startDate?: Date | string
-  endDate: Date | string
+  service: string
+  deadline: Date | string
   status?: $Enums.ProspectionStatus
   createdAt?: Date | string
   client: Prisma.ClientCreateNestedOneWithoutProspectionsInput
@@ -861,9 +827,8 @@ export type ProspectionCreateWithoutTenantInput = {
 
 export type ProspectionUncheckedCreateWithoutTenantInput = {
   id?: number
-  proposedService: string
-  startDate?: Date | string
-  endDate: Date | string
+  service: string
+  deadline: Date | string
   status?: $Enums.ProspectionStatus
   clientId: number
   authorId: number
@@ -899,9 +864,8 @@ export type ProspectionUpdateManyWithWhereWithoutTenantInput = {
 }
 
 export type ProspectionCreateWithoutAuthorInput = {
-  proposedService: string
-  startDate?: Date | string
-  endDate: Date | string
+  service: string
+  deadline: Date | string
   status?: $Enums.ProspectionStatus
   createdAt?: Date | string
   client: Prisma.ClientCreateNestedOneWithoutProspectionsInput
@@ -912,9 +876,8 @@ export type ProspectionCreateWithoutAuthorInput = {
 
 export type ProspectionUncheckedCreateWithoutAuthorInput = {
   id?: number
-  proposedService: string
-  startDate?: Date | string
-  endDate: Date | string
+  service: string
+  deadline: Date | string
   status?: $Enums.ProspectionStatus
   clientId: number
   tenantId: number
@@ -951,9 +914,8 @@ export type ProspectionUpdateManyWithWhereWithoutAuthorInput = {
 
 export type ProspectionCreateManyClientInput = {
   id?: number
-  proposedService: string
-  startDate?: Date | string
-  endDate: Date | string
+  service: string
+  deadline: Date | string
   status?: $Enums.ProspectionStatus
   tenantId: number
   authorId: number
@@ -961,9 +923,8 @@ export type ProspectionCreateManyClientInput = {
 }
 
 export type ProspectionUpdateWithoutClientInput = {
-  proposedService?: Prisma.StringFieldUpdateOperationsInput | string
-  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  service?: Prisma.StringFieldUpdateOperationsInput | string
+  deadline?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumProspectionStatusFieldUpdateOperationsInput | $Enums.ProspectionStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tenant?: Prisma.TenantUpdateOneRequiredWithoutProspectionsNestedInput
@@ -974,9 +935,8 @@ export type ProspectionUpdateWithoutClientInput = {
 
 export type ProspectionUncheckedUpdateWithoutClientInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  proposedService?: Prisma.StringFieldUpdateOperationsInput | string
-  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  service?: Prisma.StringFieldUpdateOperationsInput | string
+  deadline?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumProspectionStatusFieldUpdateOperationsInput | $Enums.ProspectionStatus
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
@@ -987,9 +947,8 @@ export type ProspectionUncheckedUpdateWithoutClientInput = {
 
 export type ProspectionUncheckedUpdateManyWithoutClientInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  proposedService?: Prisma.StringFieldUpdateOperationsInput | string
-  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  service?: Prisma.StringFieldUpdateOperationsInput | string
+  deadline?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumProspectionStatusFieldUpdateOperationsInput | $Enums.ProspectionStatus
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
@@ -998,9 +957,8 @@ export type ProspectionUncheckedUpdateManyWithoutClientInput = {
 
 export type ProspectionCreateManyTenantInput = {
   id?: number
-  proposedService: string
-  startDate?: Date | string
-  endDate: Date | string
+  service: string
+  deadline: Date | string
   status?: $Enums.ProspectionStatus
   clientId: number
   authorId: number
@@ -1008,9 +966,8 @@ export type ProspectionCreateManyTenantInput = {
 }
 
 export type ProspectionUpdateWithoutTenantInput = {
-  proposedService?: Prisma.StringFieldUpdateOperationsInput | string
-  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  service?: Prisma.StringFieldUpdateOperationsInput | string
+  deadline?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumProspectionStatusFieldUpdateOperationsInput | $Enums.ProspectionStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   client?: Prisma.ClientUpdateOneRequiredWithoutProspectionsNestedInput
@@ -1021,9 +978,8 @@ export type ProspectionUpdateWithoutTenantInput = {
 
 export type ProspectionUncheckedUpdateWithoutTenantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  proposedService?: Prisma.StringFieldUpdateOperationsInput | string
-  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  service?: Prisma.StringFieldUpdateOperationsInput | string
+  deadline?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumProspectionStatusFieldUpdateOperationsInput | $Enums.ProspectionStatus
   clientId?: Prisma.IntFieldUpdateOperationsInput | number
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1034,9 +990,8 @@ export type ProspectionUncheckedUpdateWithoutTenantInput = {
 
 export type ProspectionUncheckedUpdateManyWithoutTenantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  proposedService?: Prisma.StringFieldUpdateOperationsInput | string
-  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  service?: Prisma.StringFieldUpdateOperationsInput | string
+  deadline?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumProspectionStatusFieldUpdateOperationsInput | $Enums.ProspectionStatus
   clientId?: Prisma.IntFieldUpdateOperationsInput | number
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1045,9 +1000,8 @@ export type ProspectionUncheckedUpdateManyWithoutTenantInput = {
 
 export type ProspectionCreateManyAuthorInput = {
   id?: number
-  proposedService: string
-  startDate?: Date | string
-  endDate: Date | string
+  service: string
+  deadline: Date | string
   status?: $Enums.ProspectionStatus
   clientId: number
   tenantId: number
@@ -1055,9 +1009,8 @@ export type ProspectionCreateManyAuthorInput = {
 }
 
 export type ProspectionUpdateWithoutAuthorInput = {
-  proposedService?: Prisma.StringFieldUpdateOperationsInput | string
-  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  service?: Prisma.StringFieldUpdateOperationsInput | string
+  deadline?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumProspectionStatusFieldUpdateOperationsInput | $Enums.ProspectionStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   client?: Prisma.ClientUpdateOneRequiredWithoutProspectionsNestedInput
@@ -1068,9 +1021,8 @@ export type ProspectionUpdateWithoutAuthorInput = {
 
 export type ProspectionUncheckedUpdateWithoutAuthorInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  proposedService?: Prisma.StringFieldUpdateOperationsInput | string
-  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  service?: Prisma.StringFieldUpdateOperationsInput | string
+  deadline?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumProspectionStatusFieldUpdateOperationsInput | $Enums.ProspectionStatus
   clientId?: Prisma.IntFieldUpdateOperationsInput | number
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1081,9 +1033,8 @@ export type ProspectionUncheckedUpdateWithoutAuthorInput = {
 
 export type ProspectionUncheckedUpdateManyWithoutAuthorInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  proposedService?: Prisma.StringFieldUpdateOperationsInput | string
-  startDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  endDate?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  service?: Prisma.StringFieldUpdateOperationsInput | string
+  deadline?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   status?: Prisma.EnumProspectionStatusFieldUpdateOperationsInput | $Enums.ProspectionStatus
   clientId?: Prisma.IntFieldUpdateOperationsInput | number
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
@@ -1132,9 +1083,8 @@ export type ProspectionCountOutputTypeCountCommentsArgs<ExtArgs extends runtime.
 
 export type ProspectionSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  proposedService?: boolean
-  startDate?: boolean
-  endDate?: boolean
+  service?: boolean
+  deadline?: boolean
   status?: boolean
   clientId?: boolean
   tenantId?: boolean
@@ -1150,9 +1100,8 @@ export type ProspectionSelect<ExtArgs extends runtime.Types.Extensions.InternalA
 
 export type ProspectionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  proposedService?: boolean
-  startDate?: boolean
-  endDate?: boolean
+  service?: boolean
+  deadline?: boolean
   status?: boolean
   clientId?: boolean
   tenantId?: boolean
@@ -1165,9 +1114,8 @@ export type ProspectionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.E
 
 export type ProspectionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
-  proposedService?: boolean
-  startDate?: boolean
-  endDate?: boolean
+  service?: boolean
+  deadline?: boolean
   status?: boolean
   clientId?: boolean
   tenantId?: boolean
@@ -1180,9 +1128,8 @@ export type ProspectionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.E
 
 export type ProspectionSelectScalar = {
   id?: boolean
-  proposedService?: boolean
-  startDate?: boolean
-  endDate?: boolean
+  service?: boolean
+  deadline?: boolean
   status?: boolean
   clientId?: boolean
   tenantId?: boolean
@@ -1190,7 +1137,7 @@ export type ProspectionSelectScalar = {
   createdAt?: boolean
 }
 
-export type ProspectionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "proposedService" | "startDate" | "endDate" | "status" | "clientId" | "tenantId" | "authorId" | "createdAt", ExtArgs["result"]["prospection"]>
+export type ProspectionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "service" | "deadline" | "status" | "clientId" | "tenantId" | "authorId" | "createdAt", ExtArgs["result"]["prospection"]>
 export type ProspectionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
@@ -1221,9 +1168,8 @@ export type $ProspectionPayload<ExtArgs extends runtime.Types.Extensions.Interna
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
-    proposedService: string
-    startDate: Date
-    endDate: Date
+    service: string
+    deadline: Date
     status: $Enums.ProspectionStatus
     clientId: number
     tenantId: number
@@ -1658,9 +1604,8 @@ export interface Prisma__ProspectionClient<T, Null = never, ExtArgs extends runt
  */
 export interface ProspectionFieldRefs {
   readonly id: Prisma.FieldRef<"Prospection", 'Int'>
-  readonly proposedService: Prisma.FieldRef<"Prospection", 'String'>
-  readonly startDate: Prisma.FieldRef<"Prospection", 'DateTime'>
-  readonly endDate: Prisma.FieldRef<"Prospection", 'DateTime'>
+  readonly service: Prisma.FieldRef<"Prospection", 'String'>
+  readonly deadline: Prisma.FieldRef<"Prospection", 'DateTime'>
   readonly status: Prisma.FieldRef<"Prospection", 'ProspectionStatus'>
   readonly clientId: Prisma.FieldRef<"Prospection", 'Int'>
   readonly tenantId: Prisma.FieldRef<"Prospection", 'Int'>
