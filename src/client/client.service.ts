@@ -16,6 +16,18 @@ export class ClientService {
                 data: {
                     ...createClientDto,
                     tenantId
+                },
+                select: {
+                    id: true,
+                    type: true,
+                    country: true,
+                    address: true,
+                    contactName: true,
+                    phone: true,
+                    email: true,
+                    companyName: true,
+                    companyLegalForm: true,
+                    createdAt: true
                 }
             })
         }
@@ -63,7 +75,7 @@ export class ClientService {
                     id: 'desc'
                 }   
             });
-
+            
             const count = await this.prismaClientService.client.count({
                 where: {
                     tenantId

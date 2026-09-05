@@ -1,4 +1,4 @@
-import { IsEmail, IsEnum, IsString, MaxLength, MinLength, ValidateIf } from "class-validator";
+import { IsEmail, IsEnum, IsOptional, IsString, MaxLength, MinLength, ValidateIf } from "class-validator";
 import { ClientType, EnterpriseLegalForm } from "../../generated/prisma/enums";
 
 export class CreateClientDTO {
@@ -32,14 +32,15 @@ export class CreateClientDTO {
     @IsString()
     @MinLength(3)
     @MaxLength(50)
-    enterpriseName?: string
+    companyName?: string
 
     @ValidateIf(o => o.type === ClientType.ENTREPRISE)
     @IsEnum(EnterpriseLegalForm)
-    enterpriseLegalForm?: EnterpriseLegalForm
+    companyLegalForm?: EnterpriseLegalForm
 
     @IsString()
     @MinLength(3)
     @MaxLength(100)
-    mainActivity?: string
+    @IsOptional()
+    industry?: string
 }

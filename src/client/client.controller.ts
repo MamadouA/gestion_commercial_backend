@@ -25,6 +25,7 @@ export class ClientController {
     @Body() createClientDto: CreateClientDTO,
     @CurrentUser('tenantId') tenantId: number,
   ) {
+  
     return await this.clientService.create(createClientDto, tenantId);
   }
 
