@@ -11,6 +11,7 @@ import { S3ClientService } from '../../common/file-manager/s3-client.service';
 import { CreateCommentDTO } from '../../comment/dto/create.comment.dto';
 import { ProspectionWhereInput } from '../../generated/prisma/models';
 import { FileMetadata } from '../../shared/shared.types';
+import { ProspectionStatus } from '../../generated/prisma/enums';
 
 @Injectable()
 export class ProspectionService {
@@ -19,6 +20,39 @@ export class ProspectionService {
     private prismaClientService: PrismaClientService,
     private s3ClientService: S3ClientService,
   ) {}
+
+  // -
+  async getStats(tenantId: number) {
+    try {
+      const opened = this.prismaClientService.prospection.count({
+        where: { tenantId, status: 'OPENED' },
+      });
+
+      const won = this.prismaClientService.prospection.count({
+        where: { tenantId, status: 'WON' },
+      });
+
+      const lost = this.prismaClientService.prospection.count({
+        where: { tenantId, status: 'LOST' },
+      });
+
+      const total = this.prismaClientService.prospection.count({
+        where: { tenantId }
+      });
+
+      const result = await Promise.all([opened, won, lost, total]);
+
+      return [
+        { status: ProspectionStatus.OPENED, count: result[0], ratio: Math.floor((result[0] / result[3]) * 100) },
+        { status: ProspectionStatus.WON, count: result[1], ratio: Math.floor((result[1] / result[3]) * 100) },
+        { status: ProspectionStatus.LOST, count: result[2], ratio: Math.floor((result[2] / result[3]) * 100) },
+      ];
+    }
+    catch(err) {
+      this.logger.error("Error while fetching the propections overview: ", err);
+      throw new InternalServerErrorException("Error while fetching the propections overview.");
+    }
+  }
 
   // -
   async create(

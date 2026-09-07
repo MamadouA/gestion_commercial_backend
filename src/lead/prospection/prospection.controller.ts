@@ -28,9 +28,15 @@ export class ProspectionController {
   constructor(private prospectionService: ProspectionService) {}
 
   // -
+  @Get('stats')
+  async getStats(tenantId: number) {
+    return this.prospectionService.getStats(tenantId);
+  }
+
+  // -
   @Post('create')
   @UseInterceptors(FileInterceptor('file', FILE_FILTER))
-  async create(
+    async create(
     @Body() createProspectionDto: CreateProspectionDTO,
     @UploadedFile() file: Express.Multer.File,
     @CurrentUser() currentUser: User,
