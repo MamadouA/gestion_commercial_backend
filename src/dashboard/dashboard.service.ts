@@ -142,9 +142,6 @@ export class DashboardService {
     const pending = this.prismaClientService.offer.count({
       where: { tenantId, status: 'PENDING' },
     });
-    const ready = this.prismaClientService.offer.count({
-      where: { tenantId, status: 'READY' },
-    });
 
     const won = this.prismaClientService.offer.count({
       where: { tenantId, status: 'WON' },
@@ -155,16 +152,14 @@ export class DashboardService {
 
     const result = await Promise.all([
       pending,
-      ready,
       won,
       lost,
     ]);
 
     return [
       { status: OfferStatus.PENDING, count: result[0] },
-      { status: OfferStatus.READY, count: result[1] },
-      { status: OfferStatus.WON, count: result[2]},
-      { status: OfferStatus.LOST, count: result[3] },
+      { status: OfferStatus.WON, count: result[1]},
+      { status: OfferStatus.LOST, count: result[2] },
     ];
   }
 

@@ -224,16 +224,6 @@ export class OfferService {
               id: 'desc',
             },
           },
-          products: {
-            select: {
-              id: true,
-              title: true,
-              domain: true,
-            },
-            orderBy: {
-              id: 'desc',
-            },
-          },
           documents: {
             omit: {
               storedName: true,

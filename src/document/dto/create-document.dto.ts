@@ -1,4 +1,4 @@
-import { IsEnum, IsNumber, IsString, Min, MinLength } from "class-validator"
+import { IsEnum, IsNumber, IsString, MaxLength, Min, MinLength } from "class-validator"
 
 export class CreateDocumentDTO {
     @IsString()
@@ -11,4 +11,12 @@ export class CreateDocumentDTO {
     @IsNumber()
     @Min(1)
     resourceId!: number
+}
+
+
+export class AttachementSummaryDTO {
+    @IsString()
+    @MinLength(10)
+    @MaxLength(255)
+    summary!: string
 }

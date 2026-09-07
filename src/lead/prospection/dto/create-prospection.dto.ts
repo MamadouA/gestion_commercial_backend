@@ -1,5 +1,5 @@
-import { Type } from "class-transformer";
-import { IsDateString, IsEnum, IsInt, IsString, MinLength, Validate } from "class-validator";
+import { IsDateString, IsEnum, IsInt, IsOptional, IsString, MinLength, Validate } from "class-validator";
+import { AttachementSummaryDTO } from "../../../document/dto/create-document.dto";
 
 export class CreateProspectionDTO {
     @IsString()
@@ -11,4 +11,8 @@ export class CreateProspectionDTO {
 
     @IsInt()
     clientId!: number;
+    
+    @Validate(AttachementSummaryDTO)
+    @IsOptional()
+    attachement!: AttachementSummaryDTO
 }

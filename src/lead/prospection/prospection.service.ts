@@ -40,7 +40,10 @@ export class ProspectionService {
           authorId,
           tenantId,
           documents: {
-            create: fileMetadata,
+            create: {
+              summary: file.originalname,
+              ...fileMetadata
+            },
           },
         },
         omit: {

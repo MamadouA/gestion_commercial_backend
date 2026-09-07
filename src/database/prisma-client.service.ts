@@ -3,6 +3,7 @@ import { PrismaPg } from '@prisma/adapter-pg';
 import { Feature, PrismaClient } from '../generated/prisma/client';
 import { APP_PERMISSIONS } from '../role-management/role-management.contants';
 import * as bcrypt from 'bcrypt';
+import { CLIENT_SEED, generateOffers, generateProspections } from './seed';
 
 @Injectable()
 export class PrismaClientService
@@ -21,6 +22,7 @@ export class PrismaClientService
     const tenant = await this.tenant.findFirst();
 
     if (!tenant) {
+      // -
       const tenant = await this.tenant.create({
         data: {
           name: process.env.SUPERADMIN_TENANT_NAME ?? '',
@@ -41,7 +43,7 @@ export class PrismaClientService
               description: 'Super Admin',
               permissions: {
                 create: {
-                  name: 'tenant.manage',
+                  name: 'app.manage',
                   description: "Super administrateur chargé de la gestion de l'application",
                   feature: 'TENANT',
                 },
@@ -59,6 +61,7 @@ export class PrismaClientService
         },
       });
 
+      // -
       await this.user.create({
         data: {
           email: process.env.SUPERADMIN_EMAIL ?? '',
@@ -92,9 +95,14 @@ export class PrismaClientService
         });
       });
 
-      await this.permission.createMany({
-        data: permissions,
-      });
+      await Promise.all(
+        [
+          this.permission.createMany({ data: permissions }),
+          this.client.createMany({ data: CLIENT_SEED }),
+          this.prospection.createMany({ data: generateProspections(100, 50) }),
+          this.offer.createMany({ data: generateOffers(100, 50) })
+        ]
+      )
     }
   }
 }

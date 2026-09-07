@@ -3,7 +3,6 @@ model Product {
     id Int @id @default(autoincrement())
     domain String
     title String
-    offers Offer[]
     tenantId Int
     tenant Tenant @relation(fields: [tenantId], references: [id])
 }

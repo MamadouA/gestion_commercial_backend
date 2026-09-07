@@ -8,7 +8,6 @@ model Offer {
     amountTTC Decimal?
 
     comments Comment[]
-    products Product[]
     documents Document[]
     
     authorId Int
@@ -29,7 +28,6 @@ model Offer {
 
 enum OfferStatus {
     PENDING
-    READY
     WON
     LOST
 }

@@ -40,7 +40,6 @@ export type InvoiceStatus = (typeof InvoiceStatus)[keyof typeof InvoiceStatus]
 
 export const OfferStatus = {
   PENDING: 'PENDING',
-  READY: 'READY',
   WON: 'WON',
   LOST: 'LOST'
 } as const
