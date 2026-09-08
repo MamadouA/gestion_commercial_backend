@@ -79,6 +79,7 @@ export class OfferService {
           status: true,
           amountTTC: true,
           deadline: true,
+          createdAt: true,
           client: {
             select: {
               type: true,
@@ -96,6 +97,8 @@ export class OfferService {
         orderBy: {
           id: 'desc',
         },
+        take: query.pageSize,
+        skip: (query.currentPage - 1) * query.pageSize,
       });
 
       const count = await this.prismaClientService.offer.count({

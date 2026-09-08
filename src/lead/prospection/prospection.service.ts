@@ -43,9 +43,9 @@ export class ProspectionService {
       const result = await Promise.all([opened, won, lost, total]);
 
       return [
-        { status: ProspectionStatus.OPENED, count: result[0], ratio: Math.floor((result[0] / result[3]) * 100) },
-        { status: ProspectionStatus.WON, count: result[1], ratio: Math.floor((result[1] / result[3]) * 100) },
-        { status: ProspectionStatus.LOST, count: result[2], ratio: Math.floor((result[2] / result[3]) * 100) },
+        { status: ProspectionStatus.OPENED, count: result[0], ratio: Math.round((result[0] / result[3]) * 100) },
+        { status: ProspectionStatus.WON, count: result[1], ratio: Math.round((result[1] / result[3]) * 100) },
+        { status: ProspectionStatus.LOST, count: result[2], ratio: Math.round((result[2] / result[3]) * 100) },
       ];
     }
     catch(err) {
