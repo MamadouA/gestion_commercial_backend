@@ -7,11 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { TenantModule } from './tenant/tenant.module';
 import { ClientModule } from './client/client.module';
 import { AuthMiddleware } from './auth/auth.middleware';
-import { ProspectionModule } from './lead/prospection/prospection.module';
-import { ProductModule } from './lead/product/product.module';
-import { OfferModule } from './lead/offer/offer.module';
 import { CommonModule } from './common/common.module';
-import { MissionModule } from './mission/mission.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ProjectModule } from './project/project.module';
 import { RoleManagementModule } from './role-management/role-management.module';
@@ -22,6 +18,7 @@ import { CommentModule } from './comment/comment.module';
 import { DocumentModule } from './document/document.module';
 import { ReportModule } from './report/report.module';
 import { NotificationModule } from './notification/notification.module';
+import { LeadModule } from './lead/lead.module';
 
 @Module({
   imports: [
@@ -30,11 +27,7 @@ import { NotificationModule } from './notification/notification.module';
     AuthModule,
     TenantModule,
     ClientModule,
-    ProspectionModule,
-    ProductModule,
-    OfferModule,
     CommonModule,
-    MissionModule,
     DashboardModule,
     ProjectModule,
     RoleManagementModule,
@@ -45,6 +38,7 @@ import { NotificationModule } from './notification/notification.module';
     DocumentModule,
     ReportModule,
     NotificationModule,
+    LeadModule,
   ],
   controllers: [AppController],
   providers: [AppService],

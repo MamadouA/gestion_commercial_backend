@@ -32,7 +32,7 @@ export type ProjectAvgAggregateOutputType = {
   amountTVA: runtime.Decimal | null
   amountTTC: runtime.Decimal | null
   clientId: number | null
-  offerId: number | null
+  leadId: number | null
   authorId: number | null
   tenantId: number | null
 }
@@ -43,7 +43,7 @@ export type ProjectSumAggregateOutputType = {
   amountTVA: runtime.Decimal | null
   amountTTC: runtime.Decimal | null
   clientId: number | null
-  offerId: number | null
+  leadId: number | null
   authorId: number | null
   tenantId: number | null
 }
@@ -56,7 +56,7 @@ export type ProjectMinAggregateOutputType = {
   amountTTC: runtime.Decimal | null
   status: $Enums.ProjectStatus | null
   clientId: number | null
-  offerId: number | null
+  leadId: number | null
   authorId: number | null
   tenantId: number | null
   createdAt: Date | null
@@ -70,7 +70,7 @@ export type ProjectMaxAggregateOutputType = {
   amountTTC: runtime.Decimal | null
   status: $Enums.ProjectStatus | null
   clientId: number | null
-  offerId: number | null
+  leadId: number | null
   authorId: number | null
   tenantId: number | null
   createdAt: Date | null
@@ -84,7 +84,7 @@ export type ProjectCountAggregateOutputType = {
   amountTTC: number
   status: number
   clientId: number
-  offerId: number
+  leadId: number
   authorId: number
   tenantId: number
   createdAt: number
@@ -98,7 +98,7 @@ export type ProjectAvgAggregateInputType = {
   amountTVA?: true
   amountTTC?: true
   clientId?: true
-  offerId?: true
+  leadId?: true
   authorId?: true
   tenantId?: true
 }
@@ -109,7 +109,7 @@ export type ProjectSumAggregateInputType = {
   amountTVA?: true
   amountTTC?: true
   clientId?: true
-  offerId?: true
+  leadId?: true
   authorId?: true
   tenantId?: true
 }
@@ -122,7 +122,7 @@ export type ProjectMinAggregateInputType = {
   amountTTC?: true
   status?: true
   clientId?: true
-  offerId?: true
+  leadId?: true
   authorId?: true
   tenantId?: true
   createdAt?: true
@@ -136,7 +136,7 @@ export type ProjectMaxAggregateInputType = {
   amountTTC?: true
   status?: true
   clientId?: true
-  offerId?: true
+  leadId?: true
   authorId?: true
   tenantId?: true
   createdAt?: true
@@ -150,7 +150,7 @@ export type ProjectCountAggregateInputType = {
   amountTTC?: true
   status?: true
   clientId?: true
-  offerId?: true
+  leadId?: true
   authorId?: true
   tenantId?: true
   createdAt?: true
@@ -251,7 +251,7 @@ export type ProjectGroupByOutputType = {
   amountTTC: runtime.Decimal | null
   status: $Enums.ProjectStatus
   clientId: number
-  offerId: number
+  leadId: number
   authorId: number
   tenantId: number
   createdAt: Date
@@ -288,16 +288,16 @@ export type ProjectWhereInput = {
   amountTTC?: Prisma.DecimalNullableFilter<"Project"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumProjectStatusFilter<"Project"> | $Enums.ProjectStatus
   clientId?: Prisma.IntFilter<"Project"> | number
-  offerId?: Prisma.IntFilter<"Project"> | number
+  leadId?: Prisma.IntFilter<"Project"> | number
   authorId?: Prisma.IntFilter<"Project"> | number
   tenantId?: Prisma.IntFilter<"Project"> | number
   createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
-  documents?: Prisma.DocumentListRelationFilter
+  attachments?: Prisma.AttachmentListRelationFilter
   timesheets?: Prisma.TimesheetListRelationFilter
   invoices?: Prisma.InvoiceListRelationFilter
   reports?: Prisma.ReportListRelationFilter
   client?: Prisma.XOR<Prisma.ClientScalarRelationFilter, Prisma.ClientWhereInput>
-  offer?: Prisma.XOR<Prisma.OfferScalarRelationFilter, Prisma.OfferWhereInput>
+  lead?: Prisma.XOR<Prisma.LeadScalarRelationFilter, Prisma.LeadWhereInput>
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
 }
@@ -310,23 +310,23 @@ export type ProjectOrderByWithRelationInput = {
   amountTTC?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
-  offerId?: Prisma.SortOrder
+  leadId?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  documents?: Prisma.DocumentOrderByRelationAggregateInput
+  attachments?: Prisma.AttachmentOrderByRelationAggregateInput
   timesheets?: Prisma.TimesheetOrderByRelationAggregateInput
   invoices?: Prisma.InvoiceOrderByRelationAggregateInput
   reports?: Prisma.ReportOrderByRelationAggregateInput
   client?: Prisma.ClientOrderByWithRelationInput
-  offer?: Prisma.OfferOrderByWithRelationInput
+  lead?: Prisma.LeadOrderByWithRelationInput
   author?: Prisma.UserOrderByWithRelationInput
   tenant?: Prisma.TenantOrderByWithRelationInput
 }
 
 export type ProjectWhereUniqueInput = Prisma.AtLeast<{
   id?: number
-  offerId?: number
+  leadId?: number
   AND?: Prisma.ProjectWhereInput | Prisma.ProjectWhereInput[]
   OR?: Prisma.ProjectWhereInput[]
   NOT?: Prisma.ProjectWhereInput | Prisma.ProjectWhereInput[]
@@ -339,15 +339,15 @@ export type ProjectWhereUniqueInput = Prisma.AtLeast<{
   authorId?: Prisma.IntFilter<"Project"> | number
   tenantId?: Prisma.IntFilter<"Project"> | number
   createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
-  documents?: Prisma.DocumentListRelationFilter
+  attachments?: Prisma.AttachmentListRelationFilter
   timesheets?: Prisma.TimesheetListRelationFilter
   invoices?: Prisma.InvoiceListRelationFilter
   reports?: Prisma.ReportListRelationFilter
   client?: Prisma.XOR<Prisma.ClientScalarRelationFilter, Prisma.ClientWhereInput>
-  offer?: Prisma.XOR<Prisma.OfferScalarRelationFilter, Prisma.OfferWhereInput>
+  lead?: Prisma.XOR<Prisma.LeadScalarRelationFilter, Prisma.LeadWhereInput>
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
-}, "id" | "offerId">
+}, "id" | "leadId">
 
 export type ProjectOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -357,7 +357,7 @@ export type ProjectOrderByWithAggregationInput = {
   amountTTC?: Prisma.SortOrderInput | Prisma.SortOrder
   status?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
-  offerId?: Prisma.SortOrder
+  leadId?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -379,7 +379,7 @@ export type ProjectScalarWhereWithAggregatesInput = {
   amountTTC?: Prisma.DecimalNullableWithAggregatesFilter<"Project"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumProjectStatusWithAggregatesFilter<"Project"> | $Enums.ProjectStatus
   clientId?: Prisma.IntWithAggregatesFilter<"Project"> | number
-  offerId?: Prisma.IntWithAggregatesFilter<"Project"> | number
+  leadId?: Prisma.IntWithAggregatesFilter<"Project"> | number
   authorId?: Prisma.IntWithAggregatesFilter<"Project"> | number
   tenantId?: Prisma.IntWithAggregatesFilter<"Project"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Project"> | Date | string
@@ -392,12 +392,12 @@ export type ProjectCreateInput = {
   amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.ProjectStatus
   createdAt?: Date | string
-  documents?: Prisma.DocumentCreateNestedManyWithoutProjectInput
+  attachments?: Prisma.AttachmentCreateNestedManyWithoutProjectInput
   timesheets?: Prisma.TimesheetCreateNestedManyWithoutProjectInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutProjectInput
   reports?: Prisma.ReportCreateNestedManyWithoutProjectInput
   client: Prisma.ClientCreateNestedOneWithoutProjectsInput
-  offer: Prisma.OfferCreateNestedOneWithoutProjectInput
+  lead: Prisma.LeadCreateNestedOneWithoutProjectInput
   author: Prisma.UserCreateNestedOneWithoutProjectsInput
   tenant: Prisma.TenantCreateNestedOneWithoutProjectsInput
 }
@@ -410,11 +410,11 @@ export type ProjectUncheckedCreateInput = {
   amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.ProjectStatus
   clientId: number
-  offerId: number
+  leadId: number
   authorId: number
   tenantId: number
   createdAt?: Date | string
-  documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutProjectInput
+  attachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutProjectInput
   timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutProjectInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutProjectInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutProjectInput
@@ -427,12 +427,12 @@ export type ProjectUpdateInput = {
   amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  documents?: Prisma.DocumentUpdateManyWithoutProjectNestedInput
+  attachments?: Prisma.AttachmentUpdateManyWithoutProjectNestedInput
   timesheets?: Prisma.TimesheetUpdateManyWithoutProjectNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutProjectNestedInput
   reports?: Prisma.ReportUpdateManyWithoutProjectNestedInput
   client?: Prisma.ClientUpdateOneRequiredWithoutProjectsNestedInput
-  offer?: Prisma.OfferUpdateOneRequiredWithoutProjectNestedInput
+  lead?: Prisma.LeadUpdateOneRequiredWithoutProjectNestedInput
   author?: Prisma.UserUpdateOneRequiredWithoutProjectsNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutProjectsNestedInput
 }
@@ -445,11 +445,11 @@ export type ProjectUncheckedUpdateInput = {
   amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   clientId?: Prisma.IntFieldUpdateOperationsInput | number
-  offerId?: Prisma.IntFieldUpdateOperationsInput | number
+  leadId?: Prisma.IntFieldUpdateOperationsInput | number
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  documents?: Prisma.DocumentUncheckedUpdateManyWithoutProjectNestedInput
+  attachments?: Prisma.AttachmentUncheckedUpdateManyWithoutProjectNestedInput
   timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutProjectNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutProjectNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutProjectNestedInput
@@ -463,7 +463,7 @@ export type ProjectCreateManyInput = {
   amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.ProjectStatus
   clientId: number
-  offerId: number
+  leadId: number
   authorId: number
   tenantId: number
   createdAt?: Date | string
@@ -486,10 +486,15 @@ export type ProjectUncheckedUpdateManyInput = {
   amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   clientId?: Prisma.IntFieldUpdateOperationsInput | number
-  offerId?: Prisma.IntFieldUpdateOperationsInput | number
+  leadId?: Prisma.IntFieldUpdateOperationsInput | number
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ProjectNullableScalarRelationFilter = {
+  is?: Prisma.ProjectWhereInput | null
+  isNot?: Prisma.ProjectWhereInput | null
 }
 
 export type ProjectListRelationFilter = {
@@ -502,11 +507,6 @@ export type ProjectOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
-export type ProjectNullableScalarRelationFilter = {
-  is?: Prisma.ProjectWhereInput | null
-  isNot?: Prisma.ProjectWhereInput | null
-}
-
 export type ProjectCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
@@ -515,7 +515,7 @@ export type ProjectCountOrderByAggregateInput = {
   amountTTC?: Prisma.SortOrder
   status?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
-  offerId?: Prisma.SortOrder
+  leadId?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -527,7 +527,7 @@ export type ProjectAvgOrderByAggregateInput = {
   amountTVA?: Prisma.SortOrder
   amountTTC?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
-  offerId?: Prisma.SortOrder
+  leadId?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
 }
@@ -540,7 +540,7 @@ export type ProjectMaxOrderByAggregateInput = {
   amountTTC?: Prisma.SortOrder
   status?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
-  offerId?: Prisma.SortOrder
+  leadId?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -554,7 +554,7 @@ export type ProjectMinOrderByAggregateInput = {
   amountTTC?: Prisma.SortOrder
   status?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
-  offerId?: Prisma.SortOrder
+  leadId?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -566,7 +566,7 @@ export type ProjectSumOrderByAggregateInput = {
   amountTVA?: Prisma.SortOrder
   amountTTC?: Prisma.SortOrder
   clientId?: Prisma.SortOrder
-  offerId?: Prisma.SortOrder
+  leadId?: Prisma.SortOrder
   authorId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
 }
@@ -574,6 +574,22 @@ export type ProjectSumOrderByAggregateInput = {
 export type ProjectScalarRelationFilter = {
   is?: Prisma.ProjectWhereInput
   isNot?: Prisma.ProjectWhereInput
+}
+
+export type ProjectCreateNestedOneWithoutAttachmentsInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutAttachmentsInput, Prisma.ProjectUncheckedCreateWithoutAttachmentsInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutAttachmentsInput
+  connect?: Prisma.ProjectWhereUniqueInput
+}
+
+export type ProjectUpdateOneWithoutAttachmentsNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutAttachmentsInput, Prisma.ProjectUncheckedCreateWithoutAttachmentsInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutAttachmentsInput
+  upsert?: Prisma.ProjectUpsertWithoutAttachmentsInput
+  disconnect?: Prisma.ProjectWhereInput | boolean
+  delete?: Prisma.ProjectWhereInput | boolean
+  connect?: Prisma.ProjectWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutAttachmentsInput, Prisma.ProjectUpdateWithoutAttachmentsInput>, Prisma.ProjectUncheckedUpdateWithoutAttachmentsInput>
 }
 
 export type ProjectCreateNestedManyWithoutClientInput = {
@@ -618,22 +634,6 @@ export type ProjectUncheckedUpdateManyWithoutClientNestedInput = {
   deleteMany?: Prisma.ProjectScalarWhereInput | Prisma.ProjectScalarWhereInput[]
 }
 
-export type ProjectCreateNestedOneWithoutDocumentsInput = {
-  create?: Prisma.XOR<Prisma.ProjectCreateWithoutDocumentsInput, Prisma.ProjectUncheckedCreateWithoutDocumentsInput>
-  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutDocumentsInput
-  connect?: Prisma.ProjectWhereUniqueInput
-}
-
-export type ProjectUpdateOneWithoutDocumentsNestedInput = {
-  create?: Prisma.XOR<Prisma.ProjectCreateWithoutDocumentsInput, Prisma.ProjectUncheckedCreateWithoutDocumentsInput>
-  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutDocumentsInput
-  upsert?: Prisma.ProjectUpsertWithoutDocumentsInput
-  disconnect?: Prisma.ProjectWhereInput | boolean
-  delete?: Prisma.ProjectWhereInput | boolean
-  connect?: Prisma.ProjectWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutDocumentsInput, Prisma.ProjectUpdateWithoutDocumentsInput>, Prisma.ProjectUncheckedUpdateWithoutDocumentsInput>
-}
-
 export type ProjectCreateNestedOneWithoutInvoicesInput = {
   create?: Prisma.XOR<Prisma.ProjectCreateWithoutInvoicesInput, Prisma.ProjectUncheckedCreateWithoutInvoicesInput>
   connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutInvoicesInput
@@ -650,36 +650,44 @@ export type ProjectUpdateOneWithoutInvoicesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutInvoicesInput, Prisma.ProjectUpdateWithoutInvoicesInput>, Prisma.ProjectUncheckedUpdateWithoutInvoicesInput>
 }
 
-export type ProjectCreateNestedOneWithoutOfferInput = {
-  create?: Prisma.XOR<Prisma.ProjectCreateWithoutOfferInput, Prisma.ProjectUncheckedCreateWithoutOfferInput>
-  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutOfferInput
+export type ProjectCreateNestedOneWithoutLeadInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutLeadInput, Prisma.ProjectUncheckedCreateWithoutLeadInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutLeadInput
   connect?: Prisma.ProjectWhereUniqueInput
 }
 
-export type ProjectUncheckedCreateNestedOneWithoutOfferInput = {
-  create?: Prisma.XOR<Prisma.ProjectCreateWithoutOfferInput, Prisma.ProjectUncheckedCreateWithoutOfferInput>
-  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutOfferInput
+export type ProjectUncheckedCreateNestedOneWithoutLeadInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutLeadInput, Prisma.ProjectUncheckedCreateWithoutLeadInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutLeadInput
   connect?: Prisma.ProjectWhereUniqueInput
 }
 
-export type ProjectUpdateOneWithoutOfferNestedInput = {
-  create?: Prisma.XOR<Prisma.ProjectCreateWithoutOfferInput, Prisma.ProjectUncheckedCreateWithoutOfferInput>
-  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutOfferInput
-  upsert?: Prisma.ProjectUpsertWithoutOfferInput
+export type ProjectUpdateOneWithoutLeadNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutLeadInput, Prisma.ProjectUncheckedCreateWithoutLeadInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutLeadInput
+  upsert?: Prisma.ProjectUpsertWithoutLeadInput
   disconnect?: Prisma.ProjectWhereInput | boolean
   delete?: Prisma.ProjectWhereInput | boolean
   connect?: Prisma.ProjectWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutOfferInput, Prisma.ProjectUpdateWithoutOfferInput>, Prisma.ProjectUncheckedUpdateWithoutOfferInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutLeadInput, Prisma.ProjectUpdateWithoutLeadInput>, Prisma.ProjectUncheckedUpdateWithoutLeadInput>
 }
 
-export type ProjectUncheckedUpdateOneWithoutOfferNestedInput = {
-  create?: Prisma.XOR<Prisma.ProjectCreateWithoutOfferInput, Prisma.ProjectUncheckedCreateWithoutOfferInput>
-  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutOfferInput
-  upsert?: Prisma.ProjectUpsertWithoutOfferInput
+export type ProjectUncheckedUpdateOneWithoutLeadNestedInput = {
+  create?: Prisma.XOR<Prisma.ProjectCreateWithoutLeadInput, Prisma.ProjectUncheckedCreateWithoutLeadInput>
+  connectOrCreate?: Prisma.ProjectCreateOrConnectWithoutLeadInput
+  upsert?: Prisma.ProjectUpsertWithoutLeadInput
   disconnect?: Prisma.ProjectWhereInput | boolean
   delete?: Prisma.ProjectWhereInput | boolean
   connect?: Prisma.ProjectWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutOfferInput, Prisma.ProjectUpdateWithoutOfferInput>, Prisma.ProjectUncheckedUpdateWithoutOfferInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ProjectUpdateToOneWithWhereWithoutLeadInput, Prisma.ProjectUpdateWithoutLeadInput>, Prisma.ProjectUncheckedUpdateWithoutLeadInput>
+}
+
+export type NullableDecimalFieldUpdateOperationsInput = {
+  set?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  increment?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  decrement?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  multiply?: runtime.Decimal | runtime.DecimalJsLike | number | string
+  divide?: runtime.Decimal | runtime.DecimalJsLike | number | string
 }
 
 export type EnumProjectStatusFieldUpdateOperationsInput = {
@@ -800,6 +808,88 @@ export type ProjectUncheckedUpdateManyWithoutAuthorNestedInput = {
   deleteMany?: Prisma.ProjectScalarWhereInput | Prisma.ProjectScalarWhereInput[]
 }
 
+export type ProjectCreateWithoutAttachmentsInput = {
+  title: string
+  amountHT?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  amountTVA?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  status?: $Enums.ProjectStatus
+  createdAt?: Date | string
+  timesheets?: Prisma.TimesheetCreateNestedManyWithoutProjectInput
+  invoices?: Prisma.InvoiceCreateNestedManyWithoutProjectInput
+  reports?: Prisma.ReportCreateNestedManyWithoutProjectInput
+  client: Prisma.ClientCreateNestedOneWithoutProjectsInput
+  lead: Prisma.LeadCreateNestedOneWithoutProjectInput
+  author: Prisma.UserCreateNestedOneWithoutProjectsInput
+  tenant: Prisma.TenantCreateNestedOneWithoutProjectsInput
+}
+
+export type ProjectUncheckedCreateWithoutAttachmentsInput = {
+  id?: number
+  title: string
+  amountHT?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  amountTVA?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  status?: $Enums.ProjectStatus
+  clientId: number
+  leadId: number
+  authorId: number
+  tenantId: number
+  createdAt?: Date | string
+  timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutProjectInput
+  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutProjectInput
+  reports?: Prisma.ReportUncheckedCreateNestedManyWithoutProjectInput
+}
+
+export type ProjectCreateOrConnectWithoutAttachmentsInput = {
+  where: Prisma.ProjectWhereUniqueInput
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutAttachmentsInput, Prisma.ProjectUncheckedCreateWithoutAttachmentsInput>
+}
+
+export type ProjectUpsertWithoutAttachmentsInput = {
+  update: Prisma.XOR<Prisma.ProjectUpdateWithoutAttachmentsInput, Prisma.ProjectUncheckedUpdateWithoutAttachmentsInput>
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutAttachmentsInput, Prisma.ProjectUncheckedCreateWithoutAttachmentsInput>
+  where?: Prisma.ProjectWhereInput
+}
+
+export type ProjectUpdateToOneWithWhereWithoutAttachmentsInput = {
+  where?: Prisma.ProjectWhereInput
+  data: Prisma.XOR<Prisma.ProjectUpdateWithoutAttachmentsInput, Prisma.ProjectUncheckedUpdateWithoutAttachmentsInput>
+}
+
+export type ProjectUpdateWithoutAttachmentsInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  amountHT?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  amountTVA?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  timesheets?: Prisma.TimesheetUpdateManyWithoutProjectNestedInput
+  invoices?: Prisma.InvoiceUpdateManyWithoutProjectNestedInput
+  reports?: Prisma.ReportUpdateManyWithoutProjectNestedInput
+  client?: Prisma.ClientUpdateOneRequiredWithoutProjectsNestedInput
+  lead?: Prisma.LeadUpdateOneRequiredWithoutProjectNestedInput
+  author?: Prisma.UserUpdateOneRequiredWithoutProjectsNestedInput
+  tenant?: Prisma.TenantUpdateOneRequiredWithoutProjectsNestedInput
+}
+
+export type ProjectUncheckedUpdateWithoutAttachmentsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  amountHT?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  amountTVA?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
+  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
+  clientId?: Prisma.IntFieldUpdateOperationsInput | number
+  leadId?: Prisma.IntFieldUpdateOperationsInput | number
+  authorId?: Prisma.IntFieldUpdateOperationsInput | number
+  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutProjectNestedInput
+  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutProjectNestedInput
+  reports?: Prisma.ReportUncheckedUpdateManyWithoutProjectNestedInput
+}
+
 export type ProjectCreateWithoutClientInput = {
   title: string
   amountHT?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -807,11 +897,11 @@ export type ProjectCreateWithoutClientInput = {
   amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.ProjectStatus
   createdAt?: Date | string
-  documents?: Prisma.DocumentCreateNestedManyWithoutProjectInput
+  attachments?: Prisma.AttachmentCreateNestedManyWithoutProjectInput
   timesheets?: Prisma.TimesheetCreateNestedManyWithoutProjectInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutProjectInput
   reports?: Prisma.ReportCreateNestedManyWithoutProjectInput
-  offer: Prisma.OfferCreateNestedOneWithoutProjectInput
+  lead: Prisma.LeadCreateNestedOneWithoutProjectInput
   author: Prisma.UserCreateNestedOneWithoutProjectsInput
   tenant: Prisma.TenantCreateNestedOneWithoutProjectsInput
 }
@@ -823,11 +913,11 @@ export type ProjectUncheckedCreateWithoutClientInput = {
   amountTVA?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.ProjectStatus
-  offerId: number
+  leadId: number
   authorId: number
   tenantId: number
   createdAt?: Date | string
-  documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutProjectInput
+  attachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutProjectInput
   timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutProjectInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutProjectInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutProjectInput
@@ -870,92 +960,10 @@ export type ProjectScalarWhereInput = {
   amountTTC?: Prisma.DecimalNullableFilter<"Project"> | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumProjectStatusFilter<"Project"> | $Enums.ProjectStatus
   clientId?: Prisma.IntFilter<"Project"> | number
-  offerId?: Prisma.IntFilter<"Project"> | number
+  leadId?: Prisma.IntFilter<"Project"> | number
   authorId?: Prisma.IntFilter<"Project"> | number
   tenantId?: Prisma.IntFilter<"Project"> | number
   createdAt?: Prisma.DateTimeFilter<"Project"> | Date | string
-}
-
-export type ProjectCreateWithoutDocumentsInput = {
-  title: string
-  amountHT?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  amountTVA?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  status?: $Enums.ProjectStatus
-  createdAt?: Date | string
-  timesheets?: Prisma.TimesheetCreateNestedManyWithoutProjectInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutProjectInput
-  reports?: Prisma.ReportCreateNestedManyWithoutProjectInput
-  client: Prisma.ClientCreateNestedOneWithoutProjectsInput
-  offer: Prisma.OfferCreateNestedOneWithoutProjectInput
-  author: Prisma.UserCreateNestedOneWithoutProjectsInput
-  tenant: Prisma.TenantCreateNestedOneWithoutProjectsInput
-}
-
-export type ProjectUncheckedCreateWithoutDocumentsInput = {
-  id?: number
-  title: string
-  amountHT?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  amountTVA?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  status?: $Enums.ProjectStatus
-  clientId: number
-  offerId: number
-  authorId: number
-  tenantId: number
-  createdAt?: Date | string
-  timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutProjectInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutProjectInput
-  reports?: Prisma.ReportUncheckedCreateNestedManyWithoutProjectInput
-}
-
-export type ProjectCreateOrConnectWithoutDocumentsInput = {
-  where: Prisma.ProjectWhereUniqueInput
-  create: Prisma.XOR<Prisma.ProjectCreateWithoutDocumentsInput, Prisma.ProjectUncheckedCreateWithoutDocumentsInput>
-}
-
-export type ProjectUpsertWithoutDocumentsInput = {
-  update: Prisma.XOR<Prisma.ProjectUpdateWithoutDocumentsInput, Prisma.ProjectUncheckedUpdateWithoutDocumentsInput>
-  create: Prisma.XOR<Prisma.ProjectCreateWithoutDocumentsInput, Prisma.ProjectUncheckedCreateWithoutDocumentsInput>
-  where?: Prisma.ProjectWhereInput
-}
-
-export type ProjectUpdateToOneWithWhereWithoutDocumentsInput = {
-  where?: Prisma.ProjectWhereInput
-  data: Prisma.XOR<Prisma.ProjectUpdateWithoutDocumentsInput, Prisma.ProjectUncheckedUpdateWithoutDocumentsInput>
-}
-
-export type ProjectUpdateWithoutDocumentsInput = {
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  amountHT?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  amountTVA?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  timesheets?: Prisma.TimesheetUpdateManyWithoutProjectNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutProjectNestedInput
-  reports?: Prisma.ReportUpdateManyWithoutProjectNestedInput
-  client?: Prisma.ClientUpdateOneRequiredWithoutProjectsNestedInput
-  offer?: Prisma.OfferUpdateOneRequiredWithoutProjectNestedInput
-  author?: Prisma.UserUpdateOneRequiredWithoutProjectsNestedInput
-  tenant?: Prisma.TenantUpdateOneRequiredWithoutProjectsNestedInput
-}
-
-export type ProjectUncheckedUpdateWithoutDocumentsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  amountHT?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  amountTVA?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
-  status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
-  clientId?: Prisma.IntFieldUpdateOperationsInput | number
-  offerId?: Prisma.IntFieldUpdateOperationsInput | number
-  authorId?: Prisma.IntFieldUpdateOperationsInput | number
-  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutProjectNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutProjectNestedInput
-  reports?: Prisma.ReportUncheckedUpdateManyWithoutProjectNestedInput
 }
 
 export type ProjectCreateWithoutInvoicesInput = {
@@ -965,11 +973,11 @@ export type ProjectCreateWithoutInvoicesInput = {
   amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.ProjectStatus
   createdAt?: Date | string
-  documents?: Prisma.DocumentCreateNestedManyWithoutProjectInput
+  attachments?: Prisma.AttachmentCreateNestedManyWithoutProjectInput
   timesheets?: Prisma.TimesheetCreateNestedManyWithoutProjectInput
   reports?: Prisma.ReportCreateNestedManyWithoutProjectInput
   client: Prisma.ClientCreateNestedOneWithoutProjectsInput
-  offer: Prisma.OfferCreateNestedOneWithoutProjectInput
+  lead: Prisma.LeadCreateNestedOneWithoutProjectInput
   author: Prisma.UserCreateNestedOneWithoutProjectsInput
   tenant: Prisma.TenantCreateNestedOneWithoutProjectsInput
 }
@@ -982,11 +990,11 @@ export type ProjectUncheckedCreateWithoutInvoicesInput = {
   amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.ProjectStatus
   clientId: number
-  offerId: number
+  leadId: number
   authorId: number
   tenantId: number
   createdAt?: Date | string
-  documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutProjectInput
+  attachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutProjectInput
   timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutProjectInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutProjectInput
 }
@@ -1014,11 +1022,11 @@ export type ProjectUpdateWithoutInvoicesInput = {
   amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  documents?: Prisma.DocumentUpdateManyWithoutProjectNestedInput
+  attachments?: Prisma.AttachmentUpdateManyWithoutProjectNestedInput
   timesheets?: Prisma.TimesheetUpdateManyWithoutProjectNestedInput
   reports?: Prisma.ReportUpdateManyWithoutProjectNestedInput
   client?: Prisma.ClientUpdateOneRequiredWithoutProjectsNestedInput
-  offer?: Prisma.OfferUpdateOneRequiredWithoutProjectNestedInput
+  lead?: Prisma.LeadUpdateOneRequiredWithoutProjectNestedInput
   author?: Prisma.UserUpdateOneRequiredWithoutProjectsNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutProjectsNestedInput
 }
@@ -1031,23 +1039,23 @@ export type ProjectUncheckedUpdateWithoutInvoicesInput = {
   amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   clientId?: Prisma.IntFieldUpdateOperationsInput | number
-  offerId?: Prisma.IntFieldUpdateOperationsInput | number
+  leadId?: Prisma.IntFieldUpdateOperationsInput | number
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  documents?: Prisma.DocumentUncheckedUpdateManyWithoutProjectNestedInput
+  attachments?: Prisma.AttachmentUncheckedUpdateManyWithoutProjectNestedInput
   timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutProjectNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutProjectNestedInput
 }
 
-export type ProjectCreateWithoutOfferInput = {
+export type ProjectCreateWithoutLeadInput = {
   title: string
   amountHT?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTVA?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.ProjectStatus
   createdAt?: Date | string
-  documents?: Prisma.DocumentCreateNestedManyWithoutProjectInput
+  attachments?: Prisma.AttachmentCreateNestedManyWithoutProjectInput
   timesheets?: Prisma.TimesheetCreateNestedManyWithoutProjectInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutProjectInput
   reports?: Prisma.ReportCreateNestedManyWithoutProjectInput
@@ -1056,7 +1064,7 @@ export type ProjectCreateWithoutOfferInput = {
   tenant: Prisma.TenantCreateNestedOneWithoutProjectsInput
 }
 
-export type ProjectUncheckedCreateWithoutOfferInput = {
+export type ProjectUncheckedCreateWithoutLeadInput = {
   id?: number
   title: string
   amountHT?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1067,36 +1075,36 @@ export type ProjectUncheckedCreateWithoutOfferInput = {
   authorId: number
   tenantId: number
   createdAt?: Date | string
-  documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutProjectInput
+  attachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutProjectInput
   timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutProjectInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutProjectInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutProjectInput
 }
 
-export type ProjectCreateOrConnectWithoutOfferInput = {
+export type ProjectCreateOrConnectWithoutLeadInput = {
   where: Prisma.ProjectWhereUniqueInput
-  create: Prisma.XOR<Prisma.ProjectCreateWithoutOfferInput, Prisma.ProjectUncheckedCreateWithoutOfferInput>
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutLeadInput, Prisma.ProjectUncheckedCreateWithoutLeadInput>
 }
 
-export type ProjectUpsertWithoutOfferInput = {
-  update: Prisma.XOR<Prisma.ProjectUpdateWithoutOfferInput, Prisma.ProjectUncheckedUpdateWithoutOfferInput>
-  create: Prisma.XOR<Prisma.ProjectCreateWithoutOfferInput, Prisma.ProjectUncheckedCreateWithoutOfferInput>
+export type ProjectUpsertWithoutLeadInput = {
+  update: Prisma.XOR<Prisma.ProjectUpdateWithoutLeadInput, Prisma.ProjectUncheckedUpdateWithoutLeadInput>
+  create: Prisma.XOR<Prisma.ProjectCreateWithoutLeadInput, Prisma.ProjectUncheckedCreateWithoutLeadInput>
   where?: Prisma.ProjectWhereInput
 }
 
-export type ProjectUpdateToOneWithWhereWithoutOfferInput = {
+export type ProjectUpdateToOneWithWhereWithoutLeadInput = {
   where?: Prisma.ProjectWhereInput
-  data: Prisma.XOR<Prisma.ProjectUpdateWithoutOfferInput, Prisma.ProjectUncheckedUpdateWithoutOfferInput>
+  data: Prisma.XOR<Prisma.ProjectUpdateWithoutLeadInput, Prisma.ProjectUncheckedUpdateWithoutLeadInput>
 }
 
-export type ProjectUpdateWithoutOfferInput = {
+export type ProjectUpdateWithoutLeadInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   amountHT?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTVA?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  documents?: Prisma.DocumentUpdateManyWithoutProjectNestedInput
+  attachments?: Prisma.AttachmentUpdateManyWithoutProjectNestedInput
   timesheets?: Prisma.TimesheetUpdateManyWithoutProjectNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutProjectNestedInput
   reports?: Prisma.ReportUpdateManyWithoutProjectNestedInput
@@ -1105,7 +1113,7 @@ export type ProjectUpdateWithoutOfferInput = {
   tenant?: Prisma.TenantUpdateOneRequiredWithoutProjectsNestedInput
 }
 
-export type ProjectUncheckedUpdateWithoutOfferInput = {
+export type ProjectUncheckedUpdateWithoutLeadInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
   amountHT?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
@@ -1116,7 +1124,7 @@ export type ProjectUncheckedUpdateWithoutOfferInput = {
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  documents?: Prisma.DocumentUncheckedUpdateManyWithoutProjectNestedInput
+  attachments?: Prisma.AttachmentUncheckedUpdateManyWithoutProjectNestedInput
   timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutProjectNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutProjectNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutProjectNestedInput
@@ -1129,11 +1137,11 @@ export type ProjectCreateWithoutReportsInput = {
   amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.ProjectStatus
   createdAt?: Date | string
-  documents?: Prisma.DocumentCreateNestedManyWithoutProjectInput
+  attachments?: Prisma.AttachmentCreateNestedManyWithoutProjectInput
   timesheets?: Prisma.TimesheetCreateNestedManyWithoutProjectInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutProjectInput
   client: Prisma.ClientCreateNestedOneWithoutProjectsInput
-  offer: Prisma.OfferCreateNestedOneWithoutProjectInput
+  lead: Prisma.LeadCreateNestedOneWithoutProjectInput
   author: Prisma.UserCreateNestedOneWithoutProjectsInput
   tenant: Prisma.TenantCreateNestedOneWithoutProjectsInput
 }
@@ -1146,11 +1154,11 @@ export type ProjectUncheckedCreateWithoutReportsInput = {
   amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.ProjectStatus
   clientId: number
-  offerId: number
+  leadId: number
   authorId: number
   tenantId: number
   createdAt?: Date | string
-  documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutProjectInput
+  attachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutProjectInput
   timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutProjectInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutProjectInput
 }
@@ -1178,11 +1186,11 @@ export type ProjectUpdateWithoutReportsInput = {
   amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  documents?: Prisma.DocumentUpdateManyWithoutProjectNestedInput
+  attachments?: Prisma.AttachmentUpdateManyWithoutProjectNestedInput
   timesheets?: Prisma.TimesheetUpdateManyWithoutProjectNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutProjectNestedInput
   client?: Prisma.ClientUpdateOneRequiredWithoutProjectsNestedInput
-  offer?: Prisma.OfferUpdateOneRequiredWithoutProjectNestedInput
+  lead?: Prisma.LeadUpdateOneRequiredWithoutProjectNestedInput
   author?: Prisma.UserUpdateOneRequiredWithoutProjectsNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutProjectsNestedInput
 }
@@ -1195,11 +1203,11 @@ export type ProjectUncheckedUpdateWithoutReportsInput = {
   amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   clientId?: Prisma.IntFieldUpdateOperationsInput | number
-  offerId?: Prisma.IntFieldUpdateOperationsInput | number
+  leadId?: Prisma.IntFieldUpdateOperationsInput | number
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  documents?: Prisma.DocumentUncheckedUpdateManyWithoutProjectNestedInput
+  attachments?: Prisma.AttachmentUncheckedUpdateManyWithoutProjectNestedInput
   timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutProjectNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutProjectNestedInput
 }
@@ -1211,12 +1219,12 @@ export type ProjectCreateWithoutTenantInput = {
   amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.ProjectStatus
   createdAt?: Date | string
-  documents?: Prisma.DocumentCreateNestedManyWithoutProjectInput
+  attachments?: Prisma.AttachmentCreateNestedManyWithoutProjectInput
   timesheets?: Prisma.TimesheetCreateNestedManyWithoutProjectInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutProjectInput
   reports?: Prisma.ReportCreateNestedManyWithoutProjectInput
   client: Prisma.ClientCreateNestedOneWithoutProjectsInput
-  offer: Prisma.OfferCreateNestedOneWithoutProjectInput
+  lead: Prisma.LeadCreateNestedOneWithoutProjectInput
   author: Prisma.UserCreateNestedOneWithoutProjectsInput
 }
 
@@ -1228,10 +1236,10 @@ export type ProjectUncheckedCreateWithoutTenantInput = {
   amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.ProjectStatus
   clientId: number
-  offerId: number
+  leadId: number
   authorId: number
   createdAt?: Date | string
-  documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutProjectInput
+  attachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutProjectInput
   timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutProjectInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutProjectInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutProjectInput
@@ -1270,11 +1278,11 @@ export type ProjectCreateWithoutTimesheetsInput = {
   amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.ProjectStatus
   createdAt?: Date | string
-  documents?: Prisma.DocumentCreateNestedManyWithoutProjectInput
+  attachments?: Prisma.AttachmentCreateNestedManyWithoutProjectInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutProjectInput
   reports?: Prisma.ReportCreateNestedManyWithoutProjectInput
   client: Prisma.ClientCreateNestedOneWithoutProjectsInput
-  offer: Prisma.OfferCreateNestedOneWithoutProjectInput
+  lead: Prisma.LeadCreateNestedOneWithoutProjectInput
   author: Prisma.UserCreateNestedOneWithoutProjectsInput
   tenant: Prisma.TenantCreateNestedOneWithoutProjectsInput
 }
@@ -1287,11 +1295,11 @@ export type ProjectUncheckedCreateWithoutTimesheetsInput = {
   amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.ProjectStatus
   clientId: number
-  offerId: number
+  leadId: number
   authorId: number
   tenantId: number
   createdAt?: Date | string
-  documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutProjectInput
+  attachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutProjectInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutProjectInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutProjectInput
 }
@@ -1319,11 +1327,11 @@ export type ProjectUpdateWithoutTimesheetsInput = {
   amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  documents?: Prisma.DocumentUpdateManyWithoutProjectNestedInput
+  attachments?: Prisma.AttachmentUpdateManyWithoutProjectNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutProjectNestedInput
   reports?: Prisma.ReportUpdateManyWithoutProjectNestedInput
   client?: Prisma.ClientUpdateOneRequiredWithoutProjectsNestedInput
-  offer?: Prisma.OfferUpdateOneRequiredWithoutProjectNestedInput
+  lead?: Prisma.LeadUpdateOneRequiredWithoutProjectNestedInput
   author?: Prisma.UserUpdateOneRequiredWithoutProjectsNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutProjectsNestedInput
 }
@@ -1336,11 +1344,11 @@ export type ProjectUncheckedUpdateWithoutTimesheetsInput = {
   amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   clientId?: Prisma.IntFieldUpdateOperationsInput | number
-  offerId?: Prisma.IntFieldUpdateOperationsInput | number
+  leadId?: Prisma.IntFieldUpdateOperationsInput | number
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  documents?: Prisma.DocumentUncheckedUpdateManyWithoutProjectNestedInput
+  attachments?: Prisma.AttachmentUncheckedUpdateManyWithoutProjectNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutProjectNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutProjectNestedInput
 }
@@ -1352,12 +1360,12 @@ export type ProjectCreateWithoutAuthorInput = {
   amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.ProjectStatus
   createdAt?: Date | string
-  documents?: Prisma.DocumentCreateNestedManyWithoutProjectInput
+  attachments?: Prisma.AttachmentCreateNestedManyWithoutProjectInput
   timesheets?: Prisma.TimesheetCreateNestedManyWithoutProjectInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutProjectInput
   reports?: Prisma.ReportCreateNestedManyWithoutProjectInput
   client: Prisma.ClientCreateNestedOneWithoutProjectsInput
-  offer: Prisma.OfferCreateNestedOneWithoutProjectInput
+  lead: Prisma.LeadCreateNestedOneWithoutProjectInput
   tenant: Prisma.TenantCreateNestedOneWithoutProjectsInput
 }
 
@@ -1369,10 +1377,10 @@ export type ProjectUncheckedCreateWithoutAuthorInput = {
   amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.ProjectStatus
   clientId: number
-  offerId: number
+  leadId: number
   tenantId: number
   createdAt?: Date | string
-  documents?: Prisma.DocumentUncheckedCreateNestedManyWithoutProjectInput
+  attachments?: Prisma.AttachmentUncheckedCreateNestedManyWithoutProjectInput
   timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutProjectInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutProjectInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutProjectInput
@@ -1411,7 +1419,7 @@ export type ProjectCreateManyClientInput = {
   amountTVA?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.ProjectStatus
-  offerId: number
+  leadId: number
   authorId: number
   tenantId: number
   createdAt?: Date | string
@@ -1424,11 +1432,11 @@ export type ProjectUpdateWithoutClientInput = {
   amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  documents?: Prisma.DocumentUpdateManyWithoutProjectNestedInput
+  attachments?: Prisma.AttachmentUpdateManyWithoutProjectNestedInput
   timesheets?: Prisma.TimesheetUpdateManyWithoutProjectNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutProjectNestedInput
   reports?: Prisma.ReportUpdateManyWithoutProjectNestedInput
-  offer?: Prisma.OfferUpdateOneRequiredWithoutProjectNestedInput
+  lead?: Prisma.LeadUpdateOneRequiredWithoutProjectNestedInput
   author?: Prisma.UserUpdateOneRequiredWithoutProjectsNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutProjectsNestedInput
 }
@@ -1440,11 +1448,11 @@ export type ProjectUncheckedUpdateWithoutClientInput = {
   amountTVA?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
-  offerId?: Prisma.IntFieldUpdateOperationsInput | number
+  leadId?: Prisma.IntFieldUpdateOperationsInput | number
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  documents?: Prisma.DocumentUncheckedUpdateManyWithoutProjectNestedInput
+  attachments?: Prisma.AttachmentUncheckedUpdateManyWithoutProjectNestedInput
   timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutProjectNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutProjectNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutProjectNestedInput
@@ -1457,7 +1465,7 @@ export type ProjectUncheckedUpdateManyWithoutClientInput = {
   amountTVA?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
-  offerId?: Prisma.IntFieldUpdateOperationsInput | number
+  leadId?: Prisma.IntFieldUpdateOperationsInput | number
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -1471,7 +1479,7 @@ export type ProjectCreateManyTenantInput = {
   amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.ProjectStatus
   clientId: number
-  offerId: number
+  leadId: number
   authorId: number
   createdAt?: Date | string
 }
@@ -1483,12 +1491,12 @@ export type ProjectUpdateWithoutTenantInput = {
   amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  documents?: Prisma.DocumentUpdateManyWithoutProjectNestedInput
+  attachments?: Prisma.AttachmentUpdateManyWithoutProjectNestedInput
   timesheets?: Prisma.TimesheetUpdateManyWithoutProjectNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutProjectNestedInput
   reports?: Prisma.ReportUpdateManyWithoutProjectNestedInput
   client?: Prisma.ClientUpdateOneRequiredWithoutProjectsNestedInput
-  offer?: Prisma.OfferUpdateOneRequiredWithoutProjectNestedInput
+  lead?: Prisma.LeadUpdateOneRequiredWithoutProjectNestedInput
   author?: Prisma.UserUpdateOneRequiredWithoutProjectsNestedInput
 }
 
@@ -1500,10 +1508,10 @@ export type ProjectUncheckedUpdateWithoutTenantInput = {
   amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   clientId?: Prisma.IntFieldUpdateOperationsInput | number
-  offerId?: Prisma.IntFieldUpdateOperationsInput | number
+  leadId?: Prisma.IntFieldUpdateOperationsInput | number
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  documents?: Prisma.DocumentUncheckedUpdateManyWithoutProjectNestedInput
+  attachments?: Prisma.AttachmentUncheckedUpdateManyWithoutProjectNestedInput
   timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutProjectNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutProjectNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutProjectNestedInput
@@ -1517,7 +1525,7 @@ export type ProjectUncheckedUpdateManyWithoutTenantInput = {
   amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   clientId?: Prisma.IntFieldUpdateOperationsInput | number
-  offerId?: Prisma.IntFieldUpdateOperationsInput | number
+  leadId?: Prisma.IntFieldUpdateOperationsInput | number
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1530,7 +1538,7 @@ export type ProjectCreateManyAuthorInput = {
   amountTTC?: runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: $Enums.ProjectStatus
   clientId: number
-  offerId: number
+  leadId: number
   tenantId: number
   createdAt?: Date | string
 }
@@ -1542,12 +1550,12 @@ export type ProjectUpdateWithoutAuthorInput = {
   amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  documents?: Prisma.DocumentUpdateManyWithoutProjectNestedInput
+  attachments?: Prisma.AttachmentUpdateManyWithoutProjectNestedInput
   timesheets?: Prisma.TimesheetUpdateManyWithoutProjectNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutProjectNestedInput
   reports?: Prisma.ReportUpdateManyWithoutProjectNestedInput
   client?: Prisma.ClientUpdateOneRequiredWithoutProjectsNestedInput
-  offer?: Prisma.OfferUpdateOneRequiredWithoutProjectNestedInput
+  lead?: Prisma.LeadUpdateOneRequiredWithoutProjectNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutProjectsNestedInput
 }
 
@@ -1559,10 +1567,10 @@ export type ProjectUncheckedUpdateWithoutAuthorInput = {
   amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   clientId?: Prisma.IntFieldUpdateOperationsInput | number
-  offerId?: Prisma.IntFieldUpdateOperationsInput | number
+  leadId?: Prisma.IntFieldUpdateOperationsInput | number
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  documents?: Prisma.DocumentUncheckedUpdateManyWithoutProjectNestedInput
+  attachments?: Prisma.AttachmentUncheckedUpdateManyWithoutProjectNestedInput
   timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutProjectNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutProjectNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutProjectNestedInput
@@ -1576,7 +1584,7 @@ export type ProjectUncheckedUpdateManyWithoutAuthorInput = {
   amountTTC?: Prisma.NullableDecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string | null
   status?: Prisma.EnumProjectStatusFieldUpdateOperationsInput | $Enums.ProjectStatus
   clientId?: Prisma.IntFieldUpdateOperationsInput | number
-  offerId?: Prisma.IntFieldUpdateOperationsInput | number
+  leadId?: Prisma.IntFieldUpdateOperationsInput | number
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
@@ -1587,14 +1595,14 @@ export type ProjectUncheckedUpdateManyWithoutAuthorInput = {
  */
 
 export type ProjectCountOutputType = {
-  documents: number
+  attachments: number
   timesheets: number
   invoices: number
   reports: number
 }
 
 export type ProjectCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  documents?: boolean | ProjectCountOutputTypeCountDocumentsArgs
+  attachments?: boolean | ProjectCountOutputTypeCountAttachmentsArgs
   timesheets?: boolean | ProjectCountOutputTypeCountTimesheetsArgs
   invoices?: boolean | ProjectCountOutputTypeCountInvoicesArgs
   reports?: boolean | ProjectCountOutputTypeCountReportsArgs
@@ -1613,8 +1621,8 @@ export type ProjectCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exte
 /**
  * ProjectCountOutputType without action
  */
-export type ProjectCountOutputTypeCountDocumentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.DocumentWhereInput
+export type ProjectCountOutputTypeCountAttachmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AttachmentWhereInput
 }
 
 /**
@@ -1647,16 +1655,16 @@ export type ProjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   amountTTC?: boolean
   status?: boolean
   clientId?: boolean
-  offerId?: boolean
+  leadId?: boolean
   authorId?: boolean
   tenantId?: boolean
   createdAt?: boolean
-  documents?: boolean | Prisma.Project$documentsArgs<ExtArgs>
+  attachments?: boolean | Prisma.Project$attachmentsArgs<ExtArgs>
   timesheets?: boolean | Prisma.Project$timesheetsArgs<ExtArgs>
   invoices?: boolean | Prisma.Project$invoicesArgs<ExtArgs>
   reports?: boolean | Prisma.Project$reportsArgs<ExtArgs>
   client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
-  offer?: boolean | Prisma.OfferDefaultArgs<ExtArgs>
+  lead?: boolean | Prisma.LeadDefaultArgs<ExtArgs>
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.ProjectCountOutputTypeDefaultArgs<ExtArgs>
@@ -1670,12 +1678,12 @@ export type ProjectSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   amountTTC?: boolean
   status?: boolean
   clientId?: boolean
-  offerId?: boolean
+  leadId?: boolean
   authorId?: boolean
   tenantId?: boolean
   createdAt?: boolean
   client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
-  offer?: boolean | Prisma.OfferDefaultArgs<ExtArgs>
+  lead?: boolean | Prisma.LeadDefaultArgs<ExtArgs>
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["project"]>
@@ -1688,12 +1696,12 @@ export type ProjectSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   amountTTC?: boolean
   status?: boolean
   clientId?: boolean
-  offerId?: boolean
+  leadId?: boolean
   authorId?: boolean
   tenantId?: boolean
   createdAt?: boolean
   client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
-  offer?: boolean | Prisma.OfferDefaultArgs<ExtArgs>
+  lead?: boolean | Prisma.LeadDefaultArgs<ExtArgs>
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["project"]>
@@ -1706,33 +1714,33 @@ export type ProjectSelectScalar = {
   amountTTC?: boolean
   status?: boolean
   clientId?: boolean
-  offerId?: boolean
+  leadId?: boolean
   authorId?: boolean
   tenantId?: boolean
   createdAt?: boolean
 }
 
-export type ProjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "amountHT" | "amountTVA" | "amountTTC" | "status" | "clientId" | "offerId" | "authorId" | "tenantId" | "createdAt", ExtArgs["result"]["project"]>
+export type ProjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "amountHT" | "amountTVA" | "amountTTC" | "status" | "clientId" | "leadId" | "authorId" | "tenantId" | "createdAt", ExtArgs["result"]["project"]>
 export type ProjectInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  documents?: boolean | Prisma.Project$documentsArgs<ExtArgs>
+  attachments?: boolean | Prisma.Project$attachmentsArgs<ExtArgs>
   timesheets?: boolean | Prisma.Project$timesheetsArgs<ExtArgs>
   invoices?: boolean | Prisma.Project$invoicesArgs<ExtArgs>
   reports?: boolean | Prisma.Project$reportsArgs<ExtArgs>
   client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
-  offer?: boolean | Prisma.OfferDefaultArgs<ExtArgs>
+  lead?: boolean | Prisma.LeadDefaultArgs<ExtArgs>
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
   _count?: boolean | Prisma.ProjectCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type ProjectIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
-  offer?: boolean | Prisma.OfferDefaultArgs<ExtArgs>
+  lead?: boolean | Prisma.LeadDefaultArgs<ExtArgs>
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }
 export type ProjectIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
-  offer?: boolean | Prisma.OfferDefaultArgs<ExtArgs>
+  lead?: boolean | Prisma.LeadDefaultArgs<ExtArgs>
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
 }
@@ -1740,12 +1748,12 @@ export type ProjectIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type $ProjectPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Project"
   objects: {
-    documents: Prisma.$DocumentPayload<ExtArgs>[]
+    attachments: Prisma.$AttachmentPayload<ExtArgs>[]
     timesheets: Prisma.$TimesheetPayload<ExtArgs>[]
     invoices: Prisma.$InvoicePayload<ExtArgs>[]
     reports: Prisma.$ReportPayload<ExtArgs>[]
     client: Prisma.$ClientPayload<ExtArgs>
-    offer: Prisma.$OfferPayload<ExtArgs>
+    lead: Prisma.$LeadPayload<ExtArgs>
     author: Prisma.$UserPayload<ExtArgs>
     tenant: Prisma.$TenantPayload<ExtArgs>
   }
@@ -1757,7 +1765,7 @@ export type $ProjectPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     amountTTC: runtime.Decimal | null
     status: $Enums.ProjectStatus
     clientId: number
-    offerId: number
+    leadId: number
     authorId: number
     tenantId: number
     createdAt: Date
@@ -2155,12 +2163,12 @@ readonly fields: ProjectFieldRefs;
  */
 export interface Prisma__ProjectClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  documents<T extends Prisma.Project$documentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$documentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DocumentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  attachments<T extends Prisma.Project$attachmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$attachmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AttachmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   timesheets<T extends Prisma.Project$timesheetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$timesheetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TimesheetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   invoices<T extends Prisma.Project$invoicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   reports<T extends Prisma.Project$reportsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Project$reportsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   client<T extends Prisma.ClientDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.ClientDefaultArgs<ExtArgs>>): Prisma.Prisma__ClientClient<runtime.Types.Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  offer<T extends Prisma.OfferDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.OfferDefaultArgs<ExtArgs>>): Prisma.Prisma__OfferClient<runtime.Types.Result.GetResult<Prisma.$OfferPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  lead<T extends Prisma.LeadDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.LeadDefaultArgs<ExtArgs>>): Prisma.Prisma__LeadClient<runtime.Types.Result.GetResult<Prisma.$LeadPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   author<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   tenant<T extends Prisma.TenantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TenantDefaultArgs<ExtArgs>>): Prisma.Prisma__TenantClient<runtime.Types.Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
@@ -2199,7 +2207,7 @@ export interface ProjectFieldRefs {
   readonly amountTTC: Prisma.FieldRef<"Project", 'Decimal'>
   readonly status: Prisma.FieldRef<"Project", 'ProjectStatus'>
   readonly clientId: Prisma.FieldRef<"Project", 'Int'>
-  readonly offerId: Prisma.FieldRef<"Project", 'Int'>
+  readonly leadId: Prisma.FieldRef<"Project", 'Int'>
   readonly authorId: Prisma.FieldRef<"Project", 'Int'>
   readonly tenantId: Prisma.FieldRef<"Project", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Project", 'DateTime'>
@@ -2604,27 +2612,27 @@ export type ProjectDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * Project.documents
+ * Project.attachments
  */
-export type Project$documentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Project$attachmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Document
+   * Select specific fields to fetch from the Attachment
    */
-  select?: Prisma.DocumentSelect<ExtArgs> | null
+  select?: Prisma.AttachmentSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Document
+   * Omit specific fields from the Attachment
    */
-  omit?: Prisma.DocumentOmit<ExtArgs> | null
+  omit?: Prisma.AttachmentOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.DocumentInclude<ExtArgs> | null
-  where?: Prisma.DocumentWhereInput
-  orderBy?: Prisma.DocumentOrderByWithRelationInput | Prisma.DocumentOrderByWithRelationInput[]
-  cursor?: Prisma.DocumentWhereUniqueInput
+  include?: Prisma.AttachmentInclude<ExtArgs> | null
+  where?: Prisma.AttachmentWhereInput
+  orderBy?: Prisma.AttachmentOrderByWithRelationInput | Prisma.AttachmentOrderByWithRelationInput[]
+  cursor?: Prisma.AttachmentWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.DocumentScalarFieldEnum | Prisma.DocumentScalarFieldEnum[]
+  distinct?: Prisma.AttachmentScalarFieldEnum | Prisma.AttachmentScalarFieldEnum[]
 }
 
 /**

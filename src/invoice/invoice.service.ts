@@ -46,14 +46,14 @@ export class InvoiceService {
             
             fileMetadata = await this.s3ClientService.save(file);
             return await this.prismaClientService.invoice.create({ 
-                data: {...data, document: { create: fileMetadata}},
+                data: {...data, attachments: { create: fileMetadata}},
                 omit: {
                     authorId: true,
                     tenantId: true,
-                    documentId: true,
+                    attachmentId: true,
                 },
                 include: {
-                    document: {
+                    attachments: {
                         select: {
                             id: true,
                             originalName: true,
@@ -99,7 +99,7 @@ export class InvoiceService {
                 omit: {
                     authorId: true,
                     tenantId: true,
-                    documentId: true
+                    attachmentId: true
                 },
                 include: {
                     author: {
@@ -146,7 +146,7 @@ export class InvoiceService {
                             fullname: true,
                         }
                     },
-                    document: {
+                    attachments: {
                         select: {
                             id: true,
                             summary: true,

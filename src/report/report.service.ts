@@ -52,7 +52,7 @@ export class ReportService {
             return await this.prismaClientService.report.create({
                 data: {
                     ...data,
-                    document: {
+                    attachment: {
                         create: fileMetadata
                     }
                 }
@@ -76,7 +76,7 @@ export class ReportService {
                     tenantId: true,
                     projectId: true,
                     authorId: true,
-                    documentId: true 
+                    attachmentId: true 
                 },
                 include: {
                     author: {
@@ -85,7 +85,7 @@ export class ReportService {
                             fullname: true
                         }
                     },
-                    document: {
+                    attachment: {
                         select: {
                             id: true,
                             originalName: true,

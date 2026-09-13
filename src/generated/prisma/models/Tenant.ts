@@ -223,10 +223,7 @@ export type TenantWhereInput = {
   users?: Prisma.UserListRelationFilter
   clients?: Prisma.ClientListRelationFilter
   roles?: Prisma.RoleListRelationFilter
-  prospections?: Prisma.ProspectionListRelationFilter
-  products?: Prisma.ProductListRelationFilter
-  offers?: Prisma.OfferListRelationFilter
-  missions?: Prisma.MissionListRelationFilter
+  leads?: Prisma.LeadListRelationFilter
   projects?: Prisma.ProjectListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
   reports?: Prisma.ReportListRelationFilter
@@ -243,10 +240,7 @@ export type TenantOrderByWithRelationInput = {
   users?: Prisma.UserOrderByRelationAggregateInput
   clients?: Prisma.ClientOrderByRelationAggregateInput
   roles?: Prisma.RoleOrderByRelationAggregateInput
-  prospections?: Prisma.ProspectionOrderByRelationAggregateInput
-  products?: Prisma.ProductOrderByRelationAggregateInput
-  offers?: Prisma.OfferOrderByRelationAggregateInput
-  missions?: Prisma.MissionOrderByRelationAggregateInput
+  leads?: Prisma.LeadOrderByRelationAggregateInput
   projects?: Prisma.ProjectOrderByRelationAggregateInput
   notifications?: Prisma.NotificationOrderByRelationAggregateInput
   reports?: Prisma.ReportOrderByRelationAggregateInput
@@ -266,10 +260,7 @@ export type TenantWhereUniqueInput = Prisma.AtLeast<{
   users?: Prisma.UserListRelationFilter
   clients?: Prisma.ClientListRelationFilter
   roles?: Prisma.RoleListRelationFilter
-  prospections?: Prisma.ProspectionListRelationFilter
-  products?: Prisma.ProductListRelationFilter
-  offers?: Prisma.OfferListRelationFilter
-  missions?: Prisma.MissionListRelationFilter
+  leads?: Prisma.LeadListRelationFilter
   projects?: Prisma.ProjectListRelationFilter
   notifications?: Prisma.NotificationListRelationFilter
   reports?: Prisma.ReportListRelationFilter
@@ -308,10 +299,7 @@ export type TenantCreateInput = {
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
-  prospections?: Prisma.ProspectionCreateNestedManyWithoutTenantInput
-  products?: Prisma.ProductCreateNestedManyWithoutTenantInput
-  offers?: Prisma.OfferCreateNestedManyWithoutTenantInput
-  missions?: Prisma.MissionCreateNestedManyWithoutTenantInput
+  leads?: Prisma.LeadCreateNestedManyWithoutTenantInput
   projects?: Prisma.ProjectCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   reports?: Prisma.ReportCreateNestedManyWithoutTenantInput
@@ -328,10 +316,7 @@ export type TenantUncheckedCreateInput = {
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
   roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
-  prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutTenantInput
-  products?: Prisma.ProductUncheckedCreateNestedManyWithoutTenantInput
-  offers?: Prisma.OfferUncheckedCreateNestedManyWithoutTenantInput
-  missions?: Prisma.MissionUncheckedCreateNestedManyWithoutTenantInput
+  leads?: Prisma.LeadUncheckedCreateNestedManyWithoutTenantInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutTenantInput
@@ -345,10 +330,7 @@ export type TenantUpdateInput = {
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
-  prospections?: Prisma.ProspectionUpdateManyWithoutTenantNestedInput
-  products?: Prisma.ProductUpdateManyWithoutTenantNestedInput
-  offers?: Prisma.OfferUpdateManyWithoutTenantNestedInput
-  missions?: Prisma.MissionUpdateManyWithoutTenantNestedInput
+  leads?: Prisma.LeadUpdateManyWithoutTenantNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   reports?: Prisma.ReportUpdateManyWithoutTenantNestedInput
@@ -365,10 +347,7 @@ export type TenantUncheckedUpdateInput = {
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
   roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
-  prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutTenantNestedInput
-  products?: Prisma.ProductUncheckedUpdateManyWithoutTenantNestedInput
-  offers?: Prisma.OfferUncheckedUpdateManyWithoutTenantNestedInput
-  missions?: Prisma.MissionUncheckedUpdateManyWithoutTenantNestedInput
+  leads?: Prisma.LeadUncheckedUpdateManyWithoutTenantNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutTenantNestedInput
@@ -474,18 +453,18 @@ export type TenantUpdateOneRequiredWithoutInvoicesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutInvoicesInput, Prisma.TenantUpdateWithoutInvoicesInput>, Prisma.TenantUncheckedUpdateWithoutInvoicesInput>
 }
 
-export type TenantCreateNestedOneWithoutMissionsInput = {
-  create?: Prisma.XOR<Prisma.TenantCreateWithoutMissionsInput, Prisma.TenantUncheckedCreateWithoutMissionsInput>
-  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutMissionsInput
+export type TenantCreateNestedOneWithoutLeadsInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutLeadsInput, Prisma.TenantUncheckedCreateWithoutLeadsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutLeadsInput
   connect?: Prisma.TenantWhereUniqueInput
 }
 
-export type TenantUpdateOneRequiredWithoutMissionsNestedInput = {
-  create?: Prisma.XOR<Prisma.TenantCreateWithoutMissionsInput, Prisma.TenantUncheckedCreateWithoutMissionsInput>
-  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutMissionsInput
-  upsert?: Prisma.TenantUpsertWithoutMissionsInput
+export type TenantUpdateOneRequiredWithoutLeadsNestedInput = {
+  create?: Prisma.XOR<Prisma.TenantCreateWithoutLeadsInput, Prisma.TenantUncheckedCreateWithoutLeadsInput>
+  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutLeadsInput
+  upsert?: Prisma.TenantUpsertWithoutLeadsInput
   connect?: Prisma.TenantWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutMissionsInput, Prisma.TenantUpdateWithoutMissionsInput>, Prisma.TenantUncheckedUpdateWithoutMissionsInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutLeadsInput, Prisma.TenantUpdateWithoutLeadsInput>, Prisma.TenantUncheckedUpdateWithoutLeadsInput>
 }
 
 export type TenantCreateNestedOneWithoutNotificationsInput = {
@@ -502,34 +481,6 @@ export type TenantUpdateOneRequiredWithoutNotificationsNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutNotificationsInput, Prisma.TenantUpdateWithoutNotificationsInput>, Prisma.TenantUncheckedUpdateWithoutNotificationsInput>
 }
 
-export type TenantCreateNestedOneWithoutOffersInput = {
-  create?: Prisma.XOR<Prisma.TenantCreateWithoutOffersInput, Prisma.TenantUncheckedCreateWithoutOffersInput>
-  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutOffersInput
-  connect?: Prisma.TenantWhereUniqueInput
-}
-
-export type TenantUpdateOneRequiredWithoutOffersNestedInput = {
-  create?: Prisma.XOR<Prisma.TenantCreateWithoutOffersInput, Prisma.TenantUncheckedCreateWithoutOffersInput>
-  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutOffersInput
-  upsert?: Prisma.TenantUpsertWithoutOffersInput
-  connect?: Prisma.TenantWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutOffersInput, Prisma.TenantUpdateWithoutOffersInput>, Prisma.TenantUncheckedUpdateWithoutOffersInput>
-}
-
-export type TenantCreateNestedOneWithoutProductsInput = {
-  create?: Prisma.XOR<Prisma.TenantCreateWithoutProductsInput, Prisma.TenantUncheckedCreateWithoutProductsInput>
-  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutProductsInput
-  connect?: Prisma.TenantWhereUniqueInput
-}
-
-export type TenantUpdateOneRequiredWithoutProductsNestedInput = {
-  create?: Prisma.XOR<Prisma.TenantCreateWithoutProductsInput, Prisma.TenantUncheckedCreateWithoutProductsInput>
-  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutProductsInput
-  upsert?: Prisma.TenantUpsertWithoutProductsInput
-  connect?: Prisma.TenantWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutProductsInput, Prisma.TenantUpdateWithoutProductsInput>, Prisma.TenantUncheckedUpdateWithoutProductsInput>
-}
-
 export type TenantCreateNestedOneWithoutProjectsInput = {
   create?: Prisma.XOR<Prisma.TenantCreateWithoutProjectsInput, Prisma.TenantUncheckedCreateWithoutProjectsInput>
   connectOrCreate?: Prisma.TenantCreateOrConnectWithoutProjectsInput
@@ -542,20 +493,6 @@ export type TenantUpdateOneRequiredWithoutProjectsNestedInput = {
   upsert?: Prisma.TenantUpsertWithoutProjectsInput
   connect?: Prisma.TenantWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutProjectsInput, Prisma.TenantUpdateWithoutProjectsInput>, Prisma.TenantUncheckedUpdateWithoutProjectsInput>
-}
-
-export type TenantCreateNestedOneWithoutProspectionsInput = {
-  create?: Prisma.XOR<Prisma.TenantCreateWithoutProspectionsInput, Prisma.TenantUncheckedCreateWithoutProspectionsInput>
-  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutProspectionsInput
-  connect?: Prisma.TenantWhereUniqueInput
-}
-
-export type TenantUpdateOneRequiredWithoutProspectionsNestedInput = {
-  create?: Prisma.XOR<Prisma.TenantCreateWithoutProspectionsInput, Prisma.TenantUncheckedCreateWithoutProspectionsInput>
-  connectOrCreate?: Prisma.TenantCreateOrConnectWithoutProspectionsInput
-  upsert?: Prisma.TenantUpsertWithoutProspectionsInput
-  connect?: Prisma.TenantWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.TenantUpdateToOneWithWhereWithoutProspectionsInput, Prisma.TenantUpdateWithoutProspectionsInput>, Prisma.TenantUncheckedUpdateWithoutProspectionsInput>
 }
 
 export type TenantCreateNestedOneWithoutReportsInput = {
@@ -648,10 +585,7 @@ export type TenantCreateWithoutClientsInput = {
   createdAt?: Date | string
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
-  prospections?: Prisma.ProspectionCreateNestedManyWithoutTenantInput
-  products?: Prisma.ProductCreateNestedManyWithoutTenantInput
-  offers?: Prisma.OfferCreateNestedManyWithoutTenantInput
-  missions?: Prisma.MissionCreateNestedManyWithoutTenantInput
+  leads?: Prisma.LeadCreateNestedManyWithoutTenantInput
   projects?: Prisma.ProjectCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   reports?: Prisma.ReportCreateNestedManyWithoutTenantInput
@@ -667,10 +601,7 @@ export type TenantUncheckedCreateWithoutClientsInput = {
   subscriptionId: number
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
   roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
-  prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutTenantInput
-  products?: Prisma.ProductUncheckedCreateNestedManyWithoutTenantInput
-  offers?: Prisma.OfferUncheckedCreateNestedManyWithoutTenantInput
-  missions?: Prisma.MissionUncheckedCreateNestedManyWithoutTenantInput
+  leads?: Prisma.LeadUncheckedCreateNestedManyWithoutTenantInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutTenantInput
@@ -699,10 +630,7 @@ export type TenantUpdateWithoutClientsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
-  prospections?: Prisma.ProspectionUpdateManyWithoutTenantNestedInput
-  products?: Prisma.ProductUpdateManyWithoutTenantNestedInput
-  offers?: Prisma.OfferUpdateManyWithoutTenantNestedInput
-  missions?: Prisma.MissionUpdateManyWithoutTenantNestedInput
+  leads?: Prisma.LeadUpdateManyWithoutTenantNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   reports?: Prisma.ReportUpdateManyWithoutTenantNestedInput
@@ -718,10 +646,7 @@ export type TenantUncheckedUpdateWithoutClientsInput = {
   subscriptionId?: Prisma.IntFieldUpdateOperationsInput | number
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
   roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
-  prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutTenantNestedInput
-  products?: Prisma.ProductUncheckedUpdateManyWithoutTenantNestedInput
-  offers?: Prisma.OfferUncheckedUpdateManyWithoutTenantNestedInput
-  missions?: Prisma.MissionUncheckedUpdateManyWithoutTenantNestedInput
+  leads?: Prisma.LeadUncheckedUpdateManyWithoutTenantNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutTenantNestedInput
@@ -735,10 +660,7 @@ export type TenantCreateWithoutInvoicesInput = {
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
-  prospections?: Prisma.ProspectionCreateNestedManyWithoutTenantInput
-  products?: Prisma.ProductCreateNestedManyWithoutTenantInput
-  offers?: Prisma.OfferCreateNestedManyWithoutTenantInput
-  missions?: Prisma.MissionCreateNestedManyWithoutTenantInput
+  leads?: Prisma.LeadCreateNestedManyWithoutTenantInput
   projects?: Prisma.ProjectCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   reports?: Prisma.ReportCreateNestedManyWithoutTenantInput
@@ -754,10 +676,7 @@ export type TenantUncheckedCreateWithoutInvoicesInput = {
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
   roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
-  prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutTenantInput
-  products?: Prisma.ProductUncheckedCreateNestedManyWithoutTenantInput
-  offers?: Prisma.OfferUncheckedCreateNestedManyWithoutTenantInput
-  missions?: Prisma.MissionUncheckedCreateNestedManyWithoutTenantInput
+  leads?: Prisma.LeadUncheckedCreateNestedManyWithoutTenantInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutTenantInput
@@ -786,10 +705,7 @@ export type TenantUpdateWithoutInvoicesInput = {
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
-  prospections?: Prisma.ProspectionUpdateManyWithoutTenantNestedInput
-  products?: Prisma.ProductUpdateManyWithoutTenantNestedInput
-  offers?: Prisma.OfferUpdateManyWithoutTenantNestedInput
-  missions?: Prisma.MissionUpdateManyWithoutTenantNestedInput
+  leads?: Prisma.LeadUpdateManyWithoutTenantNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   reports?: Prisma.ReportUpdateManyWithoutTenantNestedInput
@@ -805,25 +721,19 @@ export type TenantUncheckedUpdateWithoutInvoicesInput = {
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
   roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
-  prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutTenantNestedInput
-  products?: Prisma.ProductUncheckedUpdateManyWithoutTenantNestedInput
-  offers?: Prisma.OfferUncheckedUpdateManyWithoutTenantNestedInput
-  missions?: Prisma.MissionUncheckedUpdateManyWithoutTenantNestedInput
+  leads?: Prisma.LeadUncheckedUpdateManyWithoutTenantNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutTenantNestedInput
 }
 
-export type TenantCreateWithoutMissionsInput = {
+export type TenantCreateWithoutLeadsInput = {
   name: string
   isActive?: boolean
   createdAt?: Date | string
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
-  prospections?: Prisma.ProspectionCreateNestedManyWithoutTenantInput
-  products?: Prisma.ProductCreateNestedManyWithoutTenantInput
-  offers?: Prisma.OfferCreateNestedManyWithoutTenantInput
   projects?: Prisma.ProjectCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   reports?: Prisma.ReportCreateNestedManyWithoutTenantInput
@@ -831,7 +741,7 @@ export type TenantCreateWithoutMissionsInput = {
   subscription: Prisma.SubscriptionCreateNestedOneWithoutTenantInput
 }
 
-export type TenantUncheckedCreateWithoutMissionsInput = {
+export type TenantUncheckedCreateWithoutLeadsInput = {
   id?: number
   name: string
   isActive?: boolean
@@ -840,41 +750,35 @@ export type TenantUncheckedCreateWithoutMissionsInput = {
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
   roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
-  prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutTenantInput
-  products?: Prisma.ProductUncheckedCreateNestedManyWithoutTenantInput
-  offers?: Prisma.OfferUncheckedCreateNestedManyWithoutTenantInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutTenantInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutTenantInput
 }
 
-export type TenantCreateOrConnectWithoutMissionsInput = {
+export type TenantCreateOrConnectWithoutLeadsInput = {
   where: Prisma.TenantWhereUniqueInput
-  create: Prisma.XOR<Prisma.TenantCreateWithoutMissionsInput, Prisma.TenantUncheckedCreateWithoutMissionsInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutLeadsInput, Prisma.TenantUncheckedCreateWithoutLeadsInput>
 }
 
-export type TenantUpsertWithoutMissionsInput = {
-  update: Prisma.XOR<Prisma.TenantUpdateWithoutMissionsInput, Prisma.TenantUncheckedUpdateWithoutMissionsInput>
-  create: Prisma.XOR<Prisma.TenantCreateWithoutMissionsInput, Prisma.TenantUncheckedCreateWithoutMissionsInput>
+export type TenantUpsertWithoutLeadsInput = {
+  update: Prisma.XOR<Prisma.TenantUpdateWithoutLeadsInput, Prisma.TenantUncheckedUpdateWithoutLeadsInput>
+  create: Prisma.XOR<Prisma.TenantCreateWithoutLeadsInput, Prisma.TenantUncheckedCreateWithoutLeadsInput>
   where?: Prisma.TenantWhereInput
 }
 
-export type TenantUpdateToOneWithWhereWithoutMissionsInput = {
+export type TenantUpdateToOneWithWhereWithoutLeadsInput = {
   where?: Prisma.TenantWhereInput
-  data: Prisma.XOR<Prisma.TenantUpdateWithoutMissionsInput, Prisma.TenantUncheckedUpdateWithoutMissionsInput>
+  data: Prisma.XOR<Prisma.TenantUpdateWithoutLeadsInput, Prisma.TenantUncheckedUpdateWithoutLeadsInput>
 }
 
-export type TenantUpdateWithoutMissionsInput = {
+export type TenantUpdateWithoutLeadsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
-  prospections?: Prisma.ProspectionUpdateManyWithoutTenantNestedInput
-  products?: Prisma.ProductUpdateManyWithoutTenantNestedInput
-  offers?: Prisma.OfferUpdateManyWithoutTenantNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   reports?: Prisma.ReportUpdateManyWithoutTenantNestedInput
@@ -882,7 +786,7 @@ export type TenantUpdateWithoutMissionsInput = {
   subscription?: Prisma.SubscriptionUpdateOneRequiredWithoutTenantNestedInput
 }
 
-export type TenantUncheckedUpdateWithoutMissionsInput = {
+export type TenantUncheckedUpdateWithoutLeadsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
@@ -891,9 +795,6 @@ export type TenantUncheckedUpdateWithoutMissionsInput = {
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
   roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
-  prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutTenantNestedInput
-  products?: Prisma.ProductUncheckedUpdateManyWithoutTenantNestedInput
-  offers?: Prisma.OfferUncheckedUpdateManyWithoutTenantNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutTenantNestedInput
@@ -907,10 +808,7 @@ export type TenantCreateWithoutNotificationsInput = {
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
-  prospections?: Prisma.ProspectionCreateNestedManyWithoutTenantInput
-  products?: Prisma.ProductCreateNestedManyWithoutTenantInput
-  offers?: Prisma.OfferCreateNestedManyWithoutTenantInput
-  missions?: Prisma.MissionCreateNestedManyWithoutTenantInput
+  leads?: Prisma.LeadCreateNestedManyWithoutTenantInput
   projects?: Prisma.ProjectCreateNestedManyWithoutTenantInput
   reports?: Prisma.ReportCreateNestedManyWithoutTenantInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutTenantInput
@@ -926,10 +824,7 @@ export type TenantUncheckedCreateWithoutNotificationsInput = {
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
   roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
-  prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutTenantInput
-  products?: Prisma.ProductUncheckedCreateNestedManyWithoutTenantInput
-  offers?: Prisma.OfferUncheckedCreateNestedManyWithoutTenantInput
-  missions?: Prisma.MissionUncheckedCreateNestedManyWithoutTenantInput
+  leads?: Prisma.LeadUncheckedCreateNestedManyWithoutTenantInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutTenantInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutTenantInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutTenantInput
@@ -958,10 +853,7 @@ export type TenantUpdateWithoutNotificationsInput = {
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
-  prospections?: Prisma.ProspectionUpdateManyWithoutTenantNestedInput
-  products?: Prisma.ProductUpdateManyWithoutTenantNestedInput
-  offers?: Prisma.OfferUpdateManyWithoutTenantNestedInput
-  missions?: Prisma.MissionUpdateManyWithoutTenantNestedInput
+  leads?: Prisma.LeadUpdateManyWithoutTenantNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutTenantNestedInput
   reports?: Prisma.ReportUpdateManyWithoutTenantNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutTenantNestedInput
@@ -977,183 +869,8 @@ export type TenantUncheckedUpdateWithoutNotificationsInput = {
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
   roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
-  prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutTenantNestedInput
-  products?: Prisma.ProductUncheckedUpdateManyWithoutTenantNestedInput
-  offers?: Prisma.OfferUncheckedUpdateManyWithoutTenantNestedInput
-  missions?: Prisma.MissionUncheckedUpdateManyWithoutTenantNestedInput
+  leads?: Prisma.LeadUncheckedUpdateManyWithoutTenantNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutTenantNestedInput
-  reports?: Prisma.ReportUncheckedUpdateManyWithoutTenantNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutTenantNestedInput
-}
-
-export type TenantCreateWithoutOffersInput = {
-  name: string
-  isActive?: boolean
-  createdAt?: Date | string
-  users?: Prisma.UserCreateNestedManyWithoutTenantInput
-  clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
-  roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
-  prospections?: Prisma.ProspectionCreateNestedManyWithoutTenantInput
-  products?: Prisma.ProductCreateNestedManyWithoutTenantInput
-  missions?: Prisma.MissionCreateNestedManyWithoutTenantInput
-  projects?: Prisma.ProjectCreateNestedManyWithoutTenantInput
-  notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
-  reports?: Prisma.ReportCreateNestedManyWithoutTenantInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutTenantInput
-  subscription: Prisma.SubscriptionCreateNestedOneWithoutTenantInput
-}
-
-export type TenantUncheckedCreateWithoutOffersInput = {
-  id?: number
-  name: string
-  isActive?: boolean
-  createdAt?: Date | string
-  subscriptionId: number
-  users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
-  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
-  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
-  prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutTenantInput
-  products?: Prisma.ProductUncheckedCreateNestedManyWithoutTenantInput
-  missions?: Prisma.MissionUncheckedCreateNestedManyWithoutTenantInput
-  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutTenantInput
-  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
-  reports?: Prisma.ReportUncheckedCreateNestedManyWithoutTenantInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutTenantInput
-}
-
-export type TenantCreateOrConnectWithoutOffersInput = {
-  where: Prisma.TenantWhereUniqueInput
-  create: Prisma.XOR<Prisma.TenantCreateWithoutOffersInput, Prisma.TenantUncheckedCreateWithoutOffersInput>
-}
-
-export type TenantUpsertWithoutOffersInput = {
-  update: Prisma.XOR<Prisma.TenantUpdateWithoutOffersInput, Prisma.TenantUncheckedUpdateWithoutOffersInput>
-  create: Prisma.XOR<Prisma.TenantCreateWithoutOffersInput, Prisma.TenantUncheckedCreateWithoutOffersInput>
-  where?: Prisma.TenantWhereInput
-}
-
-export type TenantUpdateToOneWithWhereWithoutOffersInput = {
-  where?: Prisma.TenantWhereInput
-  data: Prisma.XOR<Prisma.TenantUpdateWithoutOffersInput, Prisma.TenantUncheckedUpdateWithoutOffersInput>
-}
-
-export type TenantUpdateWithoutOffersInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  users?: Prisma.UserUpdateManyWithoutTenantNestedInput
-  clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
-  roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
-  prospections?: Prisma.ProspectionUpdateManyWithoutTenantNestedInput
-  products?: Prisma.ProductUpdateManyWithoutTenantNestedInput
-  missions?: Prisma.MissionUpdateManyWithoutTenantNestedInput
-  projects?: Prisma.ProjectUpdateManyWithoutTenantNestedInput
-  notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
-  reports?: Prisma.ReportUpdateManyWithoutTenantNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutTenantNestedInput
-  subscription?: Prisma.SubscriptionUpdateOneRequiredWithoutTenantNestedInput
-}
-
-export type TenantUncheckedUpdateWithoutOffersInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscriptionId?: Prisma.IntFieldUpdateOperationsInput | number
-  users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
-  clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
-  roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
-  prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutTenantNestedInput
-  products?: Prisma.ProductUncheckedUpdateManyWithoutTenantNestedInput
-  missions?: Prisma.MissionUncheckedUpdateManyWithoutTenantNestedInput
-  projects?: Prisma.ProjectUncheckedUpdateManyWithoutTenantNestedInput
-  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
-  reports?: Prisma.ReportUncheckedUpdateManyWithoutTenantNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutTenantNestedInput
-}
-
-export type TenantCreateWithoutProductsInput = {
-  name: string
-  isActive?: boolean
-  createdAt?: Date | string
-  users?: Prisma.UserCreateNestedManyWithoutTenantInput
-  clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
-  roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
-  prospections?: Prisma.ProspectionCreateNestedManyWithoutTenantInput
-  offers?: Prisma.OfferCreateNestedManyWithoutTenantInput
-  missions?: Prisma.MissionCreateNestedManyWithoutTenantInput
-  projects?: Prisma.ProjectCreateNestedManyWithoutTenantInput
-  notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
-  reports?: Prisma.ReportCreateNestedManyWithoutTenantInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutTenantInput
-  subscription: Prisma.SubscriptionCreateNestedOneWithoutTenantInput
-}
-
-export type TenantUncheckedCreateWithoutProductsInput = {
-  id?: number
-  name: string
-  isActive?: boolean
-  createdAt?: Date | string
-  subscriptionId: number
-  users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
-  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
-  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
-  prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutTenantInput
-  offers?: Prisma.OfferUncheckedCreateNestedManyWithoutTenantInput
-  missions?: Prisma.MissionUncheckedCreateNestedManyWithoutTenantInput
-  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutTenantInput
-  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
-  reports?: Prisma.ReportUncheckedCreateNestedManyWithoutTenantInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutTenantInput
-}
-
-export type TenantCreateOrConnectWithoutProductsInput = {
-  where: Prisma.TenantWhereUniqueInput
-  create: Prisma.XOR<Prisma.TenantCreateWithoutProductsInput, Prisma.TenantUncheckedCreateWithoutProductsInput>
-}
-
-export type TenantUpsertWithoutProductsInput = {
-  update: Prisma.XOR<Prisma.TenantUpdateWithoutProductsInput, Prisma.TenantUncheckedUpdateWithoutProductsInput>
-  create: Prisma.XOR<Prisma.TenantCreateWithoutProductsInput, Prisma.TenantUncheckedCreateWithoutProductsInput>
-  where?: Prisma.TenantWhereInput
-}
-
-export type TenantUpdateToOneWithWhereWithoutProductsInput = {
-  where?: Prisma.TenantWhereInput
-  data: Prisma.XOR<Prisma.TenantUpdateWithoutProductsInput, Prisma.TenantUncheckedUpdateWithoutProductsInput>
-}
-
-export type TenantUpdateWithoutProductsInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  users?: Prisma.UserUpdateManyWithoutTenantNestedInput
-  clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
-  roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
-  prospections?: Prisma.ProspectionUpdateManyWithoutTenantNestedInput
-  offers?: Prisma.OfferUpdateManyWithoutTenantNestedInput
-  missions?: Prisma.MissionUpdateManyWithoutTenantNestedInput
-  projects?: Prisma.ProjectUpdateManyWithoutTenantNestedInput
-  notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
-  reports?: Prisma.ReportUpdateManyWithoutTenantNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutTenantNestedInput
-  subscription?: Prisma.SubscriptionUpdateOneRequiredWithoutTenantNestedInput
-}
-
-export type TenantUncheckedUpdateWithoutProductsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscriptionId?: Prisma.IntFieldUpdateOperationsInput | number
-  users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
-  clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
-  roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
-  prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutTenantNestedInput
-  offers?: Prisma.OfferUncheckedUpdateManyWithoutTenantNestedInput
-  missions?: Prisma.MissionUncheckedUpdateManyWithoutTenantNestedInput
-  projects?: Prisma.ProjectUncheckedUpdateManyWithoutTenantNestedInput
-  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutTenantNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutTenantNestedInput
 }
@@ -1165,10 +882,7 @@ export type TenantCreateWithoutProjectsInput = {
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
-  prospections?: Prisma.ProspectionCreateNestedManyWithoutTenantInput
-  products?: Prisma.ProductCreateNestedManyWithoutTenantInput
-  offers?: Prisma.OfferCreateNestedManyWithoutTenantInput
-  missions?: Prisma.MissionCreateNestedManyWithoutTenantInput
+  leads?: Prisma.LeadCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   reports?: Prisma.ReportCreateNestedManyWithoutTenantInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutTenantInput
@@ -1184,10 +898,7 @@ export type TenantUncheckedCreateWithoutProjectsInput = {
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
   roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
-  prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutTenantInput
-  products?: Prisma.ProductUncheckedCreateNestedManyWithoutTenantInput
-  offers?: Prisma.OfferUncheckedCreateNestedManyWithoutTenantInput
-  missions?: Prisma.MissionUncheckedCreateNestedManyWithoutTenantInput
+  leads?: Prisma.LeadUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutTenantInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutTenantInput
@@ -1216,10 +927,7 @@ export type TenantUpdateWithoutProjectsInput = {
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
-  prospections?: Prisma.ProspectionUpdateManyWithoutTenantNestedInput
-  products?: Prisma.ProductUpdateManyWithoutTenantNestedInput
-  offers?: Prisma.OfferUpdateManyWithoutTenantNestedInput
-  missions?: Prisma.MissionUpdateManyWithoutTenantNestedInput
+  leads?: Prisma.LeadUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   reports?: Prisma.ReportUpdateManyWithoutTenantNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutTenantNestedInput
@@ -1235,96 +943,7 @@ export type TenantUncheckedUpdateWithoutProjectsInput = {
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
   roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
-  prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutTenantNestedInput
-  products?: Prisma.ProductUncheckedUpdateManyWithoutTenantNestedInput
-  offers?: Prisma.OfferUncheckedUpdateManyWithoutTenantNestedInput
-  missions?: Prisma.MissionUncheckedUpdateManyWithoutTenantNestedInput
-  notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
-  reports?: Prisma.ReportUncheckedUpdateManyWithoutTenantNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutTenantNestedInput
-}
-
-export type TenantCreateWithoutProspectionsInput = {
-  name: string
-  isActive?: boolean
-  createdAt?: Date | string
-  users?: Prisma.UserCreateNestedManyWithoutTenantInput
-  clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
-  roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
-  products?: Prisma.ProductCreateNestedManyWithoutTenantInput
-  offers?: Prisma.OfferCreateNestedManyWithoutTenantInput
-  missions?: Prisma.MissionCreateNestedManyWithoutTenantInput
-  projects?: Prisma.ProjectCreateNestedManyWithoutTenantInput
-  notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
-  reports?: Prisma.ReportCreateNestedManyWithoutTenantInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutTenantInput
-  subscription: Prisma.SubscriptionCreateNestedOneWithoutTenantInput
-}
-
-export type TenantUncheckedCreateWithoutProspectionsInput = {
-  id?: number
-  name: string
-  isActive?: boolean
-  createdAt?: Date | string
-  subscriptionId: number
-  users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
-  clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
-  roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
-  products?: Prisma.ProductUncheckedCreateNestedManyWithoutTenantInput
-  offers?: Prisma.OfferUncheckedCreateNestedManyWithoutTenantInput
-  missions?: Prisma.MissionUncheckedCreateNestedManyWithoutTenantInput
-  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutTenantInput
-  notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
-  reports?: Prisma.ReportUncheckedCreateNestedManyWithoutTenantInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutTenantInput
-}
-
-export type TenantCreateOrConnectWithoutProspectionsInput = {
-  where: Prisma.TenantWhereUniqueInput
-  create: Prisma.XOR<Prisma.TenantCreateWithoutProspectionsInput, Prisma.TenantUncheckedCreateWithoutProspectionsInput>
-}
-
-export type TenantUpsertWithoutProspectionsInput = {
-  update: Prisma.XOR<Prisma.TenantUpdateWithoutProspectionsInput, Prisma.TenantUncheckedUpdateWithoutProspectionsInput>
-  create: Prisma.XOR<Prisma.TenantCreateWithoutProspectionsInput, Prisma.TenantUncheckedCreateWithoutProspectionsInput>
-  where?: Prisma.TenantWhereInput
-}
-
-export type TenantUpdateToOneWithWhereWithoutProspectionsInput = {
-  where?: Prisma.TenantWhereInput
-  data: Prisma.XOR<Prisma.TenantUpdateWithoutProspectionsInput, Prisma.TenantUncheckedUpdateWithoutProspectionsInput>
-}
-
-export type TenantUpdateWithoutProspectionsInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  users?: Prisma.UserUpdateManyWithoutTenantNestedInput
-  clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
-  roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
-  products?: Prisma.ProductUpdateManyWithoutTenantNestedInput
-  offers?: Prisma.OfferUpdateManyWithoutTenantNestedInput
-  missions?: Prisma.MissionUpdateManyWithoutTenantNestedInput
-  projects?: Prisma.ProjectUpdateManyWithoutTenantNestedInput
-  notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
-  reports?: Prisma.ReportUpdateManyWithoutTenantNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutTenantNestedInput
-  subscription?: Prisma.SubscriptionUpdateOneRequiredWithoutTenantNestedInput
-}
-
-export type TenantUncheckedUpdateWithoutProspectionsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  subscriptionId?: Prisma.IntFieldUpdateOperationsInput | number
-  users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
-  clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
-  roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
-  products?: Prisma.ProductUncheckedUpdateManyWithoutTenantNestedInput
-  offers?: Prisma.OfferUncheckedUpdateManyWithoutTenantNestedInput
-  missions?: Prisma.MissionUncheckedUpdateManyWithoutTenantNestedInput
-  projects?: Prisma.ProjectUncheckedUpdateManyWithoutTenantNestedInput
+  leads?: Prisma.LeadUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutTenantNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutTenantNestedInput
@@ -1337,10 +956,7 @@ export type TenantCreateWithoutReportsInput = {
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
-  prospections?: Prisma.ProspectionCreateNestedManyWithoutTenantInput
-  products?: Prisma.ProductCreateNestedManyWithoutTenantInput
-  offers?: Prisma.OfferCreateNestedManyWithoutTenantInput
-  missions?: Prisma.MissionCreateNestedManyWithoutTenantInput
+  leads?: Prisma.LeadCreateNestedManyWithoutTenantInput
   projects?: Prisma.ProjectCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutTenantInput
@@ -1356,10 +972,7 @@ export type TenantUncheckedCreateWithoutReportsInput = {
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
   roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
-  prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutTenantInput
-  products?: Prisma.ProductUncheckedCreateNestedManyWithoutTenantInput
-  offers?: Prisma.OfferUncheckedCreateNestedManyWithoutTenantInput
-  missions?: Prisma.MissionUncheckedCreateNestedManyWithoutTenantInput
+  leads?: Prisma.LeadUncheckedCreateNestedManyWithoutTenantInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutTenantInput
@@ -1388,10 +1001,7 @@ export type TenantUpdateWithoutReportsInput = {
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
-  prospections?: Prisma.ProspectionUpdateManyWithoutTenantNestedInput
-  products?: Prisma.ProductUpdateManyWithoutTenantNestedInput
-  offers?: Prisma.OfferUpdateManyWithoutTenantNestedInput
-  missions?: Prisma.MissionUpdateManyWithoutTenantNestedInput
+  leads?: Prisma.LeadUpdateManyWithoutTenantNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutTenantNestedInput
@@ -1407,10 +1017,7 @@ export type TenantUncheckedUpdateWithoutReportsInput = {
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
   roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
-  prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutTenantNestedInput
-  products?: Prisma.ProductUncheckedUpdateManyWithoutTenantNestedInput
-  offers?: Prisma.OfferUncheckedUpdateManyWithoutTenantNestedInput
-  missions?: Prisma.MissionUncheckedUpdateManyWithoutTenantNestedInput
+  leads?: Prisma.LeadUncheckedUpdateManyWithoutTenantNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutTenantNestedInput
@@ -1423,10 +1030,7 @@ export type TenantCreateWithoutSubscriptionInput = {
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
-  prospections?: Prisma.ProspectionCreateNestedManyWithoutTenantInput
-  products?: Prisma.ProductCreateNestedManyWithoutTenantInput
-  offers?: Prisma.OfferCreateNestedManyWithoutTenantInput
-  missions?: Prisma.MissionCreateNestedManyWithoutTenantInput
+  leads?: Prisma.LeadCreateNestedManyWithoutTenantInput
   projects?: Prisma.ProjectCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   reports?: Prisma.ReportCreateNestedManyWithoutTenantInput
@@ -1441,10 +1045,7 @@ export type TenantUncheckedCreateWithoutSubscriptionInput = {
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
   roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
-  prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutTenantInput
-  products?: Prisma.ProductUncheckedCreateNestedManyWithoutTenantInput
-  offers?: Prisma.OfferUncheckedCreateNestedManyWithoutTenantInput
-  missions?: Prisma.MissionUncheckedCreateNestedManyWithoutTenantInput
+  leads?: Prisma.LeadUncheckedCreateNestedManyWithoutTenantInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutTenantInput
@@ -1494,10 +1095,7 @@ export type TenantCreateWithoutUsersInput = {
   createdAt?: Date | string
   clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
   roles?: Prisma.RoleCreateNestedManyWithoutTenantInput
-  prospections?: Prisma.ProspectionCreateNestedManyWithoutTenantInput
-  products?: Prisma.ProductCreateNestedManyWithoutTenantInput
-  offers?: Prisma.OfferCreateNestedManyWithoutTenantInput
-  missions?: Prisma.MissionCreateNestedManyWithoutTenantInput
+  leads?: Prisma.LeadCreateNestedManyWithoutTenantInput
   projects?: Prisma.ProjectCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   reports?: Prisma.ReportCreateNestedManyWithoutTenantInput
@@ -1513,10 +1111,7 @@ export type TenantUncheckedCreateWithoutUsersInput = {
   subscriptionId: number
   clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
   roles?: Prisma.RoleUncheckedCreateNestedManyWithoutTenantInput
-  prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutTenantInput
-  products?: Prisma.ProductUncheckedCreateNestedManyWithoutTenantInput
-  offers?: Prisma.OfferUncheckedCreateNestedManyWithoutTenantInput
-  missions?: Prisma.MissionUncheckedCreateNestedManyWithoutTenantInput
+  leads?: Prisma.LeadUncheckedCreateNestedManyWithoutTenantInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutTenantInput
@@ -1545,10 +1140,7 @@ export type TenantUpdateWithoutUsersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
-  prospections?: Prisma.ProspectionUpdateManyWithoutTenantNestedInput
-  products?: Prisma.ProductUpdateManyWithoutTenantNestedInput
-  offers?: Prisma.OfferUpdateManyWithoutTenantNestedInput
-  missions?: Prisma.MissionUpdateManyWithoutTenantNestedInput
+  leads?: Prisma.LeadUpdateManyWithoutTenantNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   reports?: Prisma.ReportUpdateManyWithoutTenantNestedInput
@@ -1564,10 +1156,7 @@ export type TenantUncheckedUpdateWithoutUsersInput = {
   subscriptionId?: Prisma.IntFieldUpdateOperationsInput | number
   clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
   roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
-  prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutTenantNestedInput
-  products?: Prisma.ProductUncheckedUpdateManyWithoutTenantNestedInput
-  offers?: Prisma.OfferUncheckedUpdateManyWithoutTenantNestedInput
-  missions?: Prisma.MissionUncheckedUpdateManyWithoutTenantNestedInput
+  leads?: Prisma.LeadUncheckedUpdateManyWithoutTenantNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutTenantNestedInput
@@ -1580,10 +1169,7 @@ export type TenantCreateWithoutRolesInput = {
   createdAt?: Date | string
   users?: Prisma.UserCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientCreateNestedManyWithoutTenantInput
-  prospections?: Prisma.ProspectionCreateNestedManyWithoutTenantInput
-  products?: Prisma.ProductCreateNestedManyWithoutTenantInput
-  offers?: Prisma.OfferCreateNestedManyWithoutTenantInput
-  missions?: Prisma.MissionCreateNestedManyWithoutTenantInput
+  leads?: Prisma.LeadCreateNestedManyWithoutTenantInput
   projects?: Prisma.ProjectCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationCreateNestedManyWithoutTenantInput
   reports?: Prisma.ReportCreateNestedManyWithoutTenantInput
@@ -1599,10 +1185,7 @@ export type TenantUncheckedCreateWithoutRolesInput = {
   subscriptionId: number
   users?: Prisma.UserUncheckedCreateNestedManyWithoutTenantInput
   clients?: Prisma.ClientUncheckedCreateNestedManyWithoutTenantInput
-  prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutTenantInput
-  products?: Prisma.ProductUncheckedCreateNestedManyWithoutTenantInput
-  offers?: Prisma.OfferUncheckedCreateNestedManyWithoutTenantInput
-  missions?: Prisma.MissionUncheckedCreateNestedManyWithoutTenantInput
+  leads?: Prisma.LeadUncheckedCreateNestedManyWithoutTenantInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutTenantInput
   notifications?: Prisma.NotificationUncheckedCreateNestedManyWithoutTenantInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutTenantInput
@@ -1631,10 +1214,7 @@ export type TenantUpdateWithoutRolesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
-  prospections?: Prisma.ProspectionUpdateManyWithoutTenantNestedInput
-  products?: Prisma.ProductUpdateManyWithoutTenantNestedInput
-  offers?: Prisma.OfferUpdateManyWithoutTenantNestedInput
-  missions?: Prisma.MissionUpdateManyWithoutTenantNestedInput
+  leads?: Prisma.LeadUpdateManyWithoutTenantNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   reports?: Prisma.ReportUpdateManyWithoutTenantNestedInput
@@ -1650,10 +1230,7 @@ export type TenantUncheckedUpdateWithoutRolesInput = {
   subscriptionId?: Prisma.IntFieldUpdateOperationsInput | number
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
-  prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutTenantNestedInput
-  products?: Prisma.ProductUncheckedUpdateManyWithoutTenantNestedInput
-  offers?: Prisma.OfferUncheckedUpdateManyWithoutTenantNestedInput
-  missions?: Prisma.MissionUncheckedUpdateManyWithoutTenantNestedInput
+  leads?: Prisma.LeadUncheckedUpdateManyWithoutTenantNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutTenantNestedInput
@@ -1674,10 +1251,7 @@ export type TenantUpdateWithoutSubscriptionInput = {
   users?: Prisma.UserUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUpdateManyWithoutTenantNestedInput
   roles?: Prisma.RoleUpdateManyWithoutTenantNestedInput
-  prospections?: Prisma.ProspectionUpdateManyWithoutTenantNestedInput
-  products?: Prisma.ProductUpdateManyWithoutTenantNestedInput
-  offers?: Prisma.OfferUpdateManyWithoutTenantNestedInput
-  missions?: Prisma.MissionUpdateManyWithoutTenantNestedInput
+  leads?: Prisma.LeadUpdateManyWithoutTenantNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUpdateManyWithoutTenantNestedInput
   reports?: Prisma.ReportUpdateManyWithoutTenantNestedInput
@@ -1692,10 +1266,7 @@ export type TenantUncheckedUpdateWithoutSubscriptionInput = {
   users?: Prisma.UserUncheckedUpdateManyWithoutTenantNestedInput
   clients?: Prisma.ClientUncheckedUpdateManyWithoutTenantNestedInput
   roles?: Prisma.RoleUncheckedUpdateManyWithoutTenantNestedInput
-  prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutTenantNestedInput
-  products?: Prisma.ProductUncheckedUpdateManyWithoutTenantNestedInput
-  offers?: Prisma.OfferUncheckedUpdateManyWithoutTenantNestedInput
-  missions?: Prisma.MissionUncheckedUpdateManyWithoutTenantNestedInput
+  leads?: Prisma.LeadUncheckedUpdateManyWithoutTenantNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutTenantNestedInput
   notifications?: Prisma.NotificationUncheckedUpdateManyWithoutTenantNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutTenantNestedInput
@@ -1718,10 +1289,7 @@ export type TenantCountOutputType = {
   users: number
   clients: number
   roles: number
-  prospections: number
-  products: number
-  offers: number
-  missions: number
+  leads: number
   projects: number
   notifications: number
   reports: number
@@ -1732,10 +1300,7 @@ export type TenantCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions
   users?: boolean | TenantCountOutputTypeCountUsersArgs
   clients?: boolean | TenantCountOutputTypeCountClientsArgs
   roles?: boolean | TenantCountOutputTypeCountRolesArgs
-  prospections?: boolean | TenantCountOutputTypeCountProspectionsArgs
-  products?: boolean | TenantCountOutputTypeCountProductsArgs
-  offers?: boolean | TenantCountOutputTypeCountOffersArgs
-  missions?: boolean | TenantCountOutputTypeCountMissionsArgs
+  leads?: boolean | TenantCountOutputTypeCountLeadsArgs
   projects?: boolean | TenantCountOutputTypeCountProjectsArgs
   notifications?: boolean | TenantCountOutputTypeCountNotificationsArgs
   reports?: boolean | TenantCountOutputTypeCountReportsArgs
@@ -1776,29 +1341,8 @@ export type TenantCountOutputTypeCountRolesArgs<ExtArgs extends runtime.Types.Ex
 /**
  * TenantCountOutputType without action
  */
-export type TenantCountOutputTypeCountProspectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ProspectionWhereInput
-}
-
-/**
- * TenantCountOutputType without action
- */
-export type TenantCountOutputTypeCountProductsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ProductWhereInput
-}
-
-/**
- * TenantCountOutputType without action
- */
-export type TenantCountOutputTypeCountOffersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.OfferWhereInput
-}
-
-/**
- * TenantCountOutputType without action
- */
-export type TenantCountOutputTypeCountMissionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.MissionWhereInput
+export type TenantCountOutputTypeCountLeadsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LeadWhereInput
 }
 
 /**
@@ -1839,10 +1383,7 @@ export type TenantSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   users?: boolean | Prisma.Tenant$usersArgs<ExtArgs>
   clients?: boolean | Prisma.Tenant$clientsArgs<ExtArgs>
   roles?: boolean | Prisma.Tenant$rolesArgs<ExtArgs>
-  prospections?: boolean | Prisma.Tenant$prospectionsArgs<ExtArgs>
-  products?: boolean | Prisma.Tenant$productsArgs<ExtArgs>
-  offers?: boolean | Prisma.Tenant$offersArgs<ExtArgs>
-  missions?: boolean | Prisma.Tenant$missionsArgs<ExtArgs>
+  leads?: boolean | Prisma.Tenant$leadsArgs<ExtArgs>
   projects?: boolean | Prisma.Tenant$projectsArgs<ExtArgs>
   notifications?: boolean | Prisma.Tenant$notificationsArgs<ExtArgs>
   reports?: boolean | Prisma.Tenant$reportsArgs<ExtArgs>
@@ -1882,10 +1423,7 @@ export type TenantInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   users?: boolean | Prisma.Tenant$usersArgs<ExtArgs>
   clients?: boolean | Prisma.Tenant$clientsArgs<ExtArgs>
   roles?: boolean | Prisma.Tenant$rolesArgs<ExtArgs>
-  prospections?: boolean | Prisma.Tenant$prospectionsArgs<ExtArgs>
-  products?: boolean | Prisma.Tenant$productsArgs<ExtArgs>
-  offers?: boolean | Prisma.Tenant$offersArgs<ExtArgs>
-  missions?: boolean | Prisma.Tenant$missionsArgs<ExtArgs>
+  leads?: boolean | Prisma.Tenant$leadsArgs<ExtArgs>
   projects?: boolean | Prisma.Tenant$projectsArgs<ExtArgs>
   notifications?: boolean | Prisma.Tenant$notificationsArgs<ExtArgs>
   reports?: boolean | Prisma.Tenant$reportsArgs<ExtArgs>
@@ -1906,10 +1444,7 @@ export type $TenantPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     users: Prisma.$UserPayload<ExtArgs>[]
     clients: Prisma.$ClientPayload<ExtArgs>[]
     roles: Prisma.$RolePayload<ExtArgs>[]
-    prospections: Prisma.$ProspectionPayload<ExtArgs>[]
-    products: Prisma.$ProductPayload<ExtArgs>[]
-    offers: Prisma.$OfferPayload<ExtArgs>[]
-    missions: Prisma.$MissionPayload<ExtArgs>[]
+    leads: Prisma.$LeadPayload<ExtArgs>[]
     projects: Prisma.$ProjectPayload<ExtArgs>[]
     notifications: Prisma.$NotificationPayload<ExtArgs>[]
     reports: Prisma.$ReportPayload<ExtArgs>[]
@@ -2319,10 +1854,7 @@ export interface Prisma__TenantClient<T, Null = never, ExtArgs extends runtime.T
   users<T extends Prisma.Tenant$usersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$usersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   clients<T extends Prisma.Tenant$clientsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$clientsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ClientPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   roles<T extends Prisma.Tenant$rolesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$rolesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  prospections<T extends Prisma.Tenant$prospectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$prospectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProspectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  products<T extends Prisma.Tenant$productsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$productsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  offers<T extends Prisma.Tenant$offersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$offersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OfferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  missions<T extends Prisma.Tenant$missionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$missionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$MissionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  leads<T extends Prisma.Tenant$leadsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$leadsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LeadPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   projects<T extends Prisma.Tenant$projectsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$projectsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   notifications<T extends Prisma.Tenant$notificationsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   reports<T extends Prisma.Tenant$reportsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Tenant$reportsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -2835,99 +2367,27 @@ export type Tenant$rolesArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
 }
 
 /**
- * Tenant.prospections
+ * Tenant.leads
  */
-export type Tenant$prospectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Tenant$leadsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Prospection
+   * Select specific fields to fetch from the Lead
    */
-  select?: Prisma.ProspectionSelect<ExtArgs> | null
+  select?: Prisma.LeadSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Prospection
+   * Omit specific fields from the Lead
    */
-  omit?: Prisma.ProspectionOmit<ExtArgs> | null
+  omit?: Prisma.LeadOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ProspectionInclude<ExtArgs> | null
-  where?: Prisma.ProspectionWhereInput
-  orderBy?: Prisma.ProspectionOrderByWithRelationInput | Prisma.ProspectionOrderByWithRelationInput[]
-  cursor?: Prisma.ProspectionWhereUniqueInput
+  include?: Prisma.LeadInclude<ExtArgs> | null
+  where?: Prisma.LeadWhereInput
+  orderBy?: Prisma.LeadOrderByWithRelationInput | Prisma.LeadOrderByWithRelationInput[]
+  cursor?: Prisma.LeadWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.ProspectionScalarFieldEnum | Prisma.ProspectionScalarFieldEnum[]
-}
-
-/**
- * Tenant.products
- */
-export type Tenant$productsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Product
-   */
-  select?: Prisma.ProductSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Product
-   */
-  omit?: Prisma.ProductOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ProductInclude<ExtArgs> | null
-  where?: Prisma.ProductWhereInput
-  orderBy?: Prisma.ProductOrderByWithRelationInput | Prisma.ProductOrderByWithRelationInput[]
-  cursor?: Prisma.ProductWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ProductScalarFieldEnum | Prisma.ProductScalarFieldEnum[]
-}
-
-/**
- * Tenant.offers
- */
-export type Tenant$offersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Offer
-   */
-  select?: Prisma.OfferSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Offer
-   */
-  omit?: Prisma.OfferOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.OfferInclude<ExtArgs> | null
-  where?: Prisma.OfferWhereInput
-  orderBy?: Prisma.OfferOrderByWithRelationInput | Prisma.OfferOrderByWithRelationInput[]
-  cursor?: Prisma.OfferWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.OfferScalarFieldEnum | Prisma.OfferScalarFieldEnum[]
-}
-
-/**
- * Tenant.missions
- */
-export type Tenant$missionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Mission
-   */
-  select?: Prisma.MissionSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Mission
-   */
-  omit?: Prisma.MissionOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.MissionInclude<ExtArgs> | null
-  where?: Prisma.MissionWhereInput
-  orderBy?: Prisma.MissionOrderByWithRelationInput | Prisma.MissionOrderByWithRelationInput[]
-  cursor?: Prisma.MissionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.MissionScalarFieldEnum | Prisma.MissionScalarFieldEnum[]
+  distinct?: Prisma.LeadScalarFieldEnum | Prisma.LeadScalarFieldEnum[]
 }
 
 /**

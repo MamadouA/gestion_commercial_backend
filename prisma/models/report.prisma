@@ -1,18 +1,17 @@
-
 model Report {
-    id Int @id() @default(autoincrement())
-    description String
+  id          Int    @id() @default(autoincrement())
+  description String
 
-    authorId Int
-    author User @relation(fields: [authorId], references: [id])
+  authorId Int
+  author   User @relation(fields: [authorId], references: [id])
 
-    projectId Int?
-    project Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId Int?
+  project   Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
 
-    tenantId Int
-    tenant Tenant @relation(fields: [tenantId], references: [id])
+  tenantId Int
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
 
-    documentId Int @unique()
-    document Document @relation(fields: [documentId], references: [id])
-    createdAt DateTime @default(now())
+  attachmentId Int        @unique()
+  attachment   Attachment @relation(fields: [attachmentId], references: [id])
+  createdAt    DateTime   @default(now())
 }

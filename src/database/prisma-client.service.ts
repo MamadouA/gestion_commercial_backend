@@ -3,7 +3,7 @@ import { PrismaPg } from '@prisma/adapter-pg';
 import { Feature, PrismaClient } from '../generated/prisma/client';
 import { APP_PERMISSIONS } from '../role-management/role-management.contants';
 import * as bcrypt from 'bcrypt';
-import { CLIENT_SEED, generateOffers, generateProspections } from './seed';
+import { CLIENT_SEED } from './seed';
 
 @Injectable()
 export class PrismaClientService
@@ -99,8 +99,6 @@ export class PrismaClientService
         [
           this.permission.createMany({ data: permissions }),
           this.client.createMany({ data: CLIENT_SEED }),
-          this.prospection.createMany({ data: generateProspections(100, 50) }),
-          this.offer.createMany({ data: generateOffers(100, 50) })
         ]
       )
     }

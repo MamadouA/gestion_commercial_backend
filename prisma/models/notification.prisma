@@ -1,10 +1,9 @@
-
 model Notification {
-    id Int @id() @default(autoincrement())
-    message String
-    tenantId Int
-    feature Feature  
-    isRead Boolean @default(false)
-    tenant Tenant @relation(fields: [tenantId], references: [id])
-    createdAt DateTime @default(now())
+  id        Int      @id() @default(autoincrement())
+  message   String
+  tenantId  Int
+  feature   Feature
+  isRead    Boolean  @default(false)
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
+  createdAt DateTime @default(now())
 }

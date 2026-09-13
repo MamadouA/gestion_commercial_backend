@@ -38,21 +38,13 @@ export const InvoiceStatus = {
 export type InvoiceStatus = (typeof InvoiceStatus)[keyof typeof InvoiceStatus]
 
 
-export const OfferStatus = {
-  PENDING: 'PENDING',
-  WON: 'WON',
-  LOST: 'LOST'
+export const LeadStatus = {
+  OPENED: 'OPENED',
+  LOST: 'LOST',
+  WON: 'WON'
 } as const
 
-export type OfferStatus = (typeof OfferStatus)[keyof typeof OfferStatus]
-
-
-export const ProductDomain = {
-  INSPECTION_ET_VERIFICATION_EN_SERVICE: 'INSPECTION_ET_VERIFICATION_EN_SERVICE',
-  CONTROLE_TECHNIQUE_CONSTRUCTION: 'CONTROLE_TECHNIQUE_CONSTRUCTION'
-} as const
-
-export type ProductDomain = (typeof ProductDomain)[keyof typeof ProductDomain]
+export type LeadStatus = (typeof LeadStatus)[keyof typeof LeadStatus]
 
 
 export const ProjectStatus = {
@@ -62,15 +54,6 @@ export const ProjectStatus = {
 } as const
 
 export type ProjectStatus = (typeof ProjectStatus)[keyof typeof ProjectStatus]
-
-
-export const ProspectionStatus = {
-  OPENED: 'OPENED',
-  LOST: 'LOST',
-  WON: 'WON'
-} as const
-
-export type ProspectionStatus = (typeof ProspectionStatus)[keyof typeof ProspectionStatus]
 
 
 export const Feature = {

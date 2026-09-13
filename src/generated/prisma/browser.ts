@@ -18,6 +18,11 @@ export { Prisma }
 export * as $Enums from './enums'
 export * from './enums';
 /**
+ * Model Attachment
+ * 
+ */
+export type Attachment = Prisma.AttachmentModel
+/**
  * Model Client
  * 
  */
@@ -28,50 +33,25 @@ export type Client = Prisma.ClientModel
  */
 export type Comment = Prisma.CommentModel
 /**
- * Model Document
- * 
- */
-export type Document = Prisma.DocumentModel
-/**
  * Model Invoice
  * 
  */
 export type Invoice = Prisma.InvoiceModel
 /**
- * Model Mission
+ * Model Lead
  * 
  */
-export type Mission = Prisma.MissionModel
-/**
- * Model MissionTask
- * 
- */
-export type MissionTask = Prisma.MissionTaskModel
+export type Lead = Prisma.LeadModel
 /**
  * Model Notification
  * 
  */
 export type Notification = Prisma.NotificationModel
 /**
- * Model Offer
- * 
- */
-export type Offer = Prisma.OfferModel
-/**
- * Model Product
- * 
- */
-export type Product = Prisma.ProductModel
-/**
  * Model Project
  * 
  */
 export type Project = Prisma.ProjectModel
-/**
- * Model Prospection
- * 
- */
-export type Prospection = Prisma.ProspectionModel
 /**
  * Model Report
  * 

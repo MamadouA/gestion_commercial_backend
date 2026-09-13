@@ -8,17 +8,13 @@
  *
  * 🟢 You can import this file directly.
  */
+export type * from './models/Attachment'
 export type * from './models/Client'
 export type * from './models/Comment'
-export type * from './models/Document'
 export type * from './models/Invoice'
-export type * from './models/Mission'
-export type * from './models/MissionTask'
+export type * from './models/Lead'
 export type * from './models/Notification'
-export type * from './models/Offer'
-export type * from './models/Product'
 export type * from './models/Project'
-export type * from './models/Prospection'
 export type * from './models/Report'
 export type * from './models/Subscription'
 export type * from './models/Tenant'

@@ -19,15 +19,10 @@ export class CommentService {
                     data['projectId'] = project.id;
 
                     break;
-                case 'OFFER':
-                    const offer = await this.prismaClientService.offer.findFirstOrThrow({ where: { id: createCommentDTO.resourceId, tenantId: user.tenantId } });
+                case 'LEAD':
+                    const lead = await this.prismaClientService.lead.findFirstOrThrow({ where: { id: createCommentDTO.resourceId, tenantId: user.tenantId } });
                    
-                    data['offerId'] = offer.id;
-                    break;
-
-                case 'PROSPECTION':
-                    const prospection = await this.prismaClientService.prospection.findFirstOrThrow({ where: { id: createCommentDTO.resourceId, tenantId: user.tenantId } });
-                    data['prospectionId'] = prospection.id;
+                    data['leadId'] = lead.id;
                     break;
             }
 

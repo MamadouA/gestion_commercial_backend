@@ -31,7 +31,7 @@ export type ReportAvgAggregateOutputType = {
   authorId: number | null
   projectId: number | null
   tenantId: number | null
-  documentId: number | null
+  attachmentId: number | null
 }
 
 export type ReportSumAggregateOutputType = {
@@ -39,7 +39,7 @@ export type ReportSumAggregateOutputType = {
   authorId: number | null
   projectId: number | null
   tenantId: number | null
-  documentId: number | null
+  attachmentId: number | null
 }
 
 export type ReportMinAggregateOutputType = {
@@ -48,7 +48,7 @@ export type ReportMinAggregateOutputType = {
   authorId: number | null
   projectId: number | null
   tenantId: number | null
-  documentId: number | null
+  attachmentId: number | null
   createdAt: Date | null
 }
 
@@ -58,7 +58,7 @@ export type ReportMaxAggregateOutputType = {
   authorId: number | null
   projectId: number | null
   tenantId: number | null
-  documentId: number | null
+  attachmentId: number | null
   createdAt: Date | null
 }
 
@@ -68,7 +68,7 @@ export type ReportCountAggregateOutputType = {
   authorId: number
   projectId: number
   tenantId: number
-  documentId: number
+  attachmentId: number
   createdAt: number
   _all: number
 }
@@ -79,7 +79,7 @@ export type ReportAvgAggregateInputType = {
   authorId?: true
   projectId?: true
   tenantId?: true
-  documentId?: true
+  attachmentId?: true
 }
 
 export type ReportSumAggregateInputType = {
@@ -87,7 +87,7 @@ export type ReportSumAggregateInputType = {
   authorId?: true
   projectId?: true
   tenantId?: true
-  documentId?: true
+  attachmentId?: true
 }
 
 export type ReportMinAggregateInputType = {
@@ -96,7 +96,7 @@ export type ReportMinAggregateInputType = {
   authorId?: true
   projectId?: true
   tenantId?: true
-  documentId?: true
+  attachmentId?: true
   createdAt?: true
 }
 
@@ -106,7 +106,7 @@ export type ReportMaxAggregateInputType = {
   authorId?: true
   projectId?: true
   tenantId?: true
-  documentId?: true
+  attachmentId?: true
   createdAt?: true
 }
 
@@ -116,7 +116,7 @@ export type ReportCountAggregateInputType = {
   authorId?: true
   projectId?: true
   tenantId?: true
-  documentId?: true
+  attachmentId?: true
   createdAt?: true
   _all?: true
 }
@@ -213,7 +213,7 @@ export type ReportGroupByOutputType = {
   authorId: number
   projectId: number | null
   tenantId: number
-  documentId: number
+  attachmentId: number
   createdAt: Date
   _count: ReportCountAggregateOutputType | null
   _avg: ReportAvgAggregateOutputType | null
@@ -246,12 +246,12 @@ export type ReportWhereInput = {
   authorId?: Prisma.IntFilter<"Report"> | number
   projectId?: Prisma.IntNullableFilter<"Report"> | number | null
   tenantId?: Prisma.IntFilter<"Report"> | number
-  documentId?: Prisma.IntFilter<"Report"> | number
+  attachmentId?: Prisma.IntFilter<"Report"> | number
   createdAt?: Prisma.DateTimeFilter<"Report"> | Date | string
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   project?: Prisma.XOR<Prisma.ProjectNullableScalarRelationFilter, Prisma.ProjectWhereInput> | null
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
-  document?: Prisma.XOR<Prisma.DocumentScalarRelationFilter, Prisma.DocumentWhereInput>
+  attachment?: Prisma.XOR<Prisma.AttachmentScalarRelationFilter, Prisma.AttachmentWhereInput>
 }
 
 export type ReportOrderByWithRelationInput = {
@@ -260,17 +260,17 @@ export type ReportOrderByWithRelationInput = {
   authorId?: Prisma.SortOrder
   projectId?: Prisma.SortOrderInput | Prisma.SortOrder
   tenantId?: Prisma.SortOrder
-  documentId?: Prisma.SortOrder
+  attachmentId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   author?: Prisma.UserOrderByWithRelationInput
   project?: Prisma.ProjectOrderByWithRelationInput
   tenant?: Prisma.TenantOrderByWithRelationInput
-  document?: Prisma.DocumentOrderByWithRelationInput
+  attachment?: Prisma.AttachmentOrderByWithRelationInput
 }
 
 export type ReportWhereUniqueInput = Prisma.AtLeast<{
   id?: number
-  documentId?: number
+  attachmentId?: number
   AND?: Prisma.ReportWhereInput | Prisma.ReportWhereInput[]
   OR?: Prisma.ReportWhereInput[]
   NOT?: Prisma.ReportWhereInput | Prisma.ReportWhereInput[]
@@ -282,8 +282,8 @@ export type ReportWhereUniqueInput = Prisma.AtLeast<{
   author?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   project?: Prisma.XOR<Prisma.ProjectNullableScalarRelationFilter, Prisma.ProjectWhereInput> | null
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
-  document?: Prisma.XOR<Prisma.DocumentScalarRelationFilter, Prisma.DocumentWhereInput>
-}, "id" | "documentId">
+  attachment?: Prisma.XOR<Prisma.AttachmentScalarRelationFilter, Prisma.AttachmentWhereInput>
+}, "id" | "attachmentId">
 
 export type ReportOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -291,7 +291,7 @@ export type ReportOrderByWithAggregationInput = {
   authorId?: Prisma.SortOrder
   projectId?: Prisma.SortOrderInput | Prisma.SortOrder
   tenantId?: Prisma.SortOrder
-  documentId?: Prisma.SortOrder
+  attachmentId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.ReportCountOrderByAggregateInput
   _avg?: Prisma.ReportAvgOrderByAggregateInput
@@ -309,7 +309,7 @@ export type ReportScalarWhereWithAggregatesInput = {
   authorId?: Prisma.IntWithAggregatesFilter<"Report"> | number
   projectId?: Prisma.IntNullableWithAggregatesFilter<"Report"> | number | null
   tenantId?: Prisma.IntWithAggregatesFilter<"Report"> | number
-  documentId?: Prisma.IntWithAggregatesFilter<"Report"> | number
+  attachmentId?: Prisma.IntWithAggregatesFilter<"Report"> | number
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Report"> | Date | string
 }
 
@@ -319,7 +319,7 @@ export type ReportCreateInput = {
   author: Prisma.UserCreateNestedOneWithoutReportsInput
   project?: Prisma.ProjectCreateNestedOneWithoutReportsInput
   tenant: Prisma.TenantCreateNestedOneWithoutReportsInput
-  document: Prisma.DocumentCreateNestedOneWithoutReportInput
+  attachment: Prisma.AttachmentCreateNestedOneWithoutReportInput
 }
 
 export type ReportUncheckedCreateInput = {
@@ -328,7 +328,7 @@ export type ReportUncheckedCreateInput = {
   authorId: number
   projectId?: number | null
   tenantId: number
-  documentId: number
+  attachmentId: number
   createdAt?: Date | string
 }
 
@@ -338,7 +338,7 @@ export type ReportUpdateInput = {
   author?: Prisma.UserUpdateOneRequiredWithoutReportsNestedInput
   project?: Prisma.ProjectUpdateOneWithoutReportsNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutReportsNestedInput
-  document?: Prisma.DocumentUpdateOneRequiredWithoutReportNestedInput
+  attachment?: Prisma.AttachmentUpdateOneRequiredWithoutReportNestedInput
 }
 
 export type ReportUncheckedUpdateInput = {
@@ -347,7 +347,7 @@ export type ReportUncheckedUpdateInput = {
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   projectId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
-  documentId?: Prisma.IntFieldUpdateOperationsInput | number
+  attachmentId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -357,7 +357,7 @@ export type ReportCreateManyInput = {
   authorId: number
   projectId?: number | null
   tenantId: number
-  documentId: number
+  attachmentId: number
   createdAt?: Date | string
 }
 
@@ -372,7 +372,7 @@ export type ReportUncheckedUpdateManyInput = {
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   projectId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
-  documentId?: Prisma.IntFieldUpdateOperationsInput | number
+  attachmentId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -397,7 +397,7 @@ export type ReportCountOrderByAggregateInput = {
   authorId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
-  documentId?: Prisma.SortOrder
+  attachmentId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -406,7 +406,7 @@ export type ReportAvgOrderByAggregateInput = {
   authorId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
-  documentId?: Prisma.SortOrder
+  attachmentId?: Prisma.SortOrder
 }
 
 export type ReportMaxOrderByAggregateInput = {
@@ -415,7 +415,7 @@ export type ReportMaxOrderByAggregateInput = {
   authorId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
-  documentId?: Prisma.SortOrder
+  attachmentId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -425,7 +425,7 @@ export type ReportMinOrderByAggregateInput = {
   authorId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
-  documentId?: Prisma.SortOrder
+  attachmentId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -434,39 +434,39 @@ export type ReportSumOrderByAggregateInput = {
   authorId?: Prisma.SortOrder
   projectId?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
-  documentId?: Prisma.SortOrder
+  attachmentId?: Prisma.SortOrder
 }
 
-export type ReportCreateNestedOneWithoutDocumentInput = {
-  create?: Prisma.XOR<Prisma.ReportCreateWithoutDocumentInput, Prisma.ReportUncheckedCreateWithoutDocumentInput>
-  connectOrCreate?: Prisma.ReportCreateOrConnectWithoutDocumentInput
+export type ReportCreateNestedOneWithoutAttachmentInput = {
+  create?: Prisma.XOR<Prisma.ReportCreateWithoutAttachmentInput, Prisma.ReportUncheckedCreateWithoutAttachmentInput>
+  connectOrCreate?: Prisma.ReportCreateOrConnectWithoutAttachmentInput
   connect?: Prisma.ReportWhereUniqueInput
 }
 
-export type ReportUncheckedCreateNestedOneWithoutDocumentInput = {
-  create?: Prisma.XOR<Prisma.ReportCreateWithoutDocumentInput, Prisma.ReportUncheckedCreateWithoutDocumentInput>
-  connectOrCreate?: Prisma.ReportCreateOrConnectWithoutDocumentInput
+export type ReportUncheckedCreateNestedOneWithoutAttachmentInput = {
+  create?: Prisma.XOR<Prisma.ReportCreateWithoutAttachmentInput, Prisma.ReportUncheckedCreateWithoutAttachmentInput>
+  connectOrCreate?: Prisma.ReportCreateOrConnectWithoutAttachmentInput
   connect?: Prisma.ReportWhereUniqueInput
 }
 
-export type ReportUpdateOneWithoutDocumentNestedInput = {
-  create?: Prisma.XOR<Prisma.ReportCreateWithoutDocumentInput, Prisma.ReportUncheckedCreateWithoutDocumentInput>
-  connectOrCreate?: Prisma.ReportCreateOrConnectWithoutDocumentInput
-  upsert?: Prisma.ReportUpsertWithoutDocumentInput
+export type ReportUpdateOneWithoutAttachmentNestedInput = {
+  create?: Prisma.XOR<Prisma.ReportCreateWithoutAttachmentInput, Prisma.ReportUncheckedCreateWithoutAttachmentInput>
+  connectOrCreate?: Prisma.ReportCreateOrConnectWithoutAttachmentInput
+  upsert?: Prisma.ReportUpsertWithoutAttachmentInput
   disconnect?: Prisma.ReportWhereInput | boolean
   delete?: Prisma.ReportWhereInput | boolean
   connect?: Prisma.ReportWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ReportUpdateToOneWithWhereWithoutDocumentInput, Prisma.ReportUpdateWithoutDocumentInput>, Prisma.ReportUncheckedUpdateWithoutDocumentInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ReportUpdateToOneWithWhereWithoutAttachmentInput, Prisma.ReportUpdateWithoutAttachmentInput>, Prisma.ReportUncheckedUpdateWithoutAttachmentInput>
 }
 
-export type ReportUncheckedUpdateOneWithoutDocumentNestedInput = {
-  create?: Prisma.XOR<Prisma.ReportCreateWithoutDocumentInput, Prisma.ReportUncheckedCreateWithoutDocumentInput>
-  connectOrCreate?: Prisma.ReportCreateOrConnectWithoutDocumentInput
-  upsert?: Prisma.ReportUpsertWithoutDocumentInput
+export type ReportUncheckedUpdateOneWithoutAttachmentNestedInput = {
+  create?: Prisma.XOR<Prisma.ReportCreateWithoutAttachmentInput, Prisma.ReportUncheckedCreateWithoutAttachmentInput>
+  connectOrCreate?: Prisma.ReportCreateOrConnectWithoutAttachmentInput
+  upsert?: Prisma.ReportUpsertWithoutAttachmentInput
   disconnect?: Prisma.ReportWhereInput | boolean
   delete?: Prisma.ReportWhereInput | boolean
   connect?: Prisma.ReportWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ReportUpdateToOneWithWhereWithoutDocumentInput, Prisma.ReportUpdateWithoutDocumentInput>, Prisma.ReportUncheckedUpdateWithoutDocumentInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ReportUpdateToOneWithWhereWithoutAttachmentInput, Prisma.ReportUpdateWithoutAttachmentInput>, Prisma.ReportUncheckedUpdateWithoutAttachmentInput>
 }
 
 export type ReportCreateNestedManyWithoutProjectInput = {
@@ -595,7 +595,7 @@ export type ReportUncheckedUpdateManyWithoutAuthorNestedInput = {
   deleteMany?: Prisma.ReportScalarWhereInput | Prisma.ReportScalarWhereInput[]
 }
 
-export type ReportCreateWithoutDocumentInput = {
+export type ReportCreateWithoutAttachmentInput = {
   description: string
   createdAt?: Date | string
   author: Prisma.UserCreateNestedOneWithoutReportsInput
@@ -603,7 +603,7 @@ export type ReportCreateWithoutDocumentInput = {
   tenant: Prisma.TenantCreateNestedOneWithoutReportsInput
 }
 
-export type ReportUncheckedCreateWithoutDocumentInput = {
+export type ReportUncheckedCreateWithoutAttachmentInput = {
   id?: number
   description: string
   authorId: number
@@ -612,23 +612,23 @@ export type ReportUncheckedCreateWithoutDocumentInput = {
   createdAt?: Date | string
 }
 
-export type ReportCreateOrConnectWithoutDocumentInput = {
+export type ReportCreateOrConnectWithoutAttachmentInput = {
   where: Prisma.ReportWhereUniqueInput
-  create: Prisma.XOR<Prisma.ReportCreateWithoutDocumentInput, Prisma.ReportUncheckedCreateWithoutDocumentInput>
+  create: Prisma.XOR<Prisma.ReportCreateWithoutAttachmentInput, Prisma.ReportUncheckedCreateWithoutAttachmentInput>
 }
 
-export type ReportUpsertWithoutDocumentInput = {
-  update: Prisma.XOR<Prisma.ReportUpdateWithoutDocumentInput, Prisma.ReportUncheckedUpdateWithoutDocumentInput>
-  create: Prisma.XOR<Prisma.ReportCreateWithoutDocumentInput, Prisma.ReportUncheckedCreateWithoutDocumentInput>
+export type ReportUpsertWithoutAttachmentInput = {
+  update: Prisma.XOR<Prisma.ReportUpdateWithoutAttachmentInput, Prisma.ReportUncheckedUpdateWithoutAttachmentInput>
+  create: Prisma.XOR<Prisma.ReportCreateWithoutAttachmentInput, Prisma.ReportUncheckedCreateWithoutAttachmentInput>
   where?: Prisma.ReportWhereInput
 }
 
-export type ReportUpdateToOneWithWhereWithoutDocumentInput = {
+export type ReportUpdateToOneWithWhereWithoutAttachmentInput = {
   where?: Prisma.ReportWhereInput
-  data: Prisma.XOR<Prisma.ReportUpdateWithoutDocumentInput, Prisma.ReportUncheckedUpdateWithoutDocumentInput>
+  data: Prisma.XOR<Prisma.ReportUpdateWithoutAttachmentInput, Prisma.ReportUncheckedUpdateWithoutAttachmentInput>
 }
 
-export type ReportUpdateWithoutDocumentInput = {
+export type ReportUpdateWithoutAttachmentInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   author?: Prisma.UserUpdateOneRequiredWithoutReportsNestedInput
@@ -636,7 +636,7 @@ export type ReportUpdateWithoutDocumentInput = {
   tenant?: Prisma.TenantUpdateOneRequiredWithoutReportsNestedInput
 }
 
-export type ReportUncheckedUpdateWithoutDocumentInput = {
+export type ReportUncheckedUpdateWithoutAttachmentInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   description?: Prisma.StringFieldUpdateOperationsInput | string
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
@@ -650,7 +650,7 @@ export type ReportCreateWithoutProjectInput = {
   createdAt?: Date | string
   author: Prisma.UserCreateNestedOneWithoutReportsInput
   tenant: Prisma.TenantCreateNestedOneWithoutReportsInput
-  document: Prisma.DocumentCreateNestedOneWithoutReportInput
+  attachment: Prisma.AttachmentCreateNestedOneWithoutReportInput
 }
 
 export type ReportUncheckedCreateWithoutProjectInput = {
@@ -658,7 +658,7 @@ export type ReportUncheckedCreateWithoutProjectInput = {
   description: string
   authorId: number
   tenantId: number
-  documentId: number
+  attachmentId: number
   createdAt?: Date | string
 }
 
@@ -697,7 +697,7 @@ export type ReportScalarWhereInput = {
   authorId?: Prisma.IntFilter<"Report"> | number
   projectId?: Prisma.IntNullableFilter<"Report"> | number | null
   tenantId?: Prisma.IntFilter<"Report"> | number
-  documentId?: Prisma.IntFilter<"Report"> | number
+  attachmentId?: Prisma.IntFilter<"Report"> | number
   createdAt?: Prisma.DateTimeFilter<"Report"> | Date | string
 }
 
@@ -706,7 +706,7 @@ export type ReportCreateWithoutTenantInput = {
   createdAt?: Date | string
   author: Prisma.UserCreateNestedOneWithoutReportsInput
   project?: Prisma.ProjectCreateNestedOneWithoutReportsInput
-  document: Prisma.DocumentCreateNestedOneWithoutReportInput
+  attachment: Prisma.AttachmentCreateNestedOneWithoutReportInput
 }
 
 export type ReportUncheckedCreateWithoutTenantInput = {
@@ -714,7 +714,7 @@ export type ReportUncheckedCreateWithoutTenantInput = {
   description: string
   authorId: number
   projectId?: number | null
-  documentId: number
+  attachmentId: number
   createdAt?: Date | string
 }
 
@@ -749,7 +749,7 @@ export type ReportCreateWithoutAuthorInput = {
   createdAt?: Date | string
   project?: Prisma.ProjectCreateNestedOneWithoutReportsInput
   tenant: Prisma.TenantCreateNestedOneWithoutReportsInput
-  document: Prisma.DocumentCreateNestedOneWithoutReportInput
+  attachment: Prisma.AttachmentCreateNestedOneWithoutReportInput
 }
 
 export type ReportUncheckedCreateWithoutAuthorInput = {
@@ -757,7 +757,7 @@ export type ReportUncheckedCreateWithoutAuthorInput = {
   description: string
   projectId?: number | null
   tenantId: number
-  documentId: number
+  attachmentId: number
   createdAt?: Date | string
 }
 
@@ -792,7 +792,7 @@ export type ReportCreateManyProjectInput = {
   description: string
   authorId: number
   tenantId: number
-  documentId: number
+  attachmentId: number
   createdAt?: Date | string
 }
 
@@ -801,7 +801,7 @@ export type ReportUpdateWithoutProjectInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   author?: Prisma.UserUpdateOneRequiredWithoutReportsNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutReportsNestedInput
-  document?: Prisma.DocumentUpdateOneRequiredWithoutReportNestedInput
+  attachment?: Prisma.AttachmentUpdateOneRequiredWithoutReportNestedInput
 }
 
 export type ReportUncheckedUpdateWithoutProjectInput = {
@@ -809,7 +809,7 @@ export type ReportUncheckedUpdateWithoutProjectInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
-  documentId?: Prisma.IntFieldUpdateOperationsInput | number
+  attachmentId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -818,7 +818,7 @@ export type ReportUncheckedUpdateManyWithoutProjectInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
-  documentId?: Prisma.IntFieldUpdateOperationsInput | number
+  attachmentId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -827,7 +827,7 @@ export type ReportCreateManyTenantInput = {
   description: string
   authorId: number
   projectId?: number | null
-  documentId: number
+  attachmentId: number
   createdAt?: Date | string
 }
 
@@ -836,7 +836,7 @@ export type ReportUpdateWithoutTenantInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   author?: Prisma.UserUpdateOneRequiredWithoutReportsNestedInput
   project?: Prisma.ProjectUpdateOneWithoutReportsNestedInput
-  document?: Prisma.DocumentUpdateOneRequiredWithoutReportNestedInput
+  attachment?: Prisma.AttachmentUpdateOneRequiredWithoutReportNestedInput
 }
 
 export type ReportUncheckedUpdateWithoutTenantInput = {
@@ -844,7 +844,7 @@ export type ReportUncheckedUpdateWithoutTenantInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   projectId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  documentId?: Prisma.IntFieldUpdateOperationsInput | number
+  attachmentId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -853,7 +853,7 @@ export type ReportUncheckedUpdateManyWithoutTenantInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   authorId?: Prisma.IntFieldUpdateOperationsInput | number
   projectId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  documentId?: Prisma.IntFieldUpdateOperationsInput | number
+  attachmentId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -862,7 +862,7 @@ export type ReportCreateManyAuthorInput = {
   description: string
   projectId?: number | null
   tenantId: number
-  documentId: number
+  attachmentId: number
   createdAt?: Date | string
 }
 
@@ -871,7 +871,7 @@ export type ReportUpdateWithoutAuthorInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   project?: Prisma.ProjectUpdateOneWithoutReportsNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutReportsNestedInput
-  document?: Prisma.DocumentUpdateOneRequiredWithoutReportNestedInput
+  attachment?: Prisma.AttachmentUpdateOneRequiredWithoutReportNestedInput
 }
 
 export type ReportUncheckedUpdateWithoutAuthorInput = {
@@ -879,7 +879,7 @@ export type ReportUncheckedUpdateWithoutAuthorInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   projectId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
-  documentId?: Prisma.IntFieldUpdateOperationsInput | number
+  attachmentId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -888,7 +888,7 @@ export type ReportUncheckedUpdateManyWithoutAuthorInput = {
   description?: Prisma.StringFieldUpdateOperationsInput | string
   projectId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
-  documentId?: Prisma.IntFieldUpdateOperationsInput | number
+  attachmentId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -900,12 +900,12 @@ export type ReportSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   authorId?: boolean
   projectId?: boolean
   tenantId?: boolean
-  documentId?: boolean
+  attachmentId?: boolean
   createdAt?: boolean
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   project?: boolean | Prisma.Report$projectArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
-  document?: boolean | Prisma.DocumentDefaultArgs<ExtArgs>
+  attachment?: boolean | Prisma.AttachmentDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["report"]>
 
 export type ReportSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -914,12 +914,12 @@ export type ReportSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extens
   authorId?: boolean
   projectId?: boolean
   tenantId?: boolean
-  documentId?: boolean
+  attachmentId?: boolean
   createdAt?: boolean
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   project?: boolean | Prisma.Report$projectArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
-  document?: boolean | Prisma.DocumentDefaultArgs<ExtArgs>
+  attachment?: boolean | Prisma.AttachmentDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["report"]>
 
 export type ReportSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -928,12 +928,12 @@ export type ReportSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extens
   authorId?: boolean
   projectId?: boolean
   tenantId?: boolean
-  documentId?: boolean
+  attachmentId?: boolean
   createdAt?: boolean
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   project?: boolean | Prisma.Report$projectArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
-  document?: boolean | Prisma.DocumentDefaultArgs<ExtArgs>
+  attachment?: boolean | Prisma.AttachmentDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["report"]>
 
 export type ReportSelectScalar = {
@@ -942,28 +942,28 @@ export type ReportSelectScalar = {
   authorId?: boolean
   projectId?: boolean
   tenantId?: boolean
-  documentId?: boolean
+  attachmentId?: boolean
   createdAt?: boolean
 }
 
-export type ReportOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "description" | "authorId" | "projectId" | "tenantId" | "documentId" | "createdAt", ExtArgs["result"]["report"]>
+export type ReportOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "description" | "authorId" | "projectId" | "tenantId" | "attachmentId" | "createdAt", ExtArgs["result"]["report"]>
 export type ReportInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   project?: boolean | Prisma.Report$projectArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
-  document?: boolean | Prisma.DocumentDefaultArgs<ExtArgs>
+  attachment?: boolean | Prisma.AttachmentDefaultArgs<ExtArgs>
 }
 export type ReportIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   project?: boolean | Prisma.Report$projectArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
-  document?: boolean | Prisma.DocumentDefaultArgs<ExtArgs>
+  attachment?: boolean | Prisma.AttachmentDefaultArgs<ExtArgs>
 }
 export type ReportIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   author?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   project?: boolean | Prisma.Report$projectArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
-  document?: boolean | Prisma.DocumentDefaultArgs<ExtArgs>
+  attachment?: boolean | Prisma.AttachmentDefaultArgs<ExtArgs>
 }
 
 export type $ReportPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -972,7 +972,7 @@ export type $ReportPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     author: Prisma.$UserPayload<ExtArgs>
     project: Prisma.$ProjectPayload<ExtArgs> | null
     tenant: Prisma.$TenantPayload<ExtArgs>
-    document: Prisma.$DocumentPayload<ExtArgs>
+    attachment: Prisma.$AttachmentPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -980,7 +980,7 @@ export type $ReportPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     authorId: number
     projectId: number | null
     tenantId: number
-    documentId: number
+    attachmentId: number
     createdAt: Date
   }, ExtArgs["result"]["report"]>
   composites: {}
@@ -1379,7 +1379,7 @@ export interface Prisma__ReportClient<T, Null = never, ExtArgs extends runtime.T
   author<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   project<T extends Prisma.Report$projectArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Report$projectArgs<ExtArgs>>): Prisma.Prisma__ProjectClient<runtime.Types.Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   tenant<T extends Prisma.TenantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TenantDefaultArgs<ExtArgs>>): Prisma.Prisma__TenantClient<runtime.Types.Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  document<T extends Prisma.DocumentDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DocumentDefaultArgs<ExtArgs>>): Prisma.Prisma__DocumentClient<runtime.Types.Result.GetResult<Prisma.$DocumentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  attachment<T extends Prisma.AttachmentDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.AttachmentDefaultArgs<ExtArgs>>): Prisma.Prisma__AttachmentClient<runtime.Types.Result.GetResult<Prisma.$AttachmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1414,7 +1414,7 @@ export interface ReportFieldRefs {
   readonly authorId: Prisma.FieldRef<"Report", 'Int'>
   readonly projectId: Prisma.FieldRef<"Report", 'Int'>
   readonly tenantId: Prisma.FieldRef<"Report", 'Int'>
-  readonly documentId: Prisma.FieldRef<"Report", 'Int'>
+  readonly attachmentId: Prisma.FieldRef<"Report", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Report", 'DateTime'>
 }
     

@@ -51,17 +51,13 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
+  Attachment: 'Attachment',
   Client: 'Client',
   Comment: 'Comment',
-  Document: 'Document',
   Invoice: 'Invoice',
-  Mission: 'Mission',
-  MissionTask: 'MissionTask',
+  Lead: 'Lead',
   Notification: 'Notification',
-  Offer: 'Offer',
-  Product: 'Product',
   Project: 'Project',
-  Prospection: 'Prospection',
   Report: 'Report',
   Subscription: 'Subscription',
   Tenant: 'Tenant',
@@ -87,6 +83,21 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+export const AttachmentScalarFieldEnum = {
+  id: 'id',
+  summary: 'summary',
+  originalName: 'originalName',
+  storedName: 'storedName',
+  size: 'size',
+  mimetype: 'mimetype',
+  createdAt: 'createdAt',
+  leadId: 'leadId',
+  projectId: 'projectId'
+} as const
+
+export type AttachmentScalarFieldEnum = (typeof AttachmentScalarFieldEnum)[keyof typeof AttachmentScalarFieldEnum]
+
+
 export const ClientScalarFieldEnum = {
   id: 'id',
   type: 'type',
@@ -110,27 +121,10 @@ export const CommentScalarFieldEnum = {
   content: 'content',
   createdAt: 'createdAt',
   authorId: 'authorId',
-  prospectionId: 'prospectionId',
-  offerId: 'offerId'
+  leadId: 'leadId'
 } as const
 
 export type CommentScalarFieldEnum = (typeof CommentScalarFieldEnum)[keyof typeof CommentScalarFieldEnum]
-
-
-export const DocumentScalarFieldEnum = {
-  id: 'id',
-  summary: 'summary',
-  originalName: 'originalName',
-  storedName: 'storedName',
-  size: 'size',
-  mimetype: 'mimetype',
-  createdAt: 'createdAt',
-  prospectionId: 'prospectionId',
-  offerId: 'offerId',
-  projectId: 'projectId'
-} as const
-
-export type DocumentScalarFieldEnum = (typeof DocumentScalarFieldEnum)[keyof typeof DocumentScalarFieldEnum]
 
 
 export const InvoiceScalarFieldEnum = {
@@ -138,7 +132,7 @@ export const InvoiceScalarFieldEnum = {
   description: 'description',
   amount: 'amount',
   status: 'status',
-  documentId: 'documentId',
+  attachmentId: 'attachmentId',
   authorId: 'authorId',
   projectId: 'projectId',
   tenantId: 'tenantId',
@@ -148,28 +142,21 @@ export const InvoiceScalarFieldEnum = {
 export type InvoiceScalarFieldEnum = (typeof InvoiceScalarFieldEnum)[keyof typeof InvoiceScalarFieldEnum]
 
 
-export const MissionScalarFieldEnum = {
+export const LeadScalarFieldEnum = {
   id: 'id',
-  code: 'code',
-  domain: 'domain',
-  name: 'name',
+  service: 'service',
+  amountHT: 'amountHT',
+  amountTTC: 'amountTTC',
+  amountTVA: 'amountTVA',
+  deadline: 'deadline',
+  status: 'status',
+  clientId: 'clientId',
   tenantId: 'tenantId',
+  authorId: 'authorId',
   createdAt: 'createdAt'
 } as const
 
-export type MissionScalarFieldEnum = (typeof MissionScalarFieldEnum)[keyof typeof MissionScalarFieldEnum]
-
-
-export const MissionTaskScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  quantity: 'quantity',
-  unitPrice: 'unitPrice',
-  missionId: 'missionId',
-  createdAt: 'createdAt'
-} as const
-
-export type MissionTaskScalarFieldEnum = (typeof MissionTaskScalarFieldEnum)[keyof typeof MissionTaskScalarFieldEnum]
+export type LeadScalarFieldEnum = (typeof LeadScalarFieldEnum)[keyof typeof LeadScalarFieldEnum]
 
 
 export const NotificationScalarFieldEnum = {
@@ -184,34 +171,6 @@ export const NotificationScalarFieldEnum = {
 export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
 
 
-export const OfferScalarFieldEnum = {
-  id: 'id',
-  title: 'title',
-  status: 'status',
-  amountHT: 'amountHT',
-  amountTVA: 'amountTVA',
-  amountTTC: 'amountTTC',
-  authorId: 'authorId',
-  clientId: 'clientId',
-  tenantId: 'tenantId',
-  deadline: 'deadline',
-  sentAt: 'sentAt',
-  createdAt: 'createdAt'
-} as const
-
-export type OfferScalarFieldEnum = (typeof OfferScalarFieldEnum)[keyof typeof OfferScalarFieldEnum]
-
-
-export const ProductScalarFieldEnum = {
-  id: 'id',
-  domain: 'domain',
-  title: 'title',
-  tenantId: 'tenantId'
-} as const
-
-export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
-
-
 export const ProjectScalarFieldEnum = {
   id: 'id',
   title: 'title',
@@ -220,7 +179,7 @@ export const ProjectScalarFieldEnum = {
   amountTTC: 'amountTTC',
   status: 'status',
   clientId: 'clientId',
-  offerId: 'offerId',
+  leadId: 'leadId',
   authorId: 'authorId',
   tenantId: 'tenantId',
   createdAt: 'createdAt'
@@ -229,27 +188,13 @@ export const ProjectScalarFieldEnum = {
 export type ProjectScalarFieldEnum = (typeof ProjectScalarFieldEnum)[keyof typeof ProjectScalarFieldEnum]
 
 
-export const ProspectionScalarFieldEnum = {
-  id: 'id',
-  service: 'service',
-  deadline: 'deadline',
-  status: 'status',
-  clientId: 'clientId',
-  tenantId: 'tenantId',
-  authorId: 'authorId',
-  createdAt: 'createdAt'
-} as const
-
-export type ProspectionScalarFieldEnum = (typeof ProspectionScalarFieldEnum)[keyof typeof ProspectionScalarFieldEnum]
-
-
 export const ReportScalarFieldEnum = {
   id: 'id',
   description: 'description',
   authorId: 'authorId',
   projectId: 'projectId',
   tenantId: 'tenantId',
-  documentId: 'documentId',
+  attachmentId: 'attachmentId',
   createdAt: 'createdAt'
 } as const
 

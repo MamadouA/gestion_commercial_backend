@@ -1,40 +1,38 @@
 model User {
-  id        Int      @id @default(autoincrement())
-  fullname  String
-  email     String   @unique
-  password String
-  phone     String
-  roleId Int
-  role Role @relation(fields: [roleId], references: [id])
-  isActive  Boolean  @default(true)
-  tenant    Tenant   @relation(fields: [tenantId], references: [id])
-  tenantId  Int
-  prospections Prospection[] // prospection created by the user
-  comments Comment[] // comment made by the user
-  invoices Invoice[] // invoice created by this user
-  reports Report[] // reports created by this user
+  id         Int         @id @default(autoincrement())
+  fullname   String
+  email      String      @unique
+  password   String
+  phone      String
+  roleId     Int
+  role       Role        @relation(fields: [roleId], references: [id])
+  isActive   Boolean     @default(true)
+  tenant     Tenant      @relation(fields: [tenantId], references: [id])
+  tenantId   Int
+  comments   Comment[] // comment made by the user
+  invoices   Invoice[] // invoice created by this user
+  reports    Report[] // reports created by this user
   timesheets Timesheet[] // timesheets of this user
 
-  offers Offer[] 
-  projects Project[]
-  createdAt DateTime @default(now())
+  leads     Lead[]
+  projects  Project[]
+  createdAt DateTime  @default(now())
 }
 
 model Role {
-  id Int @id() @default(autoincrement())
-  name String
+  id          Int          @id() @default(autoincrement())
+  name        String
   description String
   permissions Permission[]
-  users User[]
-  tenantId Int
-  tenant Tenant @relation(fields: [tenantId], references: [id])
+  users       User[]
+  tenantId    Int
+  tenant      Tenant       @relation(fields: [tenantId], references: [id])
 }
 
 model Permission {
-  id Int @id() @default(autoincrement())
-  name String
+  id          Int     @id() @default(autoincrement())
+  name        String
   description String
-  feature Feature
-  roles Role[]
+  feature     Feature
+  roles       Role[]
 }
-

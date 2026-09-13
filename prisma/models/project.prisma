@@ -1,34 +1,33 @@
-
 model Project {
-    id Int @id() @default(autoincrement())
-    title String
-    amountHT Decimal?
-    amountTVA Decimal?
-    amountTTC Decimal?
-    status ProjectStatus @default(IN_PROGRESS)
+  id        Int           @id() @default(autoincrement())
+  title     String
+  amountHT  Decimal?
+  amountTVA Decimal?
+  amountTTC Decimal?
+  status    ProjectStatus @default(IN_PROGRESS)
 
-    documents Document[]
-    timesheets Timesheet[]
-    invoices Invoice[]
-    reports Report[]
+  attachments Attachment[]
+  timesheets  Timesheet[]
+  invoices    Invoice[]
+  reports     Report[]
 
-    clientId Int
-    client Client @relation(fields: [clientId], references: [id])
-    
-    offerId Int @unique()
-    offer Offer @relation(fields: [offerId], references: [id])
+  clientId Int
+  client   Client @relation(fields: [clientId], references: [id])
 
-    authorId Int
-    author User @relation(fields: [authorId], references: [id])
+  leadId Int  @unique()
+  lead   Lead @relation(fields: [leadId], references: [id])
 
-    tenantId Int
-    tenant Tenant @relation(fields: [tenantId], references: [id])
+  authorId Int
+  author   User @relation(fields: [authorId], references: [id])
 
-    createdAt DateTime @default(now())
+  tenantId Int
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
+
+  createdAt DateTime @default(now())
 }
 
 enum ProjectStatus {
-    IN_PROGRESS
-    DONE
-    CANCELLED
+  IN_PROGRESS
+  DONE
+  CANCELLED
 }

@@ -1,36 +1,34 @@
-
 model Client {
-    id Int @id @default(autoincrement())
-    type ClientType 
-    country String
-    address String
-    contactName String
-    phone String
-    email String
-    companyName String?
-    companyLegalForm EnterpriseLegalForm?
-    industry String?
-    createdAt DateTime @default(now())
+  id               Int                  @id @default(autoincrement())
+  type             ClientType
+  country          String
+  address          String
+  contactName      String
+  phone            String
+  email            String
+  companyName      String?
+  companyLegalForm EnterpriseLegalForm?
+  industry         String?
+  createdAt        DateTime             @default(now())
 
-    tenantId Int 
-    tenant Tenant @relation(fields: [tenantId], references: [id])
-    prospections Prospection[]
+  tenantId Int
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
+  leads    Lead[]
 
-    offers Offer[]
-    projects Project[]
+  projects Project[]
 }
 
 enum ClientType {
-    PARTICULIER
-    ENTREPRISE
+  PARTICULIER
+  ENTREPRISE
 }
 
 enum EnterpriseLegalForm {
-    Person
-    SARL
-    SA
-    SAS
-    SUARL
-    SNC
-    SCS
+  Person
+  SARL
+  SA
+  SAS
+  SUARL
+  SNC
+  SCS
 }

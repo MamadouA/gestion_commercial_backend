@@ -60,7 +60,7 @@ export class ProjectService {
 
   // - a project is created from an existing offer
   async create(
-    offerId: number,
+    leadId: number,
     user: User,
     contractDocument: Express.Multer.File,
   ) {
@@ -71,34 +71,34 @@ export class ProjectService {
         throw new BadRequestException('Contract document is required.');
       }
 
-      const offer = await this.prismaClientService.offer.findFirstOrThrow({
-        where: { id: offerId, tenantId: user.tenantId },
+      const lead = await this.prismaClientService.lead.findFirstOrThrow({
+        where: { id: leadId, tenantId: user.tenantId },
       });
 
-      if(offer.status === "LOST" || offer.status === "WON") {
-        throw new BadRequestException('Offer is already closed.');
+      if(lead.status === "LOST" || lead.status === "WON") {
+        throw new BadRequestException('Lead is already closed.');
       }
 
       fileMetadata = await this.s3ClientService.save(contractDocument);
 
       const projectData: ProjectCreateInput = {
-        title: offer.title,
-        amountTTC: offer.amountTTC,
-        amountTVA: offer.amountTVA,
-        amountHT: offer.amountHT,
+        title: lead.service,
+        amountTTC: lead.amountTTC,
+        amountTVA: lead.amountTVA,
+        amountHT: lead.amountHT,
         author: {
           connect: {
             id: user.id,
           },
         },
-        offer: {
+        lead: {
           connect: {
-            id: offerId,
+            id: leadId,
           },
         },
         client: {
           connect: {
-            id: offer.clientId,
+            id: lead.clientId,
           },
         },
         tenant: {
@@ -109,7 +109,7 @@ export class ProjectService {
         reports: {
           create: {
             description: 'Contrat signé',
-            document: {
+            attachment: {
               create: fileMetadata,
             },
             author: {
@@ -127,9 +127,9 @@ export class ProjectService {
       };
 
       const result  = await this.prismaClientService.$transaction([
-        this.prismaClientService.offer.update({
+        this.prismaClientService.lead.update({
           where: {
-            id: offerId,
+            id: leadId,
             tenantId: user.tenantId,
           },
           data: {
@@ -175,7 +175,7 @@ export class ProjectService {
         where: { id, tenantId },
         omit: {
           tenantId: true,
-          offerId: true,
+          leadId: true,
           clientId: true,
         },
         include: {
@@ -184,7 +184,7 @@ export class ProjectService {
               tenantId: true,
             },
           },
-          documents: {
+          attachments: {
             select: {
               id: true,
               originalName: true,

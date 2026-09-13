@@ -1,19 +1,16 @@
 model Tenant {
-  id        Int      @id @default(autoincrement())
-  name      String
-  isActive  Boolean  @default(true)
-  createdAt DateTime @default(now())
-  users     User[]
-  clients Client[]
-  roles Role[]
-  prospections Prospection[]
-  products Product[]
-  offers Offer[]
-  missions Mission[]
-  projects Project[]
-  notifications Notification[]
-  reports Report[]
-  invoices Invoice[]
-  subscriptionId Int 
-  subscription Subscription @relation(fields: [subscriptionId], references: [id])
+  id             Int            @id @default(autoincrement())
+  name           String
+  isActive       Boolean        @default(true)
+  createdAt      DateTime       @default(now())
+  users          User[]
+  clients        Client[]
+  roles          Role[]
+  leads          Lead[]
+  projects       Project[]
+  notifications  Notification[]
+  reports        Report[]
+  invoices       Invoice[]
+  subscriptionId Int
+  subscription   Subscription   @relation(fields: [subscriptionId], references: [id])
 }

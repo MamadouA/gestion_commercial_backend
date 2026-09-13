@@ -29,8 +29,8 @@ export * from "./enums"
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more Clients
- * const clients = await prisma.client.findMany()
+ * // Fetch zero or more Attachments
+ * const attachments = await prisma.attachment.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -39,6 +39,11 @@ export const PrismaClient = $Class.getPrismaClientClass()
 export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts extends Prisma.PrismaClientOptions["omit"] = Prisma.PrismaClientOptions["omit"], ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = $Class.PrismaClient<LogOpts, OmitOpts, ExtArgs>
 export { Prisma }
 
+/**
+ * Model Attachment
+ * 
+ */
+export type Attachment = Prisma.AttachmentModel
 /**
  * Model Client
  * 
@@ -50,50 +55,25 @@ export type Client = Prisma.ClientModel
  */
 export type Comment = Prisma.CommentModel
 /**
- * Model Document
- * 
- */
-export type Document = Prisma.DocumentModel
-/**
  * Model Invoice
  * 
  */
 export type Invoice = Prisma.InvoiceModel
 /**
- * Model Mission
+ * Model Lead
  * 
  */
-export type Mission = Prisma.MissionModel
-/**
- * Model MissionTask
- * 
- */
-export type MissionTask = Prisma.MissionTaskModel
+export type Lead = Prisma.LeadModel
 /**
  * Model Notification
  * 
  */
 export type Notification = Prisma.NotificationModel
 /**
- * Model Offer
- * 
- */
-export type Offer = Prisma.OfferModel
-/**
- * Model Product
- * 
- */
-export type Product = Prisma.ProductModel
-/**
  * Model Project
  * 
  */
 export type Project = Prisma.ProjectModel
-/**
- * Model Prospection
- * 
- */
-export type Prospection = Prisma.ProspectionModel
 /**
  * Model Report
  * 

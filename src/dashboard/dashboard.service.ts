@@ -1,6 +1,6 @@
 import { Injectable, InternalServerErrorException, Logger } from '@nestjs/common';
 import { PrismaClientService } from '../database/prisma-client.service';
-import { InvoiceStatus, OfferStatus, ProjectStatus, ProspectionStatus } from '../generated/prisma/enums';
+import { InvoiceStatus, ProjectStatus } from '../generated/prisma/enums';
 
 @Injectable()
 export class DashboardService {
@@ -11,16 +11,14 @@ export class DashboardService {
   // -
   async getData (tenantId: number) {
     try {
-      const counts = this.getTotalOverview(tenantId);
+      const counts = this.getTotalOverviews(tenantId);
       const projectOverview = this.getProjectOverview(tenantId);
-      const offerOverview = this.getOfferOverview(tenantId);
-      const prospectionOverview = this.getProspectionOverview(tenantId);
       const invoiceOverview = this.getInvoiceOverview(tenantId);
       const revenues = this.getMonthlyRevenues(tenantId);  
 
-      const result = await  Promise.all([counts, projectOverview, offerOverview, prospectionOverview, invoiceOverview, revenues]);
+      const result = await  Promise.all([counts, projectOverview, invoiceOverview, revenues]);
 
-      return { counts: result[0], projects: result[1], offers: result[2], prospections: result[3], invoices: result[4], revenues: result[5] };
+      return { counts: result[0], projects: result[1], invoices: result[2], revenues: result[3] };
     }
     catch(err) {
       this.logger.error("Error while fetching the overview: ", err);
@@ -65,7 +63,7 @@ export class DashboardService {
   }
 
   // -
-  async getTotalOverview(tenantId: number) {
+  async getTotalOverviews(tenantId: number) {
     const userCount = this.prismaClientService.user.count({
       where: { tenantId },
     });
@@ -74,11 +72,11 @@ export class DashboardService {
       where: { tenantId },
     });
 
-    const prospectionCount = this.prismaClientService.prospection.count({
+    const prospectionCount = this.prismaClientService.lead.count({
       where: { tenantId },
     });
 
-    const offerCount = this.prismaClientService.offer.count({
+    const offerCount = this.prismaClientService.lead.count({
       where: { tenantId },
     });
 
@@ -136,60 +134,6 @@ export class DashboardService {
       { status: ProjectStatus.CANCELLED, count: result[2] },
     ];
 }
-
-  // -
-  async getOfferOverview(tenantId: number) {
-    const pending = this.prismaClientService.offer.count({
-      where: { tenantId, status: 'PENDING' },
-    });
-
-    const won = this.prismaClientService.offer.count({
-      where: { tenantId, status: 'WON' },
-    });
-    const lost = this.prismaClientService.offer.count({
-      where: { tenantId, status: 'LOST' },
-    });
-
-    const result = await Promise.all([
-      pending,
-      won,
-      lost,
-    ]);
-
-    return [
-      { status: OfferStatus.PENDING, count: result[0] },
-      { status: OfferStatus.WON, count: result[1]},
-      { status: OfferStatus.LOST, count: result[2] },
-    ];
-  }
-
-  // -
-  async getProspectionOverview(tenantId: number) {
-    try {
-      const opened = this.prismaClientService.prospection.count({
-        where: { tenantId, status: 'OPENED' },
-      });
-
-      const won = this.prismaClientService.prospection.count({
-        where: { tenantId, status: 'WON' },
-      });
-
-      const lost = this.prismaClientService.prospection.count({
-        where: { tenantId, status: 'LOST' },
-      });
-
-      const result = await Promise.all([opened, won, lost]);
-
-      return [
-        { status: ProspectionStatus.OPENED, count: result[0] },
-        { status: ProspectionStatus.WON, count: result[1]},
-        { status: ProspectionStatus.LOST, count: result[2]},
-      ];
-    }
-    catch (err) {
-      this.logger.error("Error while fetching the propections overview: ", err);
-    }
-  }
 
   // -
   async getInvoiceOverview(tenantId: number) {

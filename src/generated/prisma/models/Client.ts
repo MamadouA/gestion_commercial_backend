@@ -277,8 +277,7 @@ export type ClientWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"Client"> | Date | string
   tenantId?: Prisma.IntFilter<"Client"> | number
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
-  prospections?: Prisma.ProspectionListRelationFilter
-  offers?: Prisma.OfferListRelationFilter
+  leads?: Prisma.LeadListRelationFilter
   projects?: Prisma.ProjectListRelationFilter
 }
 
@@ -296,8 +295,7 @@ export type ClientOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   tenantId?: Prisma.SortOrder
   tenant?: Prisma.TenantOrderByWithRelationInput
-  prospections?: Prisma.ProspectionOrderByRelationAggregateInput
-  offers?: Prisma.OfferOrderByRelationAggregateInput
+  leads?: Prisma.LeadOrderByRelationAggregateInput
   projects?: Prisma.ProjectOrderByRelationAggregateInput
 }
 
@@ -318,8 +316,7 @@ export type ClientWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"Client"> | Date | string
   tenantId?: Prisma.IntFilter<"Client"> | number
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
-  prospections?: Prisma.ProspectionListRelationFilter
-  offers?: Prisma.OfferListRelationFilter
+  leads?: Prisma.LeadListRelationFilter
   projects?: Prisma.ProjectListRelationFilter
 }, "id">
 
@@ -373,8 +370,7 @@ export type ClientCreateInput = {
   industry?: string | null
   createdAt?: Date | string
   tenant: Prisma.TenantCreateNestedOneWithoutClientsInput
-  prospections?: Prisma.ProspectionCreateNestedManyWithoutClientInput
-  offers?: Prisma.OfferCreateNestedManyWithoutClientInput
+  leads?: Prisma.LeadCreateNestedManyWithoutClientInput
   projects?: Prisma.ProjectCreateNestedManyWithoutClientInput
 }
 
@@ -391,8 +387,7 @@ export type ClientUncheckedCreateInput = {
   industry?: string | null
   createdAt?: Date | string
   tenantId: number
-  prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutClientInput
-  offers?: Prisma.OfferUncheckedCreateNestedManyWithoutClientInput
+  leads?: Prisma.LeadUncheckedCreateNestedManyWithoutClientInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutClientInput
 }
 
@@ -408,8 +403,7 @@ export type ClientUpdateInput = {
   industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tenant?: Prisma.TenantUpdateOneRequiredWithoutClientsNestedInput
-  prospections?: Prisma.ProspectionUpdateManyWithoutClientNestedInput
-  offers?: Prisma.OfferUpdateManyWithoutClientNestedInput
+  leads?: Prisma.LeadUpdateManyWithoutClientNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutClientNestedInput
 }
 
@@ -426,8 +420,7 @@ export type ClientUncheckedUpdateInput = {
   industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
-  prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutClientNestedInput
-  offers?: Prisma.OfferUncheckedUpdateManyWithoutClientNestedInput
+  leads?: Prisma.LeadUncheckedUpdateManyWithoutClientNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutClientNestedInput
 }
 
@@ -548,42 +541,22 @@ export type EnumClientTypeFieldUpdateOperationsInput = {
   set?: $Enums.ClientType
 }
 
-export type StringFieldUpdateOperationsInput = {
-  set?: string
-}
-
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
 export type NullableEnumEnterpriseLegalFormFieldUpdateOperationsInput = {
   set?: $Enums.EnterpriseLegalForm | null
 }
 
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
-}
-
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
-export type ClientCreateNestedOneWithoutOffersInput = {
-  create?: Prisma.XOR<Prisma.ClientCreateWithoutOffersInput, Prisma.ClientUncheckedCreateWithoutOffersInput>
-  connectOrCreate?: Prisma.ClientCreateOrConnectWithoutOffersInput
+export type ClientCreateNestedOneWithoutLeadsInput = {
+  create?: Prisma.XOR<Prisma.ClientCreateWithoutLeadsInput, Prisma.ClientUncheckedCreateWithoutLeadsInput>
+  connectOrCreate?: Prisma.ClientCreateOrConnectWithoutLeadsInput
   connect?: Prisma.ClientWhereUniqueInput
 }
 
-export type ClientUpdateOneRequiredWithoutOffersNestedInput = {
-  create?: Prisma.XOR<Prisma.ClientCreateWithoutOffersInput, Prisma.ClientUncheckedCreateWithoutOffersInput>
-  connectOrCreate?: Prisma.ClientCreateOrConnectWithoutOffersInput
-  upsert?: Prisma.ClientUpsertWithoutOffersInput
+export type ClientUpdateOneRequiredWithoutLeadsNestedInput = {
+  create?: Prisma.XOR<Prisma.ClientCreateWithoutLeadsInput, Prisma.ClientUncheckedCreateWithoutLeadsInput>
+  connectOrCreate?: Prisma.ClientCreateOrConnectWithoutLeadsInput
+  upsert?: Prisma.ClientUpsertWithoutLeadsInput
   connect?: Prisma.ClientWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ClientUpdateToOneWithWhereWithoutOffersInput, Prisma.ClientUpdateWithoutOffersInput>, Prisma.ClientUncheckedUpdateWithoutOffersInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ClientUpdateToOneWithWhereWithoutLeadsInput, Prisma.ClientUpdateWithoutLeadsInput>, Prisma.ClientUncheckedUpdateWithoutLeadsInput>
 }
 
 export type ClientCreateNestedOneWithoutProjectsInput = {
@@ -598,20 +571,6 @@ export type ClientUpdateOneRequiredWithoutProjectsNestedInput = {
   upsert?: Prisma.ClientUpsertWithoutProjectsInput
   connect?: Prisma.ClientWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.ClientUpdateToOneWithWhereWithoutProjectsInput, Prisma.ClientUpdateWithoutProjectsInput>, Prisma.ClientUncheckedUpdateWithoutProjectsInput>
-}
-
-export type ClientCreateNestedOneWithoutProspectionsInput = {
-  create?: Prisma.XOR<Prisma.ClientCreateWithoutProspectionsInput, Prisma.ClientUncheckedCreateWithoutProspectionsInput>
-  connectOrCreate?: Prisma.ClientCreateOrConnectWithoutProspectionsInput
-  connect?: Prisma.ClientWhereUniqueInput
-}
-
-export type ClientUpdateOneRequiredWithoutProspectionsNestedInput = {
-  create?: Prisma.XOR<Prisma.ClientCreateWithoutProspectionsInput, Prisma.ClientUncheckedCreateWithoutProspectionsInput>
-  connectOrCreate?: Prisma.ClientCreateOrConnectWithoutProspectionsInput
-  upsert?: Prisma.ClientUpsertWithoutProspectionsInput
-  connect?: Prisma.ClientWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.ClientUpdateToOneWithWhereWithoutProspectionsInput, Prisma.ClientUpdateWithoutProspectionsInput>, Prisma.ClientUncheckedUpdateWithoutProspectionsInput>
 }
 
 export type ClientCreateNestedManyWithoutTenantInput = {
@@ -656,7 +615,7 @@ export type ClientUncheckedUpdateManyWithoutTenantNestedInput = {
   deleteMany?: Prisma.ClientScalarWhereInput | Prisma.ClientScalarWhereInput[]
 }
 
-export type ClientCreateWithoutOffersInput = {
+export type ClientCreateWithoutLeadsInput = {
   type: $Enums.ClientType
   country: string
   address: string
@@ -668,11 +627,10 @@ export type ClientCreateWithoutOffersInput = {
   industry?: string | null
   createdAt?: Date | string
   tenant: Prisma.TenantCreateNestedOneWithoutClientsInput
-  prospections?: Prisma.ProspectionCreateNestedManyWithoutClientInput
   projects?: Prisma.ProjectCreateNestedManyWithoutClientInput
 }
 
-export type ClientUncheckedCreateWithoutOffersInput = {
+export type ClientUncheckedCreateWithoutLeadsInput = {
   id?: number
   type: $Enums.ClientType
   country: string
@@ -685,27 +643,26 @@ export type ClientUncheckedCreateWithoutOffersInput = {
   industry?: string | null
   createdAt?: Date | string
   tenantId: number
-  prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutClientInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutClientInput
 }
 
-export type ClientCreateOrConnectWithoutOffersInput = {
+export type ClientCreateOrConnectWithoutLeadsInput = {
   where: Prisma.ClientWhereUniqueInput
-  create: Prisma.XOR<Prisma.ClientCreateWithoutOffersInput, Prisma.ClientUncheckedCreateWithoutOffersInput>
+  create: Prisma.XOR<Prisma.ClientCreateWithoutLeadsInput, Prisma.ClientUncheckedCreateWithoutLeadsInput>
 }
 
-export type ClientUpsertWithoutOffersInput = {
-  update: Prisma.XOR<Prisma.ClientUpdateWithoutOffersInput, Prisma.ClientUncheckedUpdateWithoutOffersInput>
-  create: Prisma.XOR<Prisma.ClientCreateWithoutOffersInput, Prisma.ClientUncheckedCreateWithoutOffersInput>
+export type ClientUpsertWithoutLeadsInput = {
+  update: Prisma.XOR<Prisma.ClientUpdateWithoutLeadsInput, Prisma.ClientUncheckedUpdateWithoutLeadsInput>
+  create: Prisma.XOR<Prisma.ClientCreateWithoutLeadsInput, Prisma.ClientUncheckedCreateWithoutLeadsInput>
   where?: Prisma.ClientWhereInput
 }
 
-export type ClientUpdateToOneWithWhereWithoutOffersInput = {
+export type ClientUpdateToOneWithWhereWithoutLeadsInput = {
   where?: Prisma.ClientWhereInput
-  data: Prisma.XOR<Prisma.ClientUpdateWithoutOffersInput, Prisma.ClientUncheckedUpdateWithoutOffersInput>
+  data: Prisma.XOR<Prisma.ClientUpdateWithoutLeadsInput, Prisma.ClientUncheckedUpdateWithoutLeadsInput>
 }
 
-export type ClientUpdateWithoutOffersInput = {
+export type ClientUpdateWithoutLeadsInput = {
   type?: Prisma.EnumClientTypeFieldUpdateOperationsInput | $Enums.ClientType
   country?: Prisma.StringFieldUpdateOperationsInput | string
   address?: Prisma.StringFieldUpdateOperationsInput | string
@@ -717,11 +674,10 @@ export type ClientUpdateWithoutOffersInput = {
   industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tenant?: Prisma.TenantUpdateOneRequiredWithoutClientsNestedInput
-  prospections?: Prisma.ProspectionUpdateManyWithoutClientNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutClientNestedInput
 }
 
-export type ClientUncheckedUpdateWithoutOffersInput = {
+export type ClientUncheckedUpdateWithoutLeadsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumClientTypeFieldUpdateOperationsInput | $Enums.ClientType
   country?: Prisma.StringFieldUpdateOperationsInput | string
@@ -734,7 +690,6 @@ export type ClientUncheckedUpdateWithoutOffersInput = {
   industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
-  prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutClientNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutClientNestedInput
 }
 
@@ -750,8 +705,7 @@ export type ClientCreateWithoutProjectsInput = {
   industry?: string | null
   createdAt?: Date | string
   tenant: Prisma.TenantCreateNestedOneWithoutClientsInput
-  prospections?: Prisma.ProspectionCreateNestedManyWithoutClientInput
-  offers?: Prisma.OfferCreateNestedManyWithoutClientInput
+  leads?: Prisma.LeadCreateNestedManyWithoutClientInput
 }
 
 export type ClientUncheckedCreateWithoutProjectsInput = {
@@ -767,8 +721,7 @@ export type ClientUncheckedCreateWithoutProjectsInput = {
   industry?: string | null
   createdAt?: Date | string
   tenantId: number
-  prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutClientInput
-  offers?: Prisma.OfferUncheckedCreateNestedManyWithoutClientInput
+  leads?: Prisma.LeadUncheckedCreateNestedManyWithoutClientInput
 }
 
 export type ClientCreateOrConnectWithoutProjectsInput = {
@@ -799,8 +752,7 @@ export type ClientUpdateWithoutProjectsInput = {
   industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tenant?: Prisma.TenantUpdateOneRequiredWithoutClientsNestedInput
-  prospections?: Prisma.ProspectionUpdateManyWithoutClientNestedInput
-  offers?: Prisma.OfferUpdateManyWithoutClientNestedInput
+  leads?: Prisma.LeadUpdateManyWithoutClientNestedInput
 }
 
 export type ClientUncheckedUpdateWithoutProjectsInput = {
@@ -816,90 +768,7 @@ export type ClientUncheckedUpdateWithoutProjectsInput = {
   industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
-  prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutClientNestedInput
-  offers?: Prisma.OfferUncheckedUpdateManyWithoutClientNestedInput
-}
-
-export type ClientCreateWithoutProspectionsInput = {
-  type: $Enums.ClientType
-  country: string
-  address: string
-  contactName: string
-  phone: string
-  email: string
-  companyName?: string | null
-  companyLegalForm?: $Enums.EnterpriseLegalForm | null
-  industry?: string | null
-  createdAt?: Date | string
-  tenant: Prisma.TenantCreateNestedOneWithoutClientsInput
-  offers?: Prisma.OfferCreateNestedManyWithoutClientInput
-  projects?: Prisma.ProjectCreateNestedManyWithoutClientInput
-}
-
-export type ClientUncheckedCreateWithoutProspectionsInput = {
-  id?: number
-  type: $Enums.ClientType
-  country: string
-  address: string
-  contactName: string
-  phone: string
-  email: string
-  companyName?: string | null
-  companyLegalForm?: $Enums.EnterpriseLegalForm | null
-  industry?: string | null
-  createdAt?: Date | string
-  tenantId: number
-  offers?: Prisma.OfferUncheckedCreateNestedManyWithoutClientInput
-  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutClientInput
-}
-
-export type ClientCreateOrConnectWithoutProspectionsInput = {
-  where: Prisma.ClientWhereUniqueInput
-  create: Prisma.XOR<Prisma.ClientCreateWithoutProspectionsInput, Prisma.ClientUncheckedCreateWithoutProspectionsInput>
-}
-
-export type ClientUpsertWithoutProspectionsInput = {
-  update: Prisma.XOR<Prisma.ClientUpdateWithoutProspectionsInput, Prisma.ClientUncheckedUpdateWithoutProspectionsInput>
-  create: Prisma.XOR<Prisma.ClientCreateWithoutProspectionsInput, Prisma.ClientUncheckedCreateWithoutProspectionsInput>
-  where?: Prisma.ClientWhereInput
-}
-
-export type ClientUpdateToOneWithWhereWithoutProspectionsInput = {
-  where?: Prisma.ClientWhereInput
-  data: Prisma.XOR<Prisma.ClientUpdateWithoutProspectionsInput, Prisma.ClientUncheckedUpdateWithoutProspectionsInput>
-}
-
-export type ClientUpdateWithoutProspectionsInput = {
-  type?: Prisma.EnumClientTypeFieldUpdateOperationsInput | $Enums.ClientType
-  country?: Prisma.StringFieldUpdateOperationsInput | string
-  address?: Prisma.StringFieldUpdateOperationsInput | string
-  contactName?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  companyLegalForm?: Prisma.NullableEnumEnterpriseLegalFormFieldUpdateOperationsInput | $Enums.EnterpriseLegalForm | null
-  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tenant?: Prisma.TenantUpdateOneRequiredWithoutClientsNestedInput
-  offers?: Prisma.OfferUpdateManyWithoutClientNestedInput
-  projects?: Prisma.ProjectUpdateManyWithoutClientNestedInput
-}
-
-export type ClientUncheckedUpdateWithoutProspectionsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  type?: Prisma.EnumClientTypeFieldUpdateOperationsInput | $Enums.ClientType
-  country?: Prisma.StringFieldUpdateOperationsInput | string
-  address?: Prisma.StringFieldUpdateOperationsInput | string
-  contactName?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  companyName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  companyLegalForm?: Prisma.NullableEnumEnterpriseLegalFormFieldUpdateOperationsInput | $Enums.EnterpriseLegalForm | null
-  industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
-  offers?: Prisma.OfferUncheckedUpdateManyWithoutClientNestedInput
-  projects?: Prisma.ProjectUncheckedUpdateManyWithoutClientNestedInput
+  leads?: Prisma.LeadUncheckedUpdateManyWithoutClientNestedInput
 }
 
 export type ClientCreateWithoutTenantInput = {
@@ -913,8 +782,7 @@ export type ClientCreateWithoutTenantInput = {
   companyLegalForm?: $Enums.EnterpriseLegalForm | null
   industry?: string | null
   createdAt?: Date | string
-  prospections?: Prisma.ProspectionCreateNestedManyWithoutClientInput
-  offers?: Prisma.OfferCreateNestedManyWithoutClientInput
+  leads?: Prisma.LeadCreateNestedManyWithoutClientInput
   projects?: Prisma.ProjectCreateNestedManyWithoutClientInput
 }
 
@@ -930,8 +798,7 @@ export type ClientUncheckedCreateWithoutTenantInput = {
   companyLegalForm?: $Enums.EnterpriseLegalForm | null
   industry?: string | null
   createdAt?: Date | string
-  prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutClientInput
-  offers?: Prisma.OfferUncheckedCreateNestedManyWithoutClientInput
+  leads?: Prisma.LeadUncheckedCreateNestedManyWithoutClientInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutClientInput
 }
 
@@ -1004,8 +871,7 @@ export type ClientUpdateWithoutTenantInput = {
   companyLegalForm?: Prisma.NullableEnumEnterpriseLegalFormFieldUpdateOperationsInput | $Enums.EnterpriseLegalForm | null
   industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  prospections?: Prisma.ProspectionUpdateManyWithoutClientNestedInput
-  offers?: Prisma.OfferUpdateManyWithoutClientNestedInput
+  leads?: Prisma.LeadUpdateManyWithoutClientNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutClientNestedInput
 }
 
@@ -1021,8 +887,7 @@ export type ClientUncheckedUpdateWithoutTenantInput = {
   companyLegalForm?: Prisma.NullableEnumEnterpriseLegalFormFieldUpdateOperationsInput | $Enums.EnterpriseLegalForm | null
   industry?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutClientNestedInput
-  offers?: Prisma.OfferUncheckedUpdateManyWithoutClientNestedInput
+  leads?: Prisma.LeadUncheckedUpdateManyWithoutClientNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutClientNestedInput
 }
 
@@ -1046,14 +911,12 @@ export type ClientUncheckedUpdateManyWithoutTenantInput = {
  */
 
 export type ClientCountOutputType = {
-  prospections: number
-  offers: number
+  leads: number
   projects: number
 }
 
 export type ClientCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  prospections?: boolean | ClientCountOutputTypeCountProspectionsArgs
-  offers?: boolean | ClientCountOutputTypeCountOffersArgs
+  leads?: boolean | ClientCountOutputTypeCountLeadsArgs
   projects?: boolean | ClientCountOutputTypeCountProjectsArgs
 }
 
@@ -1070,15 +933,8 @@ export type ClientCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exten
 /**
  * ClientCountOutputType without action
  */
-export type ClientCountOutputTypeCountProspectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ProspectionWhereInput
-}
-
-/**
- * ClientCountOutputType without action
- */
-export type ClientCountOutputTypeCountOffersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.OfferWhereInput
+export type ClientCountOutputTypeCountLeadsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LeadWhereInput
 }
 
 /**
@@ -1103,8 +959,7 @@ export type ClientSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   createdAt?: boolean
   tenantId?: boolean
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
-  prospections?: boolean | Prisma.Client$prospectionsArgs<ExtArgs>
-  offers?: boolean | Prisma.Client$offersArgs<ExtArgs>
+  leads?: boolean | Prisma.Client$leadsArgs<ExtArgs>
   projects?: boolean | Prisma.Client$projectsArgs<ExtArgs>
   _count?: boolean | Prisma.ClientCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["client"]>
@@ -1159,8 +1014,7 @@ export type ClientSelectScalar = {
 export type ClientOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "type" | "country" | "address" | "contactName" | "phone" | "email" | "companyName" | "companyLegalForm" | "industry" | "createdAt" | "tenantId", ExtArgs["result"]["client"]>
 export type ClientInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
-  prospections?: boolean | Prisma.Client$prospectionsArgs<ExtArgs>
-  offers?: boolean | Prisma.Client$offersArgs<ExtArgs>
+  leads?: boolean | Prisma.Client$leadsArgs<ExtArgs>
   projects?: boolean | Prisma.Client$projectsArgs<ExtArgs>
   _count?: boolean | Prisma.ClientCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -1175,8 +1029,7 @@ export type $ClientPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   name: "Client"
   objects: {
     tenant: Prisma.$TenantPayload<ExtArgs>
-    prospections: Prisma.$ProspectionPayload<ExtArgs>[]
-    offers: Prisma.$OfferPayload<ExtArgs>[]
+    leads: Prisma.$LeadPayload<ExtArgs>[]
     projects: Prisma.$ProjectPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -1587,8 +1440,7 @@ readonly fields: ClientFieldRefs;
 export interface Prisma__ClientClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
   tenant<T extends Prisma.TenantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TenantDefaultArgs<ExtArgs>>): Prisma.Prisma__TenantClient<runtime.Types.Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  prospections<T extends Prisma.Client$prospectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Client$prospectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProspectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  offers<T extends Prisma.Client$offersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Client$offersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OfferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  leads<T extends Prisma.Client$leadsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Client$leadsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LeadPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   projects<T extends Prisma.Client$projectsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Client$projectsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2032,51 +1884,27 @@ export type ClientDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
- * Client.prospections
+ * Client.leads
  */
-export type Client$prospectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Client$leadsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Prospection
+   * Select specific fields to fetch from the Lead
    */
-  select?: Prisma.ProspectionSelect<ExtArgs> | null
+  select?: Prisma.LeadSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Prospection
+   * Omit specific fields from the Lead
    */
-  omit?: Prisma.ProspectionOmit<ExtArgs> | null
+  omit?: Prisma.LeadOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.ProspectionInclude<ExtArgs> | null
-  where?: Prisma.ProspectionWhereInput
-  orderBy?: Prisma.ProspectionOrderByWithRelationInput | Prisma.ProspectionOrderByWithRelationInput[]
-  cursor?: Prisma.ProspectionWhereUniqueInput
+  include?: Prisma.LeadInclude<ExtArgs> | null
+  where?: Prisma.LeadWhereInput
+  orderBy?: Prisma.LeadOrderByWithRelationInput | Prisma.LeadOrderByWithRelationInput[]
+  cursor?: Prisma.LeadWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.ProspectionScalarFieldEnum | Prisma.ProspectionScalarFieldEnum[]
-}
-
-/**
- * Client.offers
- */
-export type Client$offersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Offer
-   */
-  select?: Prisma.OfferSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Offer
-   */
-  omit?: Prisma.OfferOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.OfferInclude<ExtArgs> | null
-  where?: Prisma.OfferWhereInput
-  orderBy?: Prisma.OfferOrderByWithRelationInput | Prisma.OfferOrderByWithRelationInput[]
-  cursor?: Prisma.OfferWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.OfferScalarFieldEnum | Prisma.OfferScalarFieldEnum[]
+  distinct?: Prisma.LeadScalarFieldEnum | Prisma.LeadScalarFieldEnum[]
 }
 
 /**

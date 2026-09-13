@@ -1,26 +1,25 @@
-
 model Invoice {
-    id Int @id() @default(autoincrement())
-    description String
-    amount Decimal
-    status InvoiceStatus
+  id          Int           @id() @default(autoincrement())
+  description String
+  amount      Decimal
+  status      InvoiceStatus
 
-    documentId Int @unique()
-    document Document @relation(fields: [documentId], references: [id])
+  attachmentId Int        @unique()
+  attachments  Attachment @relation(fields: [attachmentId], references: [id])
 
-    authorId Int
-    author User @relation(fields: [authorId], references: [id])
+  authorId Int
+  author   User @relation(fields: [authorId], references: [id])
 
-    projectId Int?
-    project Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  projectId Int?
+  project   Project? @relation(fields: [projectId], references: [id], onDelete: Cascade)
 
-    tenantId Int
-    tenant Tenant @relation(fields: [tenantId], references: [id])
+  tenantId Int
+  tenant   Tenant @relation(fields: [tenantId], references: [id])
 
-    createdAt DateTime @default(now())
+  createdAt DateTime @default(now())
 }
 
 enum InvoiceStatus {
-    PAID
-    UNPAID
+  PAID
+  UNPAID
 }

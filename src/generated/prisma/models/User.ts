@@ -258,12 +258,11 @@ export type UserWhereInput = {
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   role?: Prisma.XOR<Prisma.RoleScalarRelationFilter, Prisma.RoleWhereInput>
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
-  prospections?: Prisma.ProspectionListRelationFilter
   comments?: Prisma.CommentListRelationFilter
   invoices?: Prisma.InvoiceListRelationFilter
   reports?: Prisma.ReportListRelationFilter
   timesheets?: Prisma.TimesheetListRelationFilter
-  offers?: Prisma.OfferListRelationFilter
+  leads?: Prisma.LeadListRelationFilter
   projects?: Prisma.ProjectListRelationFilter
 }
 
@@ -279,12 +278,11 @@ export type UserOrderByWithRelationInput = {
   createdAt?: Prisma.SortOrder
   role?: Prisma.RoleOrderByWithRelationInput
   tenant?: Prisma.TenantOrderByWithRelationInput
-  prospections?: Prisma.ProspectionOrderByRelationAggregateInput
   comments?: Prisma.CommentOrderByRelationAggregateInput
   invoices?: Prisma.InvoiceOrderByRelationAggregateInput
   reports?: Prisma.ReportOrderByRelationAggregateInput
   timesheets?: Prisma.TimesheetOrderByRelationAggregateInput
-  offers?: Prisma.OfferOrderByRelationAggregateInput
+  leads?: Prisma.LeadOrderByRelationAggregateInput
   projects?: Prisma.ProjectOrderByRelationAggregateInput
 }
 
@@ -303,12 +301,11 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   role?: Prisma.XOR<Prisma.RoleScalarRelationFilter, Prisma.RoleWhereInput>
   tenant?: Prisma.XOR<Prisma.TenantScalarRelationFilter, Prisma.TenantWhereInput>
-  prospections?: Prisma.ProspectionListRelationFilter
   comments?: Prisma.CommentListRelationFilter
   invoices?: Prisma.InvoiceListRelationFilter
   reports?: Prisma.ReportListRelationFilter
   timesheets?: Prisma.TimesheetListRelationFilter
-  offers?: Prisma.OfferListRelationFilter
+  leads?: Prisma.LeadListRelationFilter
   projects?: Prisma.ProjectListRelationFilter
 }, "id" | "email">
 
@@ -353,12 +350,11 @@ export type UserCreateInput = {
   createdAt?: Date | string
   role: Prisma.RoleCreateNestedOneWithoutUsersInput
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
-  prospections?: Prisma.ProspectionCreateNestedManyWithoutAuthorInput
   comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutAuthorInput
   reports?: Prisma.ReportCreateNestedManyWithoutAuthorInput
   timesheets?: Prisma.TimesheetCreateNestedManyWithoutOwnerInput
-  offers?: Prisma.OfferCreateNestedManyWithoutAuthorInput
+  leads?: Prisma.LeadCreateNestedManyWithoutAuthorInput
   projects?: Prisma.ProjectCreateNestedManyWithoutAuthorInput
 }
 
@@ -372,12 +368,11 @@ export type UserUncheckedCreateInput = {
   isActive?: boolean
   tenantId: number
   createdAt?: Date | string
-  prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutAuthorInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAuthorInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
   timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutOwnerInput
-  offers?: Prisma.OfferUncheckedCreateNestedManyWithoutAuthorInput
+  leads?: Prisma.LeadUncheckedCreateNestedManyWithoutAuthorInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutAuthorInput
 }
 
@@ -390,12 +385,11 @@ export type UserUpdateInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   role?: Prisma.RoleUpdateOneRequiredWithoutUsersNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
-  prospections?: Prisma.ProspectionUpdateManyWithoutAuthorNestedInput
   comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutAuthorNestedInput
   reports?: Prisma.ReportUpdateManyWithoutAuthorNestedInput
   timesheets?: Prisma.TimesheetUpdateManyWithoutOwnerNestedInput
-  offers?: Prisma.OfferUpdateManyWithoutAuthorNestedInput
+  leads?: Prisma.LeadUpdateManyWithoutAuthorNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutAuthorNestedInput
 }
 
@@ -409,12 +403,11 @@ export type UserUncheckedUpdateInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutAuthorNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAuthorNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutAuthorNestedInput
   timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutOwnerNestedInput
-  offers?: Prisma.OfferUncheckedUpdateManyWithoutAuthorNestedInput
+  leads?: Prisma.LeadUncheckedUpdateManyWithoutAuthorNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
@@ -542,18 +535,18 @@ export type UserUpdateOneRequiredWithoutInvoicesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutInvoicesInput, Prisma.UserUpdateWithoutInvoicesInput>, Prisma.UserUncheckedUpdateWithoutInvoicesInput>
 }
 
-export type UserCreateNestedOneWithoutOffersInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutOffersInput, Prisma.UserUncheckedCreateWithoutOffersInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOffersInput
+export type UserCreateNestedOneWithoutLeadsInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutLeadsInput, Prisma.UserUncheckedCreateWithoutLeadsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLeadsInput
   connect?: Prisma.UserWhereUniqueInput
 }
 
-export type UserUpdateOneRequiredWithoutOffersNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutOffersInput, Prisma.UserUncheckedCreateWithoutOffersInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutOffersInput
-  upsert?: Prisma.UserUpsertWithoutOffersInput
+export type UserUpdateOneRequiredWithoutLeadsNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutLeadsInput, Prisma.UserUncheckedCreateWithoutLeadsInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutLeadsInput
+  upsert?: Prisma.UserUpsertWithoutLeadsInput
   connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutOffersInput, Prisma.UserUpdateWithoutOffersInput>, Prisma.UserUncheckedUpdateWithoutOffersInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutLeadsInput, Prisma.UserUpdateWithoutLeadsInput>, Prisma.UserUncheckedUpdateWithoutLeadsInput>
 }
 
 export type UserCreateNestedOneWithoutProjectsInput = {
@@ -568,20 +561,6 @@ export type UserUpdateOneRequiredWithoutProjectsNestedInput = {
   upsert?: Prisma.UserUpsertWithoutProjectsInput
   connect?: Prisma.UserWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutProjectsInput, Prisma.UserUpdateWithoutProjectsInput>, Prisma.UserUncheckedUpdateWithoutProjectsInput>
-}
-
-export type UserCreateNestedOneWithoutProspectionsInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutProspectionsInput, Prisma.UserUncheckedCreateWithoutProspectionsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutProspectionsInput
-  connect?: Prisma.UserWhereUniqueInput
-}
-
-export type UserUpdateOneRequiredWithoutProspectionsNestedInput = {
-  create?: Prisma.XOR<Prisma.UserCreateWithoutProspectionsInput, Prisma.UserUncheckedCreateWithoutProspectionsInput>
-  connectOrCreate?: Prisma.UserCreateOrConnectWithoutProspectionsInput
-  upsert?: Prisma.UserUpsertWithoutProspectionsInput
-  connect?: Prisma.UserWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutProspectionsInput, Prisma.UserUpdateWithoutProspectionsInput>, Prisma.UserUncheckedUpdateWithoutProspectionsInput>
 }
 
 export type UserCreateNestedOneWithoutReportsInput = {
@@ -705,11 +684,10 @@ export type UserCreateWithoutCommentsInput = {
   createdAt?: Date | string
   role: Prisma.RoleCreateNestedOneWithoutUsersInput
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
-  prospections?: Prisma.ProspectionCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutAuthorInput
   reports?: Prisma.ReportCreateNestedManyWithoutAuthorInput
   timesheets?: Prisma.TimesheetCreateNestedManyWithoutOwnerInput
-  offers?: Prisma.OfferCreateNestedManyWithoutAuthorInput
+  leads?: Prisma.LeadCreateNestedManyWithoutAuthorInput
   projects?: Prisma.ProjectCreateNestedManyWithoutAuthorInput
 }
 
@@ -723,11 +701,10 @@ export type UserUncheckedCreateWithoutCommentsInput = {
   isActive?: boolean
   tenantId: number
   createdAt?: Date | string
-  prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAuthorInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
   timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutOwnerInput
-  offers?: Prisma.OfferUncheckedCreateNestedManyWithoutAuthorInput
+  leads?: Prisma.LeadUncheckedCreateNestedManyWithoutAuthorInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutAuthorInput
 }
 
@@ -756,11 +733,10 @@ export type UserUpdateWithoutCommentsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   role?: Prisma.RoleUpdateOneRequiredWithoutUsersNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
-  prospections?: Prisma.ProspectionUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutAuthorNestedInput
   reports?: Prisma.ReportUpdateManyWithoutAuthorNestedInput
   timesheets?: Prisma.TimesheetUpdateManyWithoutOwnerNestedInput
-  offers?: Prisma.OfferUpdateManyWithoutAuthorNestedInput
+  leads?: Prisma.LeadUpdateManyWithoutAuthorNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutAuthorNestedInput
 }
 
@@ -774,11 +750,10 @@ export type UserUncheckedUpdateWithoutCommentsInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAuthorNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutAuthorNestedInput
   timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutOwnerNestedInput
-  offers?: Prisma.OfferUncheckedUpdateManyWithoutAuthorNestedInput
+  leads?: Prisma.LeadUncheckedUpdateManyWithoutAuthorNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
@@ -791,11 +766,10 @@ export type UserCreateWithoutInvoicesInput = {
   createdAt?: Date | string
   role: Prisma.RoleCreateNestedOneWithoutUsersInput
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
-  prospections?: Prisma.ProspectionCreateNestedManyWithoutAuthorInput
   comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
   reports?: Prisma.ReportCreateNestedManyWithoutAuthorInput
   timesheets?: Prisma.TimesheetCreateNestedManyWithoutOwnerInput
-  offers?: Prisma.OfferCreateNestedManyWithoutAuthorInput
+  leads?: Prisma.LeadCreateNestedManyWithoutAuthorInput
   projects?: Prisma.ProjectCreateNestedManyWithoutAuthorInput
 }
 
@@ -809,11 +783,10 @@ export type UserUncheckedCreateWithoutInvoicesInput = {
   isActive?: boolean
   tenantId: number
   createdAt?: Date | string
-  prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutAuthorInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
   timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutOwnerInput
-  offers?: Prisma.OfferUncheckedCreateNestedManyWithoutAuthorInput
+  leads?: Prisma.LeadUncheckedCreateNestedManyWithoutAuthorInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutAuthorInput
 }
 
@@ -842,11 +815,10 @@ export type UserUpdateWithoutInvoicesInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   role?: Prisma.RoleUpdateOneRequiredWithoutUsersNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
-  prospections?: Prisma.ProspectionUpdateManyWithoutAuthorNestedInput
   comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
   reports?: Prisma.ReportUpdateManyWithoutAuthorNestedInput
   timesheets?: Prisma.TimesheetUpdateManyWithoutOwnerNestedInput
-  offers?: Prisma.OfferUpdateManyWithoutAuthorNestedInput
+  leads?: Prisma.LeadUpdateManyWithoutAuthorNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutAuthorNestedInput
 }
 
@@ -860,15 +832,14 @@ export type UserUncheckedUpdateWithoutInvoicesInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutAuthorNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutAuthorNestedInput
   timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutOwnerNestedInput
-  offers?: Prisma.OfferUncheckedUpdateManyWithoutAuthorNestedInput
+  leads?: Prisma.LeadUncheckedUpdateManyWithoutAuthorNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
-export type UserCreateWithoutOffersInput = {
+export type UserCreateWithoutLeadsInput = {
   fullname: string
   email: string
   password: string
@@ -877,7 +848,6 @@ export type UserCreateWithoutOffersInput = {
   createdAt?: Date | string
   role: Prisma.RoleCreateNestedOneWithoutUsersInput
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
-  prospections?: Prisma.ProspectionCreateNestedManyWithoutAuthorInput
   comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutAuthorInput
   reports?: Prisma.ReportCreateNestedManyWithoutAuthorInput
@@ -885,7 +855,7 @@ export type UserCreateWithoutOffersInput = {
   projects?: Prisma.ProjectCreateNestedManyWithoutAuthorInput
 }
 
-export type UserUncheckedCreateWithoutOffersInput = {
+export type UserUncheckedCreateWithoutLeadsInput = {
   id?: number
   fullname: string
   email: string
@@ -895,7 +865,6 @@ export type UserUncheckedCreateWithoutOffersInput = {
   isActive?: boolean
   tenantId: number
   createdAt?: Date | string
-  prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutAuthorInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAuthorInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
@@ -903,23 +872,23 @@ export type UserUncheckedCreateWithoutOffersInput = {
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutAuthorInput
 }
 
-export type UserCreateOrConnectWithoutOffersInput = {
+export type UserCreateOrConnectWithoutLeadsInput = {
   where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutOffersInput, Prisma.UserUncheckedCreateWithoutOffersInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutLeadsInput, Prisma.UserUncheckedCreateWithoutLeadsInput>
 }
 
-export type UserUpsertWithoutOffersInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutOffersInput, Prisma.UserUncheckedUpdateWithoutOffersInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutOffersInput, Prisma.UserUncheckedCreateWithoutOffersInput>
+export type UserUpsertWithoutLeadsInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutLeadsInput, Prisma.UserUncheckedUpdateWithoutLeadsInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutLeadsInput, Prisma.UserUncheckedCreateWithoutLeadsInput>
   where?: Prisma.UserWhereInput
 }
 
-export type UserUpdateToOneWithWhereWithoutOffersInput = {
+export type UserUpdateToOneWithWhereWithoutLeadsInput = {
   where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutOffersInput, Prisma.UserUncheckedUpdateWithoutOffersInput>
+  data: Prisma.XOR<Prisma.UserUpdateWithoutLeadsInput, Prisma.UserUncheckedUpdateWithoutLeadsInput>
 }
 
-export type UserUpdateWithoutOffersInput = {
+export type UserUpdateWithoutLeadsInput = {
   fullname?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
   password?: Prisma.StringFieldUpdateOperationsInput | string
@@ -928,7 +897,6 @@ export type UserUpdateWithoutOffersInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   role?: Prisma.RoleUpdateOneRequiredWithoutUsersNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
-  prospections?: Prisma.ProspectionUpdateManyWithoutAuthorNestedInput
   comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutAuthorNestedInput
   reports?: Prisma.ReportUpdateManyWithoutAuthorNestedInput
@@ -936,7 +904,7 @@ export type UserUpdateWithoutOffersInput = {
   projects?: Prisma.ProjectUpdateManyWithoutAuthorNestedInput
 }
 
-export type UserUncheckedUpdateWithoutOffersInput = {
+export type UserUncheckedUpdateWithoutLeadsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   fullname?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
@@ -946,7 +914,6 @@ export type UserUncheckedUpdateWithoutOffersInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutAuthorNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAuthorNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutAuthorNestedInput
@@ -963,12 +930,11 @@ export type UserCreateWithoutProjectsInput = {
   createdAt?: Date | string
   role: Prisma.RoleCreateNestedOneWithoutUsersInput
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
-  prospections?: Prisma.ProspectionCreateNestedManyWithoutAuthorInput
   comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutAuthorInput
   reports?: Prisma.ReportCreateNestedManyWithoutAuthorInput
   timesheets?: Prisma.TimesheetCreateNestedManyWithoutOwnerInput
-  offers?: Prisma.OfferCreateNestedManyWithoutAuthorInput
+  leads?: Prisma.LeadCreateNestedManyWithoutAuthorInput
 }
 
 export type UserUncheckedCreateWithoutProjectsInput = {
@@ -981,12 +947,11 @@ export type UserUncheckedCreateWithoutProjectsInput = {
   isActive?: boolean
   tenantId: number
   createdAt?: Date | string
-  prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutAuthorInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAuthorInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
   timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutOwnerInput
-  offers?: Prisma.OfferUncheckedCreateNestedManyWithoutAuthorInput
+  leads?: Prisma.LeadUncheckedCreateNestedManyWithoutAuthorInput
 }
 
 export type UserCreateOrConnectWithoutProjectsInput = {
@@ -1014,12 +979,11 @@ export type UserUpdateWithoutProjectsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   role?: Prisma.RoleUpdateOneRequiredWithoutUsersNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
-  prospections?: Prisma.ProspectionUpdateManyWithoutAuthorNestedInput
   comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutAuthorNestedInput
   reports?: Prisma.ReportUpdateManyWithoutAuthorNestedInput
   timesheets?: Prisma.TimesheetUpdateManyWithoutOwnerNestedInput
-  offers?: Prisma.OfferUpdateManyWithoutAuthorNestedInput
+  leads?: Prisma.LeadUpdateManyWithoutAuthorNestedInput
 }
 
 export type UserUncheckedUpdateWithoutProjectsInput = {
@@ -1032,98 +996,11 @@ export type UserUncheckedUpdateWithoutProjectsInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutAuthorNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAuthorNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutAuthorNestedInput
   timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutOwnerNestedInput
-  offers?: Prisma.OfferUncheckedUpdateManyWithoutAuthorNestedInput
-}
-
-export type UserCreateWithoutProspectionsInput = {
-  fullname: string
-  email: string
-  password: string
-  phone: string
-  isActive?: boolean
-  createdAt?: Date | string
-  role: Prisma.RoleCreateNestedOneWithoutUsersInput
-  tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
-  comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
-  invoices?: Prisma.InvoiceCreateNestedManyWithoutAuthorInput
-  reports?: Prisma.ReportCreateNestedManyWithoutAuthorInput
-  timesheets?: Prisma.TimesheetCreateNestedManyWithoutOwnerInput
-  offers?: Prisma.OfferCreateNestedManyWithoutAuthorInput
-  projects?: Prisma.ProjectCreateNestedManyWithoutAuthorInput
-}
-
-export type UserUncheckedCreateWithoutProspectionsInput = {
-  id?: number
-  fullname: string
-  email: string
-  password: string
-  phone: string
-  roleId: number
-  isActive?: boolean
-  tenantId: number
-  createdAt?: Date | string
-  comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
-  invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAuthorInput
-  reports?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
-  timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutOwnerInput
-  offers?: Prisma.OfferUncheckedCreateNestedManyWithoutAuthorInput
-  projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutAuthorInput
-}
-
-export type UserCreateOrConnectWithoutProspectionsInput = {
-  where: Prisma.UserWhereUniqueInput
-  create: Prisma.XOR<Prisma.UserCreateWithoutProspectionsInput, Prisma.UserUncheckedCreateWithoutProspectionsInput>
-}
-
-export type UserUpsertWithoutProspectionsInput = {
-  update: Prisma.XOR<Prisma.UserUpdateWithoutProspectionsInput, Prisma.UserUncheckedUpdateWithoutProspectionsInput>
-  create: Prisma.XOR<Prisma.UserCreateWithoutProspectionsInput, Prisma.UserUncheckedCreateWithoutProspectionsInput>
-  where?: Prisma.UserWhereInput
-}
-
-export type UserUpdateToOneWithWhereWithoutProspectionsInput = {
-  where?: Prisma.UserWhereInput
-  data: Prisma.XOR<Prisma.UserUpdateWithoutProspectionsInput, Prisma.UserUncheckedUpdateWithoutProspectionsInput>
-}
-
-export type UserUpdateWithoutProspectionsInput = {
-  fullname?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  role?: Prisma.RoleUpdateOneRequiredWithoutUsersNestedInput
-  tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
-  comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
-  invoices?: Prisma.InvoiceUpdateManyWithoutAuthorNestedInput
-  reports?: Prisma.ReportUpdateManyWithoutAuthorNestedInput
-  timesheets?: Prisma.TimesheetUpdateManyWithoutOwnerNestedInput
-  offers?: Prisma.OfferUpdateManyWithoutAuthorNestedInput
-  projects?: Prisma.ProjectUpdateManyWithoutAuthorNestedInput
-}
-
-export type UserUncheckedUpdateWithoutProspectionsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  fullname?: Prisma.StringFieldUpdateOperationsInput | string
-  email?: Prisma.StringFieldUpdateOperationsInput | string
-  password?: Prisma.StringFieldUpdateOperationsInput | string
-  phone?: Prisma.StringFieldUpdateOperationsInput | string
-  roleId?: Prisma.IntFieldUpdateOperationsInput | number
-  isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  tenantId?: Prisma.IntFieldUpdateOperationsInput | number
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
-  invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAuthorNestedInput
-  reports?: Prisma.ReportUncheckedUpdateManyWithoutAuthorNestedInput
-  timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutOwnerNestedInput
-  offers?: Prisma.OfferUncheckedUpdateManyWithoutAuthorNestedInput
-  projects?: Prisma.ProjectUncheckedUpdateManyWithoutAuthorNestedInput
+  leads?: Prisma.LeadUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
 export type UserCreateWithoutReportsInput = {
@@ -1135,11 +1012,10 @@ export type UserCreateWithoutReportsInput = {
   createdAt?: Date | string
   role: Prisma.RoleCreateNestedOneWithoutUsersInput
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
-  prospections?: Prisma.ProspectionCreateNestedManyWithoutAuthorInput
   comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutAuthorInput
   timesheets?: Prisma.TimesheetCreateNestedManyWithoutOwnerInput
-  offers?: Prisma.OfferCreateNestedManyWithoutAuthorInput
+  leads?: Prisma.LeadCreateNestedManyWithoutAuthorInput
   projects?: Prisma.ProjectCreateNestedManyWithoutAuthorInput
 }
 
@@ -1153,11 +1029,10 @@ export type UserUncheckedCreateWithoutReportsInput = {
   isActive?: boolean
   tenantId: number
   createdAt?: Date | string
-  prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutAuthorInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAuthorInput
   timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutOwnerInput
-  offers?: Prisma.OfferUncheckedCreateNestedManyWithoutAuthorInput
+  leads?: Prisma.LeadUncheckedCreateNestedManyWithoutAuthorInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutAuthorInput
 }
 
@@ -1186,11 +1061,10 @@ export type UserUpdateWithoutReportsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   role?: Prisma.RoleUpdateOneRequiredWithoutUsersNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
-  prospections?: Prisma.ProspectionUpdateManyWithoutAuthorNestedInput
   comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutAuthorNestedInput
   timesheets?: Prisma.TimesheetUpdateManyWithoutOwnerNestedInput
-  offers?: Prisma.OfferUpdateManyWithoutAuthorNestedInput
+  leads?: Prisma.LeadUpdateManyWithoutAuthorNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutAuthorNestedInput
 }
 
@@ -1204,11 +1078,10 @@ export type UserUncheckedUpdateWithoutReportsInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutAuthorNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAuthorNestedInput
   timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutOwnerNestedInput
-  offers?: Prisma.OfferUncheckedUpdateManyWithoutAuthorNestedInput
+  leads?: Prisma.LeadUncheckedUpdateManyWithoutAuthorNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
@@ -1220,12 +1093,11 @@ export type UserCreateWithoutTenantInput = {
   isActive?: boolean
   createdAt?: Date | string
   role: Prisma.RoleCreateNestedOneWithoutUsersInput
-  prospections?: Prisma.ProspectionCreateNestedManyWithoutAuthorInput
   comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutAuthorInput
   reports?: Prisma.ReportCreateNestedManyWithoutAuthorInput
   timesheets?: Prisma.TimesheetCreateNestedManyWithoutOwnerInput
-  offers?: Prisma.OfferCreateNestedManyWithoutAuthorInput
+  leads?: Prisma.LeadCreateNestedManyWithoutAuthorInput
   projects?: Prisma.ProjectCreateNestedManyWithoutAuthorInput
 }
 
@@ -1238,12 +1110,11 @@ export type UserUncheckedCreateWithoutTenantInput = {
   roleId: number
   isActive?: boolean
   createdAt?: Date | string
-  prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutAuthorInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAuthorInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
   timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutOwnerInput
-  offers?: Prisma.OfferUncheckedCreateNestedManyWithoutAuthorInput
+  leads?: Prisma.LeadUncheckedCreateNestedManyWithoutAuthorInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutAuthorInput
 }
 
@@ -1297,11 +1168,10 @@ export type UserCreateWithoutTimesheetsInput = {
   createdAt?: Date | string
   role: Prisma.RoleCreateNestedOneWithoutUsersInput
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
-  prospections?: Prisma.ProspectionCreateNestedManyWithoutAuthorInput
   comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutAuthorInput
   reports?: Prisma.ReportCreateNestedManyWithoutAuthorInput
-  offers?: Prisma.OfferCreateNestedManyWithoutAuthorInput
+  leads?: Prisma.LeadCreateNestedManyWithoutAuthorInput
   projects?: Prisma.ProjectCreateNestedManyWithoutAuthorInput
 }
 
@@ -1315,11 +1185,10 @@ export type UserUncheckedCreateWithoutTimesheetsInput = {
   isActive?: boolean
   tenantId: number
   createdAt?: Date | string
-  prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutAuthorInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAuthorInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
-  offers?: Prisma.OfferUncheckedCreateNestedManyWithoutAuthorInput
+  leads?: Prisma.LeadUncheckedCreateNestedManyWithoutAuthorInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutAuthorInput
 }
 
@@ -1348,11 +1217,10 @@ export type UserUpdateWithoutTimesheetsInput = {
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   role?: Prisma.RoleUpdateOneRequiredWithoutUsersNestedInput
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
-  prospections?: Prisma.ProspectionUpdateManyWithoutAuthorNestedInput
   comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutAuthorNestedInput
   reports?: Prisma.ReportUpdateManyWithoutAuthorNestedInput
-  offers?: Prisma.OfferUpdateManyWithoutAuthorNestedInput
+  leads?: Prisma.LeadUpdateManyWithoutAuthorNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutAuthorNestedInput
 }
 
@@ -1366,11 +1234,10 @@ export type UserUncheckedUpdateWithoutTimesheetsInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutAuthorNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAuthorNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutAuthorNestedInput
-  offers?: Prisma.OfferUncheckedUpdateManyWithoutAuthorNestedInput
+  leads?: Prisma.LeadUncheckedUpdateManyWithoutAuthorNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
@@ -1382,12 +1249,11 @@ export type UserCreateWithoutRoleInput = {
   isActive?: boolean
   createdAt?: Date | string
   tenant: Prisma.TenantCreateNestedOneWithoutUsersInput
-  prospections?: Prisma.ProspectionCreateNestedManyWithoutAuthorInput
   comments?: Prisma.CommentCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceCreateNestedManyWithoutAuthorInput
   reports?: Prisma.ReportCreateNestedManyWithoutAuthorInput
   timesheets?: Prisma.TimesheetCreateNestedManyWithoutOwnerInput
-  offers?: Prisma.OfferCreateNestedManyWithoutAuthorInput
+  leads?: Prisma.LeadCreateNestedManyWithoutAuthorInput
   projects?: Prisma.ProjectCreateNestedManyWithoutAuthorInput
 }
 
@@ -1400,12 +1266,11 @@ export type UserUncheckedCreateWithoutRoleInput = {
   isActive?: boolean
   tenantId: number
   createdAt?: Date | string
-  prospections?: Prisma.ProspectionUncheckedCreateNestedManyWithoutAuthorInput
   comments?: Prisma.CommentUncheckedCreateNestedManyWithoutAuthorInput
   invoices?: Prisma.InvoiceUncheckedCreateNestedManyWithoutAuthorInput
   reports?: Prisma.ReportUncheckedCreateNestedManyWithoutAuthorInput
   timesheets?: Prisma.TimesheetUncheckedCreateNestedManyWithoutOwnerInput
-  offers?: Prisma.OfferUncheckedCreateNestedManyWithoutAuthorInput
+  leads?: Prisma.LeadUncheckedCreateNestedManyWithoutAuthorInput
   projects?: Prisma.ProjectUncheckedCreateNestedManyWithoutAuthorInput
 }
 
@@ -1454,12 +1319,11 @@ export type UserUpdateWithoutTenantInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   role?: Prisma.RoleUpdateOneRequiredWithoutUsersNestedInput
-  prospections?: Prisma.ProspectionUpdateManyWithoutAuthorNestedInput
   comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutAuthorNestedInput
   reports?: Prisma.ReportUpdateManyWithoutAuthorNestedInput
   timesheets?: Prisma.TimesheetUpdateManyWithoutOwnerNestedInput
-  offers?: Prisma.OfferUpdateManyWithoutAuthorNestedInput
+  leads?: Prisma.LeadUpdateManyWithoutAuthorNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutAuthorNestedInput
 }
 
@@ -1472,12 +1336,11 @@ export type UserUncheckedUpdateWithoutTenantInput = {
   roleId?: Prisma.IntFieldUpdateOperationsInput | number
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutAuthorNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAuthorNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutAuthorNestedInput
   timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutOwnerNestedInput
-  offers?: Prisma.OfferUncheckedUpdateManyWithoutAuthorNestedInput
+  leads?: Prisma.LeadUncheckedUpdateManyWithoutAuthorNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
@@ -1511,12 +1374,11 @@ export type UserUpdateWithoutRoleInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   tenant?: Prisma.TenantUpdateOneRequiredWithoutUsersNestedInput
-  prospections?: Prisma.ProspectionUpdateManyWithoutAuthorNestedInput
   comments?: Prisma.CommentUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUpdateManyWithoutAuthorNestedInput
   reports?: Prisma.ReportUpdateManyWithoutAuthorNestedInput
   timesheets?: Prisma.TimesheetUpdateManyWithoutOwnerNestedInput
-  offers?: Prisma.OfferUpdateManyWithoutAuthorNestedInput
+  leads?: Prisma.LeadUpdateManyWithoutAuthorNestedInput
   projects?: Prisma.ProjectUpdateManyWithoutAuthorNestedInput
 }
 
@@ -1529,12 +1391,11 @@ export type UserUncheckedUpdateWithoutRoleInput = {
   isActive?: Prisma.BoolFieldUpdateOperationsInput | boolean
   tenantId?: Prisma.IntFieldUpdateOperationsInput | number
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  prospections?: Prisma.ProspectionUncheckedUpdateManyWithoutAuthorNestedInput
   comments?: Prisma.CommentUncheckedUpdateManyWithoutAuthorNestedInput
   invoices?: Prisma.InvoiceUncheckedUpdateManyWithoutAuthorNestedInput
   reports?: Prisma.ReportUncheckedUpdateManyWithoutAuthorNestedInput
   timesheets?: Prisma.TimesheetUncheckedUpdateManyWithoutOwnerNestedInput
-  offers?: Prisma.OfferUncheckedUpdateManyWithoutAuthorNestedInput
+  leads?: Prisma.LeadUncheckedUpdateManyWithoutAuthorNestedInput
   projects?: Prisma.ProjectUncheckedUpdateManyWithoutAuthorNestedInput
 }
 
@@ -1555,22 +1416,20 @@ export type UserUncheckedUpdateManyWithoutRoleInput = {
  */
 
 export type UserCountOutputType = {
-  prospections: number
   comments: number
   invoices: number
   reports: number
   timesheets: number
-  offers: number
+  leads: number
   projects: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  prospections?: boolean | UserCountOutputTypeCountProspectionsArgs
   comments?: boolean | UserCountOutputTypeCountCommentsArgs
   invoices?: boolean | UserCountOutputTypeCountInvoicesArgs
   reports?: boolean | UserCountOutputTypeCountReportsArgs
   timesheets?: boolean | UserCountOutputTypeCountTimesheetsArgs
-  offers?: boolean | UserCountOutputTypeCountOffersArgs
+  leads?: boolean | UserCountOutputTypeCountLeadsArgs
   projects?: boolean | UserCountOutputTypeCountProjectsArgs
 }
 
@@ -1582,13 +1441,6 @@ export type UserCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
    * Select specific fields to fetch from the UserCountOutputType
    */
   select?: Prisma.UserCountOutputTypeSelect<ExtArgs> | null
-}
-
-/**
- * UserCountOutputType without action
- */
-export type UserCountOutputTypeCountProspectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ProspectionWhereInput
 }
 
 /**
@@ -1622,8 +1474,8 @@ export type UserCountOutputTypeCountTimesheetsArgs<ExtArgs extends runtime.Types
 /**
  * UserCountOutputType without action
  */
-export type UserCountOutputTypeCountOffersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.OfferWhereInput
+export type UserCountOutputTypeCountLeadsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LeadWhereInput
 }
 
 /**
@@ -1646,12 +1498,11 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   createdAt?: boolean
   role?: boolean | Prisma.RoleDefaultArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
-  prospections?: boolean | Prisma.User$prospectionsArgs<ExtArgs>
   comments?: boolean | Prisma.User$commentsArgs<ExtArgs>
   invoices?: boolean | Prisma.User$invoicesArgs<ExtArgs>
   reports?: boolean | Prisma.User$reportsArgs<ExtArgs>
   timesheets?: boolean | Prisma.User$timesheetsArgs<ExtArgs>
-  offers?: boolean | Prisma.User$offersArgs<ExtArgs>
+  leads?: boolean | Prisma.User$leadsArgs<ExtArgs>
   projects?: boolean | Prisma.User$projectsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
@@ -1700,12 +1551,11 @@ export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = run
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   role?: boolean | Prisma.RoleDefaultArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
-  prospections?: boolean | Prisma.User$prospectionsArgs<ExtArgs>
   comments?: boolean | Prisma.User$commentsArgs<ExtArgs>
   invoices?: boolean | Prisma.User$invoicesArgs<ExtArgs>
   reports?: boolean | Prisma.User$reportsArgs<ExtArgs>
   timesheets?: boolean | Prisma.User$timesheetsArgs<ExtArgs>
-  offers?: boolean | Prisma.User$offersArgs<ExtArgs>
+  leads?: boolean | Prisma.User$leadsArgs<ExtArgs>
   projects?: boolean | Prisma.User$projectsArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -1723,12 +1573,11 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   objects: {
     role: Prisma.$RolePayload<ExtArgs>
     tenant: Prisma.$TenantPayload<ExtArgs>
-    prospections: Prisma.$ProspectionPayload<ExtArgs>[]
     comments: Prisma.$CommentPayload<ExtArgs>[]
     invoices: Prisma.$InvoicePayload<ExtArgs>[]
     reports: Prisma.$ReportPayload<ExtArgs>[]
     timesheets: Prisma.$TimesheetPayload<ExtArgs>[]
-    offers: Prisma.$OfferPayload<ExtArgs>[]
+    leads: Prisma.$LeadPayload<ExtArgs>[]
     projects: Prisma.$ProjectPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
@@ -2137,12 +1986,11 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   readonly [Symbol.toStringTag]: "PrismaPromise"
   role<T extends Prisma.RoleDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.RoleDefaultArgs<ExtArgs>>): Prisma.Prisma__RoleClient<runtime.Types.Result.GetResult<Prisma.$RolePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   tenant<T extends Prisma.TenantDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.TenantDefaultArgs<ExtArgs>>): Prisma.Prisma__TenantClient<runtime.Types.Result.GetResult<Prisma.$TenantPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  prospections<T extends Prisma.User$prospectionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$prospectionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProspectionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   comments<T extends Prisma.User$commentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CommentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   invoices<T extends Prisma.User$invoicesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$invoicesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$InvoicePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   reports<T extends Prisma.User$reportsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$reportsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ReportPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   timesheets<T extends Prisma.User$timesheetsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$timesheetsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$TimesheetPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  offers<T extends Prisma.User$offersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$offersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$OfferPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  leads<T extends Prisma.User$leadsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$leadsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LeadPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   projects<T extends Prisma.User$projectsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$projectsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ProjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2583,30 +2431,6 @@ export type UserDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
 }
 
 /**
- * User.prospections
- */
-export type User$prospectionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Prospection
-   */
-  select?: Prisma.ProspectionSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Prospection
-   */
-  omit?: Prisma.ProspectionOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ProspectionInclude<ExtArgs> | null
-  where?: Prisma.ProspectionWhereInput
-  orderBy?: Prisma.ProspectionOrderByWithRelationInput | Prisma.ProspectionOrderByWithRelationInput[]
-  cursor?: Prisma.ProspectionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ProspectionScalarFieldEnum | Prisma.ProspectionScalarFieldEnum[]
-}
-
-/**
  * User.comments
  */
 export type User$commentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -2703,27 +2527,27 @@ export type User$timesheetsArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 /**
- * User.offers
+ * User.leads
  */
-export type User$offersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type User$leadsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Offer
+   * Select specific fields to fetch from the Lead
    */
-  select?: Prisma.OfferSelect<ExtArgs> | null
+  select?: Prisma.LeadSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Offer
+   * Omit specific fields from the Lead
    */
-  omit?: Prisma.OfferOmit<ExtArgs> | null
+  omit?: Prisma.LeadOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.OfferInclude<ExtArgs> | null
-  where?: Prisma.OfferWhereInput
-  orderBy?: Prisma.OfferOrderByWithRelationInput | Prisma.OfferOrderByWithRelationInput[]
-  cursor?: Prisma.OfferWhereUniqueInput
+  include?: Prisma.LeadInclude<ExtArgs> | null
+  where?: Prisma.LeadWhereInput
+  orderBy?: Prisma.LeadOrderByWithRelationInput | Prisma.LeadOrderByWithRelationInput[]
+  cursor?: Prisma.LeadWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.OfferScalarFieldEnum | Prisma.OfferScalarFieldEnum[]
+  distinct?: Prisma.LeadScalarFieldEnum | Prisma.LeadScalarFieldEnum[]
 }
 
 /**

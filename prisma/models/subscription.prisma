@@ -1,20 +1,19 @@
-
 model Subscription {
-    id Int @id() @default(autoincrement())
-    name String 
-    maxUserCount Int
-    storage Int
-    price Int
-    tenant Tenant[]
-    features Feature[]
+  id           Int       @id() @default(autoincrement())
+  name         String
+  maxUserCount Int
+  storage      Int
+  price        Int
+  tenant       Tenant[]
+  features     Feature[]
 }
 
 enum Feature {
-    DASHBOARD
-    TENANT
-    USER
-    PROJECT
-    OFFER
-    CLIENT
-    PROSPECTION
+  DASHBOARD
+  TENANT
+  USER
+  PROJECT
+  OFFER
+  CLIENT
+  PROSPECTION
 }
