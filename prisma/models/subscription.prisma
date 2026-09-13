@@ -12,8 +12,6 @@ enum Feature {
   DASHBOARD
   TENANT
   USER
+  LEAD
   PROJECT
-  OFFER
-  CLIENT
-  PROSPECTION
 }

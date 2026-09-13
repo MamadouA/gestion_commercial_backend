@@ -1554,6 +1554,7 @@ export type InvoiceScalarFieldEnum = (typeof InvoiceScalarFieldEnum)[keyof typeo
 export const LeadScalarFieldEnum = {
   id: 'id',
   service: 'service',
+  type: 'type',
   amountHT: 'amountHT',
   amountTTC: 'amountTTC',
   amountTVA: 'amountTVA',
@@ -1812,6 +1813,20 @@ export type EnumInvoiceStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$Pr
  * Reference to a field of type 'InvoiceStatus[]'
  */
 export type ListEnumInvoiceStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'InvoiceStatus[]'>
+    
+
+
+/**
+ * Reference to a field of type 'LeadType'
+ */
+export type EnumLeadTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LeadType'>
+    
+
+
+/**
+ * Reference to a field of type 'LeadType[]'
+ */
+export type ListEnumLeadTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'LeadType[]'>
     
 
 

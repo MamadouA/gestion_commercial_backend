@@ -7,18 +7,6 @@ import { CurrentUserType } from '../auth/auth.types';
 export class NotificationController {
     constructor(private readonly notificationService: NotificationService) {}
 
-    //  -
-    @Get('all')
-    async findAll (@CurrentUser() user: CurrentUserType) {
-        return this.notificationService.findAll(user, user.tenantId);
-    }
-
-    // -
-    @Get('unread/count')
-    async getNewCount (@CurrentUser() user: CurrentUserType) {
-        return this.notificationService.getUnreadCount(user, user.tenantId);
-    }
-
     // -
     @Get('mark-all-as-read')
     async markAllAsRead (@CurrentUser('tenantId') tenantId: number) {

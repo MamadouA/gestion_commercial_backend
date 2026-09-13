@@ -47,6 +47,14 @@ export const LeadStatus = {
 export type LeadStatus = (typeof LeadStatus)[keyof typeof LeadStatus]
 
 
+export const LeadType = {
+  OFFER: 'OFFER',
+  PROSPECTION: 'PROSPECTION'
+} as const
+
+export type LeadType = (typeof LeadType)[keyof typeof LeadType]
+
+
 export const ProjectStatus = {
   IN_PROGRESS: 'IN_PROGRESS',
   DONE: 'DONE',
@@ -60,10 +68,8 @@ export const Feature = {
   DASHBOARD: 'DASHBOARD',
   TENANT: 'TENANT',
   USER: 'USER',
-  PROJECT: 'PROJECT',
-  OFFER: 'OFFER',
-  CLIENT: 'CLIENT',
-  PROSPECTION: 'PROSPECTION'
+  LEAD: 'LEAD',
+  PROJECT: 'PROJECT'
 } as const
 
 export type Feature = (typeof Feature)[keyof typeof Feature]

@@ -8,19 +8,9 @@ export const APP_PERMISSIONS: PermissionType[] = [
         feature: "USER"
     },
     {
-        name: "client.manage",
-        description: "Gérer les clients",
-        feature: "CLIENT"
-    },
-    {
-        name: "prospection.manage",
-        description: "Gérer les prospection",
-        feature: "PROSPECTION"
-    },
-    {
-        name: "offer.manage",
-        description: "Gérer les offres",
-        feature: "OFFER"
+        name: "lead.manage",
+        description: "Gérer les leads",
+        feature: "LEAD"
     },
     {
         name: "project.manage",

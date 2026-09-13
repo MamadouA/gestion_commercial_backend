@@ -49,6 +49,7 @@ export type LeadSumAggregateOutputType = {
 export type LeadMinAggregateOutputType = {
   id: number | null
   service: string | null
+  type: $Enums.LeadType | null
   amountHT: runtime.Decimal | null
   amountTTC: runtime.Decimal | null
   amountTVA: runtime.Decimal | null
@@ -63,6 +64,7 @@ export type LeadMinAggregateOutputType = {
 export type LeadMaxAggregateOutputType = {
   id: number | null
   service: string | null
+  type: $Enums.LeadType | null
   amountHT: runtime.Decimal | null
   amountTTC: runtime.Decimal | null
   amountTVA: runtime.Decimal | null
@@ -77,6 +79,7 @@ export type LeadMaxAggregateOutputType = {
 export type LeadCountAggregateOutputType = {
   id: number
   service: number
+  type: number
   amountHT: number
   amountTTC: number
   amountTVA: number
@@ -113,6 +116,7 @@ export type LeadSumAggregateInputType = {
 export type LeadMinAggregateInputType = {
   id?: true
   service?: true
+  type?: true
   amountHT?: true
   amountTTC?: true
   amountTVA?: true
@@ -127,6 +131,7 @@ export type LeadMinAggregateInputType = {
 export type LeadMaxAggregateInputType = {
   id?: true
   service?: true
+  type?: true
   amountHT?: true
   amountTTC?: true
   amountTVA?: true
@@ -141,6 +146,7 @@ export type LeadMaxAggregateInputType = {
 export type LeadCountAggregateInputType = {
   id?: true
   service?: true
+  type?: true
   amountHT?: true
   amountTTC?: true
   amountTVA?: true
@@ -242,6 +248,7 @@ export type LeadGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
 export type LeadGroupByOutputType = {
   id: number
   service: string
+  type: $Enums.LeadType
   amountHT: runtime.Decimal
   amountTTC: runtime.Decimal
   amountTVA: runtime.Decimal
@@ -279,6 +286,7 @@ export type LeadWhereInput = {
   NOT?: Prisma.LeadWhereInput | Prisma.LeadWhereInput[]
   id?: Prisma.IntFilter<"Lead"> | number
   service?: Prisma.StringFilter<"Lead"> | string
+  type?: Prisma.EnumLeadTypeFilter<"Lead"> | $Enums.LeadType
   amountHT?: Prisma.DecimalFilter<"Lead"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC?: Prisma.DecimalFilter<"Lead"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA?: Prisma.DecimalFilter<"Lead"> | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -299,6 +307,7 @@ export type LeadWhereInput = {
 export type LeadOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   service?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   amountHT?: Prisma.SortOrder
   amountTTC?: Prisma.SortOrder
   amountTVA?: Prisma.SortOrder
@@ -322,6 +331,7 @@ export type LeadWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.LeadWhereInput[]
   NOT?: Prisma.LeadWhereInput | Prisma.LeadWhereInput[]
   service?: Prisma.StringFilter<"Lead"> | string
+  type?: Prisma.EnumLeadTypeFilter<"Lead"> | $Enums.LeadType
   amountHT?: Prisma.DecimalFilter<"Lead"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC?: Prisma.DecimalFilter<"Lead"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA?: Prisma.DecimalFilter<"Lead"> | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -342,6 +352,7 @@ export type LeadWhereUniqueInput = Prisma.AtLeast<{
 export type LeadOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   service?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   amountHT?: Prisma.SortOrder
   amountTTC?: Prisma.SortOrder
   amountTVA?: Prisma.SortOrder
@@ -364,6 +375,7 @@ export type LeadScalarWhereWithAggregatesInput = {
   NOT?: Prisma.LeadScalarWhereWithAggregatesInput | Prisma.LeadScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Lead"> | number
   service?: Prisma.StringWithAggregatesFilter<"Lead"> | string
+  type?: Prisma.EnumLeadTypeWithAggregatesFilter<"Lead"> | $Enums.LeadType
   amountHT?: Prisma.DecimalWithAggregatesFilter<"Lead"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC?: Prisma.DecimalWithAggregatesFilter<"Lead"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA?: Prisma.DecimalWithAggregatesFilter<"Lead"> | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -377,6 +389,7 @@ export type LeadScalarWhereWithAggregatesInput = {
 
 export type LeadCreateInput = {
   service: string
+  type: $Enums.LeadType
   amountHT: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -394,6 +407,7 @@ export type LeadCreateInput = {
 export type LeadUncheckedCreateInput = {
   id?: number
   service: string
+  type: $Enums.LeadType
   amountHT: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -410,6 +424,7 @@ export type LeadUncheckedCreateInput = {
 
 export type LeadUpdateInput = {
   service?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumLeadTypeFieldUpdateOperationsInput | $Enums.LeadType
   amountHT?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -427,6 +442,7 @@ export type LeadUpdateInput = {
 export type LeadUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   service?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumLeadTypeFieldUpdateOperationsInput | $Enums.LeadType
   amountHT?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -444,6 +460,7 @@ export type LeadUncheckedUpdateInput = {
 export type LeadCreateManyInput = {
   id?: number
   service: string
+  type: $Enums.LeadType
   amountHT: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -457,6 +474,7 @@ export type LeadCreateManyInput = {
 
 export type LeadUpdateManyMutationInput = {
   service?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumLeadTypeFieldUpdateOperationsInput | $Enums.LeadType
   amountHT?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -468,6 +486,7 @@ export type LeadUpdateManyMutationInput = {
 export type LeadUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   service?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumLeadTypeFieldUpdateOperationsInput | $Enums.LeadType
   amountHT?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -497,6 +516,7 @@ export type LeadOrderByRelationAggregateInput = {
 export type LeadCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   service?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   amountHT?: Prisma.SortOrder
   amountTTC?: Prisma.SortOrder
   amountTVA?: Prisma.SortOrder
@@ -521,6 +541,7 @@ export type LeadAvgOrderByAggregateInput = {
 export type LeadMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   service?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   amountHT?: Prisma.SortOrder
   amountTTC?: Prisma.SortOrder
   amountTVA?: Prisma.SortOrder
@@ -535,6 +556,7 @@ export type LeadMaxOrderByAggregateInput = {
 export type LeadMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   service?: Prisma.SortOrder
+  type?: Prisma.SortOrder
   amountHT?: Prisma.SortOrder
   amountTTC?: Prisma.SortOrder
   amountTVA?: Prisma.SortOrder
@@ -633,6 +655,10 @@ export type LeadUpdateOneWithoutCommentsNestedInput = {
   delete?: Prisma.LeadWhereInput | boolean
   connect?: Prisma.LeadWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.LeadUpdateToOneWithWhereWithoutCommentsInput, Prisma.LeadUpdateWithoutCommentsInput>, Prisma.LeadUncheckedUpdateWithoutCommentsInput>
+}
+
+export type EnumLeadTypeFieldUpdateOperationsInput = {
+  set?: $Enums.LeadType
 }
 
 export type EnumLeadStatusFieldUpdateOperationsInput = {
@@ -739,6 +765,7 @@ export type LeadUncheckedUpdateManyWithoutAuthorNestedInput = {
 
 export type LeadCreateWithoutAttachmentsInput = {
   service: string
+  type: $Enums.LeadType
   amountHT: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -755,6 +782,7 @@ export type LeadCreateWithoutAttachmentsInput = {
 export type LeadUncheckedCreateWithoutAttachmentsInput = {
   id?: number
   service: string
+  type: $Enums.LeadType
   amountHT: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -786,6 +814,7 @@ export type LeadUpdateToOneWithWhereWithoutAttachmentsInput = {
 
 export type LeadUpdateWithoutAttachmentsInput = {
   service?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumLeadTypeFieldUpdateOperationsInput | $Enums.LeadType
   amountHT?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -802,6 +831,7 @@ export type LeadUpdateWithoutAttachmentsInput = {
 export type LeadUncheckedUpdateWithoutAttachmentsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   service?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumLeadTypeFieldUpdateOperationsInput | $Enums.LeadType
   amountHT?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -817,6 +847,7 @@ export type LeadUncheckedUpdateWithoutAttachmentsInput = {
 
 export type LeadCreateWithoutClientInput = {
   service: string
+  type: $Enums.LeadType
   amountHT: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -833,6 +864,7 @@ export type LeadCreateWithoutClientInput = {
 export type LeadUncheckedCreateWithoutClientInput = {
   id?: number
   service: string
+  type: $Enums.LeadType
   amountHT: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -878,6 +910,7 @@ export type LeadScalarWhereInput = {
   NOT?: Prisma.LeadScalarWhereInput | Prisma.LeadScalarWhereInput[]
   id?: Prisma.IntFilter<"Lead"> | number
   service?: Prisma.StringFilter<"Lead"> | string
+  type?: Prisma.EnumLeadTypeFilter<"Lead"> | $Enums.LeadType
   amountHT?: Prisma.DecimalFilter<"Lead"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC?: Prisma.DecimalFilter<"Lead"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA?: Prisma.DecimalFilter<"Lead"> | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -891,6 +924,7 @@ export type LeadScalarWhereInput = {
 
 export type LeadCreateWithoutCommentsInput = {
   service: string
+  type: $Enums.LeadType
   amountHT: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -907,6 +941,7 @@ export type LeadCreateWithoutCommentsInput = {
 export type LeadUncheckedCreateWithoutCommentsInput = {
   id?: number
   service: string
+  type: $Enums.LeadType
   amountHT: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -938,6 +973,7 @@ export type LeadUpdateToOneWithWhereWithoutCommentsInput = {
 
 export type LeadUpdateWithoutCommentsInput = {
   service?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumLeadTypeFieldUpdateOperationsInput | $Enums.LeadType
   amountHT?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -954,6 +990,7 @@ export type LeadUpdateWithoutCommentsInput = {
 export type LeadUncheckedUpdateWithoutCommentsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   service?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumLeadTypeFieldUpdateOperationsInput | $Enums.LeadType
   amountHT?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -969,6 +1006,7 @@ export type LeadUncheckedUpdateWithoutCommentsInput = {
 
 export type LeadCreateWithoutProjectInput = {
   service: string
+  type: $Enums.LeadType
   amountHT: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -985,6 +1023,7 @@ export type LeadCreateWithoutProjectInput = {
 export type LeadUncheckedCreateWithoutProjectInput = {
   id?: number
   service: string
+  type: $Enums.LeadType
   amountHT: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1016,6 +1055,7 @@ export type LeadUpdateToOneWithWhereWithoutProjectInput = {
 
 export type LeadUpdateWithoutProjectInput = {
   service?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumLeadTypeFieldUpdateOperationsInput | $Enums.LeadType
   amountHT?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1032,6 +1072,7 @@ export type LeadUpdateWithoutProjectInput = {
 export type LeadUncheckedUpdateWithoutProjectInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   service?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumLeadTypeFieldUpdateOperationsInput | $Enums.LeadType
   amountHT?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1047,6 +1088,7 @@ export type LeadUncheckedUpdateWithoutProjectInput = {
 
 export type LeadCreateWithoutTenantInput = {
   service: string
+  type: $Enums.LeadType
   amountHT: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1063,6 +1105,7 @@ export type LeadCreateWithoutTenantInput = {
 export type LeadUncheckedCreateWithoutTenantInput = {
   id?: number
   service: string
+  type: $Enums.LeadType
   amountHT: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1104,6 +1147,7 @@ export type LeadUpdateManyWithWhereWithoutTenantInput = {
 
 export type LeadCreateWithoutAuthorInput = {
   service: string
+  type: $Enums.LeadType
   amountHT: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1120,6 +1164,7 @@ export type LeadCreateWithoutAuthorInput = {
 export type LeadUncheckedCreateWithoutAuthorInput = {
   id?: number
   service: string
+  type: $Enums.LeadType
   amountHT: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1162,6 +1207,7 @@ export type LeadUpdateManyWithWhereWithoutAuthorInput = {
 export type LeadCreateManyClientInput = {
   id?: number
   service: string
+  type: $Enums.LeadType
   amountHT: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1174,6 +1220,7 @@ export type LeadCreateManyClientInput = {
 
 export type LeadUpdateWithoutClientInput = {
   service?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumLeadTypeFieldUpdateOperationsInput | $Enums.LeadType
   amountHT?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1190,6 +1237,7 @@ export type LeadUpdateWithoutClientInput = {
 export type LeadUncheckedUpdateWithoutClientInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   service?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumLeadTypeFieldUpdateOperationsInput | $Enums.LeadType
   amountHT?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1206,6 +1254,7 @@ export type LeadUncheckedUpdateWithoutClientInput = {
 export type LeadUncheckedUpdateManyWithoutClientInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   service?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumLeadTypeFieldUpdateOperationsInput | $Enums.LeadType
   amountHT?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1219,6 +1268,7 @@ export type LeadUncheckedUpdateManyWithoutClientInput = {
 export type LeadCreateManyTenantInput = {
   id?: number
   service: string
+  type: $Enums.LeadType
   amountHT: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1231,6 +1281,7 @@ export type LeadCreateManyTenantInput = {
 
 export type LeadUpdateWithoutTenantInput = {
   service?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumLeadTypeFieldUpdateOperationsInput | $Enums.LeadType
   amountHT?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1247,6 +1298,7 @@ export type LeadUpdateWithoutTenantInput = {
 export type LeadUncheckedUpdateWithoutTenantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   service?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumLeadTypeFieldUpdateOperationsInput | $Enums.LeadType
   amountHT?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1263,6 +1315,7 @@ export type LeadUncheckedUpdateWithoutTenantInput = {
 export type LeadUncheckedUpdateManyWithoutTenantInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   service?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumLeadTypeFieldUpdateOperationsInput | $Enums.LeadType
   amountHT?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1276,6 +1329,7 @@ export type LeadUncheckedUpdateManyWithoutTenantInput = {
 export type LeadCreateManyAuthorInput = {
   id?: number
   service: string
+  type: $Enums.LeadType
   amountHT: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC: runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA: runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1288,6 +1342,7 @@ export type LeadCreateManyAuthorInput = {
 
 export type LeadUpdateWithoutAuthorInput = {
   service?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumLeadTypeFieldUpdateOperationsInput | $Enums.LeadType
   amountHT?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1304,6 +1359,7 @@ export type LeadUpdateWithoutAuthorInput = {
 export type LeadUncheckedUpdateWithoutAuthorInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   service?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumLeadTypeFieldUpdateOperationsInput | $Enums.LeadType
   amountHT?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1320,6 +1376,7 @@ export type LeadUncheckedUpdateWithoutAuthorInput = {
 export type LeadUncheckedUpdateManyWithoutAuthorInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   service?: Prisma.StringFieldUpdateOperationsInput | string
+  type?: Prisma.EnumLeadTypeFieldUpdateOperationsInput | $Enums.LeadType
   amountHT?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTTC?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   amountTVA?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
@@ -1373,6 +1430,7 @@ export type LeadCountOutputTypeCountCommentsArgs<ExtArgs extends runtime.Types.E
 export type LeadSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   service?: boolean
+  type?: boolean
   amountHT?: boolean
   amountTTC?: boolean
   amountTVA?: boolean
@@ -1394,6 +1452,7 @@ export type LeadSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
 export type LeadSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   service?: boolean
+  type?: boolean
   amountHT?: boolean
   amountTTC?: boolean
   amountTVA?: boolean
@@ -1411,6 +1470,7 @@ export type LeadSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
 export type LeadSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   service?: boolean
+  type?: boolean
   amountHT?: boolean
   amountTTC?: boolean
   amountTVA?: boolean
@@ -1428,6 +1488,7 @@ export type LeadSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
 export type LeadSelectScalar = {
   id?: boolean
   service?: boolean
+  type?: boolean
   amountHT?: boolean
   amountTTC?: boolean
   amountTVA?: boolean
@@ -1439,7 +1500,7 @@ export type LeadSelectScalar = {
   createdAt?: boolean
 }
 
-export type LeadOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "service" | "amountHT" | "amountTTC" | "amountTVA" | "deadline" | "status" | "clientId" | "tenantId" | "authorId" | "createdAt", ExtArgs["result"]["lead"]>
+export type LeadOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "service" | "type" | "amountHT" | "amountTTC" | "amountTVA" | "deadline" | "status" | "clientId" | "tenantId" | "authorId" | "createdAt", ExtArgs["result"]["lead"]>
 export type LeadInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   client?: boolean | Prisma.ClientDefaultArgs<ExtArgs>
   tenant?: boolean | Prisma.TenantDefaultArgs<ExtArgs>
@@ -1473,6 +1534,7 @@ export type $LeadPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     service: string
+    type: $Enums.LeadType
     amountHT: runtime.Decimal
     amountTTC: runtime.Decimal
     amountTVA: runtime.Decimal
@@ -1913,6 +1975,7 @@ export interface Prisma__LeadClient<T, Null = never, ExtArgs extends runtime.Typ
 export interface LeadFieldRefs {
   readonly id: Prisma.FieldRef<"Lead", 'Int'>
   readonly service: Prisma.FieldRef<"Lead", 'String'>
+  readonly type: Prisma.FieldRef<"Lead", 'LeadType'>
   readonly amountHT: Prisma.FieldRef<"Lead", 'Decimal'>
   readonly amountTTC: Prisma.FieldRef<"Lead", 'Decimal'>
   readonly amountTVA: Prisma.FieldRef<"Lead", 'Decimal'>

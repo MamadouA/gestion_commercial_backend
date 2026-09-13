@@ -1,7 +1,7 @@
 model Lead {
   id       Int        @id @default(autoincrement())
   service  String
-
+  type LeadType  
   amountHT Decimal
   amountTTC Decimal
   amountTVA Decimal
@@ -29,4 +29,9 @@ enum LeadStatus {
   OPENED
   LOST
   WON
+}
+
+enum LeadType {
+  OFFER
+  PROSPECTION
 }

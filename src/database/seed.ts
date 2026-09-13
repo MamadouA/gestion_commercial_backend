@@ -1,5 +1,5 @@
 import { CreateClientDTO } from "../client/dto/create-client.dto";
-import { EnterpriseLegalForm } from "../generated/prisma/enums";
+import { EnterpriseLegalForm, LeadStatus, LeadType } from "../generated/prisma/enums";
 
 // -
 interface ClientType {
@@ -619,3 +619,48 @@ export const CLIENT_SEED: ClientType[] = [
   },
 ];
 
+export const generateLeads = (count = 100) => {
+  const services = [
+    "Construction villa",
+    "Immeuble R+4",
+    "Rénovation bureaux",
+    "Voirie & assainissement",
+    "Extension bâtiment",
+    "Génie civil",
+    "Charpente métallique",
+    "Finition intérieure",
+  ];
+
+  const statuses = [
+    LeadStatus.OPENED,
+    LeadStatus.LOST,
+    LeadStatus.WON,
+  ];
+
+  const types = [
+    LeadType.OFFER,
+    LeadType.PROSPECTION,
+  ];
+
+  return Array.from({ length: count }, () => {
+    const amountHT = Math.floor(Math.random() * 45_000_000) + 5_000_000;
+    const amountTVA = Math.round(amountHT * 0.18);
+
+    return {
+      service: services[Math.floor(Math.random() * services.length)],
+      type: types[Math.floor(Math.random() * types.length)],
+      amountHT,
+      amountTVA,
+      amountTTC: amountHT + amountTVA,
+      deadline: new Date(
+        2026,
+        Math.floor(Math.random() * 12),
+        Math.floor(Math.random() * 28) + 1
+      ),
+      status: statuses[Math.floor(Math.random() * statuses.length)],
+      clientId: Math.floor(Math.random() * 50) + 1,
+      tenantId: 1,
+      authorId: 1,
+    };
+  });
+};

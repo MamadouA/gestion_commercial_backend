@@ -1,9 +1,9 @@
 import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { Feature, PrismaClient } from '../generated/prisma/client';
-import { APP_PERMISSIONS } from '../role-management/role-management.contants';
+import { APP_PERMISSIONS } from '../role/role.contants';
 import * as bcrypt from 'bcrypt';
-import { CLIENT_SEED } from './seed';
+import { CLIENT_SEED, generateLeads } from './seed';
 
 @Injectable()
 export class PrismaClientService
@@ -44,7 +44,8 @@ export class PrismaClientService
               permissions: {
                 create: {
                   name: 'app.manage',
-                  description: "Super administrateur chargé de la gestion de l'application",
+                  description:
+                    "Super administrateur chargé de la gestion de l'application",
                   feature: 'TENANT',
                 },
               },
@@ -95,12 +96,12 @@ export class PrismaClientService
         });
       });
 
-      await Promise.all(
-        [
-          this.permission.createMany({ data: permissions }),
-          this.client.createMany({ data: CLIENT_SEED }),
-        ]
-      )
+      await Promise.all([
+        this.permission.createMany({ data: permissions }),
+        this.client.createMany({ data: CLIENT_SEED }),
+      ]);
+
+      await this.lead.createMany({ data: generateLeads() });
     }
   }
 }

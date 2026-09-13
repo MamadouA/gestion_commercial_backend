@@ -145,6 +145,7 @@ export type InvoiceScalarFieldEnum = (typeof InvoiceScalarFieldEnum)[keyof typeo
 export const LeadScalarFieldEnum = {
   id: 'id',
   service: 'service',
+  type: 'type',
   amountHT: 'amountHT',
   amountTTC: 'amountTTC',
   amountTVA: 'amountTVA',

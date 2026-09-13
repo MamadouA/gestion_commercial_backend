@@ -10,7 +10,7 @@ import { AuthMiddleware } from './auth/auth.middleware';
 import { CommonModule } from './common/common.module';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ProjectModule } from './project/project.module';
-import { RoleManagementModule } from './role-management/role-management.module';
+import { RoleManagementModule } from './role/role.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { InvoiceModule } from './invoice/invoice.module';
 import { SubscriptionModule } from './subscription/subscription.module';

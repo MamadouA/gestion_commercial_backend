@@ -7,8 +7,8 @@ import { CurrentUserType } from '../auth/auth.types';
 import { RoleQueryDTO } from './dto/role-query.dto';
 
 @Injectable()
-export class RoleManagementService {
-    private logger = new Logger(RoleManagementService.name);
+export class RoleService {
+    private logger = new Logger(RoleService.name);
     constructor(private readonly prismaClientService: PrismaClientService) {}
 
     // -
